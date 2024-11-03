@@ -109,11 +109,11 @@
     <Compile Include="frm_lapHoaDon.Designer.cs">
       <DependentUpon>frm_lapHoaDon.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_Main.cs">
+    <Compile Include="frm_main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_Main.Designer.cs">
-      <DependentUpon>frm_Main.cs</DependentUpon>
+    <Compile Include="frm_main.Designer.cs">
+      <DependentUpon>frm_main.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_wait.cs">
       <SubType>Form</SubType>
@@ -126,8 +126,8 @@
     <EmbeddedResource Include="frm_lapHoaDon.resx">
       <DependentUpon>frm_lapHoaDon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_Main.resx">
-      <DependentUpon>frm_Main.cs</DependentUpon>
+    <EmbeddedResource Include="frm_main.resx">
+      <DependentUpon>frm_main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_wait.resx">
       <DependentUpon>frm_wait.cs</DependentUpon>
@@ -141,6 +141,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -154,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
