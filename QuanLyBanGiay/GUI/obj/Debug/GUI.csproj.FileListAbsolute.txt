@@ -40,4 +40,3 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\Dev
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\DevExpress.XtraLayout.v22.2.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\DevExpress.XtraLayout.v22.2.xml
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_wait.resources
-D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_main1.resources

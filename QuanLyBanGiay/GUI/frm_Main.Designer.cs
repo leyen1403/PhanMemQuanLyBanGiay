@@ -31,9 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main));
             this.fluentDesignFormControl1 = new DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl();
+            this.btn_thietLapTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
+            this.btn_dangXuat = new DevExpress.XtraBars.BarButtonItem();
+            this.label_tenNV = new DevExpress.XtraBars.BarStaticItem();
             this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
             this.pnMain = new System.Windows.Forms.Panel();
             this.pnLeft = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
@@ -54,10 +58,6 @@
             this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_BackUp = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_Restore = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btn_thietLapTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
-            this.btn_dangXuat = new DevExpress.XtraBars.BarButtonItem();
-            this.label_tenNV = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).BeginInit();
             this.pnLeft.SuspendLayout();
@@ -82,6 +82,31 @@
             this.fluentDesignFormControl1.TitleItemLinks.Add(this.btn_dangXuat);
             this.fluentDesignFormControl1.TitleItemLinks.Add(this.label_tenNV);
             // 
+            // btn_thietLapTaiKhoan
+            // 
+            this.btn_thietLapTaiKhoan.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_thietLapTaiKhoan.Caption = "barButtonItem1";
+            this.btn_thietLapTaiKhoan.Id = 0;
+            this.btn_thietLapTaiKhoan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_thietLapTaiKhoan.ImageOptions.Image")));
+            this.btn_thietLapTaiKhoan.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_thietLapTaiKhoan.ImageOptions.LargeImage")));
+            this.btn_thietLapTaiKhoan.Name = "btn_thietLapTaiKhoan";
+            // 
+            // btn_dangXuat
+            // 
+            this.btn_dangXuat.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_dangXuat.Caption = "barButtonItem2";
+            this.btn_dangXuat.Id = 1;
+            this.btn_dangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_dangXuat.ImageOptions.Image")));
+            this.btn_dangXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_dangXuat.ImageOptions.LargeImage")));
+            this.btn_dangXuat.Name = "btn_dangXuat";
+            // 
+            // label_tenNV
+            // 
+            this.label_tenNV.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.label_tenNV.Caption = "Nhân viên: Tên nhân viên";
+            this.label_tenNV.Id = 2;
+            this.label_tenNV.Name = "label_tenNV";
+            // 
             // fluentFormDefaultManager1
             // 
             this.fluentFormDefaultManager1.Form = this;
@@ -93,6 +118,7 @@
             // 
             // pnMain
             // 
+            this.pnMain.BackColor = System.Drawing.Color.GhostWhite;
             this.pnMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pnMain.Location = new System.Drawing.Point(317, 39);
             this.pnMain.Name = "pnMain";
@@ -111,6 +137,14 @@
             this.pnLeft.Name = "pnLeft";
             this.pnLeft.Size = new System.Drawing.Size(311, 842);
             this.pnLeft.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(2, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(346, 5);
+            this.label1.TabIndex = 17;
             // 
             // label2
             // 
@@ -211,6 +245,7 @@
             this.btn_Kho,
             this.btn_DonDatHang,
             this.btn_NhanVien});
+            this.accordionControlElement2.Expanded = true;
             this.accordionControlElement2.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement2.ImageOptions.Image")));
             this.accordionControlElement2.Name = "accordionControlElement2";
             this.accordionControlElement2.Text = "Hệ Thống";
@@ -269,6 +304,7 @@
             this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.btn_BackUp,
             this.btn_Restore});
+            this.accordionControlElement3.Expanded = true;
             this.accordionControlElement3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement3.ImageOptions.Image")));
             this.accordionControlElement3.Name = "accordionControlElement3";
             this.accordionControlElement3.Text = "Setting";
@@ -287,41 +323,10 @@
             this.btn_Restore.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_Restore.Text = "Restore";
             // 
-            // label1
+            // frm_main
             // 
-            this.label1.BackColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(2, 65);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(346, 5);
-            this.label1.TabIndex = 17;
-            // 
-            // btn_thietLapTaiKhoan
-            // 
-            this.btn_thietLapTaiKhoan.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.btn_thietLapTaiKhoan.Caption = "barButtonItem1";
-            this.btn_thietLapTaiKhoan.Id = 0;
-            this.btn_thietLapTaiKhoan.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.btn_thietLapTaiKhoan.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.btn_thietLapTaiKhoan.Name = "btn_thietLapTaiKhoan";
-            // 
-            // btn_dangXuat
-            // 
-            this.btn_dangXuat.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.btn_dangXuat.Caption = "barButtonItem2";
-            this.btn_dangXuat.Id = 1;
-            this.btn_dangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.Image")));
-            this.btn_dangXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.ImageOptions.LargeImage")));
-            this.btn_dangXuat.Name = "btn_dangXuat";
-            // 
-            // label_tenNV
-            // 
-            this.label_tenNV.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.label_tenNV.Caption = "Nhân viên: Tên nhân viên";
-            this.label_tenNV.Id = 2;
-            this.label_tenNV.Name = "label_tenNV";
-            // 
-            // frm_main1
-            // 
+            this.Appearance.BackColor = System.Drawing.Color.Black;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1787, 881);
@@ -329,7 +334,7 @@
             this.Controls.Add(this.pnMain);
             this.Controls.Add(this.fluentDesignFormControl1);
             this.FluentDesignFormControl = this.fluentDesignFormControl1;
-            this.Name = "frm_main1";
+            this.Name = "frm_main";
             this.Text = "Hệ thống quản lý cửa hàng bán giày";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).EndInit();

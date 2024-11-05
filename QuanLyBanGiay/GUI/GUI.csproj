@@ -36,6 +36,7 @@
     <Reference Include="BLL">
       <HintPath>..\BLL\bin\Debug\BLL.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Dashboard.v22.2.Core, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PhanMemQuanLyBanGiay\AppBanGiay\GUI\bin\Debug\DevExpress.Data.Desktop.v22.2.dll</HintPath>
@@ -44,6 +45,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PhanMemQuanLyBanGiay\AppBanGiay\GUI\bin\Debug\DevExpress.Data.v22.2.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.DataAccess.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Drawing.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PhanMemQuanLyBanGiay\AppBanGiay\GUI\bin\Debug\DevExpress.Drawing.v22.2.dll</HintPath>
@@ -103,17 +105,83 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm_laPhieuDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_laPhieuDichVu.Designer.cs">
+      <DependentUpon>frm_laPhieuDichVu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_lapHoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_lapHoaDon.Designer.cs">
       <DependentUpon>frm_lapHoaDon.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_lapPhieuNhapHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_lapPhieuNhapHang.Designer.cs">
+      <DependentUpon>frm_lapPhieuNhapHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_lapThongKeBaoCao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_lapThongKeBaoCao.Designer.cs">
+      <DependentUpon>frm_lapThongKeBaoCao.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_main.Designer.cs">
       <DependentUpon>frm_main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyDichVu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyDichVu.Designer.cs">
+      <DependentUpon>frm_quanLyDichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyDonDatHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyDonDatHang.Designer.cs">
+      <DependentUpon>frm_quanLyDonDatHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyHoaDon.Designer.cs">
+      <DependentUpon>frm_quanLyHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyKhachHang.Designer.cs">
+      <DependentUpon>frm_quanLyKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyKhoHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyKhoHang.Designer.cs">
+      <DependentUpon>frm_quanLyKhoHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyNhaCungCap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyNhaCungCap.Designer.cs">
+      <DependentUpon>frm_quanLyNhaCungCap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyNhanVien.Designer.cs">
+      <DependentUpon>frm_quanLyNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_thietLapTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_thietLapTaiKhoan.Designer.cs">
+      <DependentUpon>frm_thietLapTaiKhoan.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_wait.cs">
       <SubType>Form</SubType>
