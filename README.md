@@ -49,4 +49,4 @@ Các công nghệ này kết hợp với nhau để cung cấp một giải phá
 | **9. Quản lý chương trình khuyến mãi**           |                                                  | Xem danh sách chương trình khuyến mãi, cập nhật chương trình, chi tiết chương trình |
 | **10. Báo cáo thu/chi/lợi nhuận**                | Theo dõi thu/chi/lợi nhuận theo ngày, tuần, tháng, quý, năm, xem biểu đồ |                                                |
 
-## AI sử dụng: Nhận dạng hình ảnh sản phẩm (Product Image Recognition)
+## AI sử dụng: Dự đoán doanh thu
