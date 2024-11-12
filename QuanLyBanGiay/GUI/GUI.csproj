@@ -36,6 +36,7 @@
     <Reference Include="BLL">
       <HintPath>..\BLL\bin\Debug\BLL.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.Dashboard.v22.2.Core, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.Desktop.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PhanMemQuanLyBanGiay\AppBanGiay\GUI\bin\Debug\DevExpress.Data.Desktop.v22.2.dll</HintPath>
@@ -44,6 +45,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PhanMemQuanLyBanGiay\AppBanGiay\GUI\bin\Debug\DevExpress.Data.v22.2.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.DataAccess.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Drawing.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PhanMemQuanLyBanGiay\AppBanGiay\GUI\bin\Debug\DevExpress.Drawing.v22.2.dll</HintPath>
@@ -103,17 +105,95 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm_dangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_dangNhap.Designer.cs">
+      <DependentUpon>frm_dangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_lapDonDatHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_lapDonDatHang.Designer.cs">
+      <DependentUpon>frm_lapDonDatHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_lapHoaDon.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_lapHoaDon.Designer.cs">
       <DependentUpon>frm_lapHoaDon.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_lapPhieuKiemKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_lapPhieuKiemKe.Designer.cs">
+      <DependentUpon>frm_lapPhieuKiemKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_lapThongKeBaoCao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_lapThongKeBaoCao.Designer.cs">
+      <DependentUpon>frm_lapThongKeBaoCao.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_main.Designer.cs">
       <DependentUpon>frm_main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyChungLoai.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyChungLoai.Designer.cs">
+      <DependentUpon>frm_quanLyChungLoai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyDonDatHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyDonDatHang.Designer.cs">
+      <DependentUpon>frm_quanLyDonDatHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyHoaDon.Designer.cs">
+      <DependentUpon>frm_quanLyHoaDon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyKhachHang.Designer.cs">
+      <DependentUpon>frm_quanLyKhachHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyKhoHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyKhoHang.Designer.cs">
+      <DependentUpon>frm_quanLyKhoHang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyNhaCungCap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyNhaCungCap.Designer.cs">
+      <DependentUpon>frm_quanLyNhaCungCap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyNhanVien.Designer.cs">
+      <DependentUpon>frm_quanLyNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_quanLyPhieuKiemKe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_quanLyPhieuKiemKe.Designer.cs">
+      <DependentUpon>frm_quanLyPhieuKiemKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_thietLapTaiKhoan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_thietLapTaiKhoan.Designer.cs">
+      <DependentUpon>frm_thietLapTaiKhoan.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_wait.cs">
       <SubType>Form</SubType>
@@ -123,11 +203,47 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frm_dangNhap.resx">
+      <DependentUpon>frm_dangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_lapDonDatHang.resx">
+      <DependentUpon>frm_lapDonDatHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_lapHoaDon.resx">
       <DependentUpon>frm_lapHoaDon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_lapPhieuKiemKe.resx">
+      <DependentUpon>frm_lapPhieuKiemKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_lapThongKeBaoCao.resx">
+      <DependentUpon>frm_lapThongKeBaoCao.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_main.resx">
       <DependentUpon>frm_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyChungLoai.resx">
+      <DependentUpon>frm_quanLyChungLoai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyDonDatHang.resx">
+      <DependentUpon>frm_quanLyDonDatHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyHoaDon.resx">
+      <DependentUpon>frm_quanLyHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyKhachHang.resx">
+      <DependentUpon>frm_quanLyKhachHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyKhoHang.resx">
+      <DependentUpon>frm_quanLyKhoHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyNhaCungCap.resx">
+      <DependentUpon>frm_quanLyNhaCungCap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyNhanVien.resx">
+      <DependentUpon>frm_quanLyNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_quanLyPhieuKiemKe.resx">
+      <DependentUpon>frm_quanLyPhieuKiemKe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_wait.resx">
       <DependentUpon>frm_wait.cs</DependentUpon>
@@ -158,6 +274,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-add-shopping-cart-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-clear-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-delete-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-find-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-load-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-as-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-eye-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-login-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-password-35.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-account-35.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
