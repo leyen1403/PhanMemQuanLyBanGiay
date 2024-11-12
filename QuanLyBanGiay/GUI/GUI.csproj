@@ -86,7 +86,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PhanMemQuanLyBanGiay\AppBanGiay\GUI\bin\Debug\DevExpress.XtraLayout.v22.2.dll</HintPath>
     </Reference>
-    <Reference Include="DTO">
+    <Reference Include="DTO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DTO\bin\Debug\DTO.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -183,11 +184,23 @@
     <Compile Include="frm_quanLyNhanVien.Designer.cs">
       <DependentUpon>frm_quanLyNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_QuanLyPhanQuyen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_QuanLyPhanQuyen.Designer.cs">
+      <DependentUpon>frm_QuanLyPhanQuyen.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_quanLyPhieuKiemKe.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm_quanLyPhieuKiemKe.Designer.cs">
       <DependentUpon>frm_quanLyPhieuKiemKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_ThemVaiTro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_ThemVaiTro.Designer.cs">
+      <DependentUpon>frm_ThemVaiTro.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_thietLapTaiKhoan.cs">
       <SubType>Form</SubType>
@@ -242,8 +255,14 @@
     <EmbeddedResource Include="frm_quanLyNhanVien.resx">
       <DependentUpon>frm_quanLyNhanVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm_QuanLyPhanQuyen.resx">
+      <DependentUpon>frm_QuanLyPhanQuyen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_quanLyPhieuKiemKe.resx">
       <DependentUpon>frm_quanLyPhieuKiemKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_ThemVaiTro.resx">
+      <DependentUpon>frm_ThemVaiTro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_wait.resx">
       <DependentUpon>frm_wait.cs</DependentUpon>

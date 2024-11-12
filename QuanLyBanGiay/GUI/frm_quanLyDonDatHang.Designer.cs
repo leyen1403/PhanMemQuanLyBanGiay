@@ -72,6 +72,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupbox3 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoLuongYeuCau)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSoLuongCungCap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietDDH)).BeginInit();
@@ -654,5 +655,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupbox3;
         private System.Windows.Forms.Panel panel2;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

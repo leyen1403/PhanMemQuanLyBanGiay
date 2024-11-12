@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraBars;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,6 +13,8 @@ namespace GUI
 {
     public partial class frm_main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
+        public NhanVien _nhanVien { get; set; }
+
         public frm_main()
         {
             InitializeComponent();
@@ -119,9 +122,5 @@ namespace GUI
         {
             loadForm(new frm_lapHoaDon());
         }
-        /* các sự kiện */
-
-        //các hàm 
-
     }
 }
