@@ -1,8 +1,9 @@
 ﻿use master
 go
-create database db_QLCHBG
+create database db_QuanLyBanGiay
 go
-use db_QLCHBG;
+use db_QuanLyBanGiay;
+go
 CREATE TABLE NhaCungCap (
     MaNhaCungCap NVARCHAR(50) PRIMARY KEY NOT NULL,
     TenNhaCungCap NVARCHAR(255) NOT NULL,
@@ -14,11 +15,11 @@ CREATE TABLE NhaCungCap (
     NgayTao DATE DEFAULT GETDATE(),
     NgayCapNhat DATE
 );
-INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap, DiaChi, NguoiDaiDien, Email, SoDienThoai, TrangThaiHoatDong)
+INSERT INTO NhaCungCap (MaNhaCungCap, TenNhaCungCap, DiaChi, NguoiDaiDien, Email, SoDienThoai, TrangThaiHoatDong, NgayTao, NgayCapNhat)
 VALUES 
-    (N'NCC001', N'Công Ty Giày Đông Á', N'123 Đường Nguyễn Trãi, Hà Nội', N'Nguyễn Văn An', N'dongagiay@example.com', N'0123456789', 1),
-    (N'NCC002', N'Giày Thể Thao Việt', N'456 Đường Lý Thường Kiệt, TP HCM', N'Trần Thị Bích', N'thethaoviet@example.com', N'0987654321', 1),
-    (N'NCC003', N'Nhà Phân Phối Giày Quốc Tế', N'789 Đường Hoàng Diệu, Đà Nẵng', N'Lê Văn Hoàng', N'giayquocte@example.com', N'0912345678', 1);
+    (N'NCC001', N'Công Ty Giày Đông Á', N'123 Đường Nguyễn Trãi, Hà Nội', N'Nguyễn Văn An', N'dongagiay@example.com', N'0123456789', 1, '2023-05-22', '2023-05-22'),
+    (N'NCC002', N'Giày Thể Thao Việt', N'456 Đường Lý Thường Kiệt, TP HCM', N'Trần Thị Bích', N'thethaoviet@example.com', N'0987654321', 1, '2023-05-22', '2023-05-22'),
+    (N'NCC003', N'Nhà Phân Phối Giày Quốc Tế', N'789 Đường Hoàng Diệu, Đà Nẵng', N'Lê Văn Hoàng', N'giayquocte@example.com', N'0912345678', 1, '2023-05-22', '2023-05-22');
 select * from NhaCungCap;
 CREATE TABLE KhachHang (
     MaKhachHang NVARCHAR(50) PRIMARY KEY NOT NULL,
@@ -32,16 +33,16 @@ CREATE TABLE KhachHang (
     MatKhau NVARCHAR(255),
     HinhAnh NVARCHAR(255),
     TrangThaiHoatDong BIT DEFAULT 1,
-    NgayTao DATE DEFAULT GETDATE(),
+    NgayTao DATE,
     NgayCapNhat DATE,
     ThanhVien BIT DEFAULT 0,
     DiaChi NVARCHAR(255)
 );
-INSERT INTO KhachHang (MaKhachHang, TenKhachHang, NgaySinh, GioiTinh, SoDienThoai, Email, TaiKhoan, MatKhau, HinhAnh, TrangThaiHoatDong, ThanhVien, DiaChi)
+INSERT INTO KhachHang (MaKhachHang, TenKhachHang, NgaySinh, GioiTinh, SoDienThoai, Email, TaiKhoan, MatKhau, HinhAnh, TrangThaiHoatDong, ThanhVien, DiaChi, NgayTao, NgayCapNhat)
 VALUES 
-    (N'KH001', N'Nguyễn Văn A', '1990-01-01', N'Nam', N'0123456789', N'nguyenvana@example.com', N'nguyenvana123', N'password123', N'avatar1.jpg', 1, 1, N'123 Đường Nguyễn Trãi, Hà Nội'),
-    (N'KH002', N'Trần Thị Bích', '1992-05-15', N'Nữ', N'0987654321', N'tranthibich@example.com', N'tranthibich456', N'password456', N'avatar2.jpg', 1, 0, N'456 Đường Lý Thường Kiệt, TP HCM'),
-    (N'KH003', N'Lê Minh Hoàng', '1985-10-20', N'Nam', N'0912345678', N'leminhhoang@example.com', N'leminhhoang789', N'password789', N'avatar3.jpg', 1, 0, N'789 Đường Hoàng Diệu, Đà Nẵng');
+    (N'KH001', N'Nguyễn Văn A', '1990-01-01', N'Nam', N'0123456789', N'nguyenvana@example.com', N'nguyenvana123', N'password123', N'avatar1.jpg', 1, 1, N'123 Đường Nguyễn Trãi, Hà Nội', '2023-05-22', '2023-05-22'),
+    (N'KH002', N'Trần Thị Bích', '1992-05-15', N'Nữ', N'0987654321', N'tranthibich@example.com', N'tranthibich456', N'password456', N'avatar2.jpg', 1, 0, N'456 Đường Lý Thường Kiệt, TP HCM', '2023-05-22', '2023-05-22'),
+    (N'KH003', N'Lê Minh Hoàng', '1985-10-20', N'Nam', N'0912345678', N'leminhhoang@example.com', N'leminhhoang789', N'password789', N'avatar3.jpg', 1, 0, N'789 Đường Hoàng Diệu, Đà Nẵng', '2023-05-22', '2023-05-22');
 select * from KhachHang;	
 CREATE TABLE NhanVien (
     MaNhanVien NVARCHAR(50) PRIMARY KEY,
@@ -59,11 +60,11 @@ CREATE TABLE NhanVien (
     NgayCapNhat DATE,
     DiaChi NVARCHAR(255)
 );
-INSERT INTO NhanVien (MaNhanVien, TenNhanVien, NgaySinh, GioiTinh, SoDienThoai, Email, ChucVu, TaiKhoan, MatKhau, HinhAnh, TrangThaiHoatDong, DiaChi)
+INSERT INTO NhanVien (MaNhanVien, TenNhanVien, NgaySinh, GioiTinh, SoDienThoai, Email, ChucVu, TaiKhoan, MatKhau, HinhAnh, TrangThaiHoatDong, DiaChi, NgayTao, NgayCapNhat)
 VALUES 
-    (N'NV001', N'Phạm Quang Duy', '1990-02-10', N'Nam', N'0123456789', N'phamduy@example.com', N'Quản lý kho', N'phamduy123', N'password123', N'avatar1.jpg', 1, N'123 Đường Nguyễn Trãi, Hà Nội'),
-    (N'NV002', N'Hoàng Thị Mai', '1993-08-25', N'Nữ', N'0987654321', N'hoangmai@example.com', N'Nhân viên bán hàng', N'hoangmai456', N'password456', N'avatar2.jpg', 1, N'456 Đường Lý Thường Kiệt, TP HCM'),
-    (N'NV003', N'Trần Quốc Duy', '1987-11-05', N'Nam', N'0912345678', N'tranquocduy@example.com', N'Nhân viên thu ngân', N'tranquocduy789', N'password789', N'avatar3.jpg', 1, N'789 Đường Hoàng Diệu, Đà Nẵng');
+    (N'NV001', N'Phạm Quang Duy', '1990-02-10', N'Nam', N'0123456789', N'phamduy@example.com', N'Quản lý kho', N'phamduy123', N'password123', N'avatar1.jpg', 1, N'123 Đường Nguyễn Trãi, Hà Nội', '2023-05-22', '2023-05-22'),
+    (N'NV002', N'Hoàng Thị Mai', '1993-08-25', N'Nữ', N'0987654321', N'hoangmai@example.com', N'Nhân viên bán hàng', N'hoangmai456', N'password456', N'avatar2.jpg', 1, N'456 Đường Lý Thường Kiệt, TP HCM', '2023-05-22', '2023-05-22'),
+    (N'NV003', N'Trần Quốc Duy', '1987-11-05', N'Nam', N'0912345678', N'tranquocduy@example.com', N'Nhân viên thu ngân', N'tranquocduy789', N'password789', N'avatar3.jpg', 1, N'789 Đường Hoàng Diệu, Đà Nẵng', '2023-05-22', '2023-05-22');
 select * from NhanVien;
 CREATE TABLE LoaiSanPham (
     MaLoaiSanPham NVARCHAR(50) PRIMARY KEY NOT NULL,
@@ -360,3 +361,65 @@ CREATE TABLE TraSanPhamChiTiet (
 );
 INSERT INTO TraSanPhamChiTiet (MaTraSanPham, MaSanPham, MaHoaDon, SoLuong, TinhTrangSanPham, SoTienHoanLai)
 VALUES ('TSP001', 'SP001', 'HD001', 2, N'Hỏng do vận chuyển', 50000.00);
+
+CREATE TABLE VaiTro (
+    MaVaiTro NVARCHAR(50) PRIMARY KEY,
+    TenVaiTro NVARCHAR(50) NOT NULL,
+    MoTa NVARCHAR(255)
+);
+INSERT INTO VaiTro (MaVaiTro, TenVaiTro, MoTa) VALUES 
+    (N'VT001', N'Quản trị viên', N'Quyền truy cập đầy đủ trong hệ thống'),
+    (N'VT002', N'Nhân viên bán hàng', N'Chỉ có quyền truy cập vào các chức năng bán hàng'),
+    (N'VT003', N'Nhân viên kho', N'Chỉ có quyền truy cập vào các chức năng quản lý kho');
+select * from VaiTro
+CREATE TABLE Quyen (
+    MaQuyen NVARCHAR(50) PRIMARY KEY,
+    TenQuyen NVARCHAR(50) NOT NULL,
+    MoTa NVARCHAR(255)
+);
+INSERT INTO Quyen (MaQuyen, TenQuyen, MoTa) VALUES 
+    (N'Q001', N'Xem màn hình quản lý kho', N'Quyền truy cập vào màn hình quản lý kho'),
+    (N'Q002', N'Xem màn hình bán hàng', N'Quyền truy cập vào màn hình bán hàng'),
+    (N'Q003', N'Xem màn hình báo cáo', N'Quyền truy cập vào màn hình báo cáo'),
+    (N'Q004', N'Quản lý tài khoản', N'Quyền truy cập và quản lý tài khoản người dùng');
+select * from Quyen
+CREATE TABLE VaiTro_Quyen (
+    MaVaiTro NVARCHAR(50),
+    MaQuyen NVARCHAR(50),
+    PRIMARY KEY (MaVaiTro, MaQuyen),
+    FOREIGN KEY (MaVaiTro) REFERENCES VaiTro(MaVaiTro) ON DELETE CASCADE,
+    FOREIGN KEY (MaQuyen) REFERENCES Quyen(MaQuyen) ON DELETE CASCADE
+);
+-- Gán quyền cho "Quản trị viên"
+INSERT INTO VaiTro_Quyen (MaVaiTro, MaQuyen) VALUES 
+    (N'VT001', N'Q001'), 
+    (N'VT001', N'Q002'), 
+    (N'VT001', N'Q003'),
+    (N'VT001', N'Q004');
+
+-- Gán quyền cho "Nhân viên bán hàng"
+INSERT INTO VaiTro_Quyen (MaVaiTro, MaQuyen) VALUES 
+    (N'VT002', N'Q002'); 
+
+-- Gán quyền cho "Nhân viên kho"
+INSERT INTO VaiTro_Quyen (MaVaiTro, MaQuyen) VALUES 
+    (N'VT003', N'Q001');
+
+CREATE TABLE NhanVien_VaiTro (
+    MaNhanVien NVARCHAR(50),
+    MaVaiTro NVARCHAR(50),
+    PRIMARY KEY (MaNhanVien, MaVaiTro),
+    FOREIGN KEY (MaNhanVien) REFERENCES NhanVien(MaNhanVien) ON DELETE CASCADE,
+    FOREIGN KEY (MaVaiTro) REFERENCES VaiTro(MaVaiTro) ON DELETE CASCADE
+);
+-- Gán vai trò "Quản trị viên" cho nhân viên có mã 'NV001'
+INSERT INTO NhanVien_VaiTro (MaNhanVien, MaVaiTro) VALUES 
+    (N'NV001', N'VT001');
+
+-- Gán vai trò "Nhân viên bán hàng" cho nhân viên có mã 'NV002'
+INSERT INTO NhanVien_VaiTro (MaNhanVien, MaVaiTro) VALUES 
+    (N'NV002', N'VT002');
+
+-- Gán vai trò "Nhân viên kho" cho nhân viên có mã 'NV003'
+INSERT INTO NhanVien_VaiTro (MaNhanVien, MaVaiTro) VALUES 
+    (N'NV003', N'VT003');
