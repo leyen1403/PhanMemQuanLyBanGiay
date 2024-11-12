@@ -137,6 +137,7 @@ CREATE TABLE SanPham (
     GiaBan DECIMAL(18, 2),
 	DonViTinh NVARCHAR(255),
     SoLuong INT DEFAULT 0,
+	SoLuongToiThieu int,
     MoTa NVARCHAR(500),
     HinhAnh NVARCHAR(255),
     TrangThaiHoatDong BIT DEFAULT 1,
@@ -148,18 +149,18 @@ CREATE TABLE SanPham (
     FOREIGN KEY (MaKichThuoc) REFERENCES KichThuoc(MaKichThuoc)
 );
 INSERT INTO SanPham 
-    (MaSanPham, TenSanPham, MaLoaiSanPham, MaThuongHieu, MaMauSac, MaKichThuoc, GiaNhap, GiaBan, DonViTinh, SoLuong, MoTa, HinhAnh, TrangThaiHoatDong, NgayTao, NgayCapNhat)
+    (MaSanPham, TenSanPham, MaLoaiSanPham, MaThuongHieu, MaMauSac, MaKichThuoc, GiaNhap, GiaBan, DonViTinh, SoLuong, MoTa, HinhAnh, TrangThaiHoatDong, NgayTao, NgayCapNhat, SoLuongToiThieu)
 VALUES
-    (N'SP001', N'Giày Thể Thao Nike Air Max', N'LSP001', N'TH001', N'MS001', N'KT001', 1500000, 2000000, N'Đôi', 50, N'Giày thể thao Nike Air Max, thiết kế năng động, sử dụng công nghệ đệm Air.', N'images/nike_air_max.jpg', 1, '2024-10-01', '2024-11-05'),
-    (N'SP002', N'Dép Adidas Adilette', N'LSP002', N'TH002', N'MS002', N'KT002', 400000, 600000, N'Đôi', 100, N'Dép Adidas Adilette, chất liệu bền và thoải mái, phù hợp cho mùa hè.', N'images/adidas_adilette.jpg', 1, '2024-09-15', '2024-10-28'),
-    (N'SP003', N'Boots Timberland', N'LSP003', N'TH003', N'MS003', N'KT003', 1800000, 2500000, N'Đôi', 30, N'Boots Timberland, thiết kế cao cổ, phù hợp cho mùa đông và các chuyến đi dài.', N'images/timberland_boots.jpg', 1, '2024-08-10', '2024-11-03'),
-    (N'SP004', N'Giày Thể Thao Adidas UltraBoost', N'LSP001', N'TH002', N'MS003', N'KT001', 2000000, 2700000, N'Đôi', 40, N'Giày thể thao Adidas UltraBoost, công nghệ đệm siêu nhẹ và thoải mái khi chạy.', N'images/adidas_ultraboost.jpg', 1, '2024-10-05', '2024-10-30'),
-    (N'SP005', N'Dép Nike Benassi', N'LSP002', N'TH001', N'MS001', N'KT002', 350000, 500000, N'Đôi', 80, N'Dép Nike Benassi, thiết kế đơn giản nhưng cực kỳ thoải mái và dễ sử dụng.', N'images/nike_benassi.jpg', 1, '2024-06-20', '2024-10-25'),
-    (N'SP006', N'Giày Thể Thao Puma Suede', N'LSP001', N'TH003', N'MS002', N'KT003', 1600000, 2200000, N'Đôi', 60, N'Giày thể thao Puma Suede, thiết kế cổ điển và dễ phối đồ.', N'images/puma_suede.jpg', 1, '2024-07-25', '2024-10-22'),
-    (N'SP007', N'Dép Crocs Classic', N'LSP002', N'TH003', N'MS002', N'KT002', 500000, 700000, N'Đôi', 150, N'Dép Crocs Classic, nhẹ nhàng và dễ sử dụng trong mùa hè.', N'images/crocs_classic.jpg', 1, '2024-09-05', '2024-10-30'),
-    (N'SP008', N'Boots Dr. Martens 1460', N'LSP003', N'TH001', N'MS003', N'KT001', 2500000, 3200000, N'Đôi', 20, N'Boots Dr. Martens 1460, thiết kế thời trang và bền bỉ, thích hợp cho mùa đông.', N'images/dr_martens_1460.jpg', 1, '2024-06-01', '2024-09-30'),
-    (N'SP009', N'Giày Thể Thao Nike Air Force 1', N'LSP001', N'TH001', N'MS001', N'KT003', 1700000, 2300000, N'Đôi', 70, N'Giày thể thao Nike Air Force 1, phong cách cổ điển và hiện đại.', N'images/nike_air_force_1.jpg', 1, '2024-10-01', '2024-10-28'),
-    (N'SP010', N'Giày Thể Thao Adidas NMD', N'LSP001', N'TH002', N'MS002', N'KT003', 1900000, 2600000, N'Đôi', 55, N'Giày thể thao Adidas NMD, thiết kế nhẹ và linh hoạt.', N'images/adidas_nmd.jpg', 1, '2024-09-10', '2024-10-25');
+    (N'SP001', N'Giày Thể Thao Nike Air Max', N'LSP001', N'TH001', N'MS001', N'KT001', 1500000, 2000000, N'Đôi', 50, N'Giày thể thao Nike Air Max, thiết kế năng động, sử dụng công nghệ đệm Air.', N'images/nike_air_max.jpg', 1, '2024-10-01', '2024-11-05', 5),
+    (N'SP002', N'Dép Adidas Adilette', N'LSP002', N'TH002', N'MS002', N'KT002', 400000, 600000, N'Đôi', 100, N'Dép Adidas Adilette, chất liệu bền và thoải mái, phù hợp cho mùa hè.', N'images/adidas_adilette.jpg', 1, '2024-09-15', '2024-10-28', 5),
+    (N'SP003', N'Boots Timberland', N'LSP003', N'TH003', N'MS003', N'KT003', 1800000, 2500000, N'Đôi', 30, N'Boots Timberland, thiết kế cao cổ, phù hợp cho mùa đông và các chuyến đi dài.', N'images/timberland_boots.jpg', 1, '2024-08-10', '2024-11-03', 5),
+    (N'SP004', N'Giày Thể Thao Adidas UltraBoost', N'LSP001', N'TH002', N'MS003', N'KT001', 2000000, 2700000, N'Đôi', 40, N'Giày thể thao Adidas UltraBoost, công nghệ đệm siêu nhẹ và thoải mái khi chạy.', N'images/adidas_ultraboost.jpg', 1, '2024-10-05', '2024-10-30', 5),
+    (N'SP005', N'Dép Nike Benassi', N'LSP002', N'TH001', N'MS001', N'KT002', 350000, 500000, N'Đôi', 80, N'Dép Nike Benassi, thiết kế đơn giản nhưng cực kỳ thoải mái và dễ sử dụng.', N'images/nike_benassi.jpg', 1, '2024-06-20', '2024-10-25', 5),
+    (N'SP006', N'Giày Thể Thao Puma Suede', N'LSP001', N'TH003', N'MS002', N'KT003', 1600000, 2200000, N'Đôi', 60, N'Giày thể thao Puma Suede, thiết kế cổ điển và dễ phối đồ.', N'images/puma_suede.jpg', 1, '2024-07-25', '2024-10-22', 5),
+    (N'SP007', N'Dép Crocs Classic', N'LSP002', N'TH003', N'MS002', N'KT002', 500000, 700000, N'Đôi', 150, N'Dép Crocs Classic, nhẹ nhàng và dễ sử dụng trong mùa hè.', N'images/crocs_classic.jpg', 1, '2024-09-05', '2024-10-30', 5),
+    (N'SP008', N'Boots Dr. Martens 1460', N'LSP003', N'TH001', N'MS003', N'KT001', 2500000, 3200000, N'Đôi', 20, N'Boots Dr. Martens 1460, thiết kế thời trang và bền bỉ, thích hợp cho mùa đông.', N'images/dr_martens_1460.jpg', 1, '2024-06-01', '2024-09-30',10),
+    (N'SP009', N'Giày Thể Thao Nike Air Force 1', N'LSP001', N'TH001', N'MS001', N'KT003', 1700000, 2300000, N'Đôi', 70, N'Giày thể thao Nike Air Force 1, phong cách cổ điển và hiện đại.', N'images/nike_air_force_1.jpg', 1, '2024-10-01', '2024-10-28',10),
+    (N'SP010', N'Giày Thể Thao Adidas NMD', N'LSP001', N'TH002', N'MS002', N'KT003', 1900000, 2600000, N'Đôi', 55, N'Giày thể thao Adidas NMD, thiết kế nhẹ và linh hoạt.', N'images/adidas_nmd.jpg', 1, '2024-09-10', '2024-10-25', 10);
 select * from SanPham;
 CREATE TABLE KiemKe (
     MaKiemKe NVARCHAR(50) PRIMARY KEY NOT NULL,
