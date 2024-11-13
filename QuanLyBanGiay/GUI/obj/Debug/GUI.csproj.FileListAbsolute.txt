@@ -173,3 +173,4 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_QuanLyPhanQuyen.resources
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_ThemVaiTro.resources
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_ThemQuyen.resources
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_ThemQuyen.resources

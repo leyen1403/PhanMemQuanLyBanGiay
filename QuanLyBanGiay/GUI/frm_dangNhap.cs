@@ -55,7 +55,6 @@ namespace GUI
                 frm_main frm = new frm_main();
                 frm._nhanVien = nv;
                 frm.ShowDialog();
-                this.Close();
             }
             else
             {

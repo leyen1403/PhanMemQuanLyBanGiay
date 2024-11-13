@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraBars;
+﻿using BLL;
+using DevExpress.XtraBars;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace GUI
 {
     public partial class frm_main : DevExpress.XtraBars.FluentDesignSystem.FluentDesignForm
     {
+        private DichVuPhanQuyenBLL _phanQuyenBLL = new DichVuPhanQuyenBLL();
         public NhanVien _nhanVien { get; set; }
 
         public frm_main()
@@ -39,8 +41,56 @@ namespace GUI
             this.btn_NhaCC.Click += Btn_NhaCC_Click;
             this.btn_NhanVien.Click += Btn_NhanVien_Click;
             this.btnQuanLyPhieuKiemKe.Click += BtnQuanLyPhieuKiemKe_Click;
+            this.btn_dangXuat.ItemClick += Btn_dangXuat_ItemClick;
+            this.btn_Thoat.ItemClick += Btn_Thoat_ItemClick;
+            label_tenNV.Caption = _nhanVien.TenNhanVien.ToString();
+            PhanQuyen();
         }
 
+        private void Btn_Thoat_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // Hiển thị form đăng nhập
+            frm_dangNhap frm = new frm_dangNhap();
+            frm.Show();
+            this.Close();
+        }
+
+        private void Btn_Thoat_Click(object sender, EventArgs e)
+        {
+            // Hiển thị form đăng nhập
+            frm_dangNhap frm = new frm_dangNhap();
+            frm.Show();
+            this.Close();
+        }
+
+        private void Btn_dangXuat_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            // Hiển thị form đăng nhập
+            frm_dangNhap frm = new frm_dangNhap();
+            frm.Show();
+            this.Close();
+        }
+
+        private void PhanQuyen()
+        {
+            // Lấy danh sách quyền của nhân viên
+            List<string> danhSachQuyen = _phanQuyenBLL.LayDanhSachQuyen(_nhanVien.MaNhanVien);
+
+            // Kiểm tra và ẩn/hiện nút dựa trên quyền
+            btn_LapDonDatHang.Visible = danhSachQuyen.Contains("Xem màn hình bán hàng");
+            btn_LapHoaDon.Visible = danhSachQuyen.Contains("Xem màn hình bán hàng");
+            btn_LapPhieuKiemKe.Visible = danhSachQuyen.Contains("Lập phiếu kiểm kê");
+            btn_LapThongKeBaoCao.Visible = danhSachQuyen.Contains("Xem màn hình báo cáo");
+            btn_Loai.Visible = danhSachQuyen.Contains("Quản lý loại sản phẩm");
+            btn_DonDatHang.Visible = danhSachQuyen.Contains("Quản lý đơn đặt hàng");
+            btn_HoaDon.Visible = danhSachQuyen.Contains("Quản lý hóa đơn");
+            btn_KhachHang.Visible = danhSachQuyen.Contains("Quản lý khách hàng");
+            btn_Kho.Visible = danhSachQuyen.Contains("Xem màn hình quản lý kho");
+            btn_NhaCC.Visible = danhSachQuyen.Contains("Quản lý nhà cung cấp");
+            btn_NhanVien.Visible = danhSachQuyen.Contains("Quản lý nhân viên");
+            btnQuanLyPhieuKiemKe.Visible = danhSachQuyen.Contains("Quản lý phiếu kiểm kê");
+            accordionControlElement4.Visible = danhSachQuyen.Contains("Quản lý phân quyền");
+        }
         private void BtnQuanLyPhieuKiemKe_Click(object sender, EventArgs e)
         {
             loadForm(new frm_lapPhieuKiemKe());

@@ -55,13 +55,12 @@
             this.btn_NhanVien = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_HoanTra = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.btn_Loai = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.btn_BackUp = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.btn_Restore = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.btn_Thoat = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).BeginInit();
             this.pnLeft.SuspendLayout();
@@ -75,7 +74,8 @@
             this.fluentDesignFormControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btn_thietLapTaiKhoan,
             this.btn_dangXuat,
-            this.label_tenNV});
+            this.label_tenNV,
+            this.btn_Thoat});
             this.fluentDesignFormControl1.Location = new System.Drawing.Point(0, 0);
             this.fluentDesignFormControl1.Manager = this.fluentFormDefaultManager1;
             this.fluentDesignFormControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -84,7 +84,7 @@
             this.fluentDesignFormControl1.TabIndex = 2;
             this.fluentDesignFormControl1.TabStop = false;
             this.fluentDesignFormControl1.TitleItemLinks.Add(this.btn_thietLapTaiKhoan);
-            this.fluentDesignFormControl1.TitleItemLinks.Add(this.btn_dangXuat);
+            this.fluentDesignFormControl1.TitleItemLinks.Add(this.btn_Thoat);
             this.fluentDesignFormControl1.TitleItemLinks.Add(this.label_tenNV);
             // 
             // btn_thietLapTaiKhoan
@@ -118,8 +118,9 @@
             this.fluentFormDefaultManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
             this.btn_thietLapTaiKhoan,
             this.btn_dangXuat,
-            this.label_tenNV});
-            this.fluentFormDefaultManager1.MaxItemId = 3;
+            this.label_tenNV,
+            this.btn_Thoat});
+            this.fluentFormDefaultManager1.MaxItemId = 4;
             // 
             // pnMain
             // 
@@ -308,29 +309,20 @@
             this.btn_Loai.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_Loai.Text = "Quản lý chủng loại sản phẩm";
             // 
+            // accordionControlElement4
+            // 
+            this.accordionControlElement4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement4.ImageOptions.Image")));
+            this.accordionControlElement4.Name = "accordionControlElement4";
+            this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement4.Text = "Quản lý phân quyền";
+            this.accordionControlElement4.Click += new System.EventHandler(this.accordionControlElement4_Click);
+            // 
             // accordionControlElement3
             // 
-            this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.btn_BackUp,
-            this.btn_Restore});
             this.accordionControlElement3.Expanded = true;
             this.accordionControlElement3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement3.ImageOptions.Image")));
             this.accordionControlElement3.Name = "accordionControlElement3";
             this.accordionControlElement3.Text = "Setting";
-            // 
-            // btn_BackUp
-            // 
-            this.btn_BackUp.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_BackUp.ImageOptions.Image")));
-            this.btn_BackUp.Name = "btn_BackUp";
-            this.btn_BackUp.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.btn_BackUp.Text = "Back up";
-            // 
-            // btn_Restore
-            // 
-            this.btn_Restore.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Restore.ImageOptions.Image")));
-            this.btn_Restore.Name = "btn_Restore";
-            this.btn_Restore.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.btn_Restore.Text = "Restore";
             // 
             // label1
             // 
@@ -362,13 +354,13 @@
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
             // 
-            // accordionControlElement4
+            // btn_Thoat
             // 
-            this.accordionControlElement4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement4.ImageOptions.Image")));
-            this.accordionControlElement4.Name = "accordionControlElement4";
-            this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement4.Text = "Quản lý phân quyền";
-            this.accordionControlElement4.Click += new System.EventHandler(this.accordionControlElement4_Click);
+            this.btn_Thoat.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_Thoat.Id = 3;
+            this.btn_Thoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.btn_Thoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
+            this.btn_Thoat.Name = "btn_Thoat";
             // 
             // frm_main
             // 
@@ -425,8 +417,7 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement btn_HoanTra;
         private DevExpress.XtraBars.Navigation.AccordionControlElement btn_Loai;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement btn_BackUp;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement btn_Restore;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
+        private DevExpress.XtraBars.BarButtonItem btn_Thoat;
     }
 }
