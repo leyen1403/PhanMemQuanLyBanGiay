@@ -21,3 +21,4 @@ D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.csproj.Up2Date
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.dll
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.pdb
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\bin\Debug\DTO.dll.config
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\bin\Debug\DTO.dll.config

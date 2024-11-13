@@ -166,3 +166,9 @@ D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\DAL.dll
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\DAL.pdb
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_QuanLyPhanQuyen.resources
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_ThemVaiTro.resources
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\DAL.dll
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\DTO.dll.config
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\DAL.pdb
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_dangNhap.resources
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_QuanLyPhanQuyen.resources
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_ThemVaiTro.resources

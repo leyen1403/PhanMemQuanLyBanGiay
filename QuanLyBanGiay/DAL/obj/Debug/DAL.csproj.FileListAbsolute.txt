@@ -17,3 +17,4 @@ D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.Up2Date
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.dll
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.pdb
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.dll.config
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.dll.config

@@ -33,5 +33,16 @@ namespace DTO.Properties {
                 return ((string)(this["db_QuanLyBanGiayConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ADMIN-PC;Initial Catalog=db_QuanLyBanGiay;Integrated Security=True;Tr" +
+            "ustServerCertificate=True")]
+        public string db_QuanLyBanGiayConnectionString1 {
+            get {
+                return ((string)(this["db_QuanLyBanGiayConnectionString1"]));
+            }
+        }
     }
 }
