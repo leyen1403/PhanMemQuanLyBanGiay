@@ -46,8 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NhanVienDAL.cs" />
+    <Compile Include="NhanVien_VaiTroDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuyenDAL.cs" />
     <Compile Include="VaiTroDAL.cs" />
+    <Compile Include="VaiTro_QuyenDAL.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

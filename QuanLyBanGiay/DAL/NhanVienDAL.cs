@@ -43,5 +43,9 @@ namespace DAL
         {
             return db.NhanViens.Where(n => n.MaNhanVien == maNhanVien).FirstOrDefault();
         }
+        public List<NhanVien> LayDanhSachNhanVien()
+        {
+            return db.NhanViens.ToList();
+        }
     }
 }

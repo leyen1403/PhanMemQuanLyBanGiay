@@ -122,5 +122,10 @@ namespace GUI
         {
             loadForm(new frm_lapHoaDon());
         }
+
+        private void accordionControlElement4_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_QuanLyPhanQuyen());
+        }
     }
 }

@@ -43,7 +43,7 @@
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 19);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 4;
             this.label1.Text = "Tên vai trò:";
             // 
             // txtTenVaiTro
@@ -52,7 +52,7 @@
             this.txtTenVaiTro.Location = new System.Drawing.Point(110, 6);
             this.txtTenVaiTro.Name = "txtTenVaiTro";
             this.txtTenVaiTro.Size = new System.Drawing.Size(254, 27);
-            this.txtTenVaiTro.TabIndex = 1;
+            this.txtTenVaiTro.TabIndex = 0;
             // 
             // label2
             // 
@@ -61,7 +61,7 @@
             this.label2.Location = new System.Drawing.Point(12, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 19);
-            this.label2.TabIndex = 0;
+            this.label2.TabIndex = 5;
             this.label2.Text = "Mô tả:";
             // 
             // txtMoTa
@@ -89,7 +89,7 @@
             this.btnDong.Location = new System.Drawing.Point(222, 250);
             this.btnDong.Name = "btnDong";
             this.btnDong.Size = new System.Drawing.Size(94, 49);
-            this.btnDong.TabIndex = 2;
+            this.btnDong.TabIndex = 3;
             this.btnDong.Text = "Đóng";
             this.btnDong.UseVisualStyleBackColor = true;
             // 
@@ -104,7 +104,10 @@
             this.Controls.Add(this.txtTenVaiTro);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frm_ThemVaiTro";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frm_ThemVaiTro";
             this.ResumeLayout(false);
             this.PerformLayout();

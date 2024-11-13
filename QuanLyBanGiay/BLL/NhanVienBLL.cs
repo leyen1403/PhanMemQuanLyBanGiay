@@ -24,5 +24,9 @@ namespace BLL
         {
             return _nhanVienDAL.LayNhanVien(maNhanVien);
         }
+        public List<NhanVien> LayDanhSachNhanVien()
+        {
+            return _nhanVienDAL.LayDanhSachNhanVien();
+        }
     }
 }
