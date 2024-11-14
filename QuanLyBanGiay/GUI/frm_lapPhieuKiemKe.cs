@@ -33,25 +33,31 @@ namespace GUI
 
         private void DgvChiTietKiemKe_SelectionChanged(object sender, EventArgs e)
         {
-            hienThiThongTinSanPhamTuDGVChiTiet();
-            trangThaiNutThemXoaSua();
-            txtLyDoChenhLech.Text = dgvChiTietKiemKe.CurrentRow.Cells["LyDoChenhLech"].Value.ToString();
+            if (dgvChiTietKiemKe.Rows.Count > 0)
+            {
+                hienThiThongTinSanPhamTuDGVChiTiet();
+                trangThaiNutThemXoaSua();
+                txtLyDoChenhLech.Text = dgvChiTietKiemKe.CurrentRow.Cells["LyDoChenhLech"].Value.ToString();
+            }
         }
 
         private void hienThiThongTinSanPhamTuDGVChiTiet()
         {
-            txtMaSanPham.Text = dgvChiTietKiemKe.CurrentRow.Cells["MaSanPham"].Value.ToString();
-            txtTenSanPham.Text = new SanPhamBLL().laySanPhamTheoMa(txtMaSanPham.Text).TenSanPham;
-            nudSoLuongHeThong.Value = Convert.ToInt32(dgvChiTietKiemKe.CurrentRow.Cells["SoLuongHeThong"].Value.ToString());
-            nudSoLuongKiemKe.Value = Convert.ToInt32(dgvChiTietKiemKe.CurrentRow.Cells["SoLuongThucTe"].Value.ToString());
-            nudSoLuongChenhLech.Value = Convert.ToInt32(dgvChiTietKiemKe.CurrentRow.Cells["ChenhLech"].Value.ToString());
-            if (nudSoLuongChenhLech.Value == 0)
+            if(dgvChiTietKiemKe.Rows.Count>=1)
             {
-                nudSoLuongChenhLech.BackColor = Color.White;
-            }
-            else
-            {
-                nudSoLuongChenhLech.BackColor = Color.Red;
+                txtMaSanPham.Text = dgvChiTietKiemKe.CurrentRow.Cells["MaSanPham"].Value.ToString();
+                txtTenSanPham.Text = new SanPhamBLL().laySanPhamTheoMa(txtMaSanPham.Text).TenSanPham;
+                nudSoLuongHeThong.Value = Convert.ToInt32(dgvChiTietKiemKe.CurrentRow.Cells["SoLuongHeThong"].Value.ToString());
+                nudSoLuongKiemKe.Value = Convert.ToInt32(dgvChiTietKiemKe.CurrentRow.Cells["SoLuongThucTe"].Value.ToString());
+                nudSoLuongChenhLech.Value = Convert.ToInt32(dgvChiTietKiemKe.CurrentRow.Cells["ChenhLech"].Value.ToString());
+                if (nudSoLuongChenhLech.Value == 0)
+                {
+                    nudSoLuongChenhLech.BackColor = Color.White;
+                }
+                else
+                {
+                    nudSoLuongChenhLech.BackColor = Color.Red;
+                }
             }
 
         }
