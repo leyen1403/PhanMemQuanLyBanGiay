@@ -17,10 +17,19 @@ namespace GUI
         private DichVuPhanQuyenBLL _phanQuyenBLL = new DichVuPhanQuyenBLL();
         public NhanVien _nhanVien { get; set; }
 
-        public frm_main()
+        private frm_dangNhap _frmDangNhap;
+
+        public frm_main(frm_dangNhap frmDangNhap)
         {
             InitializeComponent();
+            _frmDangNhap = frmDangNhap;
             this.Load += Frm_main1_Load;
+            this.FormClosed += Frm_main_FormClosed;
+        }
+
+        private void Frm_main_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _frmDangNhap.Visible = true;
         }
 
         // đăng kí sự kiện trọng này

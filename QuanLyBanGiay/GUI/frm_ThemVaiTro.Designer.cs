@@ -95,6 +95,7 @@
             // 
             // frm_ThemVaiTro
             // 
+            this.AcceptButton = this.btnLuu;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(386, 323);
@@ -108,7 +109,7 @@
             this.MaximizeBox = false;
             this.Name = "frm_ThemVaiTro";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frm_ThemVaiTro";
+            this.Text = "Thêm vai trò";
             this.ResumeLayout(false);
             this.PerformLayout();
 
