@@ -269,6 +269,7 @@
             this.btnQuanLyPhieuKiemKe.Name = "btnQuanLyPhieuKiemKe";
             this.btnQuanLyPhieuKiemKe.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btnQuanLyPhieuKiemKe.Text = "Quản lý phiếu kiểm kê";
+            this.btnQuanLyPhieuKiemKe.Click += new System.EventHandler(this.btnQuanLyPhieuKiemKe_Click_1);
             // 
             // btn_DoiTra
             // 

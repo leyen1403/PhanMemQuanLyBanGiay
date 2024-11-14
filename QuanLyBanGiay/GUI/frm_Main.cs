@@ -188,5 +188,12 @@ namespace GUI
             lapPhieuKiemKe.MaNhanVien = _nhanVien.MaNhanVien;
             loadForm(lapPhieuKiemKe);
         }
+
+        private void btnQuanLyPhieuKiemKe_Click_1(object sender, EventArgs e)
+        {
+            frm_quanLyPhieuKiemKe quanLyPhieuKiemKe = new frm_quanLyPhieuKiemKe();
+            quanLyPhieuKiemKe.MaNhanVien = _nhanVien.MaNhanVien;
+            loadForm(quanLyPhieuKiemKe);
+        }
     }
 }
