@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Interface;
 using DTO;
 
 namespace DAL
 {
-    public class LoaiSanPhamDAL: ILoaiSanPhamDAL
+    public class LoaiSanPhamDAL
     {
         db_QuanLyBanGiayDataContext db = null;
         List<LoaiSanPham> lstLoaiSanPham = null;
@@ -47,7 +46,16 @@ namespace DAL
 
         public LoaiSanPham layLoaiSanPhamTheoTen(string tenLoaiSanPham)
         {
-            throw new NotImplementedException();
+            try
+            {
+                LoaiSanPham loaiSanPham = new LoaiSanPham();
+                loaiSanPham = db.LoaiSanPhams.Where(lsp => lsp.TenLoaiSanPham == tenLoaiSanPham).FirstOrDefault();
+                return loaiSanPham;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
 
         public List<LoaiSanPham> layTatCaLoaiSanPham()
@@ -81,12 +89,12 @@ namespace DAL
             }
         }
 
-        public bool suaLoaiSanPham(string maLoaiSanPham)
+        public bool suaLoaiSanPham(string maLoaiSanPham,bool trangThai)
         {
             try
             {
                 var loaiSanPham = db.LoaiSanPhams.Where(l => l.MaLoaiSanPham == maLoaiSanPham).SingleOrDefault();
-                loaiSanPham.TrangThaiHoatDong = false;
+                loaiSanPham.TrangThaiHoatDong = trangThai;
                 loaiSanPham.NgayCapNhat = DateTime.Now;
                 db.SubmitChanges();
                 return true;

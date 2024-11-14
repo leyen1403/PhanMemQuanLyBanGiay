@@ -43,8 +43,8 @@ namespace GUI
             this.btnQuanLyPhieuKiemKe.Click += BtnQuanLyPhieuKiemKe_Click;
             this.btn_dangXuat.ItemClick += Btn_dangXuat_ItemClick;
             this.btn_Thoat.ItemClick += Btn_Thoat_ItemClick;
-            label_tenNV.Caption = _nhanVien.TenNhanVien.ToString();
-            PhanQuyen();
+            //label_tenNV.Caption = _nhanVien.TenNhanVien.ToString();
+            //PhanQuyen();
         }
 
         private void Btn_Thoat_ItemClick(object sender, ItemClickEventArgs e)
@@ -74,7 +74,7 @@ namespace GUI
         private void PhanQuyen()
         {
             // Lấy danh sách quyền của nhân viên
-            List<string> danhSachQuyen = _phanQuyenBLL.LayDanhSachQuyen(_nhanVien.MaNhanVien);
+            List<string> danhSachQuyen = _phanQuyenBLL.LayDanhSachQuyen("NV004");
 
             // Kiểm tra và ẩn/hiện nút dựa trên quyền
             btn_LapDonDatHang.Visible = danhSachQuyen.Contains("Xem màn hình bán hàng");

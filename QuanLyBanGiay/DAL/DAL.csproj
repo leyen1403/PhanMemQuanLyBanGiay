@@ -48,10 +48,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DichVuPhanQuyenDAL.cs" />
+    <Compile Include="KichThuocDAL.cs" />
+    <Compile Include="LoaiSanPhamDAL.cs" />
+    <Compile Include="MauSacDAL.cs" />
     <Compile Include="NhanVienDAL.cs" />
     <Compile Include="NhanVien_VaiTroDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuyenDAL.cs" />
+    <Compile Include="SanPhamDAL.cs" />
+    <Compile Include="ThuongHieuDAL.cs" />
     <Compile Include="VaiTroDAL.cs" />
     <Compile Include="VaiTro_QuyenDAL.cs" />
   </ItemGroup>

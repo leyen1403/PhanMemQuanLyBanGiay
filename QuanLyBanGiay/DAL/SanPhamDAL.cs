@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAL.Interface;
 using DTO;
 
 namespace DAL
 {
-    public class SanPhamDAL : ISanPhamDAL
+    public class SanPhamDAL 
     {
         db_QuanLyBanGiayDataContext db = null;
         List<SanPham> lstSanPham = null;

@@ -4,87 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO;
-using DAL.Interface;
 using DAL;
 
 namespace BLL
 {
-    public class LoaiSanPhamBLL : ILoaiSanPhamDAL
+    public class LoaiSanPhamBLL
     {
-        LoaiSanPhamDAL _loaiSanPhamDAL = null;
-        public LoaiSanPhamBLL()
-        {
-            _loaiSanPhamDAL = new LoaiSanPhamDAL();
-        }
+        LoaiSanPhamDAL _loaiSanPhamDAL = new LoaiSanPhamDAL();
         public List<LoaiSanPham> layLoaiSanPhamTheoDieuKien(string dieuKien)
         {
-            //kiểm tra điều kiện
-            if (dieuKien == null)
-            {
-                return null;
-            }
-            //gọi hàm lấy loại sản phẩm theo điều kiện từ DAL
             return _loaiSanPhamDAL.layLoaiSanPhamTheoDieuKien(dieuKien);
         }
-
-        public LoaiSanPham layLoaiSanPhamTheoMa(string maLoaiSanPham)
-        {
-            //kiểm tra mã loại sản phẩm
-            if (maLoaiSanPham == null)
-            {
-                return null;
-            }
-            //gọi hàm lấy loại sản phẩm theo mã từ DAL
-            return _loaiSanPhamDAL.layLoaiSanPhamTheoMa(maLoaiSanPham);
-        }
-
-        public LoaiSanPham layLoaiSanPhamTheoTen(string tenLoaiSanPham)
-        {
-            //kiểm tra tên loại sản phẩm
-            if (tenLoaiSanPham == null)
-            {
-                return null;
-            }
-            //gọi hàm lấy loại sản phẩm theo tên từ DAL
-            return _loaiSanPhamDAL.layLoaiSanPhamTheoTen(tenLoaiSanPham);
-        }
-
         public List<LoaiSanPham> layTatCaLoaiSanPham()
         {
-           return _loaiSanPhamDAL.layTatCaLoaiSanPham();
+            return _loaiSanPhamDAL.layTatCaLoaiSanPham();
         }
-
-        public bool suaLoaiSanPham(LoaiSanPham lsp)
+        public LoaiSanPham layLoaiSanPhamTheoMa(string maLoaiSanPham)
         {
-            //kiểm tra loại sản phẩm
-            if (lsp == null)
-            {
-                return false;
-            }
-            //gọi hàm sửa loại sản phẩm từ DAL
-            return _loaiSanPhamDAL.suaLoaiSanPham(lsp);
+            return _loaiSanPhamDAL.layLoaiSanPhamTheoMa(maLoaiSanPham);
         }
-
-        public bool suaLoaiSanPham(string maLoaiSanPham)
+        public LoaiSanPham layLoaiSanPhamTheoTen(string tenLoaiSanPham)
         {
-            //kiểm tra mã loại sản phẩm
-            if (maLoaiSanPham == null)
-            {
-                return false;
-            }
-            //gọi hàm sửa loại sản phẩm từ DAL
-            return _loaiSanPhamDAL.suaLoaiSanPham(maLoaiSanPham);
+            return _loaiSanPhamDAL.layLoaiSanPhamTheoTen(tenLoaiSanPham);
         }
-
-        public bool themLoaiSanPham(LoaiSanPham lsp)
+        public bool themLoaiSanPham(LoaiSanPham loaiSanPham)
         {
-            //kiểm tra loại sản phẩm
-            if (lsp == null)
-            {
-                return false;
-            }
-            //gọi hàm thêm loại sản phẩm từ DAL
-            return _loaiSanPhamDAL.themLoaiSanPham(lsp);
+            return _loaiSanPhamDAL.themLoaiSanPham(loaiSanPham);
+        }
+        public bool xoaLoaiSanPham(string maLoaiSanPham,bool trangThai)
+        {
+            return _loaiSanPhamDAL.suaLoaiSanPham(maLoaiSanPham,trangThai);
+        }
+        public bool suaLoaiSanPham(LoaiSanPham loaiSanPham)
+        {
+            return _loaiSanPhamDAL.suaLoaiSanPham(loaiSanPham);
         }
     }
 }
