@@ -214,6 +214,7 @@
             this.btn_LapPhieuKiemKe.Name = "btn_LapPhieuKiemKe";
             this.btn_LapPhieuKiemKe.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.btn_LapPhieuKiemKe.Text = "Lập Phiếu Kiểm Kê";
+            this.btn_LapPhieuKiemKe.Click += new System.EventHandler(this.btn_LapPhieuKiemKe_Click);
             // 
             // btn_LapDonDatHang
             // 
