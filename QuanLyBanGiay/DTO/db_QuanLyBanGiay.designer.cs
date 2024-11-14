@@ -93,7 +93,7 @@ namespace DTO
     #endregion
 		
 		public db_QuanLyBanGiayDataContext() : 
-				base(global::DTO.Properties.Settings.Default.db_QuanLyBanGiayConnectionString, mappingSource)
+				base(global::DTO.Properties.Settings.Default.db_QuanLyBanGiayConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1023,6 +1023,8 @@ namespace DTO
 		
 		private System.Nullable<int> _ChenhLech;
 		
+		private string _LyDoChenhLech;
+		
 		private EntityRef<KiemKe> _KiemKe;
 		
 		private EntityRef<SanPham> _SanPham;
@@ -1041,6 +1043,8 @@ namespace DTO
     partial void OnSoLuongHeThongChanged();
     partial void OnChenhLechChanging(System.Nullable<int> value);
     partial void OnChenhLechChanged();
+    partial void OnLyDoChenhLechChanging(string value);
+    partial void OnLyDoChenhLechChanged();
     #endregion
 		
 		public ChiTietKiemKe()
@@ -1154,6 +1158,26 @@ namespace DTO
 					this._ChenhLech = value;
 					this.SendPropertyChanged("ChenhLech");
 					this.OnChenhLechChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LyDoChenhLech", DbType="NVarChar(255)")]
+		public string LyDoChenhLech
+		{
+			get
+			{
+				return this._LyDoChenhLech;
+			}
+			set
+			{
+				if ((this._LyDoChenhLech != value))
+				{
+					this.OnLyDoChenhLechChanging(value);
+					this.SendPropertyChanging();
+					this._LyDoChenhLech = value;
+					this.SendPropertyChanged("LyDoChenhLech");
+					this.OnLyDoChenhLechChanged();
 				}
 			}
 		}

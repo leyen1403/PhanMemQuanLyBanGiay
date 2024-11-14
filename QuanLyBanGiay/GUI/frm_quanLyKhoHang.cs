@@ -49,13 +49,14 @@ namespace GUI
         {
             try
             {
+
                 if (dgv_dsSanPham.CurrentRow != null)
                 {
                     DataGridViewRow currentRow = dgv_dsSanPham.CurrentRow;
                     txt_maSanPham.Text = currentRow.Cells["MaSanPham"].Value.ToString();
                     txt_tenSanPham.Text = currentRow.Cells["TenSanPham"].Value.ToString();
                     txt_donViTinh.Text = currentRow.Cells["DonViTinh"].Value.ToString();
-                    txt_soLuongTon.Text = Convert.ToInt32(currentRow.Cells["SoLuongTon"].Value).ToString();
+                    txt_soLuongTon.Text = Convert.ToInt32(currentRow.Cells["SoLuong"].Value).ToString();
                     decimal giaNhap = Convert.ToDecimal(currentRow.Cells["GiaNhap"].Value);
                     decimal giaBan = Convert.ToDecimal(currentRow.Cells["GiaBan"].Value);
                     txt_giaNhap.Text = giaNhap.ToString("N0");
