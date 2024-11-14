@@ -93,7 +93,7 @@ namespace DTO
     #endregion
 		
 		public db_QuanLyBanGiayDataContext() : 
-				base(global::DTO.Properties.Settings.Default.db_QuanLyBanGiayConnectionString1, mappingSource)
+				base(global::DTO.Properties.Settings.Default.db_QuanLyBanGiayConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

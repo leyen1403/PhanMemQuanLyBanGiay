@@ -40,7 +40,6 @@ namespace GUI
             this.MaximizeBox = false;
             this.btn_LapDonDatHang.Click += Btn_LapDonDatHang_Click;
             this.btn_LapHoaDon.Click += Btn_LapHoaDon_Click;
-            this.btn_LapPhieuKiemKe.Click += Btn_LapPhieuKiemKe_Click;
             this.btn_LapThongKeBaoCao.Click += Btn_LapThongKeBaoCao_Click;
             this.btn_Loai.Click += Btn_Loai_Click;
             this.btn_DonDatHang.Click += Btn_DonDatHang_Click;
@@ -52,7 +51,7 @@ namespace GUI
             this.btnQuanLyPhieuKiemKe.Click += BtnQuanLyPhieuKiemKe_Click;
             this.btn_dangXuat.ItemClick += Btn_dangXuat_ItemClick;
             this.btn_Thoat.ItemClick += Btn_Thoat_ItemClick;
-            //label_tenNV.Caption = _nhanVien.TenNhanVien.ToString();
+            label_tenNV.Caption = _nhanVien.TenNhanVien.ToString();
             //PhanQuyen();
         }
 
@@ -102,7 +101,7 @@ namespace GUI
         }
         private void BtnQuanLyPhieuKiemKe_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_lapPhieuKiemKe());
+
         }
 
         private void Btn_NhanVien_Click(object sender, EventArgs e)
@@ -146,11 +145,7 @@ namespace GUI
         {
             loadForm(new frm_lapThongKeBaoCao());
         }
-
-        private void Btn_LapPhieuKiemKe_Click(object sender, EventArgs e)
-        {
-            loadForm(new frm_lapPhieuKiemKe());
-        }
+      
 
         private void Btn_LapHoaDon_Click(object sender, EventArgs e)
         {
@@ -185,6 +180,13 @@ namespace GUI
         private void accordionControlElement4_Click(object sender, EventArgs e)
         {
             loadForm(new frm_QuanLyPhanQuyen());
+        }
+
+        private void btn_LapPhieuKiemKe_Click(object sender, EventArgs e)
+        {
+            frm_lapPhieuKiemKe lapPhieuKiemKe = new frm_lapPhieuKiemKe();
+            lapPhieuKiemKe.MaNhanVien = _nhanVien.MaNhanVien;
+            loadForm(lapPhieuKiemKe);
         }
     }
 }
