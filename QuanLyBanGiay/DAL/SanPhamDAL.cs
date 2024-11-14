@@ -37,11 +37,6 @@ namespace DAL
             }
         }
 
-        public List<SanPham> laySanPhamKhongTrungTen(string tenSanPham)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<SanPham> laySanPhamTheoDieuKien(string dieuKien)
         {
             try
@@ -128,18 +123,38 @@ namespace DAL
             }
         }
 
-        public bool xoaSanPham(string maSanPham)
+        public bool xoaSanPham(string maSanPham,bool trangThai)
         {
             try
             {
                 var sanPham = db.SanPhams.Where(s => s.MaSanPham == maSanPham).SingleOrDefault();
-                db.SanPhams.DeleteOnSubmit(sanPham);
+                sanPham.TrangThaiHoatDong = trangThai;
+                sanPham.NgayCapNhat = DateTime.Now;
                 db.SubmitChanges();
                 return true;
             }
             catch (Exception ex)
             {
                 return false;
+            }
+        }
+
+        //tìm kiếm mã sản phẩm theo tên sản phẩm và mã kích thước và mã màu sắc
+        public string timKiemMaSanPham(string tenSanPham, string maKichThuoc, string maMauSac)
+        {
+            try
+            {
+                string maSanPham = "";
+                lstSanPham = db.SanPhams.Where(sp => sp.TenSanPham == tenSanPham && sp.MaKichThuoc == maKichThuoc && sp.MaMauSac == maMauSac).ToList();
+                if (lstSanPham.Count > 0)
+                {
+                    maSanPham = lstSanPham[0].MaSanPham;
+                }
+                return maSanPham;
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
     }
