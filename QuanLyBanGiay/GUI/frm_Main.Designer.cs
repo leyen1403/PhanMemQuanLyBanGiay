@@ -34,6 +34,7 @@
             this.btn_thietLapTaiKhoan = new DevExpress.XtraBars.BarButtonItem();
             this.btn_dangXuat = new DevExpress.XtraBars.BarButtonItem();
             this.label_tenNV = new DevExpress.XtraBars.BarStaticItem();
+            this.btn_Thoat = new DevExpress.XtraBars.BarButtonItem();
             this.fluentFormDefaultManager1 = new DevExpress.XtraBars.FluentDesignSystem.FluentFormDefaultManager(this.components);
             this.pnMain = new System.Windows.Forms.Panel();
             this.pnLeft = new System.Windows.Forms.Panel();
@@ -60,7 +61,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btn_Thoat = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).BeginInit();
             this.pnLeft.SuspendLayout();
@@ -111,6 +111,14 @@
             this.label_tenNV.Caption = "Nhân viên: Tên nhân viên";
             this.label_tenNV.Id = 2;
             this.label_tenNV.Name = "label_tenNV";
+            // 
+            // btn_Thoat
+            // 
+            this.btn_Thoat.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
+            this.btn_Thoat.Id = 3;
+            this.btn_Thoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Thoat.ImageOptions.Image")));
+            this.btn_Thoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btn_Thoat.ImageOptions.LargeImage")));
+            this.btn_Thoat.Name = "btn_Thoat";
             // 
             // fluentFormDefaultManager1
             // 
@@ -176,6 +184,7 @@
             this.btn_LapPhieuKiemKe,
             this.btn_LapDonDatHang,
             this.btn_LapPhieuDoiTra});
+            this.accordionControlElement1.Expanded = true;
             this.accordionControlElement1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement1.ImageOptions.Image")));
             this.accordionControlElement1.Name = "accordionControlElement1";
             this.accordionControlElement1.Text = "MENU";
@@ -353,14 +362,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
-            // 
-            // btn_Thoat
-            // 
-            this.btn_Thoat.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right;
-            this.btn_Thoat.Id = 3;
-            this.btn_Thoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.btn_Thoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
-            this.btn_Thoat.Name = "btn_Thoat";
             // 
             // frm_main
             // 

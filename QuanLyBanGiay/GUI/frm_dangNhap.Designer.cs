@@ -157,9 +157,9 @@
             this.txt_matkhau.Location = new System.Drawing.Point(437, 209);
             this.txt_matkhau.Margin = new System.Windows.Forms.Padding(2);
             this.txt_matkhau.Name = "txt_matkhau";
-            this.txt_matkhau.PasswordChar = '*';
             this.txt_matkhau.Size = new System.Drawing.Size(207, 26);
             this.txt_matkhau.TabIndex = 18;
+            this.txt_matkhau.UseSystemPasswordChar = true;
             // 
             // txt_tentaikhoan
             // 
@@ -184,6 +184,7 @@
             // 
             // frm_dangNhap
             // 
+            this.AcceptButton = this.btn_dangnhap;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;

@@ -16,7 +16,7 @@ namespace DAL
             try
             {
                 NhanVien nv = db.NhanViens.Where(n => n.TaiKhoan == tenDangNhap && n.MatKhau == matKhau).FirstOrDefault();
-                if (nv == null)
+                if (nv == null || nv.TrangThaiHoatDong == false)
                 {
                     return false;
                 }

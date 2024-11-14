@@ -17,6 +17,21 @@ namespace GUI
         {
             InitializeComponent();
             btn_dangnhap.Click += Btn_dangnhap_Click;
+            btn_hienmatkhau.Click += Btn_hienmatkhau_Click;
+        }
+
+        private void Btn_hienmatkhau_Click(object sender, EventArgs e)
+        {
+            // Hiện mật khẩu
+            if (txt_matkhau.UseSystemPasswordChar)
+            {
+                txt_matkhau.UseSystemPasswordChar = false;
+            }
+            // Ẩn mật khẩu
+            else
+            {
+                txt_matkhau.UseSystemPasswordChar = true;
+            }
         }
 
         private void Btn_dangnhap_Click(object sender, EventArgs e)
@@ -50,9 +65,10 @@ namespace GUI
             if (nhanVienBLL.KiemTraDangNhap(txt_tentaikhoan.Text, txt_matkhau.Text))
             {
                 MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Hide();
-                NhanVien nv = nhanVienBLL.LayNhanVien(txt_tentaikhoan.Text, txt_matkhau.Text);                
-                frm_main frm = new frm_main();
+                this.Visible = false;  // Ẩn form đăng nhập
+
+                NhanVien nv = nhanVienBLL.LayNhanVien(txt_tentaikhoan.Text, txt_matkhau.Text);
+                frm_main frm = new frm_main(this);  // Truyền tham chiếu của frm_dangNhap
                 frm._nhanVien = nv;
                 frm.ShowDialog();
             }

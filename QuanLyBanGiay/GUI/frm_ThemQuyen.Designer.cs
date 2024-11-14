@@ -95,6 +95,7 @@
             // 
             // frm_ThemQuyen
             // 
+            this.AcceptButton = this.btnLuu;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(386, 323);
@@ -107,7 +108,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "frm_ThemQuyen";
-            this.Text = "frm_ThemQuyen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Thêm quyền";
             this.ResumeLayout(false);
             this.PerformLayout();
 
