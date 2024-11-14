@@ -20,3 +20,5 @@ D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.dll.config
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.dll.config
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.ProductItem.resources
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.GenerateResource.cache
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.ProductItem.resources
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.GenerateResource.cache

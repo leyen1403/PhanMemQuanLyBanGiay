@@ -154,7 +154,9 @@ namespace GUI
 
         private void Btn_LapDonDatHang_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_lapDonDatHang());
+            frm_lapDonDatHang lapDonDatHang = new frm_lapDonDatHang();
+            lapDonDatHang.MaNhanVien = _nhanVien.MaNhanVien;
+            loadForm(lapDonDatHang);
         }
 
         void loadForm(Form form)

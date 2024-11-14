@@ -47,15 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChiTietDonDatHangBLL.cs" />
     <Compile Include="ChiTietHoaDonBLL.cs" />
     <Compile Include="ChiTietKiemKeBLL.cs" />
     <Compile Include="DichVuPhanQuyenBLL.cs" />
+    <Compile Include="DonDatHangBLL.cs" />
     <Compile Include="HoaDonBLL.cs" />
     <Compile Include="KhachHangBLL.cs" />
     <Compile Include="KichThuocBLL.cs" />
     <Compile Include="KiemKeBLL.cs" />
     <Compile Include="LoaiSanPhamBLL.cs" />
     <Compile Include="MauSacBLL.cs" />
+    <Compile Include="NhaCungCapBLL.cs" />
     <Compile Include="NhanVienBLL.cs" />
     <Compile Include="NhanVien_VaiTroBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
