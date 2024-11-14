@@ -42,10 +42,13 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dgvChiTietKiemKe = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtLyDoChenhLech = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.nudSoLuongChenhLech = new System.Windows.Forms.NumericUpDown();
             this.nudSoLuongKiemKe = new System.Windows.Forms.NumericUpDown();
             this.nudSoLuongHeThong = new System.Windows.Forms.NumericUpDown();
+            this.btnCapNhatChiTietPhieuKiemKe = new System.Windows.Forms.Button();
             this.btnXoaSanPhamKhoiPhieuKiemKe = new System.Windows.Forms.Button();
             this.btnThemSanPhamVaoPhieuKiemKie = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -57,9 +60,6 @@
             this.cboLoaiSanPham = new System.Windows.Forms.ComboBox();
             this.txtTim = new System.Windows.Forms.TextBox();
             this.btnTim = new System.Windows.Forms.Button();
-            this.btnCapNhatChiTietPhieuKiemKe = new System.Windows.Forms.Button();
-            this.txtLyDoChenhLech = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSanPham)).BeginInit();
@@ -180,6 +180,7 @@
             // 
             // dgvSanPham
             // 
+            this.dgvSanPham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSanPham.Enabled = false;
@@ -203,6 +204,7 @@
             // 
             // dgvChiTietKiemKe
             // 
+            this.dgvChiTietKiemKe.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvChiTietKiemKe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChiTietKiemKe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvChiTietKiemKe.Enabled = false;
@@ -236,6 +238,23 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Thông tin sản phẩm";
             // 
+            // txtLyDoChenhLech
+            // 
+            this.txtLyDoChenhLech.Location = new System.Drawing.Point(159, 118);
+            this.txtLyDoChenhLech.Multiline = true;
+            this.txtLyDoChenhLech.Name = "txtLyDoChenhLech";
+            this.txtLyDoChenhLech.Size = new System.Drawing.Size(346, 93);
+            this.txtLyDoChenhLech.TabIndex = 13;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(9, 117);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(128, 19);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Lý do chênh lệch";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -254,6 +273,11 @@
             0,
             0,
             0});
+            this.nudSoLuongChenhLech.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
             this.nudSoLuongChenhLech.Name = "nudSoLuongChenhLech";
             this.nudSoLuongChenhLech.Size = new System.Drawing.Size(120, 27);
             this.nudSoLuongChenhLech.TabIndex = 12;
@@ -267,9 +291,15 @@
             0,
             0,
             0});
+            this.nudSoLuongKiemKe.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
             this.nudSoLuongKiemKe.Name = "nudSoLuongKiemKe";
             this.nudSoLuongKiemKe.Size = new System.Drawing.Size(120, 27);
             this.nudSoLuongKiemKe.TabIndex = 12;
+            this.nudSoLuongKiemKe.ValueChanged += new System.EventHandler(this.nudSoLuongKiemKe_ValueChanged);
             // 
             // nudSoLuongHeThong
             // 
@@ -280,9 +310,25 @@
             0,
             0,
             0});
+            this.nudSoLuongHeThong.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
             this.nudSoLuongHeThong.Name = "nudSoLuongHeThong";
             this.nudSoLuongHeThong.Size = new System.Drawing.Size(120, 27);
             this.nudSoLuongHeThong.TabIndex = 12;
+            // 
+            // btnCapNhatChiTietPhieuKiemKe
+            // 
+            this.btnCapNhatChiTietPhieuKiemKe.Enabled = false;
+            this.btnCapNhatChiTietPhieuKiemKe.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnCapNhatChiTietPhieuKiemKe.Location = new System.Drawing.Point(669, 161);
+            this.btnCapNhatChiTietPhieuKiemKe.Name = "btnCapNhatChiTietPhieuKiemKe";
+            this.btnCapNhatChiTietPhieuKiemKe.Size = new System.Drawing.Size(52, 50);
+            this.btnCapNhatChiTietPhieuKiemKe.TabIndex = 9;
+            this.btnCapNhatChiTietPhieuKiemKe.UseVisualStyleBackColor = true;
+            this.btnCapNhatChiTietPhieuKiemKe.Click += new System.EventHandler(this.btnCapNhatChiTietPhieuKiemKe_Click);
             // 
             // btnXoaSanPhamKhoiPhieuKiemKe
             // 
@@ -367,6 +413,7 @@
             this.cboLoaiSanPham.Name = "cboLoaiSanPham";
             this.cboLoaiSanPham.Size = new System.Drawing.Size(304, 27);
             this.cboLoaiSanPham.TabIndex = 13;
+            this.cboLoaiSanPham.SelectedIndexChanged += new System.EventHandler(this.cboLoaiSanPham_SelectedIndexChanged);
             // 
             // txtTim
             // 
@@ -386,34 +433,7 @@
             this.btnTim.Size = new System.Drawing.Size(70, 60);
             this.btnTim.TabIndex = 9;
             this.btnTim.UseVisualStyleBackColor = true;
-            // 
-            // btnCapNhatChiTietPhieuKiemKe
-            // 
-            this.btnCapNhatChiTietPhieuKiemKe.Enabled = false;
-            this.btnCapNhatChiTietPhieuKiemKe.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnCapNhatChiTietPhieuKiemKe.Location = new System.Drawing.Point(669, 161);
-            this.btnCapNhatChiTietPhieuKiemKe.Name = "btnCapNhatChiTietPhieuKiemKe";
-            this.btnCapNhatChiTietPhieuKiemKe.Size = new System.Drawing.Size(52, 50);
-            this.btnCapNhatChiTietPhieuKiemKe.TabIndex = 9;
-            this.btnCapNhatChiTietPhieuKiemKe.UseVisualStyleBackColor = true;
-            this.btnCapNhatChiTietPhieuKiemKe.Click += new System.EventHandler(this.btnCapNhatChiTietPhieuKiemKe_Click);
-            // 
-            // txtLyDoChenhLech
-            // 
-            this.txtLyDoChenhLech.Location = new System.Drawing.Point(159, 118);
-            this.txtLyDoChenhLech.Multiline = true;
-            this.txtLyDoChenhLech.Name = "txtLyDoChenhLech";
-            this.txtLyDoChenhLech.Size = new System.Drawing.Size(346, 93);
-            this.txtLyDoChenhLech.TabIndex = 13;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 117);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(128, 19);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Lý do chênh lệch";
+            this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
             // 
             // frm_lapPhieuKiemKe
             // 
