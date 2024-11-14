@@ -15,6 +15,28 @@ namespace BLL
         {
             sanPhamDAL = new SanPhamDAL();
         }
+        public List<SanPham> timKiemSanPham(string maLoai, string maMau, string maKichThuoc, string maThuongHieu)
+        {
+            return sanPhamDAL.timKiemSanPham(maLoai, maMau, maKichThuoc, maThuongHieu);
+        }
+        public List<SanPham> layDanhSachSanPhamTheoMaKichThuoc(string maKichThuoc)
+        {
+            return sanPhamDAL.layDanhSachSanPhamTheoMaKichThuoc(maKichThuoc);
+        }
+        public List<SanPham> layDanhSachSanphamTheoMaMau(string maMau)
+        {
+            return sanPhamDAL.layDanhSachSanphamTheoMaMau(maMau);
+        }
+        public List<SanPham> layDanhSachSanPhamTheoMaThuongHieu(string maThuongHieu)
+        {
+            return sanPhamDAL.layDanhSachSanPhamTheoMaThuongHieu(maThuongHieu);
+        }
+
+        public List<SanPham> layDanhSachSanPhamTheoMaLoai(string maLoai)
+        {
+            return sanPhamDAL.layDanhSachSanPhamTheoMaLoai(maLoai);
+        }
+
         public List<SanPham> layDanhSachSanPhamKhongTrungTen()
         {
             return sanPhamDAL.layDanhSachSanPhamKhongTrungTen();
@@ -47,10 +69,18 @@ namespace BLL
             return sanPhamDAL.xoaSanPham(maSanPham,trangThai);
         }
 
-        public string timKiemMaSanPham(string tenSanPham,string maKichThuoc,string maSac)
+        public string timKiemMaSanPham(string tenSanPham,string maKichThuoc,string maSac,string maThuongHieu,string maLoaiSanPham)
         {
-            return sanPhamDAL.timKiemMaSanPham(tenSanPham,maKichThuoc,maSac);
+            return sanPhamDAL.TimKiemMaSanPham(tenSanPham,maKichThuoc,maSac,maThuongHieu,maLoaiSanPham);
+        }
+        public List<SanPham> timKiemSanPhamTheoTen(string tenSanPham)
+        {
+            return sanPhamDAL.timKiemSanPhamTheoTen(tenSanPham);
         }
 
+        public bool xoaSanPham(string maSanPham)
+        {
+            return sanPhamDAL.xoaSanPham(maSanPham);
+        }
     }
 }
