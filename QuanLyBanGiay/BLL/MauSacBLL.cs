@@ -39,5 +39,10 @@ namespace BLL
         {
             return _mauSacDAL.suaMauSac(mauSac);
         }
+        public List<MauSac> layTatCaMauSacTheoTenSanPham(string tenSanPham)
+
+        {
+            return _mauSacDAL.layTatCaMauSacTheoTenSanPham(tenSanPham);
+        }
     }
 }

@@ -914,7 +914,6 @@ namespace GUI
                     row.DefaultCellStyle.BackColor = Color.LightPink;
                 }
             }
-
         }
         private void dgv_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
@@ -976,7 +975,7 @@ namespace GUI
                         // Nếu trạng thái là "Không hoạt động", tô màu hồng dòng
                         if (!trangThai)
                         {
-                            dgv_dsSanPham.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.HotPink;
+                            dgv_dsSanPham.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightPink;
                         }
                         else
                         {

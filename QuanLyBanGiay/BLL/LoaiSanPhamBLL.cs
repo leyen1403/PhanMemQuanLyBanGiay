@@ -39,5 +39,9 @@ namespace BLL
         {
             return _loaiSanPhamDAL.suaLoaiSanPham(loaiSanPham);
         }
+        public LoaiSanPham layLoaiTheoTenSanPham(string tenSanPham)
+        {
+            return _loaiSanPhamDAL.layLoaiTheoTenSanPham(tenSanPham);
+        }
     }
 }

@@ -82,5 +82,21 @@ namespace BLL
         {
             return sanPhamDAL.xoaSanPham(maSanPham);
         }
+        public List<SanPham> GetSanPhamsPaged(int pageNumber, int pageSize, string maLoai, string maThuongHieu, out int totalRecords)
+        {
+            return sanPhamDAL.GetSanPhamsPaged(pageNumber, pageSize, maLoai, maThuongHieu,out totalRecords);
+        }
+        public string layMaSanPhamTheoTen(string tenSanPham, string tenThuongHieu, string tenMauSac, string tenKichThuoc)
+        {
+            return sanPhamDAL.layMaSanPhamTheoTen(tenSanPham, tenThuongHieu, tenMauSac, tenKichThuoc);
+        }
+        public SanPhamGioHangDTO laySanPhamTheoMaMoi(string maSanPham)
+        {
+            return sanPhamDAL.laySanPhamTheoMaMoi(maSanPham);
+        }
+        public decimal? layGiaBanTheoMaSanPham(string maSanPham)
+        {
+            return sanPhamDAL.layGiaBanTheoMaSanPham(maSanPham);
+        }
     }
 }

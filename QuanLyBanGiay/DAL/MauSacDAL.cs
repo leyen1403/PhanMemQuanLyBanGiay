@@ -103,5 +103,23 @@ namespace DAL
                 return false;
             }
         }
+        //viết hàm lấy tất cả màu sắc theo tên sản phẩm
+        public List<MauSac> layTatCaMauSacTheoTenSanPham(string tenSanPham)
+        {
+            try
+            {
+                var mauSacs = (from sp in db.SanPhams 
+                               join ms in db.MauSacs on sp.MaMauSac equals ms.MaMauSac
+                               where sp.TenSanPham == tenSanPham && sp.TrangThaiHoatDong == true
+                               select ms).ToList();
+
+                return mauSacs;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách màu sắc: " + ex.Message);
+                return null;
+            }
+        }
     }
 }

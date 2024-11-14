@@ -44,5 +44,9 @@ namespace BLL
         {
             return _thuongHieuDAL.SuaThuongHieu(thuongHieu);
         }
+        public ThuongHieu layThuongHieuTheoTenSanPham(string tenSanPham)
+        {
+            return _thuongHieuDAL.layThuongHieuTheoTenSanPham(tenSanPham);
+        }
     }
 }

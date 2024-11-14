@@ -118,5 +118,24 @@ namespace DAL
                 return false;
             }
         }
+        //viết hàm lấy loại theo tên sản phẩm
+        public LoaiSanPham layLoaiTheoTenSanPham(string tenSanPham)
+        {
+            try
+            {
+                // Thực hiện join giữa bảng LoaiSanPham và SanPham
+                var loaiSanPham = (from lsp in db.LoaiSanPhams
+                                   join sp in db.SanPhams on lsp.MaLoaiSanPham equals sp.MaLoaiSanPham
+                                   where sp.TenSanPham == tenSanPham
+                                   select lsp).FirstOrDefault();
+
+                return loaiSanPham;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy loại sản phẩm: " + ex.Message);
+                return null;
+            }
+        }
     }
 }

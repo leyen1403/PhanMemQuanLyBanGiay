@@ -37,5 +37,17 @@ namespace BLL
         {
             return _kichThuocDAL.SuaKichThuoc(kichThuoc);
         }
+        public List<KichThuoc> LayTatCaKichThuocTheoTenSanPham(string tenSanPham)
+        {
+            return _kichThuocDAL.LayTatCaKichThuocTheoTenSanPham(tenSanPham);
+        }
+        public List<KichThuoc> LayKichThuocTheoTenSanPhamVaMauSac(string tenSanPham, string tenMauSac)
+        {
+            return _kichThuocDAL.LayKichThuocTheoTenSanPhamVaMauSac(tenSanPham, tenMauSac);
+        }
+        public List<KichThuoc> LayKichThuocTheoThuongHieuLoaiSanPhamMauSac(string tenThuongHieu, string tenLoaiSanPham, string tenMauSac)
+        {
+            return _kichThuocDAL.LayKichThuocTheoThuongHieuLoaiSanPhamMauSac(tenThuongHieu, tenLoaiSanPham, tenMauSac);
+        }
     }
 }

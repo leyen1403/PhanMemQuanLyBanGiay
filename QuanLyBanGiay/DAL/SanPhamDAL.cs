@@ -157,6 +157,33 @@ namespace DAL
                 return null;
             }
         }
+        public SanPhamGioHangDTO laySanPhamTheoMaMoi(string maSanPham)
+        {
+            try
+            {
+                // Tìm sản phẩm cùng với tên màu sắc và kích thước trong cơ sở dữ liệu
+                var sanPham = (from sp in db.SanPhams
+                               join ms in db.MauSacs on sp.MaMauSac equals ms.MaMauSac
+                               join kt in db.KichThuocs on sp.MaKichThuoc equals kt.MaKichThuoc
+                               where sp.MaSanPham == maSanPham
+                               select new SanPhamGioHangDTO
+                               {
+                                   MaSanPham = sp.MaSanPham,
+                                   TenSanPham = sp.TenSanPham,
+                                   MauSac = ms.TenMauSac,
+                                   KichThuoc = kt.TenKichThuoc,
+                                   GiaBan = (decimal)sp.GiaBan
+                               }).FirstOrDefault();
+
+                return sanPham; // Trả về đối tượng SanPhamGioHangDTO chứa thông tin sản phẩm, màu sắc và kích thước
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy sản phẩm: " + ex.Message);
+                return null; // Trả về null nếu có lỗi
+            }
+        }
+
 
         public List<SanPham> layTatCaSanPham()
         {
@@ -295,5 +322,87 @@ namespace DAL
                 return false;
             }
         }
+        public List<SanPham> GetSanPhamsPaged(int pageNumber, int pageSize, string maLoai, string maThuongHieu, out int totalRecords)
+        {
+            // Lọc sản phẩm theo mã loại và mã thương hiệu nếu có giá trị
+            var query = db.SanPhams.AsQueryable();
+
+            // Kiểm tra xem sản phẩm có bị xóa không
+            query = query.Where(sp => sp.TrangThaiHoatDong == true); // Lọc chỉ lấy sản phẩm chưa bị xóa
+
+            if (!string.IsNullOrEmpty(maLoai))
+            {
+                query = query.Where(sp => sp.MaLoaiSanPham == maLoai);
+            }
+
+            if (!string.IsNullOrEmpty(maThuongHieu))
+            {
+                query = query.Where(sp => sp.MaThuongHieu == maThuongHieu);
+            }
+
+            // Loại bỏ sản phẩm trùng tên bằng cách nhóm theo tên sản phẩm
+            var distinctSanPhams = query
+                                    .GroupBy(sp => sp.TenSanPham)
+                                    .Select(g => g.FirstOrDefault()) // Lấy sản phẩm đầu tiên trong mỗi nhóm
+                                    .OrderBy(sp => sp.MaSanPham); // Sắp xếp theo mã sản phẩm để đảm bảo thứ tự
+
+            // Tính tổng số sản phẩm sau khi lọc và loại bỏ trùng lặp
+            totalRecords = distinctSanPhams.Count();
+
+            // Phân trang cho danh sách sản phẩm đã lọc
+            var pagedSanPhams = distinctSanPhams
+                                .Skip((pageNumber - 1) * pageSize)
+                                .Take(pageSize)
+                                .ToList();
+
+            return pagedSanPhams;
+        }
+
+        //viết hàm lấy mã sản phẩm theo tên sản phẩm ,tên thương hiệu, tên màu sắc, tên kích thước
+        public string layMaSanPhamTheoTen(string tenSanPham, string tenThuongHieu, string tenMauSac, string tenKichThuoc)
+        {
+            try
+            {
+                // Lấy mã sản phẩm theo tên sản phẩm, tên thương hiệu, tên màu sắc, tên kích thước
+                var maSanPham = db.SanPhams
+                                .Where(sp => sp.TenSanPham == tenSanPham &&
+                                             sp.ThuongHieu.TenThuongHieu == tenThuongHieu &&
+                                             sp.MauSac.TenMauSac == tenMauSac &&
+                                             sp.KichThuoc.TenKichThuoc == tenKichThuoc)
+                                .Select(sp => sp.MaSanPham)
+                                .FirstOrDefault();
+
+                return maSanPham;
+            }
+            catch (Exception ex)
+            {
+                return string.Empty;
+            }
+        }
+
+        //viết hàm lấy giá bán theo mã sản phẩm
+        public decimal? layGiaBanTheoMaSanPham(string maSanPham)
+        {
+            try
+            {
+                // Tìm sản phẩm theo mã sản phẩm
+                var sanPham = db.SanPhams.FirstOrDefault(sp => sp.MaSanPham == maSanPham);
+
+                if (sanPham != null)
+                {
+                    return sanPham.GiaBan; // Trả về giá bán nếu tìm thấy sản phẩm
+                }
+                else
+                {
+                    return null; // Trả về null nếu không tìm thấy sản phẩm
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy giá bán: " + ex.Message);
+                return null; // Trả về null nếu có lỗi
+            }
+        }
+
     }
 }

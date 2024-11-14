@@ -89,5 +89,24 @@ namespace DAL
                 return false;
             }
         }
+        //viết phướng lấy thương hiệu theo tên sản phẩm
+        public ThuongHieu layThuongHieuTheoTenSanPham(string tenSanPham)
+        {
+            try
+            {
+                // Thực hiện join giữa bảng ThuongHieu và SanPham
+                var thuongHieu = (from th in db.ThuongHieus
+                                  join sp in db.SanPhams on th.MaThuongHieu equals sp.MaThuongHieu
+                                  where sp.TenSanPham == tenSanPham
+                                  select th).FirstOrDefault();
+
+                return thuongHieu;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy thương hiệu: " + ex.Message);
+                return null;
+            }
+        }
     }
 }
