@@ -322,7 +322,7 @@ namespace DAL
                 return false;
             }
         }
-        public List<SanPham> GetSanPhamsPaged(int pageNumber, int pageSize, string maLoai, string maThuongHieu, out int totalRecords)
+        public List<SanPham> GetSanPhamsPaged(int pageNumber, int pageSize, string maLoai, string maThuongHieu, string tenSanPham, out int totalRecords)
         {
             // Lọc sản phẩm theo mã loại và mã thương hiệu nếu có giá trị
             var query = db.SanPhams.AsQueryable();
@@ -330,14 +330,22 @@ namespace DAL
             // Kiểm tra xem sản phẩm có bị xóa không
             query = query.Where(sp => sp.TrangThaiHoatDong == true); // Lọc chỉ lấy sản phẩm chưa bị xóa
 
+            // Lọc theo mã loại sản phẩm nếu có
             if (!string.IsNullOrEmpty(maLoai))
             {
                 query = query.Where(sp => sp.MaLoaiSanPham == maLoai);
             }
 
+            // Lọc theo mã thương hiệu nếu có
             if (!string.IsNullOrEmpty(maThuongHieu))
             {
                 query = query.Where(sp => sp.MaThuongHieu == maThuongHieu);
+            }
+
+            // Lọc theo tên sản phẩm nếu có
+            if (!string.IsNullOrEmpty(tenSanPham))
+            {
+                query = query.Where(sp => sp.TenSanPham.Contains(tenSanPham)); // Sử dụng Contains để tìm kiếm tên sản phẩm (tìm kiếm theo chuỗi con)
             }
 
             // Loại bỏ sản phẩm trùng tên bằng cách nhóm theo tên sản phẩm
@@ -357,6 +365,7 @@ namespace DAL
 
             return pagedSanPhams;
         }
+
 
         //viết hàm lấy mã sản phẩm theo tên sản phẩm ,tên thương hiệu, tên màu sắc, tên kích thước
         public string layMaSanPhamTheoTen(string tenSanPham, string tenThuongHieu, string tenMauSac, string tenKichThuoc)

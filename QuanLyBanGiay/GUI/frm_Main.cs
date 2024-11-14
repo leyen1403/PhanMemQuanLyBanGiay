@@ -149,7 +149,9 @@ namespace GUI
 
         private void Btn_LapHoaDon_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_lapHoaDon());
+            frm_lapHoaDon frm_LapHoaDon = new frm_lapHoaDon();
+            frm_LapHoaDon.MaNhanVien = _nhanVien.MaNhanVien;
+            loadForm(frm_LapHoaDon);
         }
 
         private void Btn_LapDonDatHang_Click(object sender, EventArgs e)
@@ -174,7 +176,9 @@ namespace GUI
 
         private void btn_LapHoaDon_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_lapHoaDon());
+           frm_lapHoaDon frm_LapHoaDon = new frm_lapHoaDon();
+            frm_LapHoaDon.MaNhanVien = _nhanVien.MaNhanVien;
+            loadForm(frm_LapHoaDon);
         }
 
         private void accordionControlElement4_Click(object sender, EventArgs e)

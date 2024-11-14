@@ -27,7 +27,7 @@ namespace GUI
         ChiTietHoaDonBLL _chiTietHoaDonBLL = new ChiTietHoaDonBLL();
         KhachHangBLL _khachHangBLL = new KhachHangBLL();
 
-        NhanVien _nhanVien { get; set; }
+        public string MaNhanVien { get; set; }
         List<SanPham> _lstSanPham = null;
         List<LoaiSanPham> _lstLoaiSanPham = null;
         List<KichThuoc> _lstKichThuoc = null;
@@ -55,14 +55,304 @@ namespace GUI
             this.cbo_loai.SelectedIndexChanged += Cbo_loai_SelectedIndexChanged;
             this.cbo_mauSac.SelectedIndexChanged += Cbo_mauSac_SelectedIndexChanged;
             this.cbo_kichThuoc.SelectedIndexChanged += Cbo_kichThuoc_SelectedIndexChanged;
+            this.dgvCart.SelectionChanged += DgvCart_SelectionChanged;
             this.btn_addCart.Click += Btn_addCart_Click;
+            this.btn_Clear.Click += Btn_Clear_Click;
+            this.btn_suaSL.Click += Btn_suaSL_Click;
+            this.btn_timKhachHang.Click += Btn_timKhachHang_Click;
+            this.btn_luuHoaDon.Click += Btn_luuHoaDon_Click;
+            this.btn_timSanPham.Click += Btn_timSanPham_Click;
             loadCboLoaiSanPham();
             loadCboThuongHieu();
             LoadSanPhamPaged();
+            LoadComboBoxThanhToan();
+            LoadComboBoxGioiTinh();
             txt_soLuong.Minimum = 1;
             txt_soLuong.Maximum = 100;
             txt_soLuong.Value = 1;
             InitializeDataGridView();
+        }
+
+        private void Btn_timSanPham_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string maloai = string.Empty ;
+                string maThuongHieu = string.Empty;
+                string tenSanPham = txt_tenSanPham.Text;
+                if (string.IsNullOrEmpty(tenSanPham))
+                {
+                    MessageBox.Show("Vui lòng nhập tên sản phẩm cần tìm.");
+                    return;
+                }
+                // Cập nhật lại trang hiện tại về 1 khi thay đổi loại sản phẩm
+                currentPage = 1;
+                List<SanPham> pagedSanPhamList = _sanPhamBLL.GetSanPhamsPaged(currentPage, pageSize, maloai, maThuongHieu, tenSanPham, out totalRecords);
+                loadSanPham(pagedSanPhamList);
+                UpdatePaginationButtons();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void Btn_luuHoaDon_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra giỏ hàng
+            if (dgvCart.Rows.Count == 0 || dgvCart.Rows.Cast<DataGridViewRow>().All(row => row.IsNewRow))
+            {
+                MessageBox.Show("Giỏ hàng không có sản phẩm. Vui lòng thêm sản phẩm vào giỏ hàng trước khi lưu hóa đơn.");
+                return;
+            }
+
+            // Lấy thông tin khách hàng từ các TextBox
+            string maKhachHang = txt_maKhachHang.Text;
+            string tenKhachHang = txt_tenKhachHang.Text;
+            string sdt = txt_soDienThoai.Text;
+            string diaChi = txt_diaChi.Text;
+            decimal diemTichLuy = 0;
+            string gioiTinh = cbo_gioiTinh.SelectedItem.ToString();
+            // Tính tổng tiền và điểm tích lũy
+            decimal tongTien = CalculateTotalAmount();
+            diemTichLuy = CalculateDiemTichLuy(tongTien);
+
+            int tongSl = CalculateTotalProducts();
+            if (tongTien <= 0)
+            {
+                MessageBox.Show("Tổng tiền không hợp lệ.");
+                return;
+            }
+
+            // Kiểm tra thông tin khách hàng
+            if (string.IsNullOrEmpty(maKhachHang) && string.IsNullOrEmpty(tenKhachHang) && string.IsNullOrEmpty(sdt))
+            {
+                MessageBox.Show("Vui lòng nhập hoặc chọn thông tin khách hàng.");
+                return;
+            }
+
+            // Lấy khách hàng từ cơ sở dữ liệu
+            KhachHang kh = _khachHangBLL.LayKhachHangTheoDieuKien(maKhachHang, tenKhachHang, sdt);
+            if (kh == null)
+            {
+                string maKhachHangMoi = taoMaKhachHang();
+                // Thêm khách hàng mới vào cơ sở dữ liệu nếu chưa có
+                KhachHang khachHangMoi = new KhachHang
+                {
+                    MaKhachHang = maKhachHangMoi,
+                    TenKhachHang = tenKhachHang,
+                    SoDienThoai = sdt,
+                    DiaChi = diaChi,
+                    DiemTichLuy = diemTichLuy, // Chỉnh sửa lại để gán điểm tích lũy đúng
+                    ThanhVien = false, // Mặc định khách hàng mới không phải là thành viên
+                    GioiTinh = gioiTinh,
+                    NgayTao = DateTime.Now,
+                    NgayCapNhat = DateTime.Now,
+                    TrangThaiHoatDong = true
+                };
+
+
+                bool isAdded = _khachHangBLL.ThemKhachHang(khachHangMoi);
+
+                if (!isAdded)
+                {
+                    MessageBox.Show("Có lỗi xảy ra khi thêm khách hàng mới.");
+                    return;
+                }
+
+                kh = khachHangMoi;
+            }
+            string ghiChu = txt_ghiChu.Text;
+            string hinhThucThanhToan = cbo_phuongThucTT.SelectedItem.ToString();
+            if(string.IsNullOrEmpty(hinhThucThanhToan))
+            {
+                MessageBox.Show("Vui lòng chọn hình thức thanh toán.");
+                return;
+            }
+            // Kiểm tra và sử dụng điểm tích lũy (nếu khách hàng là thành viên)
+            decimal diemSuDung = 0; // Gán giá trị mặc định
+            if (decimal.TryParse(txt_diemDung.Text, out diemSuDung))
+            {
+                // Chuyển thành công, diemSuDung sẽ chứa giá trị nhập vào
+            }
+
+            if (chkSuDungDiemTichLuy.Checked)
+            {
+                if (kh.ThanhVien == false) // Kiểm tra nếu khách hàng là thành viên mới có thể sử dụng điểm tích lũy
+                {
+                    MessageBox.Show("Chỉ khách hàng thành viên mới có thể sử dụng điểm tích lũy.");
+                    return; // Dừng lại nếu khách hàng không phải là thành viên
+                }
+                if (diemSuDung > 0)
+                {
+                    // Đảm bảo điểm tích lũy sử dụng không vượt quá số điểm tích lũy của khách hàng
+                    diemSuDung = (kh.DiemTichLuy ?? 0) >= diemSuDung ? diemSuDung : (kh.DiemTichLuy ?? 0);
+                    tongTien -= diemSuDung; // Trừ điểm tích lũy từ tổng tiền
+                    txt_tongTien.Text = tongTien.ToString("0.##"); // Cập nhật tổng tiền
+                }
+            }
+
+            // Kiểm tra và lưu hóa đơn
+            try
+            {
+                HoaDon hoaDon = new HoaDon
+                {
+                    MaHoaDon = taoMaHoaDon(), // Tạo mã hóa đơn mới
+                    NgayTao = DateTime.Now, // Thời gian lập hóa đơn
+                    MaKhachHang = kh.MaKhachHang, // Mã khách hàng (có giá trị hợp lệ?)
+                    MaNhanVien = MaNhanVien, // Mã nhân viên (có giá trị hợp lệ?)
+                    GhiChu = ghiChu, // Ghi chú
+                    PhuongThucThanhToan = hinhThucThanhToan, // Hình thức thanh toán
+                    TongTien = tongTien, // Tổng tiền
+                    DiemTichLuySuDung = (int?)Convert.ToInt32(diemSuDung)  // Convert diemSuDung to int before casting to int?
+                };
+
+                bool themDiemCong = _khachHangBLL.AddDiemCongTichLuy(kh.MaKhachHang, diemTichLuy);
+
+                if (!themDiemCong)
+                {
+                    Console.WriteLine("Thêm điểm cộng thất bại");
+                }
+
+                // Kiểm tra các giá trị trước khi thêm vào cơ sở dữ liệu
+                if (hoaDon.MaKhachHang == null || hoaDon.MaNhanVien == null)
+                {
+                    MessageBox.Show("Thông tin khách hàng hoặc nhân viên không hợp lệ.");
+                    return;
+                }
+
+                // Tiến hành thêm hóa đơn vào cơ sở dữ liệu
+                bool isHoaDonAdded = _hoaDonBLL.ThemHoaDon(hoaDon);
+                if (!isHoaDonAdded)
+                {
+                    MessageBox.Show("Có lỗi xảy ra khi lưu hóa đơn.");
+                    return;
+                }
+
+                // Thêm chi tiết hóa đơn cho từng sản phẩm trong giỏ hàng
+                foreach (DataGridViewRow row in dgvCart.Rows)
+                {
+                    if (!row.IsNewRow)
+                    {
+                        string maCTHDBH = taoCTHD();
+                        var chiTietHoaDon = new ChiTietHoaDon
+                        {
+                            MaHoaDon = hoaDon.MaHoaDon, // Chỉnh lại tên trường mã hóa đơn
+                            MaSanPham = row.Cells["MaSP"].Value.ToString(),
+                            SoLuong = Convert.ToInt32(row.Cells["SoLuong"].Value),
+                            DonGia = Convert.ToDecimal(row.Cells["Gia"].Value),
+                            ThanhTien = Convert.ToDecimal(row.Cells["ThanhTien"].Value),
+                        };
+
+                        Console.WriteLine($"Adding ChiTietHoaDon: {chiTietHoaDon.MaSanPham}, Quantity: {chiTietHoaDon.SoLuong}, TotalPrice: {chiTietHoaDon.ThanhTien}");
+                        _chiTietHoaDonBLL.ThemChiTietHoaDon(chiTietHoaDon);
+                    }
+                }
+
+                MessageBox.Show("Hóa đơn đã được lưu thành công!");
+                dgvCart.Rows.Clear();
+                clearAll();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+                MessageBox.Show($"Có lỗi xảy ra khi lưu hóa đơn: {ex.Message}");
+            }
+        }
+
+        private void Btn_timKhachHang_Click(object sender, EventArgs e)
+        {
+            string maKhachHang = txt_maKhachHang.Text;
+            string tenKhachHang = txt_tenKhachHang.Text;
+            string sdt = txt_soDienThoai.Text;
+            if (string.IsNullOrEmpty(maKhachHang) && string.IsNullOrEmpty(tenKhachHang) && string.IsNullOrEmpty(sdt))
+            {
+                MessageBox.Show("Vui lòng nhập ít nhất một trong các thông tin: Mã khách hàng, Tên khách hàng hoặc Số điện thoại.");
+                return;
+            }
+            KhachHang kh = _khachHangBLL.LayKhachHangTheoDieuKien(maKhachHang, tenKhachHang, sdt);
+
+            if (kh != null)
+            {
+                txt_maKhachHang.Text = kh.MaKhachHang;
+                txt_tenKhachHang.Text = kh.TenKhachHang;
+                txt_soDienThoai.Text = kh.SoDienThoai;
+                txt_diaChi.Text = kh.DiaChi;
+                cbo_gioiTinh.SelectedItem = kh.GioiTinh;
+                if (kh.DiemTichLuy.HasValue)
+                {
+                    txt_diemTichLuy.Text = kh.DiemTichLuy.Value.ToString("0.##");
+                }
+                else
+                {
+                    txt_diemTichLuy.Text = "0";
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy khách hàng.");
+            }
+        }
+
+        private void DgvCart_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvCart.CurrentRow != null && dgvCart.CurrentRow.Cells["SoLuong"].Value != null)
+            {
+                txt_SL.Value = Convert.ToInt16(dgvCart.CurrentRow.Cells["SoLuong"].Value);
+            }
+        }
+
+        private void Btn_suaSL_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Kiểm tra nếu có dòng được chọn trong DataGridView
+                if (dgvCart.CurrentRow != null)
+                {
+                    // Lấy số lượng mới từ txt_SL
+                    int soLuongMoi = (int)txt_SL.Value;
+
+                    // Lấy mã sản phẩm và giá bán từ DataGridView
+                    string maSanPham = dgvCart.CurrentRow.Cells["MaSP"].Value?.ToString();
+                    if (string.IsNullOrEmpty(maSanPham))
+                    {
+                        MessageBox.Show("Mã sản phẩm không hợp lệ.");
+                        return;
+                    }
+
+                    // Kiểm tra giá bán hợp lệ
+                    if (dgvCart.CurrentRow.Cells["Gia"].Value == null ||
+                        !decimal.TryParse(dgvCart.CurrentRow.Cells["Gia"].Value.ToString(), out decimal giaBan))
+                    {
+                        MessageBox.Show("Giá bán không hợp lệ.");
+                        return;
+                    }
+
+                    // Cập nhật lại số lượng trong DataGridView
+                    dgvCart.CurrentRow.Cells["SoLuong"].Value = soLuongMoi;
+
+                    // Tính lại ThanhTien
+                    decimal thanhTienMoi = giaBan * soLuongMoi;
+                    dgvCart.CurrentRow.Cells["ThanhTien"].Value = thanhTienMoi;
+
+                    // Cập nhật tổng số lượng và tổng tiền (nếu có)
+                    txt_tongTien.Text = CalculateTotalAmount().ToString("N0");
+                    txt_TongSL.Text = CalculateTotalProducts().ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn sản phẩm trong giỏ hàng.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}");
+            }
+        }
+
+        private void Btn_Clear_Click(object sender, EventArgs e)
+        {
+            clearAll();
         }
 
         private void Cbo_kichThuoc_SelectedIndexChanged(object sender, EventArgs e)
@@ -186,9 +476,10 @@ namespace GUI
                     return;
                 }    
                 string maThuongHieu= string.Empty;
+                string tenSanPham = string.Empty;
                 // Cập nhật lại trang hiện tại về 1 khi thay đổi loại sản phẩm
                 currentPage = 1;
-                List<SanPham> pagedSanPhamList = _sanPhamBLL.GetSanPhamsPaged(currentPage, pageSize,maloai,maThuongHieu, out totalRecords);
+                List<SanPham> pagedSanPhamList = _sanPhamBLL.GetSanPhamsPaged(currentPage, pageSize,maloai,maThuongHieu,tenSanPham, out totalRecords);
                 loadSanPham(pagedSanPhamList);
                 UpdatePaginationButtons();
             }
@@ -202,6 +493,7 @@ namespace GUI
         {
             try { 
                 string maloai =string.Empty;
+                string tenSanPham=string.Empty;
                 string maThuongHieu = cbo_thuongHieu.SelectedValue.ToString();
                 if (string.IsNullOrEmpty(maThuongHieu))
                 {
@@ -210,7 +502,7 @@ namespace GUI
                 }
                 // Cập nhật lại trang hiện tại về 1 khi thay đổi loại sản phẩm
                 currentPage = 1;
-                List<SanPham> pagedSanPhamList = _sanPhamBLL.GetSanPhamsPaged(currentPage, pageSize, maloai, maThuongHieu, out totalRecords);
+                List<SanPham> pagedSanPhamList = _sanPhamBLL.GetSanPhamsPaged(currentPage, pageSize, maloai, maThuongHieu,tenSanPham, out totalRecords);
                 loadSanPham(pagedSanPhamList);
                 UpdatePaginationButtons();
             }
@@ -257,8 +549,97 @@ namespace GUI
                 LoadSanPhamPaged();
             }
         }
+        private void DgvCart_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Kiểm tra nếu người dùng nhấn vào cột Xóa (cột có tên là "Xoa")
+            if (e.ColumnIndex == dgvCart.Columns["Xoa"].Index && e.RowIndex >= 0)
+            {
+                // Xác nhận trước khi xóa
+                var result = MessageBox.Show("Bạn có chắc chắn muốn xóa sản phẩm này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    // Xóa sản phẩm tại dòng hiện tại
+                    dgvCart.Rows.RemoveAt(e.RowIndex);
+                }
+                string tongTien = CalculateTotalAmount().ToString();
+                txt_tongTien.Text = tongTien;
+                txt_TongSL.Text = CalculateTotalProducts().ToString();
+            }
+        }
+        private void dgvCart_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == dgvCart.Columns["SoLuong"].Index) // Kiểm tra nếu người dùng đang chỉnh sửa cột "Số Lượng"
+            {
+                string inputValue = dgvCart.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
 
+                if (!int.TryParse(inputValue, out int soLuong) || soLuong < 1 || soLuong > 100)
+                {
+                    e.Cancel = true;
+                }
+                string tongTien = CalculateTotalAmount().ToString();
+                txt_tongTien.Text = tongTien;
+                txt_TongSL.Text = CalculateTotalProducts().ToString();
+            }
+        }
+
+        private void dgvCart_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvCart.Columns["SoLuong"].Index)
+            {
+                // Lấy số lượng và giá bán
+                var row = dgvCart.Rows[e.RowIndex];
+                int soLuong = Convert.ToInt32(row.Cells["SoLuong"].Value);
+                decimal giaBan = Convert.ToDecimal(row.Cells["Gia"].Value);
+
+                decimal thanhTien = giaBan * soLuong;
+                row.Cells["ThanhTien"].Value = thanhTien;
+            }
+
+            txt_tongTien.Text = CalculateTotalAmount().ToString("N0");
+            txt_TongSL.Text = CalculateTotalProducts().ToString();
+        }
+
+        private void dgvCart_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Kiểm tra nếu người dùng nhấn vào cột Xóa (cột có tên là "Xoa")
+            if (e.ColumnIndex == dgvCart.Columns["Xoa"].Index && e.RowIndex >= 0)
+            {
+                // Xác nhận trước khi xóa
+                var result = MessageBox.Show("Bạn có chắc chắn muốn xóa sản phẩm này?", "Xác nhận xóa", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    // Xóa sản phẩm tại dòng hiện tại
+                    dgvCart.Rows.RemoveAt(e.RowIndex);
+                }
+                string tongTien = CalculateTotalAmount().ToString();
+                txt_tongTien.Text = tongTien;
+                txt_TongSL.Text = CalculateTotalProducts().ToString();
+            }
+        }
         //hàm
+        private void LoadComboBoxGioiTinh()
+        {
+            var gioiTinh = new List<string>
+            {
+                "Nam",
+                "Nữ"
+            };
+            // Nạp danh sách vào ComboBox
+            cbo_gioiTinh.DataSource = gioiTinh;
+        }
+        private void LoadComboBoxThanhToan()
+        {
+            // Danh sách các phương thức thanh toán
+            var phuongThucThanhToan = new List<string>
+            {
+                "Tiền mặt",
+                "Thẻ tín dụng",
+                "Chuyển khoản"
+            };
+            // Nạp danh sách vào ComboBox
+            cbo_phuongThucTT.DataSource = phuongThucThanhToan;
+        }
+
         private void LoadProductPrice()
         {
             if (cbo_mauSac.SelectedItem != null && cbo_kichThuoc.SelectedItem != null)
@@ -278,7 +659,7 @@ namespace GUI
                 string maSanPham = _sanPhamBLL?.layMaSanPhamTheoTen(tenSanPham, tenThuongHieu, tenMauSac, kichThuoc);
                 if (string.IsNullOrEmpty(maSanPham))
                 {
-                    MessageBox.Show("Mã sản phẩm không hợp lệ. Vui lòng kiểm tra lại thông tin sản phẩm.");
+                    //MessageBox.Show("Mã sản phẩm không hợp lệ. Vui lòng kiểm tra lại thông tin sản phẩm.");
                     return;
                 }
                 decimal? giaSanPham = _sanPhamBLL.layGiaBanTheoMaSanPham(maSanPham);
@@ -309,6 +690,10 @@ namespace GUI
             txt_soLuong.Text = "";
             txt_tongTien.Text = "";
             txt_TongSL.Text = "";
+            txt_SL.Value = 1;
+            chkSuDungDiemTichLuy.Checked = false;
+            cbo_phuongThucTT.SelectedIndex = 0;
+            cbo_gioiTinh.SelectedIndex = 0;
         }
         private decimal CalculateDiemTichLuy(decimal totalAmount)
         {
@@ -547,7 +932,8 @@ namespace GUI
         {
             string maloai = string.Empty;
             string maThuongHieu= string.Empty;
-            List<SanPham> pagedSanPhamList = _sanPhamBLL.GetSanPhamsPaged(currentPage, pageSize,maloai,maThuongHieu, out totalRecords);
+            string tenSanPham = string.Empty;
+            List<SanPham> pagedSanPhamList = _sanPhamBLL.GetSanPhamsPaged(currentPage, pageSize,maloai,maThuongHieu,tenSanPham, out totalRecords);
             loadSanPham(pagedSanPhamList);
             UpdatePaginationButtons();
         }
