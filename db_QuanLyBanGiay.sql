@@ -183,7 +183,8 @@ CREATE TABLE ChiTietKiemKe (
     MaSanPham NVARCHAR(50),
     SoLuongThucTe INT, 
     SoLuongHeThong INT,                       
-    ChenhLech INT,                                
+    ChenhLech INT,      
+	LyDoChenhLech nvarchar(255),
     PRIMARY KEY (MaKiemKe, MaSanPham),          
     FOREIGN KEY (MaKiemKe) REFERENCES KiemKe(MaKiemKe),  
     FOREIGN KEY (MaSanPham) REFERENCES SanPham(MaSanPham) 
@@ -202,13 +203,13 @@ VALUES
 ('KK002', 'SP008', 20, 20, 0),
 ('KK002', 'SP009', 70, 70, 0),
 ('KK002', 'SP010', 55, 55, 0);
-INSERT INTO ChiTietKiemKe (MaKiemKe, MaSanPham, SoLuongThucTe, SoLuongHeThong, ChenhLech)
+INSERT INTO ChiTietKiemKe (MaKiemKe, MaSanPham, SoLuongThucTe, SoLuongHeThong, ChenhLech, LyDoChenhLech)
 VALUES
-('KK003', 'SP001', 50, 50, 0),
-('KK003', 'SP002', 100, 100, 0),
-('KK003', 'SP003', 30, 30, 0),
-('KK003', 'SP004', 40, 40, 0),
-('KK003', 'SP005', 80, 80, 0);
+('KK003', 'SP001', 50, 50, 0, N' '),
+('KK003', 'SP002', 100, 100, 0, N' '),
+('KK003', 'SP003', 30, 30, 0, N' '),
+('KK003', 'SP004', 40, 40, 0, N' '),
+('KK003', 'SP005', 80, 80, 0, N' ');
 select * from ChiTietKiemKe
 CREATE TABLE DonDatHang (
     MaDonDatHang NVARCHAR(50) PRIMARY KEY NOT NULL,
