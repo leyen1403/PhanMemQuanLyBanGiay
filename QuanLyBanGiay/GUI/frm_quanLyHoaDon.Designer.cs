@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label8 = new System.Windows.Forms.Label();
             this.txt_maHDBH = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -36,7 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dgv_dsCTHD = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txt_timMaNV = new System.Windows.Forms.TextBox();
+            this.txt_timKiem = new System.Windows.Forms.TextBox();
             this.dtpTuNgay = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
             this.btnTim = new System.Windows.Forms.Button();
@@ -49,7 +48,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btn_luuHoaDon = new System.Windows.Forms.Button();
             this.btn_suaHoaDon = new System.Windows.Forms.Button();
-            this.btn_xoaHoaDon = new System.Windows.Forms.Button();
             this.txt_maNhanVien = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.txt_diemTichLuy = new System.Windows.Forms.TextBox();
@@ -60,21 +58,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txt_tongTien = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txt_tongSL = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.txt_maKhachHang = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.txt_ghiChu = new System.Windows.Forms.TextBox();
             this.btn_Clear = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.btn_timKhachHang = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.txt_thanhTien = new System.Windows.Forms.TextBox();
@@ -85,8 +78,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txt_maHD = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txt_maCTHD = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.txt_ghiChu = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_dsHoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_dsCTHD)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -95,19 +89,6 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Navy;
-            this.label8.Location = new System.Drawing.Point(17, 31);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 20);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Mã CTHDBH";
             // 
             // txt_maHDBH
             // 
@@ -139,9 +120,9 @@
             this.label21.ForeColor = System.Drawing.Color.Navy;
             this.label21.Location = new System.Drawing.Point(4, 138);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(123, 19);
+            this.label21.Size = new System.Drawing.Size(130, 19);
             this.label21.TabIndex = 3;
-            this.label21.Text = "Mã nhân viên:";
+            this.label21.Text = "Nhập thông tin";
             // 
             // dgv_dsHoaDon
             // 
@@ -185,7 +166,7 @@
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox5.Controls.Add(this.txt_timMaNV);
+            this.groupBox5.Controls.Add(this.txt_timKiem);
             this.groupBox5.Controls.Add(this.dtpTuNgay);
             this.groupBox5.Controls.Add(this.label16);
             this.groupBox5.Controls.Add(this.btnTim);
@@ -202,12 +183,12 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tìm thông tin hoá đơn";
             // 
-            // txt_timMaNV
+            // txt_timKiem
             // 
-            this.txt_timMaNV.Location = new System.Drawing.Point(164, 130);
-            this.txt_timMaNV.Name = "txt_timMaNV";
-            this.txt_timMaNV.Size = new System.Drawing.Size(278, 27);
-            this.txt_timMaNV.TabIndex = 8;
+            this.txt_timKiem.Location = new System.Drawing.Point(164, 130);
+            this.txt_timKiem.Name = "txt_timKiem";
+            this.txt_timKiem.Size = new System.Drawing.Size(278, 27);
+            this.txt_timKiem.TabIndex = 8;
             // 
             // dtpTuNgay
             // 
@@ -319,11 +300,12 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.groupBox1.Controls.Add(this.txt_ghiChu);
+            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.txt_maHDBH);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.btn_luuHoaDon);
             this.groupBox1.Controls.Add(this.btn_suaHoaDon);
-            this.groupBox1.Controls.Add(this.btn_xoaHoaDon);
             this.groupBox1.Controls.Add(this.txt_maNhanVien);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.txt_diemTichLuy);
@@ -334,8 +316,6 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txt_tongTien);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txt_tongSL);
-            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.txt_maKhachHang);
             this.groupBox1.Controls.Add(this.label22);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -356,7 +336,7 @@
             this.btn_luuHoaDon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_luuHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_luuHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_luuHoaDon.Location = new System.Drawing.Point(486, 224);
+            this.btn_luuHoaDon.Location = new System.Drawing.Point(486, 176);
             this.btn_luuHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.btn_luuHoaDon.Name = "btn_luuHoaDon";
             this.btn_luuHoaDon.Size = new System.Drawing.Size(47, 37);
@@ -371,27 +351,12 @@
             this.btn_suaHoaDon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_suaHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_suaHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_suaHoaDon.Location = new System.Drawing.Point(486, 175);
+            this.btn_suaHoaDon.Location = new System.Drawing.Point(486, 127);
             this.btn_suaHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.btn_suaHoaDon.Name = "btn_suaHoaDon";
             this.btn_suaHoaDon.Size = new System.Drawing.Size(47, 37);
             this.btn_suaHoaDon.TabIndex = 40;
             this.btn_suaHoaDon.UseVisualStyleBackColor = false;
-            // 
-            // btn_xoaHoaDon
-            // 
-            this.btn_xoaHoaDon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_xoaHoaDon.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_xoaHoaDon.BackgroundImage = global::GUI.Properties.Resources.icons8_delete_35;
-            this.btn_xoaHoaDon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_xoaHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_xoaHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_xoaHoaDon.Location = new System.Drawing.Point(486, 126);
-            this.btn_xoaHoaDon.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_xoaHoaDon.Name = "btn_xoaHoaDon";
-            this.btn_xoaHoaDon.Size = new System.Drawing.Size(47, 37);
-            this.btn_xoaHoaDon.TabIndex = 39;
-            this.btn_xoaHoaDon.UseVisualStyleBackColor = false;
             // 
             // txt_maNhanVien
             // 
@@ -470,7 +435,7 @@
             this.btn_inHoaDon.BackColor = System.Drawing.Color.Navy;
             this.btn_inHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_inHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_inHoaDon.Location = new System.Drawing.Point(287, 230);
+            this.btn_inHoaDon.Location = new System.Drawing.Point(447, 234);
             this.btn_inHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.btn_inHoaDon.Name = "btn_inHoaDon";
             this.btn_inHoaDon.Size = new System.Drawing.Size(103, 37);
@@ -494,10 +459,10 @@
             // 
             this.txt_tongTien.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_tongTien.Location = new System.Drawing.Point(343, 138);
+            this.txt_tongTien.Location = new System.Drawing.Point(185, 138);
             this.txt_tongTien.Margin = new System.Windows.Forms.Padding(2);
             this.txt_tongTien.Name = "txt_tongTien";
-            this.txt_tongTien.Size = new System.Drawing.Size(96, 26);
+            this.txt_tongTien.Size = new System.Drawing.Size(254, 26);
             this.txt_tongTien.TabIndex = 11;
             // 
             // label6
@@ -506,33 +471,12 @@
             this.label6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(238, 138);
+            this.label6.Location = new System.Drawing.Point(27, 135);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(84, 20);
             this.label6.TabIndex = 10;
             this.label6.Text = "Tổng tiền";
-            // 
-            // txt_tongSL
-            // 
-            this.txt_tongSL.Location = new System.Drawing.Point(185, 138);
-            this.txt_tongSL.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_tongSL.Name = "txt_tongSL";
-            this.txt_tongSL.Size = new System.Drawing.Size(49, 26);
-            this.txt_tongSL.TabIndex = 9;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Navy;
-            this.label15.Location = new System.Drawing.Point(25, 139);
-            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(76, 20);
-            this.label15.TabIndex = 8;
-            this.label15.Text = "Tổng SL";
             // 
             // txt_maKhachHang
             // 
@@ -614,38 +558,12 @@
             this.button4.TabIndex = 43;
             this.button4.UseVisualStyleBackColor = false;
             // 
-            // button5
-            // 
-            this.button5.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button5.BackColor = System.Drawing.Color.AliceBlue;
-            this.button5.BackgroundImage = global::GUI.Properties.Resources.icons8_delete_35;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.Location = new System.Drawing.Point(267, 347);
-            this.button5.Margin = new System.Windows.Forms.Padding(2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(47, 37);
-            this.button5.TabIndex = 42;
-            this.button5.UseVisualStyleBackColor = false;
-            // 
-            // txt_ghiChu
-            // 
-            this.txt_ghiChu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_ghiChu.Location = new System.Drawing.Point(177, 236);
-            this.txt_ghiChu.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_ghiChu.Multiline = true;
-            this.txt_ghiChu.Name = "txt_ghiChu";
-            this.txt_ghiChu.Size = new System.Drawing.Size(329, 87);
-            this.txt_ghiChu.TabIndex = 20;
-            // 
             // btn_Clear
             // 
             this.btn_Clear.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btn_Clear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Clear.Image = global::GUI.Properties.Resources.icons8_clear_32;
-            this.btn_Clear.Location = new System.Drawing.Point(205, 348);
+            this.btn_Clear.Location = new System.Drawing.Point(274, 346);
             this.btn_Clear.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Clear.Name = "btn_Clear";
             this.btn_Clear.Size = new System.Drawing.Size(42, 38);
@@ -656,7 +574,7 @@
             // 
             this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(175, 99);
+            this.textBox1.Location = new System.Drawing.Point(173, 80);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(329, 26);
@@ -670,9 +588,6 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Controls.Add(this.txt_ghiChu);
-            this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.btn_Clear);
             this.groupBox2.Controls.Add(this.btn_timKhachHang);
             this.groupBox2.Controls.Add(this.label14);
@@ -684,8 +599,6 @@
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.txt_maHD);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.txt_maCTHD);
-            this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(583, 79);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
@@ -702,25 +615,12 @@
             this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(17, 103);
+            this.label3.Location = new System.Drawing.Point(15, 84);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(116, 20);
             this.label3.TabIndex = 45;
             this.label3.Text = "Mã sản phẩm";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.Navy;
-            this.label19.Location = new System.Drawing.Point(17, 236);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(71, 20);
-            this.label19.TabIndex = 19;
-            this.label19.Text = "Ghi chú";
             // 
             // btn_timKhachHang
             // 
@@ -794,7 +694,7 @@
             // 
             this.txt_soLuong.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_soLuong.Location = new System.Drawing.Point(175, 133);
+            this.txt_soLuong.Location = new System.Drawing.Point(175, 121);
             this.txt_soLuong.Margin = new System.Windows.Forms.Padding(2);
             this.txt_soLuong.Name = "txt_soLuong";
             this.txt_soLuong.Size = new System.Drawing.Size(327, 26);
@@ -806,7 +706,7 @@
             this.label10.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Navy;
-            this.label10.Location = new System.Drawing.Point(17, 137);
+            this.label10.Location = new System.Drawing.Point(17, 125);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(80, 20);
@@ -817,7 +717,7 @@
             // 
             this.txt_maHD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_maHD.Location = new System.Drawing.Point(175, 63);
+            this.txt_maHD.Location = new System.Drawing.Point(175, 37);
             this.txt_maHD.Margin = new System.Windows.Forms.Padding(2);
             this.txt_maHD.Name = "txt_maHD";
             this.txt_maHD.Size = new System.Drawing.Size(329, 26);
@@ -829,22 +729,12 @@
             this.label9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Navy;
-            this.label9.Location = new System.Drawing.Point(17, 67);
+            this.label9.Location = new System.Drawing.Point(17, 41);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(89, 20);
             this.label9.TabIndex = 2;
             this.label9.Text = "Mã HDBH";
-            // 
-            // txt_maCTHD
-            // 
-            this.txt_maCTHD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_maCTHD.Location = new System.Drawing.Point(175, 30);
-            this.txt_maCTHD.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_maCTHD.Name = "txt_maCTHD";
-            this.txt_maCTHD.Size = new System.Drawing.Size(327, 26);
-            this.txt_maCTHD.TabIndex = 1;
             // 
             // label17
             // 
@@ -855,6 +745,30 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(5, 1000);
             this.label17.TabIndex = 34;
+            // 
+            // txt_ghiChu
+            // 
+            this.txt_ghiChu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_ghiChu.Location = new System.Drawing.Point(183, 199);
+            this.txt_ghiChu.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_ghiChu.Multiline = true;
+            this.txt_ghiChu.Name = "txt_ghiChu";
+            this.txt_ghiChu.Size = new System.Drawing.Size(254, 72);
+            this.txt_ghiChu.TabIndex = 45;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Navy;
+            this.label19.Location = new System.Drawing.Point(23, 199);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(71, 20);
+            this.label19.TabIndex = 44;
+            this.label19.Text = "Ghi chú";
             // 
             // frm_quanLyHoaDon
             // 
@@ -888,8 +802,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txt_maHDBH;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label21;
@@ -897,7 +809,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgv_dsCTHD;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox txt_timMaNV;
+        private System.Windows.Forms.TextBox txt_timKiem;
         private System.Windows.Forms.DateTimePicker dtpTuNgay;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button btnTim;
@@ -910,7 +822,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btn_luuHoaDon;
         private System.Windows.Forms.Button btn_suaHoaDon;
-        private System.Windows.Forms.Button btn_xoaHoaDon;
         private System.Windows.Forms.TextBox txt_maNhanVien;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox txt_diemTichLuy;
@@ -921,21 +832,16 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_tongTien;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txt_tongSL;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txt_maKhachHang;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox txt_ghiChu;
         private System.Windows.Forms.Button btn_Clear;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button btn_timKhachHang;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txt_thanhTien;
@@ -946,7 +852,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txt_maHD;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txt_maCTHD;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txt_ghiChu;
+        private System.Windows.Forms.Label label19;
     }
 }
