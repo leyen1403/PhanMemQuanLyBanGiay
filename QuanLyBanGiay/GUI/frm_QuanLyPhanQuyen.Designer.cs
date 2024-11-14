@@ -30,8 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnCapNhatVaiTro = new System.Windows.Forms.Button();
-            this.btnThemVaiTro = new System.Windows.Forms.Button();
             this.txtMoTaVT = new System.Windows.Forms.TextBox();
             this.txtTenVT = new System.Windows.Forms.TextBox();
             this.txtMaVT = new System.Windows.Forms.TextBox();
@@ -41,8 +39,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnLuuQuyen = new System.Windows.Forms.Button();
-            this.btnThemQuyen = new System.Windows.Forms.Button();
             this.txtMoTaQuyen = new System.Windows.Forms.TextBox();
             this.txtTenQuyen = new System.Windows.Forms.TextBox();
             this.txtMaQuyen = new System.Windows.Forms.TextBox();
@@ -52,7 +48,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnLuuNhanVien_VaiTro = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.dgvNhanVien_VaiTro = new System.Windows.Forms.DataGridView();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -62,7 +57,6 @@
             this.txtTenVaiTro = new System.Windows.Forms.TextBox();
             this.txtTenNhanVien = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.btnLuuVaiTro_Quyen = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.dgvVaiTro_Quyen = new System.Windows.Forms.DataGridView();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -71,6 +65,16 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtTenQuyen1 = new System.Windows.Forms.TextBox();
             this.txtTenVaiTro1 = new System.Windows.Forms.TextBox();
+            this.btnLuuVaiTro_Quyen = new System.Windows.Forms.Button();
+            this.btnLuuNhanVien_VaiTro = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnLuuQuyen = new System.Windows.Forms.Button();
+            this.btnThemQuyen = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnCapNhatVaiTro = new System.Windows.Forms.Button();
+            this.btnThemVaiTro = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVaiTro)).BeginInit();
@@ -105,6 +109,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnCapNhatVaiTro);
             this.groupBox1.Controls.Add(this.btnThemVaiTro);
             this.groupBox1.Controls.Add(this.txtMoTaVT);
@@ -121,24 +126,6 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Quản lý vai trò";
-            // 
-            // btnCapNhatVaiTro
-            // 
-            this.btnCapNhatVaiTro.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnCapNhatVaiTro.Location = new System.Drawing.Point(394, 115);
-            this.btnCapNhatVaiTro.Name = "btnCapNhatVaiTro";
-            this.btnCapNhatVaiTro.Size = new System.Drawing.Size(70, 60);
-            this.btnCapNhatVaiTro.TabIndex = 3;
-            this.btnCapNhatVaiTro.UseVisualStyleBackColor = true;
-            // 
-            // btnThemVaiTro
-            // 
-            this.btnThemVaiTro.Image = global::GUI.Properties.Resources.icons8_add_32;
-            this.btnThemVaiTro.Location = new System.Drawing.Point(394, 41);
-            this.btnThemVaiTro.Name = "btnThemVaiTro";
-            this.btnThemVaiTro.Size = new System.Drawing.Size(70, 60);
-            this.btnThemVaiTro.TabIndex = 3;
-            this.btnThemVaiTro.UseVisualStyleBackColor = true;
             // 
             // txtMoTaVT
             // 
@@ -212,6 +199,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.btnLuuQuyen);
             this.groupBox3.Controls.Add(this.btnThemQuyen);
             this.groupBox3.Controls.Add(this.txtMoTaQuyen);
@@ -228,24 +216,6 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Quản lý quyền";
-            // 
-            // btnLuuQuyen
-            // 
-            this.btnLuuQuyen.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnLuuQuyen.Location = new System.Drawing.Point(394, 115);
-            this.btnLuuQuyen.Name = "btnLuuQuyen";
-            this.btnLuuQuyen.Size = new System.Drawing.Size(70, 60);
-            this.btnLuuQuyen.TabIndex = 3;
-            this.btnLuuQuyen.UseVisualStyleBackColor = true;
-            // 
-            // btnThemQuyen
-            // 
-            this.btnThemQuyen.Image = global::GUI.Properties.Resources.icons8_add_32;
-            this.btnThemQuyen.Location = new System.Drawing.Point(394, 41);
-            this.btnThemQuyen.Name = "btnThemQuyen";
-            this.btnThemQuyen.Size = new System.Drawing.Size(70, 60);
-            this.btnThemQuyen.TabIndex = 3;
-            this.btnThemQuyen.UseVisualStyleBackColor = true;
             // 
             // txtMoTaQuyen
             // 
@@ -321,6 +291,7 @@
             // 
             this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox5.Controls.Add(this.button3);
             this.groupBox5.Controls.Add(this.btnLuuNhanVien_VaiTro);
             this.groupBox5.Controls.Add(this.groupBox7);
             this.groupBox5.Controls.Add(this.groupBox6);
@@ -335,15 +306,6 @@
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Thêm nhân viên vào vai trò";
-            // 
-            // btnLuuNhanVien_VaiTro
-            // 
-            this.btnLuuNhanVien_VaiTro.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnLuuNhanVien_VaiTro.Location = new System.Drawing.Point(6, 396);
-            this.btnLuuNhanVien_VaiTro.Name = "btnLuuNhanVien_VaiTro";
-            this.btnLuuNhanVien_VaiTro.Size = new System.Drawing.Size(70, 60);
-            this.btnLuuNhanVien_VaiTro.TabIndex = 3;
-            this.btnLuuNhanVien_VaiTro.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
@@ -425,6 +387,7 @@
             // 
             this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox8.Controls.Add(this.button4);
             this.groupBox8.Controls.Add(this.btnLuuVaiTro_Quyen);
             this.groupBox8.Controls.Add(this.groupBox9);
             this.groupBox8.Controls.Add(this.groupBox10);
@@ -439,15 +402,6 @@
             this.groupBox8.TabIndex = 10;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Thêm quyền vào vai trò";
-            // 
-            // btnLuuVaiTro_Quyen
-            // 
-            this.btnLuuVaiTro_Quyen.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnLuuVaiTro_Quyen.Location = new System.Drawing.Point(6, 396);
-            this.btnLuuVaiTro_Quyen.Name = "btnLuuVaiTro_Quyen";
-            this.btnLuuVaiTro_Quyen.Size = new System.Drawing.Size(70, 60);
-            this.btnLuuVaiTro_Quyen.TabIndex = 3;
-            this.btnLuuVaiTro_Quyen.UseVisualStyleBackColor = true;
             // 
             // groupBox9
             // 
@@ -524,6 +478,100 @@
             this.txtTenVaiTro1.ReadOnly = true;
             this.txtTenVaiTro1.Size = new System.Drawing.Size(261, 27);
             this.txtTenVaiTro1.TabIndex = 2;
+            // 
+            // btnLuuVaiTro_Quyen
+            // 
+            this.btnLuuVaiTro_Quyen.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnLuuVaiTro_Quyen.Location = new System.Drawing.Point(6, 396);
+            this.btnLuuVaiTro_Quyen.Name = "btnLuuVaiTro_Quyen";
+            this.btnLuuVaiTro_Quyen.Size = new System.Drawing.Size(70, 60);
+            this.btnLuuVaiTro_Quyen.TabIndex = 3;
+            this.btnLuuVaiTro_Quyen.UseVisualStyleBackColor = true;
+            // 
+            // btnLuuNhanVien_VaiTro
+            // 
+            this.btnLuuNhanVien_VaiTro.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnLuuNhanVien_VaiTro.Location = new System.Drawing.Point(6, 396);
+            this.btnLuuNhanVien_VaiTro.Name = "btnLuuNhanVien_VaiTro";
+            this.btnLuuNhanVien_VaiTro.Size = new System.Drawing.Size(70, 60);
+            this.btnLuuNhanVien_VaiTro.TabIndex = 3;
+            this.btnLuuNhanVien_VaiTro.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Image = global::GUI.Properties.Resources.icons8_refresh_32;
+            this.button2.Location = new System.Drawing.Point(394, 149);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(70, 60);
+            this.button2.TabIndex = 3;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnLuuQuyen
+            // 
+            this.btnLuuQuyen.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnLuuQuyen.Location = new System.Drawing.Point(394, 80);
+            this.btnLuuQuyen.Name = "btnLuuQuyen";
+            this.btnLuuQuyen.Size = new System.Drawing.Size(70, 60);
+            this.btnLuuQuyen.TabIndex = 3;
+            this.btnLuuQuyen.UseVisualStyleBackColor = true;
+            // 
+            // btnThemQuyen
+            // 
+            this.btnThemQuyen.Image = global::GUI.Properties.Resources.icons8_add_32;
+            this.btnThemQuyen.Location = new System.Drawing.Point(394, 11);
+            this.btnThemQuyen.Name = "btnThemQuyen";
+            this.btnThemQuyen.Size = new System.Drawing.Size(70, 60);
+            this.btnThemQuyen.TabIndex = 3;
+            this.btnThemQuyen.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Image = global::GUI.Properties.Resources.icons8_refresh_32;
+            this.button1.Location = new System.Drawing.Point(394, 153);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(70, 60);
+            this.button1.TabIndex = 3;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnCapNhatVaiTro
+            // 
+            this.btnCapNhatVaiTro.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnCapNhatVaiTro.Location = new System.Drawing.Point(394, 82);
+            this.btnCapNhatVaiTro.Name = "btnCapNhatVaiTro";
+            this.btnCapNhatVaiTro.Size = new System.Drawing.Size(70, 60);
+            this.btnCapNhatVaiTro.TabIndex = 3;
+            this.btnCapNhatVaiTro.UseVisualStyleBackColor = true;
+            // 
+            // btnThemVaiTro
+            // 
+            this.btnThemVaiTro.Image = global::GUI.Properties.Resources.icons8_add_32;
+            this.btnThemVaiTro.Location = new System.Drawing.Point(394, 11);
+            this.btnThemVaiTro.Name = "btnThemVaiTro";
+            this.btnThemVaiTro.Size = new System.Drawing.Size(70, 60);
+            this.btnThemVaiTro.TabIndex = 3;
+            this.btnThemVaiTro.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Image = global::GUI.Properties.Resources.icons8_refresh_32;
+            this.button3.Location = new System.Drawing.Point(865, 396);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(70, 60);
+            this.button3.TabIndex = 3;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Image = global::GUI.Properties.Resources.icons8_refresh_32;
+            this.button4.Location = new System.Drawing.Point(865, 396);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(70, 60);
+            this.button4.TabIndex = 3;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // frm_QuanLyPhanQuyen
             // 
@@ -606,5 +654,9 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtTenQuyen1;
         private System.Windows.Forms.TextBox txtTenVaiTro1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

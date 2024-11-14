@@ -383,5 +383,34 @@ namespace GUI
             return maVaiTroMoi;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void refresh()
+        {
+            loadDanhSachNhanVien();
+            loadDanhSachQuyen(dgvQuyen);
+            loadDanhSachVaiTro(dgvVaiTro);
+            loadDanhSachNhanVien_VaiTro(dgvNhanVien.CurrentRow.Cells["MaNhanVien"].Value.ToString());
+            loadDanhSachVaiTro(dgvVaiTro1);
+            loadDanhSachVaiTro_Quyen(dgvVaiTro1.CurrentRow.Cells["MaVaiTro"].Value.ToString());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            refresh();
+        }
     }
 }
