@@ -69,35 +69,37 @@ namespace GUI
 
                         // Lấy bảng đầu tiên trong tài liệu (giả sử bảng đã được định dạng sẵn)
                         var table = document.Tables[1];
-
-                        var ltt = from cthd in new ChiTietHoaDonBLL().LayChiTietHoaDonTheoMaHoaDon("HD001")
-                                  select new
+                        string maHoaDon = txt_maHDBH.Text;
+                        var lstCTHD = from cthd in new ChiTietHoaDonBLL().LayTatCaChiTietHoaDon().Where(x => x.MaHoaDon == maHoaDon)
+                                      select new
                                   {
                                       cthd.SanPham.TenSanPham,
                                       cthd.SoLuong,
                                       cthd.DonGia,
                                       cthd.ThanhTien
-
-                                  };
-                        var lttList = ltt.ToList();
-                        DataGridView gridView = new DataGridView();
-                        gridView.DataSource = lttList;
-                        for (int i = 0; i < gridView.Rows.Count ; i++)
+                                  };         
+                        
+                        DataGridView dgvTemp = new DataGridView();
+                        dgvTemp.Name = "dgvTemp";
+                        dgvTemp.DataSource = lstCTHD.ToList() ;                        
+                        this.Controls.Add(dgvTemp);
+                        for (int i = 0; i < dgvTemp.Rows.Count ; i++)
                         {
                                 var newRow = table.Rows.Add();
                                 newRow.Cells[1].Range.Text = (i + 1).ToString();
-                                newRow.Cells[2].Range.Text = gridView.Rows[i].Cells["TenSanPham"].Value.ToString();
-                                //newRow.Cells[3].Range.Text = gridView.Rows[i].Cells["SoLuong"].Value.ToString();
-                                //newRow.Cells[4].Range.Text = Convert.ToDecimal(gridView.Rows[i].Cells["DonGia"].Value).ToString();
-                                //newRow.Cells[5].Range.Text = Convert.ToDecimal(gridView.Rows[i].Cells["ThanhTien"].Value).ToString();
+                                newRow.Cells[2].Range.Text = dgvTemp.Rows[i].Cells["TenSanPham"].Value.ToString();
+                                newRow.Cells[3].Range.Text = dgvTemp.Rows[i].Cells["SoLuong"].Value.ToString();
+                                newRow.Cells[4].Range.Text = Convert.ToDecimal(dgvTemp.Rows[i].Cells["DonGia"].Value).ToString("N0");
+                                newRow.Cells[5].Range.Text = Convert.ToDecimal(dgvTemp.Rows[i].Cells["ThanhTien"].Value).ToString("N0");
                         }
-                        var tongTien = ltt.Sum(x => x.ThanhTien);
-                        document.Bookmarks["TongTien"].Range.Text = tongTien.ToString();
+                        var tongTien = (decimal)lstCTHD.Sum(x => x.ThanhTien);
+                        document.Bookmarks["TongTien"].Range.Text = tongTien.ToString("N0");
                         // Lưu tài liệu sau khi thêm dữ liệu
                         document.SaveAs2(saveFileDialog.FileName);
                         document.Close();
                         wordApp.Quit();
                         MessageBox.Show("Xuất báo cáo thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Controls.Remove(dgvTemp);
                     }
                     catch (Exception ex)
                     {
