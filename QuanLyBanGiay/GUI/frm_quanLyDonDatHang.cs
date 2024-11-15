@@ -519,6 +519,126 @@ namespace GUI
                 MessageBox.Show("Cập nhật sản phẩm thất bại", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnWord_Click(object sender, EventArgs e)
+        {
+            // Hiển thị thông báo xác nhận
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xuất file Word?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (dgvDonDatHang.CurrentRow == null)
+                {
+                    MessageBox.Show("Không có dòng nào được chọn trong danh sách đơn đặt hàng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Word Documents (*.docx)|*.docx",
+                    FileName = "Báo cáo đơn đặt hàng " + DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss") + ".docx"
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Mở tài liệu Word mẫu sẵn
+                        var wordApp = new Microsoft.Office.Interop.Word.Application();
+                        string url = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+                        var document = wordApp.Documents.Open(url + @"\Resources\New Microsoft Word Document.docx");
+
+                        // Thay thế các thông tin trong tài liệu Word
+                        // Mã đơn đặt hàng
+                        string maDDH = dgvDonDatHang.CurrentRow.Cells["MaDonDatHang"].Value.ToString();
+                        document.Bookmarks["MaDonDatHang"].Range.Text = maDDH;
+                        // Ngày đặt hàng
+                        DateTime ngayDatHang = DateTime.Parse(dgvDonDatHang.CurrentRow.Cells["NgayDatHang"].Value.ToString());
+                        document.Bookmarks["NgayDatHang"].Range.Text = ngayDatHang.ToString("dd/MM/yyyy");
+                        // Ngày giao hàng
+                        DateTime ngayGiaoHang = DateTime.Now;
+                        document.Bookmarks["NgayGiao"].Range.Text = ngayGiaoHang.ToString("dd/MM/yyyy HH:mm");
+                        // Nhà cung cấp
+                        string maNhaCungCap = dgvDonDatHang.CurrentRow.Cells["MaNhaCungCap"].Value.ToString();
+                        string tenNhaCungCap = new NhaCungCapBLL().LayDanhSachNhaCungCap().Where(x => x.MaNhaCungCap == maNhaCungCap).FirstOrDefault().TenNhaCungCap;
+                        document.Bookmarks["NhaCungCap"].Range.Text = tenNhaCungCap;
+                        // Nhân viên
+                        string maNhanVien = dgvDonDatHang.CurrentRow.Cells["MaNhanVien"].Value.ToString();
+                        string tenNhanVien = new NhanVienBLL().LayDanhSachNhanVien().Where(x => x.MaNhanVien == maNhanVien).FirstOrDefault().TenNhanVien;
+                        document.Bookmarks["NhanVienTaoDon"].Range.Text = tenNhanVien;
+                        // Trạng thái
+                        string trangThai = dgvDonDatHang.CurrentRow.Cells["TrangThai"].Value.ToString();
+                        document.Bookmarks["TrangThai"].Range.Text = trangThai;
+                        // Tổng số lượng yêu cầu
+                        int tongSoLuongYeuCau = 0;
+                        foreach (DataGridViewRow row in dgvChiTietDDH.Rows)
+                        {
+                            tongSoLuongYeuCau += (int)row.Cells["SoLuongYeuCau"].Value;
+                        }
+                        document.Bookmarks["TongSoLuongYeuCau"].Range.Text = tongSoLuongYeuCau.ToString();
+                        // Tổng số lượng cung cấp
+                        int tongSoLuongCungCap = 0;
+                        foreach (DataGridViewRow row in dgvChiTietDDH.Rows)
+                        {
+                            tongSoLuongCungCap += (int)row.Cells["SoLuongCungCap"].Value;
+                        }
+                        document.Bookmarks["TongSoLuongCungCap"].Range.Text = tongSoLuongCungCap.ToString();
+                        // Tổng tiền
+                        decimal tongTien = 0;
+                        foreach (DataGridViewRow row in dgvChiTietDDH.Rows)
+                        {
+                            tongTien += (decimal)row.Cells["ThanhTien"].Value;
+                        }
+                        document.Bookmarks["TongTien"].Range.Text = tongTien.ToString("N0");
+                        // Ghi chú
+                        string ghiChu = dgvDonDatHang.CurrentRow.Cells["GhiChu"].Value.ToString();
+                        document.Bookmarks["GhiChu"].Range.Text = ghiChu;
+
+                        // Lấy bảng đầu tiên trong tài liệu (giả sử bảng đã được định dạng sẵn)
+                        var table = document.Tables[1];
+
+                        var lstChiTietDDH = from ctddh in new ChiTietDonDatHangBLL().LayDanhSachChiTietDonDatHangTheoMaDDH(maDDH)
+                                            select new
+                                            {
+                                                ctddh.MaSanPham,
+                                                ctddh.SanPham.TenSanPham,
+                                                ctddh.SoLuongYeuCau,
+                                                ctddh.SoLuongCungCap,
+                                                ctddh.SoLuongThieu,
+                                                ctddh.DonGia,
+                                                ctddh.ThanhTien
+                                            };
+                        DataGridView temp = new DataGridView();
+                        temp.DataSource = lstChiTietDDH.ToList();
+                        this.Controls.Add(temp);
+                        // Thêm các dòng từ temp vào bảng
+                        for (int i = 0; i < temp.Rows.Count; i++)
+                        {
+                            var newRow = table.Rows.Add();  // Thêm dòng mới vào bảng
+
+                            // Chèn dữ liệu từ DataGridView vào các ô của bảng
+                            newRow.Cells[1].Range.Text = (i + 1).ToString();
+                            newRow.Cells[2].Range.Text = temp.Rows[i].Cells["MaSanPham"].Value.ToString();
+                            newRow.Cells[3].Range.Text = temp.Rows[i].Cells["TenSanPham"].Value.ToString();
+                            newRow.Cells[4].Range.Text = temp.Rows[i].Cells["SoLuongYeuCau"].Value.ToString();
+                            newRow.Cells[5].Range.Text = temp.Rows[i].Cells["SoLuongCungCap"].Value.ToString();
+                            newRow.Cells[6].Range.Text = temp.Rows[i].Cells["SoLuongThieu"].Value.ToString();
+                            newRow.Cells[7].Range.Text = Convert.ToDecimal(temp.Rows[i].Cells["DonGia"].Value).ToString("N0");
+                            newRow.Cells[8].Range.Text = Convert.ToDecimal(temp.Rows[i].Cells["ThanhTien"].Value).ToString("N0");
+                        }                        
+
+                        // Lưu tài liệu sau khi thêm dữ liệu
+                        document.SaveAs2(saveFileDialog.FileName);
+                        document.Close();
+                        wordApp.Quit();
+                        this.Controls.Remove(temp);
+                        MessageBox.Show("Xuất báo cáo thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Xuất báo cáo thất bại: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
 }
 

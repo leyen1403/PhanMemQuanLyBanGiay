@@ -70,11 +70,12 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvDonDatHang = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtConNo = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.groupbox3 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label19 = new System.Windows.Forms.Label();
-            this.txtConNo = new System.Windows.Forms.TextBox();
+            this.btnWord = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudSLYeuCau)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudSLCungCap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiTietDDH)).BeginInit();
@@ -332,6 +333,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox1.Controls.Add(this.btnWord);
             this.groupBox1.Controls.Add(this.btnTim);
             this.groupBox1.Controls.Add(this.dtpDenNgay);
             this.groupBox1.Controls.Add(this.dtpTuNgay);
@@ -568,6 +570,27 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Chi tiết sản phẩm";
             // 
+            // txtConNo
+            // 
+            this.txtConNo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtConNo.ForeColor = System.Drawing.Color.Red;
+            this.txtConNo.Location = new System.Drawing.Point(218, 493);
+            this.txtConNo.Name = "txtConNo";
+            this.txtConNo.ReadOnly = true;
+            this.txtConNo.Size = new System.Drawing.Size(289, 27);
+            this.txtConNo.TabIndex = 2;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Navy;
+            this.label19.Location = new System.Drawing.Point(0, 496);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(71, 19);
+            this.label19.TabIndex = 1;
+            this.label19.Text = "Còn nợ:";
+            // 
             // groupbox3
             // 
             this.groupbox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -593,26 +616,16 @@
             this.panel2.Size = new System.Drawing.Size(4, 995);
             this.panel2.TabIndex = 38;
             // 
-            // label19
+            // btnWord
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.Navy;
-            this.label19.Location = new System.Drawing.Point(0, 496);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(71, 19);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Còn nợ:";
-            // 
-            // txtConNo
-            // 
-            this.txtConNo.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConNo.ForeColor = System.Drawing.Color.Red;
-            this.txtConNo.Location = new System.Drawing.Point(218, 493);
-            this.txtConNo.Name = "txtConNo";
-            this.txtConNo.ReadOnly = true;
-            this.txtConNo.Size = new System.Drawing.Size(289, 27);
-            this.txtConNo.TabIndex = 2;
+            this.btnWord.Image = global::GUI.Properties.Resources.icons8_word_32;
+            this.btnWord.Location = new System.Drawing.Point(337, 340);
+            this.btnWord.Name = "btnWord";
+            this.btnWord.Size = new System.Drawing.Size(75, 43);
+            this.btnWord.TabIndex = 4;
+            this.btnWord.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnWord.UseVisualStyleBackColor = true;
+            this.btnWord.Click += new System.EventHandler(this.btnWord_Click);
             // 
             // frm_quanLyDonDatHang
             // 
@@ -690,5 +703,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.TextBox txtConNo;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button btnWord;
     }
 }

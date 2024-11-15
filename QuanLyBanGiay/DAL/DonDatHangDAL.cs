@@ -56,22 +56,39 @@ namespace DAL
         {
             try
             {
-                //Không có nhà cung cấp thì xoá
+                // Kiểm tra nếu `ddh` là null
+                if (ddh == null)
+                {
+                    return false;
+                }
+
+                // Tìm đơn đặt hàng trong cơ sở dữ liệu
                 DonDatHang ddh1 = LayDanhSachDonDatHang().Where(x => x.MaDonDatHang == ddh.MaDonDatHang).FirstOrDefault();
-                if (ddh1 == null) { return false; }
-                if(ddh1.MaNhaCungCap == null)
+
+                // Nếu không tìm thấy đơn đặt hàng, trả về false
+                if (ddh1 == null)
+                {
+                    return false;
+                }
+
+                // Kiểm tra điều kiện để xóa
+                if (ddh1.MaNhaCungCap == null)
                 {
                     db.DonDatHangs.DeleteOnSubmit(ddh1);
                     db.SubmitChanges();
                     return true;
                 }
+
                 return false;
             }
-            catch
+            catch (Exception ex)
             {
+                // Log lỗi để tiện debug
+                Console.WriteLine($"Lỗi: {ex.Message}");
                 return false;
             }
         }
+
 
 
     }
