@@ -93,7 +93,7 @@ namespace DTO
     #endregion
 		
 		public db_QuanLyBanGiayDataContext() : 
-				base(global::DTO.Properties.Settings.Default.db_QuanLyBanGiayConnectionString1, mappingSource)
+				base(global::DTO.Properties.Settings.Default.db_QuanLyBanGiayConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1293,6 +1293,8 @@ namespace DTO
 		
 		private System.Nullable<System.DateTime> _NgayTao;
 		
+		private System.Nullable<decimal> _TongTien;
+		
 		private EntitySet<ChiTietDonDatHang> _ChiTietDonDatHangs;
 		
 		private EntityRef<NhaCungCap> _NhaCungCap;
@@ -1319,6 +1321,8 @@ namespace DTO
     partial void OnGhiChuChanged();
     partial void OnNgayTaoChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayTaoChanged();
+    partial void OnTongTienChanging(System.Nullable<decimal> value);
+    partial void OnTongTienChanged();
     #endregion
 		
 		public DonDatHang()
@@ -1493,6 +1497,26 @@ namespace DTO
 					this._NgayTao = value;
 					this.SendPropertyChanged("NgayTao");
 					this.OnNgayTaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Decimal(12,0)")]
+		public System.Nullable<decimal> TongTien
+		{
+			get
+			{
+				return this._TongTien;
+			}
+			set
+			{
+				if ((this._TongTien != value))
+				{
+					this.OnTongTienChanging(value);
+					this.SendPropertyChanging();
+					this._TongTien = value;
+					this.SendPropertyChanged("TongTien");
+					this.OnTongTienChanged();
 				}
 			}
 		}
