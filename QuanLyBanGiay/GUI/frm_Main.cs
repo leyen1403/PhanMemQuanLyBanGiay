@@ -163,18 +163,28 @@ namespace GUI
 
         void loadForm(Form form)
         {
+            // Đóng hoặc xóa form hiện hành nếu có
+            if (pnMain.Controls.Count > 0)
+            {
+                Form currentForm = pnMain.Controls[0] as Form;
+                if (currentForm != null)
+                {
+                    currentForm.Close(); // Đóng form hiện tại
+                    pnMain.Controls.Remove(currentForm); // Loại bỏ form khỏi panel
+                }
+            }
+
+            // Hiển thị form mới
             this.Text = form.Text;
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            form.Height = pnMain.Height;
-            form.Width = pnMain.Width;
-            pnMain.Controls.Add(form);
+            pnMain.Controls.Add(form); // Thêm form vào panel
             pnMain.Tag = form;
-            form.BringToFront();
-            form.Show();
-
+            form.BringToFront(); // Đưa form mới lên phía trước
+            form.Show(); // Hiển thị form
         }
+
 
         private void btn_LapHoaDon_Click(object sender, EventArgs e)
         {
@@ -201,5 +211,6 @@ namespace GUI
             quanLyPhieuKiemKe.MaNhanVien = _nhanVien.MaNhanVien;
             loadForm(quanLyPhieuKiemKe);
         }
+
     }
 }

@@ -24,5 +24,9 @@ namespace BLL
         {
             return donDatHangDAL.ThemDonDatHang(ddh);
         }
+        public bool XoaDonDatHang(DonDatHang ddh)
+        {
+            return donDatHangDAL.XoaDonDatHang(ddh);
+        }
     }
 }

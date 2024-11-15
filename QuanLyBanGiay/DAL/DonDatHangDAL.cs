@@ -40,11 +40,32 @@ namespace DAL
         {
             try
             {
-                DonDatHang ddh1 = LayDanhSachDonDatHang().Where(x=>x.MaDonDatHang == ddh.MaDonDatHang).FirstOrDefault();
-                if(ddh1 != null) { return false; }
+                DonDatHang ddh1 = LayDanhSachDonDatHang().Where(x => x.MaDonDatHang == ddh.MaDonDatHang).FirstOrDefault();
+                if (ddh1 != null) { return false; }
                 db.DonDatHangs.InsertOnSubmit(ddh);
                 db.SubmitChanges();
                 return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool XoaDonDatHang(DonDatHang ddh)
+        {
+            try
+            {
+                //Không có nhà cung cấp thì xoá
+                DonDatHang ddh1 = LayDanhSachDonDatHang().Where(x => x.MaDonDatHang == ddh.MaDonDatHang).FirstOrDefault();
+                if (ddh1 == null) { return false; }
+                if(ddh1.MaNhaCungCap == null)
+                {
+                    db.DonDatHangs.DeleteOnSubmit(ddh1);
+                    db.SubmitChanges();
+                    return true;
+                }
+                return false;
             }
             catch
             {
