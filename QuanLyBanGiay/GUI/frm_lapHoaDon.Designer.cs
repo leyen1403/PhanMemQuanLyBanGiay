@@ -35,6 +35,12 @@
             this.txt_diemDung = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbo_gioiTinh = new System.Windows.Forms.ComboBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txt_ghiChu = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.cbo_phuongThucTT = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.txt_SL = new System.Windows.Forms.NumericUpDown();
             this.btn_suaSL = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
@@ -86,12 +92,7 @@
             this.cbo_thuongHieu = new System.Windows.Forms.ComboBox();
             this.btn_load = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.cbo_phuongThucTT = new System.Windows.Forms.ComboBox();
-            this.txt_ghiChu = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.cbo_gioiTinh = new System.Windows.Forms.ComboBox();
-            this.label25 = new System.Windows.Forms.Label();
+            this.btn_inHoaDon = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_SL)).BeginInit();
@@ -167,6 +168,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.groupBox2.Controls.Add(this.btn_inHoaDon);
             this.groupBox2.Controls.Add(this.cbo_gioiTinh);
             this.groupBox2.Controls.Add(this.label25);
             this.groupBox2.Controls.Add(this.txt_ghiChu);
@@ -206,6 +208,71 @@
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin hoá đơn";
+            // 
+            // cbo_gioiTinh
+            // 
+            this.cbo_gioiTinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbo_gioiTinh.FormattingEnabled = true;
+            this.cbo_gioiTinh.Location = new System.Drawing.Point(450, 96);
+            this.cbo_gioiTinh.Name = "cbo_gioiTinh";
+            this.cbo_gioiTinh.Size = new System.Drawing.Size(98, 26);
+            this.cbo_gioiTinh.TabIndex = 31;
+            // 
+            // label25
+            // 
+            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.Navy;
+            this.label25.Location = new System.Drawing.Point(369, 100);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(76, 20);
+            this.label25.TabIndex = 30;
+            this.label25.Text = "Giới tính";
+            // 
+            // txt_ghiChu
+            // 
+            this.txt_ghiChu.Location = new System.Drawing.Point(175, 237);
+            this.txt_ghiChu.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_ghiChu.Name = "txt_ghiChu";
+            this.txt_ghiChu.Size = new System.Drawing.Size(272, 24);
+            this.txt_ghiChu.TabIndex = 29;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.Color.Navy;
+            this.label24.Location = new System.Drawing.Point(14, 240);
+            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(71, 20);
+            this.label24.TabIndex = 28;
+            this.label24.Text = "Ghi chú";
+            // 
+            // cbo_phuongThucTT
+            // 
+            this.cbo_phuongThucTT.FormattingEnabled = true;
+            this.cbo_phuongThucTT.Location = new System.Drawing.Point(177, 202);
+            this.cbo_phuongThucTT.Name = "cbo_phuongThucTT";
+            this.cbo_phuongThucTT.Size = new System.Drawing.Size(270, 26);
+            this.cbo_phuongThucTT.TabIndex = 27;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.Navy;
+            this.label23.Location = new System.Drawing.Point(14, 208);
+            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(135, 20);
+            this.label23.TabIndex = 26;
+            this.label23.Text = "Phương thức TT";
             // 
             // txt_SL
             // 
@@ -291,7 +358,7 @@
             this.btn_luuHoaDon.BackColor = System.Drawing.Color.Navy;
             this.btn_luuHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_luuHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_luuHoaDon.Location = new System.Drawing.Point(478, 342);
+            this.btn_luuHoaDon.Location = new System.Drawing.Point(346, 351);
             this.btn_luuHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.btn_luuHoaDon.Name = "btn_luuHoaDon";
             this.btn_luuHoaDon.Size = new System.Drawing.Size(117, 37);
@@ -807,70 +874,21 @@
             this.groupBox3.TabIndex = 32;
             this.groupBox3.TabStop = false;
             // 
-            // label23
+            // btn_inHoaDon
             // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.Navy;
-            this.label23.Location = new System.Drawing.Point(14, 208);
-            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(135, 20);
-            this.label23.TabIndex = 26;
-            this.label23.Text = "Phương thức TT";
-            // 
-            // cbo_phuongThucTT
-            // 
-            this.cbo_phuongThucTT.FormattingEnabled = true;
-            this.cbo_phuongThucTT.Location = new System.Drawing.Point(177, 202);
-            this.cbo_phuongThucTT.Name = "cbo_phuongThucTT";
-            this.cbo_phuongThucTT.Size = new System.Drawing.Size(270, 26);
-            this.cbo_phuongThucTT.TabIndex = 27;
-            // 
-            // txt_ghiChu
-            // 
-            this.txt_ghiChu.Location = new System.Drawing.Point(175, 237);
-            this.txt_ghiChu.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_ghiChu.Name = "txt_ghiChu";
-            this.txt_ghiChu.Size = new System.Drawing.Size(272, 24);
-            this.txt_ghiChu.TabIndex = 29;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.Color.Navy;
-            this.label24.Location = new System.Drawing.Point(14, 240);
-            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(71, 20);
-            this.label24.TabIndex = 28;
-            this.label24.Text = "Ghi chú";
-            // 
-            // cbo_gioiTinh
-            // 
-            this.cbo_gioiTinh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbo_gioiTinh.FormattingEnabled = true;
-            this.cbo_gioiTinh.Location = new System.Drawing.Point(450, 96);
-            this.cbo_gioiTinh.Name = "cbo_gioiTinh";
-            this.cbo_gioiTinh.Size = new System.Drawing.Size(98, 26);
-            this.cbo_gioiTinh.TabIndex = 31;
-            // 
-            // label25
-            // 
-            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.Navy;
-            this.label25.Location = new System.Drawing.Point(369, 100);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(76, 20);
-            this.label25.TabIndex = 30;
-            this.label25.Text = "Giới tính";
+            this.btn_inHoaDon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_inHoaDon.AutoSize = true;
+            this.btn_inHoaDon.BackColor = System.Drawing.Color.Navy;
+            this.btn_inHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_inHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_inHoaDon.Location = new System.Drawing.Point(478, 351);
+            this.btn_inHoaDon.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_inHoaDon.Name = "btn_inHoaDon";
+            this.btn_inHoaDon.Size = new System.Drawing.Size(117, 37);
+            this.btn_inHoaDon.TabIndex = 32;
+            this.btn_inHoaDon.Text = "In Hoá Đơn";
+            this.btn_inHoaDon.UseVisualStyleBackColor = false;
+            this.btn_inHoaDon.Visible = false;
             // 
             // frm_lapHoaDon
             // 
@@ -976,5 +994,6 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.ComboBox cbo_gioiTinh;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button btn_inHoaDon;
     }
 }
