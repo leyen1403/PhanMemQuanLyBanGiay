@@ -35,7 +35,7 @@ namespace BLL
             }
             return tongTien;
         }
-        
+
         public bool CapNhatChiTietDonDatHang(ChiTietDonDatHang ctddh)
         {
             return chiTietDonDatHangDAL.CapNhatChiTietDonDatHang(ctddh);
@@ -44,6 +44,34 @@ namespace BLL
         public bool XoaChiTietDonDatHang(string maDonDatHang, string maSanPham)
         {
             return chiTietDonDatHangDAL.XoaChiTietDonDatHang(maDonDatHang, maSanPham);
+        }
+        public decimal TinhTongTienDaThanhToan(string maDonDatHang)
+        {
+            // số lượng yêu cầu * đơn giá = số tiền phải thanh toán
+            // số tiền phải thanh toán - số tiền còn nợ = số tiền đã thanh toán
+            List<ChiTietDonDatHang> lstCTDDH = chiTietDonDatHangDAL.LayDanhSachChiTietDonDatHangTheoMaDDH(maDonDatHang);
+            decimal soTienPhaiThanhToan = 0;
+            foreach (ChiTietDonDatHang ctddh in lstCTDDH)
+            {
+                soTienPhaiThanhToan = (decimal)(soTienPhaiThanhToan + (ctddh.SoLuongYeuCau * ctddh.DonGia));
+            }
+            decimal soTienConNo = 0;
+            foreach (ChiTietDonDatHang ctddh in lstCTDDH)
+            {
+                soTienConNo = (decimal)(soTienConNo + (ctddh.SoLuongThieu * ctddh.DonGia));
+            }
+            decimal soTienDaThanhToan = soTienPhaiThanhToan - soTienConNo;
+            return soTienDaThanhToan;
+        }
+        public decimal TinhTienConNo(string maDonDatHang)
+        {
+            List<ChiTietDonDatHang> lstCTDDH = chiTietDonDatHangDAL.LayDanhSachChiTietDonDatHangTheoMaDDH(maDonDatHang);
+            decimal soTienConNo = 0;
+            foreach (ChiTietDonDatHang ctddh in lstCTDDH)
+            {
+                soTienConNo = (decimal)(soTienConNo + (ctddh.SoLuongThieu * ctddh.DonGia));
+            }
+            return soTienConNo;
         }
     }
 }
