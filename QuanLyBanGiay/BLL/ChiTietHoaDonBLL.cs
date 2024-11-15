@@ -26,5 +26,10 @@ namespace BLL
         {
             return _chiTietHoaDonDAL.LayTatCaChiTietHoaDon();
         }
+        //tìm chi tiết hóa đơn theo mã hoá đơn
+        public List<ChiTietHoaDon> TimChiTietHoaDonTheoMaHoaDon(string maHD)
+        {
+            return _chiTietHoaDonDAL.TimChiTietHoaDonTheoMaHoaDon(maHD);
+        }
     }
 }

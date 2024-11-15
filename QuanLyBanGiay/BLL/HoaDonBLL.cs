@@ -22,5 +22,29 @@ namespace BLL
         {
             return _hoaDonDAL.LayTatCaHoaDon();
         }
+        public List<HoaDon> TimHoaDonTheoMaHoaDon(string maHD)
+        {
+            return _hoaDonDAL.TimHoaDonTheoMaHoaDon(maHD);
+        }
+        public List<HoaDon> TimHoaDonTheoMaNhanVien(string maNV)
+        {
+            return _hoaDonDAL.TimHoaDonTheoMaNhanVien(maNV);
+        }
+        public List<HoaDon> TimHoaDonTheoKhoangThoiGian(DateTime tuNgay, DateTime denNgay)
+        {
+            return _hoaDonDAL.TimHoaDonTheoKhoangThoiGian(tuNgay, denNgay);
+        }
+        public List<HoaDon> TimHoaDonTheoMaKhachHang(string maKH)
+        {
+            return _hoaDonDAL.TimHoaDonTheoMaKhachHang(maKH);
+        }
+        public List<HoaDon> TimHoaDonTheoTenKhachHangHoacSDT(string key)
+        {
+            return _hoaDonDAL.TimHoaDonTheoTenKhachHangHoacSDT(key);
+        }
+        public bool SuaHoaDon(HoaDon hd)
+        {
+            return _hoaDonDAL.SuaHoaDon(hd);
+        }
     }
 }

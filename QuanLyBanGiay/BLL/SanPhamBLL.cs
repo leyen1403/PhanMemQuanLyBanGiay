@@ -82,9 +82,9 @@ namespace BLL
         {
             return sanPhamDAL.xoaSanPham(maSanPham);
         }
-        public List<SanPham> GetSanPhamsPaged(int pageNumber, int pageSize, string maLoai, string maThuongHieu, out int totalRecords)
+        public List<SanPham> GetSanPhamsPaged(int pageNumber, int pageSize, string maLoai, string maThuongHieu,string tenSanPham, out int totalRecords)
         {
-            return sanPhamDAL.GetSanPhamsPaged(pageNumber, pageSize, maLoai, maThuongHieu,out totalRecords);
+            return sanPhamDAL.GetSanPhamsPaged(pageNumber, pageSize, maLoai, maThuongHieu,tenSanPham, out totalRecords);
         }
         public string layMaSanPhamTheoTen(string tenSanPham, string tenThuongHieu, string tenMauSac, string tenKichThuoc)
         {

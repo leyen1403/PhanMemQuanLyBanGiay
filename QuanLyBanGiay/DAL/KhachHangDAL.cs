@@ -50,5 +50,68 @@ namespace DAL
                 return null;
             }
         }
+
+        //lấy khách hàng theo nhiều điều keienj
+        public KhachHang LayKhachHangTheoDieuKien(string maKH, string tenKhachHang, string SDT)
+        {
+            try
+            {
+                var query = db.KhachHangs.AsQueryable(); // Khởi tạo truy vấn với đối tượng KhachHang
+
+                // Kiểm tra các điều kiện và thêm vào truy vấn nếu điều kiện không null
+                if (!string.IsNullOrEmpty(maKH))
+                {
+                    query = query.Where(kh => kh.MaKhachHang == maKH);
+                }
+
+                if (!string.IsNullOrEmpty(tenKhachHang))
+                {
+                    query = query.Where(kh => kh.TenKhachHang.Contains(tenKhachHang));
+                }
+
+                if (!string.IsNullOrEmpty(SDT))
+                {
+                    query = query.Where(kh => kh.SoDienThoai.Contains(SDT));
+                }
+
+                // Thực hiện truy vấn và trả về kết quả đầu tiên (nếu có)
+                return query.FirstOrDefault(); // Trả về khách hàng đầu tiên thỏa mãn điều kiện
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi nếu có
+                Console.WriteLine($"Lỗi khi lấy khách hàng: {ex.Message}");
+                return null;
+            }
+        }
+        public bool AddDiemCongTichLuy(string maKhachHang, decimal diemCong)
+        {
+            try
+            {
+                // Kiểm tra xem khách hàng có tồn tại hay không
+                var khachHang = db.KhachHangs.FirstOrDefault(kh => kh.MaKhachHang == maKhachHang);
+                if (khachHang == null)
+                {
+                    Console.WriteLine("Khách hàng không tồn tại.");
+                    return false; // Trả về false nếu khách hàng không tồn tại
+                }
+
+                // Cập nhật điểm tích lũy mới
+                khachHang.DiemTichLuy = (khachHang.DiemTichLuy ?? 0) + diemCong;
+
+                // Lưu lại thay đổi vào cơ sở dữ liệu
+                db.SubmitChanges();
+
+                Console.WriteLine($"Thêm {diemCong} điểm cộng cho khách hàng {maKhachHang}. Điểm tích lũy hiện tại: {khachHang.DiemTichLuy}");
+                return true; // Trả về true nếu việc thêm điểm thành công
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi: {ex.Message}");
+                return false; // Trả về false nếu có lỗi
+            }
+        }
+
+
     }
 }

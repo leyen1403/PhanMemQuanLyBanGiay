@@ -27,5 +27,13 @@ namespace BLL
         {
             return _khachHangDAL.LayTatCaKhachHang();
         }
+        public KhachHang LayKhachHangTheoDieuKien(string maKH, string tenKhachHang, string SDT)
+        {
+            return _khachHangDAL.LayKhachHangTheoDieuKien(maKH, tenKhachHang, SDT);
+        }
+        public bool AddDiemCongTichLuy(string maKhachHang, decimal diemCong)
+        {
+            return _khachHangDAL.AddDiemCongTichLuy(maKhachHang, diemCong);
+        }
     }
 }

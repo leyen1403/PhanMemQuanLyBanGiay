@@ -53,6 +53,18 @@ namespace DAL
                 return null;
             }
         }
-
+        //tìm chi tiết hóa đơn theo mã hoá đơn
+        public List<ChiTietHoaDon> TimChiTietHoaDonTheoMaHoaDon(string maHD)
+        {
+            try
+            {
+                listChiTietHoaDon = db.ChiTietHoaDons.Where(t => t.MaHoaDon.Contains(maHD)).ToList();
+                return listChiTietHoaDon;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }
