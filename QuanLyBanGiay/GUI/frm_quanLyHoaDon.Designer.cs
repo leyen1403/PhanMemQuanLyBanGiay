@@ -46,6 +46,8 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txt_ghiChu = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.btn_luuHoaDon = new System.Windows.Forms.Button();
             this.btn_suaHoaDon = new System.Windows.Forms.Button();
             this.txt_maNhanVien = new System.Windows.Forms.TextBox();
@@ -79,8 +81,6 @@
             this.txt_maHD = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.txt_ghiChu = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_dsHoaDon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_dsCTHD)).BeginInit();
             this.groupBox5.SuspendLayout();
@@ -327,6 +327,30 @@
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin hoá đơn";
+            // 
+            // txt_ghiChu
+            // 
+            this.txt_ghiChu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_ghiChu.Location = new System.Drawing.Point(183, 199);
+            this.txt_ghiChu.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_ghiChu.Multiline = true;
+            this.txt_ghiChu.Name = "txt_ghiChu";
+            this.txt_ghiChu.Size = new System.Drawing.Size(254, 72);
+            this.txt_ghiChu.TabIndex = 45;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Navy;
+            this.label19.Location = new System.Drawing.Point(23, 199);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(71, 20);
+            this.label19.TabIndex = 44;
+            this.label19.Text = "Ghi chú";
             // 
             // btn_luuHoaDon
             // 
@@ -745,30 +769,6 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(5, 1000);
             this.label17.TabIndex = 34;
-            // 
-            // txt_ghiChu
-            // 
-            this.txt_ghiChu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_ghiChu.Location = new System.Drawing.Point(183, 199);
-            this.txt_ghiChu.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_ghiChu.Multiline = true;
-            this.txt_ghiChu.Name = "txt_ghiChu";
-            this.txt_ghiChu.Size = new System.Drawing.Size(254, 72);
-            this.txt_ghiChu.TabIndex = 45;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.Navy;
-            this.label19.Location = new System.Drawing.Point(23, 199);
-            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(71, 20);
-            this.label19.TabIndex = 44;
-            this.label19.Text = "Ghi chú";
             // 
             // frm_quanLyHoaDon
             // 

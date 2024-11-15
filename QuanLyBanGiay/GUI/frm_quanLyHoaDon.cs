@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DTO;
 using BLL;
 using DevExpress.XtraLayout.Filtering.Templates;
+using System.IO;
 
 namespace GUI
 {
@@ -37,6 +38,73 @@ namespace GUI
             cbbLuaChonHienThi.SelectedIndexChanged += CbbLuaChonHienThi_SelectedIndexChanged;
             dgv_dsHoaDon.SelectionChanged += Dgv_dsHoaDon_SelectionChanged;
             this.btnTim.Click += BtnTim_Click;
+            this.btn_inHoaDon.Click += Btn_inHoaDon_Click;
+        }
+        private void Btn_inHoaDon_Click(object sender, EventArgs e)
+        {
+            // Hiển thị thông báo xác nhận
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xuất file Word?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Word Documents (*.docx)|*.docx",
+                    FileName = "Hoa-Don-(" + DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss") + ").docx"
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Mở tài liệu Word mẫu sẵn
+                        var wordApp = new Microsoft.Office.Interop.Word.Application();
+                        string url = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+                        var document = wordApp.Documents.Open(url + @"\Resources\hoa-don-ban-hang-file-word.docx");
+
+                        // Thay thế các thông tin trong tài liệu Word
+                        document.Bookmarks["NgayLap"].Range.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                        document.Bookmarks["TenNhanVien"].Range.Text = "Nhân viên 1";
+                        document.Bookmarks["MaHoaDonBanHang"].Range.Text = "HD001";
+                        document.Bookmarks["TenKhachHang"].Range.Text = "Hồ văn ý";
+
+                        // Lấy bảng đầu tiên trong tài liệu (giả sử bảng đã được định dạng sẵn)
+                        var table = document.Tables[1];
+
+                        var ltt = from cthd in new ChiTietHoaDonBLL().LayChiTietHoaDonTheoMaHoaDon("HD001")
+                                  select new
+                                  {
+                                      cthd.SanPham.TenSanPham,
+                                      cthd.SoLuong,
+                                      cthd.DonGia,
+                                      cthd.ThanhTien
+
+                                  };
+                        var lttList = ltt.ToList();
+                        DataGridView gridView = new DataGridView();
+                        gridView.DataSource = lttList;
+                        for (int i = 0; i < gridView.Rows.Count ; i++)
+                        {
+                                var newRow = table.Rows.Add();
+                                newRow.Cells[1].Range.Text = (i + 1).ToString();
+                                newRow.Cells[2].Range.Text = gridView.Rows[i].Cells["TenSanPham"].Value.ToString();
+                                //newRow.Cells[3].Range.Text = gridView.Rows[i].Cells["SoLuong"].Value.ToString();
+                                //newRow.Cells[4].Range.Text = Convert.ToDecimal(gridView.Rows[i].Cells["DonGia"].Value).ToString();
+                                //newRow.Cells[5].Range.Text = Convert.ToDecimal(gridView.Rows[i].Cells["ThanhTien"].Value).ToString();
+                        }
+                        var tongTien = ltt.Sum(x => x.ThanhTien);
+                        document.Bookmarks["TongTien"].Range.Text = tongTien.ToString();
+                        // Lưu tài liệu sau khi thêm dữ liệu
+                        document.SaveAs2(saveFileDialog.FileName);
+                        document.Close();
+                        wordApp.Quit();
+                        MessageBox.Show("Xuất báo cáo thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Xuất báo cáo thất bại: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
 
         private void Dgv_dsHoaDon_SelectionChanged(object sender, EventArgs e)
@@ -216,7 +284,7 @@ namespace GUI
 
         private void CbbLuaChonHienThi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         //viết hàm ở dưới
@@ -296,7 +364,7 @@ namespace GUI
         {
             try
             {
-                _lstHoaDon=new List<HoaDon>();
+                _lstHoaDon = new List<HoaDon>();
                 _lstHoaDon = _hoaDonBLL.LayTatCaHoaDon();
                 dgv_dsHoaDon.DataSource = _lstHoaDon;
                 IniDataGirdViewHoaDon();
