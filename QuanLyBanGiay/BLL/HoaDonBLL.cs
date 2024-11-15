@@ -46,5 +46,9 @@ namespace BLL
         {
             return _hoaDonDAL.SuaHoaDon(hd);
         }
+        public List<HoaDon> TimKiemHoaDonTheoTenNhanVien(string key)
+        {
+            return _hoaDonDAL.TimHoaDonTheoTenNhanVien(key);
+        }
     }
 }

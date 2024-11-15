@@ -122,15 +122,34 @@ namespace DAL
         {
             try
             {
-                listHoaDon = db.HoaDons.Where(t => t.KhachHang.TenKhachHang.Contains(key) || t.KhachHang.SoDienThoai.Contains(key)).ToList();
+                // Thực hiện join bảng KhachHang và tìm kiếm
+                var listHoaDon = db.HoaDons
+                    .Where(hd => hd.KhachHang.TenKhachHang.Contains(key)
+                              || hd.KhachHang.SoDienThoai.Contains(key))
+                    .ToList();
+
                 return listHoaDon;
             }
             catch
             {
-                return null;
+                return null; // Trả về null nếu xảy ra lỗi
             }
         }
+        public List<HoaDon> TimHoaDonTheoTenNhanVien(string key)
+        {
+            try
+            {
+                // Thực hiện join bảng NhanVien và tìm kiếm
+                var listHoaDon = db.HoaDons
+                    .Where(hd => hd.NhanVien.TenNhanVien.Contains(key))
+                    .ToList();
 
-        //viết phương thức tìm hoá đơn theo tên nhân viên
+                return listHoaDon;
+            }
+            catch
+            {
+                return null; // Trả về null nếu xảy ra lỗi
+            }
+        }
     }
 }

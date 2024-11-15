@@ -1,8 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\",
+  "WorkspaceRootPath": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\",
   "Documents": [
     {
+<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_quanlyphieukiemke.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_quanlyphieukiemke.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -25,6 +26,38 @@
     {
       "AbsoluteMoniker": "D:0:0:{A99687FA-EDFE-4FBC-AB8F-A9A8121AD78D}|BLL\\BLL.csproj|D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\bll\\chitietdondathangbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A99687FA-EDFE-4FBC-AB8F-A9A8121AD78D}|BLL\\BLL.csproj|solutionrelative:bll\\chitietdondathangbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+=======
+      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\hoc\\it\\hocky_7\\ptpm\\doan\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_laphoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_laphoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|d:\\hoc\\it\\hocky_7\\ptpm\\doan\\phanmemquanlybangiay\\quanlybangiay\\dal\\khachhangdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|solutionrelative:dal\\khachhangdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A99687FA-EDFE-4FBC-AB8F-A9A8121AD78D}|BLL\\BLL.csproj|d:\\hoc\\it\\hocky_7\\ptpm\\doan\\phanmemquanlybangiay\\quanlybangiay\\bll\\hoadonbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A99687FA-EDFE-4FBC-AB8F-A9A8121AD78D}|BLL\\BLL.csproj|solutionrelative:bll\\hoadonbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|d:\\hoc\\it\\hocky_7\\ptpm\\doan\\phanmemquanlybangiay\\quanlybangiay\\dal\\hoadondal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|solutionrelative:dal\\hoadondal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\hoc\\it\\hocky_7\\ptpm\\doan\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_laphoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_laphoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\hoc\\it\\hocky_7\\ptpm\\doan\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_quanlyhoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_quanlyhoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\gui\\frm_quanlyhoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_quanlyhoadon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\hoc\\it\\hocky_7\\ptpm\\doan\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_quanlyhoadon.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_quanlyhoadon.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+>>>>>>> 68b152a282c90618cd0c5807451ebbde73fb9010
     }
   ],
   "DocumentGroupContainers": [
@@ -55,6 +88,7 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+<<<<<<< HEAD
               "Title": "frm_quanLyPhieuKiemKe.cs",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyPhieuKiemKe.cs",
               "RelativeDocumentMoniker": "GUI\\frm_quanLyPhieuKiemKe.cs",
@@ -63,19 +97,116 @@
               "ViewState": "AgIAAOUAAAAAAAAAAAAEwPUAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-15T19:13:03.328Z",
+=======
+              "Title": "frm_lapHoaDon.cs",
+              "DocumentMoniker": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_lapHoaDon.cs",
+              "RelativeDocumentMoniker": "GUI\\frm_lapHoaDon.cs",
+              "ToolTip": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_lapHoaDon.cs",
+              "RelativeToolTip": "GUI\\frm_lapHoaDon.cs",
+              "ViewState": "AgIAAPwDAAAAAAAAAAAewA0EAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T18:27:03.422Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frm_lapHoaDon.cs [Design]",
+              "DocumentMoniker": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_lapHoaDon.cs",
+              "RelativeDocumentMoniker": "GUI\\frm_lapHoaDon.cs",
+              "ToolTip": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_lapHoaDon.cs [Design]",
+              "RelativeToolTip": "GUI\\frm_lapHoaDon.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T18:27:00.982Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HoaDonBLL.cs",
+              "DocumentMoniker": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\BLL\\HoaDonBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\HoaDonBLL.cs",
+              "ToolTip": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\BLL\\HoaDonBLL.cs",
+              "RelativeToolTip": "BLL\\HoaDonBLL.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAIA8wBsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T18:18:42.715Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HoaDonDAL.cs",
+              "DocumentMoniker": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DAL\\HoaDonDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\HoaDonDAL.cs",
+              "ToolTip": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DAL\\HoaDonDAL.cs",
+              "RelativeToolTip": "DAL\\HoaDonDAL.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAewDkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T18:16:52.426Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "KhachHangDAL.cs",
+              "DocumentMoniker": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DAL\\KhachHangDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\KhachHangDAL.cs",
+              "ToolTip": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DAL\\KhachHangDAL.cs",
+              "RelativeToolTip": "DAL\\KhachHangDAL.cs",
+              "ViewState": "AgIAADYAAAAAAAAAAAAlwFUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T18:16:35.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "frm_quanLyHoaDon.Designer.cs",
+              "DocumentMoniker": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyHoaDon.Designer.cs",
+              "RelativeDocumentMoniker": "GUI\\frm_quanLyHoaDon.Designer.cs",
+              "ToolTip": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyHoaDon.Designer.cs",
+              "RelativeToolTip": "GUI\\frm_quanLyHoaDon.Designer.cs",
+              "ViewState": "AgIAANMAAAAAAAAAAADwv90AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T18:11:16.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "frm_quanLyHoaDon.cs",
+              "DocumentMoniker": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyHoaDon.cs",
+              "RelativeDocumentMoniker": "GUI\\frm_quanLyHoaDon.cs",
+              "ToolTip": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyHoaDon.cs",
+              "RelativeToolTip": "GUI\\frm_quanLyHoaDon.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAewFYAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T11:38:46.993Z",
+>>>>>>> 68b152a282c90618cd0c5807451ebbde73fb9010
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+<<<<<<< HEAD
               "DocumentIndex": 1,
               "Title": "frm_quanLyPhieuKiemKe.cs [Design]",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyPhieuKiemKe.cs",
               "RelativeDocumentMoniker": "GUI\\frm_quanLyPhieuKiemKe.cs",
               "ToolTip": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyPhieuKiemKe.cs [Design]",
               "RelativeToolTip": "GUI\\frm_quanLyPhieuKiemKe.cs [Design]",
+=======
+              "DocumentIndex": 6,
+              "Title": "frm_quanLyHoaDon.cs [Design]",
+              "DocumentMoniker": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyHoaDon.cs",
+              "RelativeDocumentMoniker": "GUI\\frm_quanLyHoaDon.cs",
+              "ToolTip": "D:\\Hoc\\IT\\HOCKY_7\\PTPM\\DoAn\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyHoaDon.cs [Design]",
+              "RelativeToolTip": "GUI\\frm_quanLyHoaDon.cs [Design]",
+>>>>>>> 68b152a282c90618cd0c5807451ebbde73fb9010
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-15T19:13:01.771Z",
               "EditorCaption": " [Design]"
+<<<<<<< HEAD
             },
             {
               "$type": "Document",
@@ -127,6 +258,8 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-15T13:57:34.829Z",
               "EditorCaption": " [Design]"
+=======
+>>>>>>> 68b152a282c90618cd0c5807451ebbde73fb9010
             }
           ]
         }

@@ -26,6 +26,7 @@ namespace GUI
         HoaDonBLL _hoaDonBLL = new HoaDonBLL();
         ChiTietHoaDonBLL _chiTietHoaDonBLL = new ChiTietHoaDonBLL();
         KhachHangBLL _khachHangBLL = new KhachHangBLL();
+        NhanVienBLL _nhanVienBLL = new NhanVienBLL();
 
         public string MaNhanVien { get; set; }
         List<SanPham> _lstSanPham = null;
@@ -40,6 +41,8 @@ namespace GUI
         int currentPage = 1;
         int pageSize = 15;
         int totalRecords;
+
+        private string _MaHoaDon = string.Empty;
         public frm_lapHoaDon()
         {
             InitializeComponent();
@@ -62,6 +65,7 @@ namespace GUI
             this.btn_timKhachHang.Click += Btn_timKhachHang_Click;
             this.btn_luuHoaDon.Click += Btn_luuHoaDon_Click;
             this.btn_timSanPham.Click += Btn_timSanPham_Click;
+            this.btn_inHoaDon.Click += Btn_inHoaDon_Click;
             loadCboLoaiSanPham();
             loadCboThuongHieu();
             LoadSanPhamPaged();
@@ -71,6 +75,11 @@ namespace GUI
             txt_soLuong.Maximum = 100;
             txt_soLuong.Value = 1;
             InitializeDataGridView();
+        }
+
+        private void Btn_inHoaDon_Click(object sender, EventArgs e)
+        {
+            XuatHoaDon();
         }
 
         private void Btn_timSanPham_Click(object sender, EventArgs e)
@@ -252,6 +261,8 @@ namespace GUI
                 MessageBox.Show("Hóa đơn đã được lưu thành công!");
                 dgvCart.Rows.Clear();
                 clearAll();
+                _MaHoaDon = hoaDon.MaHoaDon;
+                btn_inHoaDon.Visible = true;
             }
             catch (Exception ex)
             {
@@ -617,6 +628,95 @@ namespace GUI
             }
         }
         //hàm
+        //Xuất hoá đơn ra word
+        private void XuatHoaDon()
+        {
+            // Hiển thị thông báo xác nhận
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xuất file Word?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Word Documents (*.docx)|*.docx",
+                    FileName = "Hoa-Don-(" + DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss") + ").docx"
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Mở tài liệu Word mẫu sẵn
+                        var wordApp = new Microsoft.Office.Interop.Word.Application();
+                        string url = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+                        var document = wordApp.Documents.Open(url + @"\Resources\hoa-don-ban-hang-file-word.docx");
+                        string maHoaDon = _MaHoaDon;
+                        HoaDon hd = _hoaDonBLL.TimHoaDonTheoMaHoaDon(maHoaDon).FirstOrDefault();
+                        if (hd == null)
+                        {
+                            MessageBox.Show("Không tìm thấy hóa đơn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        KhachHang kh = _khachHangBLL.LayKhachHangTheoDieuKien(hd.MaKhachHang, string.Empty, string.Empty);
+                        NhanVien nv = _nhanVienBLL.LayNhanVien(hd.MaNhanVien);
+                        if (kh == null || nv == null)
+                        {
+                            MessageBox.Show("Không tìm thấy thông tin khách hàng hoặc nhân viên", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        string tenNhanVien = nv.TenNhanVien;
+                        string tenKhachHang = kh.TenKhachHang;
+                        string DiaChi = kh.DiaChi;
+                        string soDienThoai = kh.SoDienThoai;
+
+                        // Thay thế các thông tin trong tài liệu Word
+                        document.Bookmarks["NgayLap"].Range.Text = DateTime.Now.ToString("dd/MM/yyyy");
+                        document.Bookmarks["TenNhanVien"].Range.Text = tenNhanVien;
+                        document.Bookmarks["MaHoaDonBanHang"].Range.Text = maHoaDon;
+                        document.Bookmarks["TenKhachHang"].Range.Text = tenKhachHang;
+                        document.Bookmarks["DiaChi"].Range.Text = DiaChi;
+                        document.Bookmarks["SDT"].Range.Text = soDienThoai;
+
+                        // Lấy bảng đầu tiên trong tài liệu (giả sử bảng đã được định dạng sẵn)
+                        var table = document.Tables[1];
+
+                        var lstCTHD = from cthd in new ChiTietHoaDonBLL().LayTatCaChiTietHoaDon().Where(x => x.MaHoaDon == maHoaDon)
+                                      select new
+                                      {
+                                          cthd.SanPham.TenSanPham,
+                                          cthd.SoLuong,
+                                          cthd.DonGia,
+                                          cthd.ThanhTien
+                                      };
+
+                        DataGridView dgvTemp = new DataGridView();
+                        dgvTemp.Name = "dgvTemp";
+                        dgvTemp.DataSource = lstCTHD.ToList();
+                        this.Controls.Add(dgvTemp);
+                        for (int i = 0; i < dgvTemp.Rows.Count; i++)
+                        {
+                            var newRow = table.Rows.Add();
+                            newRow.Cells[1].Range.Text = (i + 1).ToString();
+                            newRow.Cells[2].Range.Text = dgvTemp.Rows[i].Cells["TenSanPham"].Value.ToString();
+                            newRow.Cells[3].Range.Text = dgvTemp.Rows[i].Cells["SoLuong"].Value.ToString();
+                            newRow.Cells[4].Range.Text = Convert.ToDecimal(dgvTemp.Rows[i].Cells["DonGia"].Value).ToString("N0") + " VNĐ";
+                            newRow.Cells[5].Range.Text = Convert.ToDecimal(dgvTemp.Rows[i].Cells["ThanhTien"].Value).ToString("N0") + " VNĐ";
+                        }
+                        var tongTien = (decimal)lstCTHD.Sum(x => x.ThanhTien);
+                        document.Bookmarks["TongTien"].Range.Text = tongTien.ToString("N0") + " VNĐ";
+                        // Lưu tài liệu sau khi thêm dữ liệu
+                        document.SaveAs2(saveFileDialog.FileName);
+                        document.Close();
+                        wordApp.Quit();
+                        MessageBox.Show("Xuất báo cáo thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Controls.Remove(dgvTemp);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Xuất báo cáo thất bại: " + ex.Message, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
         private void LoadComboBoxGioiTinh()
         {
             var gioiTinh = new List<string>
