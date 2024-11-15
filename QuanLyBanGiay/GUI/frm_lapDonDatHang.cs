@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
+using DevExpress.Data.Svg;
+using DevExpress.Internal.WinApi.Windows.UI.Notifications;
 
 namespace GUI
 {
@@ -20,6 +22,17 @@ namespace GUI
         {
             InitializeComponent();
             Load += Frm_lapDonDatHang_Load;
+            FormClosing += Frm_lapDonDatHang_FormClosing;
+        }
+
+        private void Frm_lapDonDatHang_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DonDatHang d = new DonDatHangBLL().LayDanhSachDonDatHang().Where(x => x.MaDonDatHang == MaDonDatHang).FirstOrDefault();
+            DonDatHangBLL bll = new DonDatHangBLL();
+            if(bll.XoaDonDatHang(d))
+            {
+                MessageBox.Show("Xoá đơn đặt hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void Frm_lapDonDatHang_Load(object sender, EventArgs e)
@@ -38,6 +51,7 @@ namespace GUI
                 MaDonDatHang = taoMaDDH(lstDDH);
                 DonDatHang ddh = new DonDatHang();
                 ddh.MaDonDatHang = MaDonDatHang;
+                ddh.GhiChu = txtGhiChuDDH.Text;
 
                 if (!new DonDatHangBLL().ThemDonDatHang(ddh))
                 {
@@ -188,6 +202,7 @@ namespace GUI
             dgvSanPham.Columns["MaMauSac"].Visible = false; 
             dgvSanPham.Columns["MaKichThuoc"].Visible = false; 
             dgvSanPham.Columns["GiaNhap"].HeaderText = "Giá nhập";
+            dgvSanPham.Columns["GiaNhap"].DefaultCellStyle.Format = "N0";
             dgvSanPham.Columns["GiaBan"].Visible = false;
             dgvSanPham.Columns["DonViTinh"].Visible = false; 
             dgvSanPham.Columns["SoLuong"].HeaderText = "Tồn kho"; 
@@ -284,13 +299,18 @@ namespace GUI
 
         private void btnThemVaoDonDatHang_Click(object sender, EventArgs e)
         {
+            if(cboNhaCungCap.SelectedValue == null)
+            {
+                MessageBox.Show("Vui lòng chọn nhà cung cấp", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             ChiTietDonDatHang ctddh = new ChiTietDonDatHang();
             ctddh.MaDonDatHang = MaDonDatHang;
             ctddh.MaSanPham = txtMaSP.Text;
             ctddh.SoLuongYeuCau = Convert.ToInt32(nudSoLuongYeuCau.Value);
             ctddh.SoLuongCungCap = 0;
             ctddh.SoLuongThieu = ctddh.SoLuongYeuCau;
-            ctddh.DonGia = new SanPhamBLL().laySanPhamTheoMa(txtMaSP.Text).GiaNhap;
+            ctddh.DonGia = new SanPhamBLL().laySanPhamTheoMa(dgvSanPham.CurrentRow.Cells["MaSanPham"].Value.ToString()).GiaNhap;
             ctddh.ThanhTien = ctddh.SoLuongYeuCau * ctddh.DonGia;
             if (new ChiTietDonDatHangBLL().ThemChiTietDonDatHang(ctddh))
             {
@@ -299,6 +319,7 @@ namespace GUI
                 dgvChiTietDDH.DataSource = new ChiTietDonDatHangBLL().LayDanhSachChiTietDonDatHangTheoMaDDH(MaDonDatHang);
                 dinhDangDGVChiTietDDH();
                 themCotSoThuTu(dgvChiTietDDH);
+                dgvChiTietDDH.SelectionChanged += DgvChiTietDDH_SelectionChanged;
                 // Hiển thị tổng tiền
                 txtTongTien.Text = new ChiTietDonDatHangBLL().tinhTongTien(MaDonDatHang).ToString("N0");
             }
@@ -308,9 +329,100 @@ namespace GUI
             }
         }
 
+        private void DgvChiTietDDH_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvChiTietDDH.CurrentRow != null && dgvChiTietDDH.CurrentRow.Cells["MaSanPham"] != null)
+            {
+                // Hiển thị thông tin chi tiết sản phẩm
+                txtMaSP.Text = dgvChiTietDDH.CurrentRow.Cells["MaSanPham"].Value?.ToString();
+                var sanPham = new SanPhamBLL().laySanPhamTheoMa(txtMaSP.Text);
+                if (sanPham != null)
+                {
+                    txtTenSP.Text = sanPham.TenSanPham;
+                    nudSoLuongToiThieu.Value = Convert.ToInt32(sanPham.SoLuongToiThieu);
+                    txtLoai.Text = sanPham.LoaiSanPham?.TenLoaiSanPham;
+                    txtThuongHieu.Text = sanPham.ThuongHieu?.TenThuongHieu;
+                    txtMau.Text = sanPham.MauSac?.TenMauSac;
+                    nudSoLuongYeuCau.Value = Convert.ToInt32(dgvChiTietDDH.CurrentRow.Cells["SoLuongYeuCau"].Value);
+                }
+
+                // Ẩn nút thêm
+                btnThemVaoDonDatHang.Visible = false;
+
+                // Hiện nút lưu và xoá
+                btnXoaChiTietDDH.Visible = true;
+                btnLuuChiTietDDH.Visible = true;
+            }
+        }
+
         private void dinhDangDGVChiTietDDH()
         {
-            
+            dgvChiTietDDH.Columns["MaDonDatHang"].Visible = false;
+            dgvChiTietDDH.Columns["MaSanPham"].HeaderText = "Mã sản phẩm";
+            dgvChiTietDDH.Columns["SoLuongYeuCau"].HeaderText = "Số lượng yêu cầu";
+            dgvChiTietDDH.Columns["SoLuongCungCap"].HeaderText = "Số lượng cung cấp";
+            dgvChiTietDDH.Columns["SoLuongThieu"].Visible = false;
+            dgvChiTietDDH.Columns["DonGia"].HeaderText = "Đơn giá";
+            dgvChiTietDDH.Columns["DonGia"].DefaultCellStyle.Format = "N0";
+            dgvChiTietDDH.Columns["ThanhTien"].DefaultCellStyle.Format = "N0";
+            dgvChiTietDDH.Columns["DonDatHang"].Visible = false;
+            dgvChiTietDDH.Columns["SanPham"].Visible = false;
+        }
+
+        private void btnLuuChiTietDDH_Click(object sender, EventArgs e)
+        {
+            string maSP = txtMaSP.Text;
+            ChiTietDonDatHang ctddh = new ChiTietDonDatHang()
+            {
+                MaDonDatHang = this.MaDonDatHang,
+                MaSanPham = maSP,
+                SoLuongYeuCau = Convert.ToInt32(nudSoLuongYeuCau.Value),
+                SoLuongCungCap = 0,
+                SoLuongThieu = Convert.ToInt32(nudSoLuongYeuCau.Value),
+                DonGia = new SanPhamBLL().laySanPhamTheoMa(maSP).GiaNhap,
+                ThanhTien = Convert.ToInt32(nudSoLuongYeuCau.Value) * new SanPhamBLL().laySanPhamTheoMa(maSP).GiaNhap
+            };
+            if(new ChiTietDonDatHangBLL().CapNhatChiTietDonDatHang(ctddh))
+            {
+                MessageBox.Show("Cập nhật chi tiết đơn đặt hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Hiển thị danh sách chi tiết đơn đặt hàng
+                dgvChiTietDDH.DataSource = new ChiTietDonDatHangBLL().LayDanhSachChiTietDonDatHangTheoMaDDH(MaDonDatHang);
+                dinhDangDGVChiTietDDH();
+                themCotSoThuTu(dgvChiTietDDH);
+                // Hiển thị tổng tiền
+                txtTongTien.Text = new ChiTietDonDatHangBLL().tinhTongTien(MaDonDatHang).ToString("N0");
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật chi tiết đơn đặt hàng thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnXoaChiTietDDH_Click(object sender, EventArgs e)
+        {
+            string maSP = txtMaSP.Text;
+            SanPham sp = new SanPhamBLL().laySanPhamTheoMa(maSP);
+            if (sp != null)
+            {
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xoá sản phẩm " + sp.TenSanPham + " khỏi đơn đặt hàng?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    if (new ChiTietDonDatHangBLL().XoaChiTietDonDatHang(MaDonDatHang, maSP))
+                    {
+                        MessageBox.Show("Xoá sản phẩm khỏi đơn đặt hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Hiển thị danh sách chi tiết đơn đặt hàng
+                        dgvChiTietDDH.DataSource = new ChiTietDonDatHangBLL().LayDanhSachChiTietDonDatHangTheoMaDDH(MaDonDatHang);
+                        dinhDangDGVChiTietDDH();
+                        themCotSoThuTu(dgvChiTietDDH);
+                        // Hiển thị tổng tiền
+                        txtTongTien.Text = new ChiTietDonDatHangBLL().tinhTongTien(MaDonDatHang).ToString("N0");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xoá sản phẩm khỏi đơn đặt hàng thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
         }
     }
 }

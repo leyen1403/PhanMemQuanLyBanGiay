@@ -33,5 +33,40 @@ namespace DAL
         {
             return db.ChiTietDonDatHangs.Where(x => x.MaDonDatHang == maDDH).ToList();
         }
+        public bool CapNhatChiTietDonDatHang(ChiTietDonDatHang ctddh)
+        {
+            try
+            {
+                ChiTietDonDatHang ctddhNew = db.ChiTietDonDatHangs.Where(x=>x.MaDonDatHang == ctddh.MaDonDatHang && x.MaSanPham == ctddh.MaSanPham).FirstOrDefault();
+                ctddhNew.MaSanPham = ctddh.MaSanPham;
+                ctddhNew.SoLuongYeuCau = ctddh.SoLuongYeuCau;
+                ctddhNew.SoLuongCungCap = ctddh.SoLuongCungCap;
+                ctddhNew.SoLuongThieu = ctddh.SoLuongThieu;
+                ctddhNew.DonGia = ctddh.DonGia;
+                ctddhNew.ThanhTien = ctddh.ThanhTien;
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool XoaChiTietDonDatHang(string maDonDatHang, string maSanPham)
+        {
+            try
+            {
+                ChiTietDonDatHang ctddh = db.ChiTietDonDatHangs.Where(x => x.MaDonDatHang == maDonDatHang && x.MaSanPham == maSanPham).FirstOrDefault();
+                if(ctddh == null) { return false; }
+                db.ChiTietDonDatHangs.DeleteOnSubmit(ctddh);
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

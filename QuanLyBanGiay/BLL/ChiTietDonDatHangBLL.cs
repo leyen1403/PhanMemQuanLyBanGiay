@@ -35,5 +35,15 @@ namespace BLL
             }
             return tongTien;
         }
+        
+        public bool CapNhatChiTietDonDatHang(ChiTietDonDatHang ctddh)
+        {
+            return chiTietDonDatHangDAL.CapNhatChiTietDonDatHang(ctddh);
+        }
+
+        public bool XoaChiTietDonDatHang(string maDonDatHang, string maSanPham)
+        {
+            return chiTietDonDatHangDAL.XoaChiTietDonDatHang(maDonDatHang, maSanPham);
+        }
     }
 }
