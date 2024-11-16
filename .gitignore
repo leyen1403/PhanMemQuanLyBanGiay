@@ -1,4 +1,8 @@
-*.dbml
-*.dbml.layout
-db_QuanLyBanGiay*
+db_QuanLyBanGiay.dbml.layout
+db_QuanLyBanGiay.dbml
+db_QuanLyBanGiay.designer.cs
 .vs/
+*.cache
+*.exe
+*.suo
+*.pdb
