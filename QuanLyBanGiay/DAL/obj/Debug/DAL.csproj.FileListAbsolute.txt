@@ -1,13 +1,3 @@
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DAL.dll
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DAL.pdb
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.dll
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.pdb
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.Up2Date
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.dll
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.pdb
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.dll.config
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DAL.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DAL.pdb
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.dll
@@ -18,3 +8,13 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.Up2Date
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.dll
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.pdb
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DAL.dll
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DAL.pdb
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.dll
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.pdb
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.dll.config
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.Up2Date
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.dll
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.pdb
