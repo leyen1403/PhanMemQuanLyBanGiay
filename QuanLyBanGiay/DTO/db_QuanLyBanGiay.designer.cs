@@ -114,6 +114,7 @@ namespace DTO
 				base(connection, mappingSource)
 		{
 			OnCreated();
+
 		}
 		
 		public db_QuanLyBanGiayDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
