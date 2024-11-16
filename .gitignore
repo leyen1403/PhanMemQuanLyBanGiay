@@ -1,4 +1,12 @@
-*.dbml
-*.dbml.layout
-db_QuanLyBanGiay*
-.vs/
+
+QuanLyBanGiay/.vs/QuanLyBanGiay/v17/.suo
+QuanLyBanGiay/BLL/obj/Debug/BLL.csproj.AssemblyReference.cache
+QuanLyBanGiay/.vs/QuanLyBanGiay/v17/DocumentLayout.backup.json
+*.json
+*.cache
+QuanLyBanGiay/DAL/obj/Debug/DAL.csproj.AssemblyReference.cache
+QuanLyBanGiay/DTO/db_QuanLyBanGiay.designer.cs
+/QuanLyBanGiay/DTO/db_QuanLyBanGiay.designer.cs
+/QuanLyBanGiay/GUI/Program.cs
+/QuanLyBanGiay/DTO/db_QuanLyBanGiay.designer.cs
+/QuanLyBanGiay/GUI/Program.cs
