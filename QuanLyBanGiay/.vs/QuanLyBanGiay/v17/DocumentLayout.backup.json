@@ -3,11 +3,19 @@
   "WorkspaceRootPath": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C4A4636A-BCAF-4C6C-ACC2-D2609ACED279}|DTO\\DTO.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\dto\\db_quanlybangiay.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C4A4636A-BCAF-4C6C-ACC2-D2609ACED279}|DTO\\DTO.csproj|solutionrelative:dto\\db_quanlybangiay.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4A4636A-BCAF-4C6C-ACC2-D2609ACED279}|DTO\\DTO.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\dto\\db_quanlybangiay.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|",
+      "RelativeMoniker": "D:0:0:{C4A4636A-BCAF-4C6C-ACC2-D2609ACED279}|DTO\\DTO.csproj|solutionrelative:dto\\db_quanlybangiay.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_quanlydondathang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_quanlydondathang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\dal\\dondathangdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\dal\\dondathangdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|solutionrelative:dal\\dondathangdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -38,11 +46,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "frm_quanLyDonDatHang.cs",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyDonDatHang.cs",
               "RelativeDocumentMoniker": "GUI\\frm_quanLyDonDatHang.cs",
@@ -52,6 +60,31 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-15T14:14:28.531Z",
               "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "db_QuanLyBanGiay.dbml",
+              "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DTO\\db_QuanLyBanGiay.dbml",
+              "RelativeDocumentMoniker": "DTO\\db_QuanLyBanGiay.dbml",
+              "ToolTip": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DTO\\db_QuanLyBanGiay.dbml",
+              "RelativeToolTip": "DTO\\db_QuanLyBanGiay.dbml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001722|",
+              "WhenOpened": "2024-11-16T09:18:31.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "db_QuanLyBanGiay.designer.cs",
+              "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DTO\\db_QuanLyBanGiay.designer.cs",
+              "RelativeDocumentMoniker": "DTO\\db_QuanLyBanGiay.designer.cs",
+              "ToolTip": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DTO\\db_QuanLyBanGiay.designer.cs",
+              "RelativeToolTip": "DTO\\db_QuanLyBanGiay.designer.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAGEAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-16T09:18:24.009Z",
               "EditorCaption": ""
             },
             {
@@ -72,7 +105,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "DonDatHangDAL.cs",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DAL\\DonDatHangDAL.cs",
               "RelativeDocumentMoniker": "DAL\\DonDatHangDAL.cs",
@@ -80,12 +113,11 @@
               "RelativeToolTip": "DAL\\DonDatHangDAL.cs",
               "ViewState": "AgIAADsAAAAAAAAAAAAAAFoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T20:34:20.119Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T20:34:20.119Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "frm_quanLyPhieuKiemKe.cs",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyPhieuKiemKe.cs",
               "RelativeDocumentMoniker": "GUI\\frm_quanLyPhieuKiemKe.cs",
@@ -93,24 +125,22 @@
               "RelativeToolTip": "GUI\\frm_quanLyPhieuKiemKe.cs",
               "ViewState": "AgIAAMoAAAAAAAAAAAAEwN8AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T19:13:03.328Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-15T19:13:03.328Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "frm_quanLyPhieuKiemKe.cs [Design]",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyPhieuKiemKe.cs",
               "RelativeDocumentMoniker": "GUI\\frm_quanLyPhieuKiemKe.cs",
               "ToolTip": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyPhieuKiemKe.cs [Design]",
               "RelativeToolTip": "GUI\\frm_quanLyPhieuKiemKe.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T19:13:01.771Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-11-15T19:13:01.771Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ChiTietDonDatHangDAL.cs",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DAL\\ChiTietDonDatHangDAL.cs",
               "RelativeDocumentMoniker": "DAL\\ChiTietDonDatHangDAL.cs",
@@ -122,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "ChiTietDonDatHangBLL.cs",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\BLL\\ChiTietDonDatHangBLL.cs",
               "RelativeDocumentMoniker": "BLL\\ChiTietDonDatHangBLL.cs",
@@ -134,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "frm_quanLyDonDatHang.cs [Design]",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyDonDatHang.cs",
               "RelativeDocumentMoniker": "GUI\\frm_quanLyDonDatHang.cs",
