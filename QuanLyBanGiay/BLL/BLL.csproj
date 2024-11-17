@@ -66,6 +66,8 @@
     <Compile Include="SanPhamBLL.cs" />
     <Compile Include="ThongKeBaoCaoBLL.cs" />
     <Compile Include="ThuongHieuBLL.cs" />
+    <Compile Include="TraSanPhamBLL.cs" />
+    <Compile Include="TraSanPhamChiTietBLL.cs" />
     <Compile Include="VaiTroBLL.cs" />
     <Compile Include="VaiTro_QuyenBLL.cs" />
   </ItemGroup>
