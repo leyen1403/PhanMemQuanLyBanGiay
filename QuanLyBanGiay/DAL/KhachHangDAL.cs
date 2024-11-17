@@ -112,6 +112,30 @@ namespace DAL
             }
         }
 
-
+        // sửa thông tin khách hàng
+        public bool SuathongtinKhachHang(KhachHang kh)
+        {
+            try
+            {
+                KhachHang khachHang = db.KhachHangs.FirstOrDefault(t => t.MaKhachHang == kh.MaKhachHang);
+                khachHang.TenKhachHang = kh.TenKhachHang;
+                khachHang.SoDienThoai = kh.SoDienThoai;
+                khachHang.DiaChi = kh.DiaChi;
+                khachHang.Email = kh.Email;
+                khachHang.GioiTinh = kh.GioiTinh;
+                khachHang.NgaySinh = kh.NgaySinh;
+                khachHang.TrangThaiHoatDong = kh.TrangThaiHoatDong;
+                khachHang.ThanhVien = kh.ThanhVien;
+                khachHang.TaiKhoan = kh.TaiKhoan;
+                khachHang.MatKhau = kh.MatKhau;
+                khachHang.NgayCapNhat = kh.NgayCapNhat;
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }
