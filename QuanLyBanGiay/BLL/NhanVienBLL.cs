@@ -28,5 +28,28 @@ namespace BLL
         {
             return _nhanVienDAL.LayDanhSachNhanVien();
         }
+        public bool CapNhatNhanVien(NhanVien nv)
+        {
+            return _nhanVienDAL.CapNhatNhanVien(nv);
+        }
+        public List<NhanVien> LayNhanVienTheoVaiTro(string maVaiTro)
+        {
+            List<NhanVien> lstNhanVien = _nhanVienDAL.LayDanhSachNhanVien();
+            List<NhanVien> lstNhanVienTheoVaiTro = new List<NhanVien>();
+            NhanVien_VaiTroBLL nhanVien_VaiTroBLL = new NhanVien_VaiTroBLL();
+            List<NhanVien_VaiTro> lstNhanVien_VaiTro = nhanVien_VaiTroBLL.LayDanhSachNhanVien_VaiTro();
+            foreach (NhanVien nv in lstNhanVien)
+            {
+                foreach (NhanVien_VaiTro nvt in lstNhanVien_VaiTro)
+                {
+                    if (nv.MaNhanVien == nvt.MaNhanVien && nvt.MaVaiTro == maVaiTro)
+                    {
+                        lstNhanVienTheoVaiTro.Add(nv);
+                        break;
+                    }
+                }
+            }
+            return lstNhanVienTheoVaiTro;
+        }
     }
 }
