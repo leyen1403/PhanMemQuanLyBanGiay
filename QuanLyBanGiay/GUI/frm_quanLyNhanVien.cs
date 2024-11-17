@@ -114,8 +114,8 @@ namespace GUI
 
         private void Frm_quanLyNhanVien_Load(object sender, EventArgs e)
         {
-            loadDGVNhanVien();
             AddPlaceholder(txtTim, "Nhập mã, tên, số điện thoại, email...");
+            loadDGVNhanVien();
             loadComboBoxVaiTro();
         }
 
@@ -366,5 +366,25 @@ namespace GUI
             }
         }
 
+        private void btnTaoNhanVien_Click(object sender, EventArgs e)
+        {
+            frm_ThemNhanVien frm = new frm_ThemNhanVien();            
+            frm.ShowDialog();
+            frm.Tao += Frm_Tao;
+        }
+
+        private void Frm_Tao(object sender, EventArgs e)
+        {
+            loadDGVNhanVien();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<NhanVien> lstNhanVien = new List<NhanVien>();
+            lstNhanVien = new NhanVienBLL().LayDanhSachNhanVien();
+            dgvNhanVien.DataSource = lstNhanVien;
+            DinhDangDGVNhanVien();
+            ThemCotSTT(dgvNhanVien);
+        }
     }
 }

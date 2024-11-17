@@ -51,5 +51,9 @@ namespace BLL
             }
             return lstNhanVienTheoVaiTro;
         }
+        public bool ThemNhanVien(NhanVien nv)
+        {
+            return _nhanVienDAL.ThemNhanVien(nv);
+        }
     }
 }

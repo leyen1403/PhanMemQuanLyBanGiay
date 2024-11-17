@@ -174,3 +174,4 @@ D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.csproj.CoreCompil
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.csproj.Up2Date
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.exe
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.pdb
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_ThemNhanVien.resources
