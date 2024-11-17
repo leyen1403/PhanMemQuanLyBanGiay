@@ -30,6 +30,9 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnCapNhatVaiTro = new System.Windows.Forms.Button();
+            this.btnThemVaiTro = new System.Windows.Forms.Button();
             this.txtMoTaVT = new System.Windows.Forms.TextBox();
             this.txtTenVT = new System.Windows.Forms.TextBox();
             this.txtMaVT = new System.Windows.Forms.TextBox();
@@ -39,6 +42,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnLuuQuyen = new System.Windows.Forms.Button();
+            this.btnThemQuyen = new System.Windows.Forms.Button();
             this.txtMoTaQuyen = new System.Windows.Forms.TextBox();
             this.txtTenQuyen = new System.Windows.Forms.TextBox();
             this.txtMaQuyen = new System.Windows.Forms.TextBox();
@@ -48,6 +54,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnLuuNhanVien_VaiTro = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.dgvNhanVien_VaiTro = new System.Windows.Forms.DataGridView();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
@@ -57,6 +65,8 @@
             this.txtTenVaiTro = new System.Windows.Forms.TextBox();
             this.txtTenNhanVien = new System.Windows.Forms.TextBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnLuuVaiTro_Quyen = new System.Windows.Forms.Button();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.dgvVaiTro_Quyen = new System.Windows.Forms.DataGridView();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -65,16 +75,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.txtTenQuyen1 = new System.Windows.Forms.TextBox();
             this.txtTenVaiTro1 = new System.Windows.Forms.TextBox();
-            this.btnLuuVaiTro_Quyen = new System.Windows.Forms.Button();
-            this.btnLuuNhanVien_VaiTro = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnLuuQuyen = new System.Windows.Forms.Button();
-            this.btnThemQuyen = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnCapNhatVaiTro = new System.Windows.Forms.Button();
-            this.btnThemVaiTro = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVaiTro)).BeginInit();
@@ -127,6 +127,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Quản lý vai trò";
             // 
+            // button1
+            // 
+            this.button1.Image = global::GUI.Properties.Resources.icons8_refresh_32;
+            this.button1.Location = new System.Drawing.Point(394, 153);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(70, 60);
+            this.button1.TabIndex = 3;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnCapNhatVaiTro
+            // 
+            this.btnCapNhatVaiTro.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnCapNhatVaiTro.Location = new System.Drawing.Point(394, 82);
+            this.btnCapNhatVaiTro.Name = "btnCapNhatVaiTro";
+            this.btnCapNhatVaiTro.Size = new System.Drawing.Size(70, 60);
+            this.btnCapNhatVaiTro.TabIndex = 3;
+            this.btnCapNhatVaiTro.UseVisualStyleBackColor = true;
+            // 
+            // btnThemVaiTro
+            // 
+            this.btnThemVaiTro.Image = global::GUI.Properties.Resources.icons8_add_32;
+            this.btnThemVaiTro.Location = new System.Drawing.Point(394, 11);
+            this.btnThemVaiTro.Name = "btnThemVaiTro";
+            this.btnThemVaiTro.Size = new System.Drawing.Size(70, 60);
+            this.btnThemVaiTro.TabIndex = 3;
+            this.btnThemVaiTro.UseVisualStyleBackColor = true;
+            // 
             // txtMoTaVT
             // 
             this.txtMoTaVT.Location = new System.Drawing.Point(135, 124);
@@ -173,27 +201,33 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Navy;
             this.label4.Location = new System.Drawing.Point(6, 132);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 19);
+            this.label4.Size = new System.Drawing.Size(61, 19);
             this.label4.TabIndex = 0;
             this.label4.Text = "Mô tả:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Navy;
             this.label3.Location = new System.Drawing.Point(6, 82);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 19);
+            this.label3.Size = new System.Drawing.Size(104, 19);
             this.label3.TabIndex = 0;
             this.label3.Text = "Tên vai trò:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Navy;
             this.label2.Location = new System.Drawing.Point(6, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 19);
+            this.label2.Size = new System.Drawing.Size(97, 19);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã vai trò:";
             // 
@@ -216,6 +250,34 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Quản lý quyền";
+            // 
+            // button2
+            // 
+            this.button2.Image = global::GUI.Properties.Resources.icons8_refresh_32;
+            this.button2.Location = new System.Drawing.Point(394, 149);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(70, 60);
+            this.button2.TabIndex = 3;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnLuuQuyen
+            // 
+            this.btnLuuQuyen.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnLuuQuyen.Location = new System.Drawing.Point(394, 80);
+            this.btnLuuQuyen.Name = "btnLuuQuyen";
+            this.btnLuuQuyen.Size = new System.Drawing.Size(70, 60);
+            this.btnLuuQuyen.TabIndex = 3;
+            this.btnLuuQuyen.UseVisualStyleBackColor = true;
+            // 
+            // btnThemQuyen
+            // 
+            this.btnThemQuyen.Image = global::GUI.Properties.Resources.icons8_add_32;
+            this.btnThemQuyen.Location = new System.Drawing.Point(394, 11);
+            this.btnThemQuyen.Name = "btnThemQuyen";
+            this.btnThemQuyen.Size = new System.Drawing.Size(70, 60);
+            this.btnThemQuyen.TabIndex = 3;
+            this.btnThemQuyen.UseVisualStyleBackColor = true;
             // 
             // txtMoTaQuyen
             // 
@@ -263,27 +325,33 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Navy;
             this.label5.Location = new System.Drawing.Point(6, 132);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 19);
+            this.label5.Size = new System.Drawing.Size(61, 19);
             this.label5.TabIndex = 0;
             this.label5.Text = "Mô tả:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Navy;
             this.label6.Location = new System.Drawing.Point(6, 82);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 19);
+            this.label6.Size = new System.Drawing.Size(100, 19);
             this.label6.TabIndex = 0;
             this.label6.Text = "Tên quyền:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Navy;
             this.label7.Location = new System.Drawing.Point(6, 32);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 19);
+            this.label7.Size = new System.Drawing.Size(93, 19);
             this.label7.TabIndex = 0;
             this.label7.Text = "Mã quyền:";
             // 
@@ -306,6 +374,25 @@
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Thêm nhân viên vào vai trò";
+            // 
+            // button3
+            // 
+            this.button3.Image = global::GUI.Properties.Resources.icons8_refresh_32;
+            this.button3.Location = new System.Drawing.Point(865, 396);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(70, 60);
+            this.button3.TabIndex = 3;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btnLuuNhanVien_VaiTro
+            // 
+            this.btnLuuNhanVien_VaiTro.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnLuuNhanVien_VaiTro.Location = new System.Drawing.Point(6, 396);
+            this.btnLuuNhanVien_VaiTro.Name = "btnLuuNhanVien_VaiTro";
+            this.btnLuuNhanVien_VaiTro.Size = new System.Drawing.Size(70, 60);
+            this.btnLuuNhanVien_VaiTro.TabIndex = 3;
+            this.btnLuuNhanVien_VaiTro.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
@@ -403,6 +490,25 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Thêm quyền vào vai trò";
             // 
+            // button4
+            // 
+            this.button4.Image = global::GUI.Properties.Resources.icons8_refresh_32;
+            this.button4.Location = new System.Drawing.Point(865, 396);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(70, 60);
+            this.button4.TabIndex = 3;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // btnLuuVaiTro_Quyen
+            // 
+            this.btnLuuVaiTro_Quyen.Image = global::GUI.Properties.Resources.icons8_save_as_32;
+            this.btnLuuVaiTro_Quyen.Location = new System.Drawing.Point(6, 396);
+            this.btnLuuVaiTro_Quyen.Name = "btnLuuVaiTro_Quyen";
+            this.btnLuuVaiTro_Quyen.Size = new System.Drawing.Size(70, 60);
+            this.btnLuuVaiTro_Quyen.TabIndex = 3;
+            this.btnLuuVaiTro_Quyen.UseVisualStyleBackColor = true;
+            // 
             // groupBox9
             // 
             this.groupBox9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -478,100 +584,6 @@
             this.txtTenVaiTro1.ReadOnly = true;
             this.txtTenVaiTro1.Size = new System.Drawing.Size(261, 27);
             this.txtTenVaiTro1.TabIndex = 2;
-            // 
-            // btnLuuVaiTro_Quyen
-            // 
-            this.btnLuuVaiTro_Quyen.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnLuuVaiTro_Quyen.Location = new System.Drawing.Point(6, 396);
-            this.btnLuuVaiTro_Quyen.Name = "btnLuuVaiTro_Quyen";
-            this.btnLuuVaiTro_Quyen.Size = new System.Drawing.Size(70, 60);
-            this.btnLuuVaiTro_Quyen.TabIndex = 3;
-            this.btnLuuVaiTro_Quyen.UseVisualStyleBackColor = true;
-            // 
-            // btnLuuNhanVien_VaiTro
-            // 
-            this.btnLuuNhanVien_VaiTro.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnLuuNhanVien_VaiTro.Location = new System.Drawing.Point(6, 396);
-            this.btnLuuNhanVien_VaiTro.Name = "btnLuuNhanVien_VaiTro";
-            this.btnLuuNhanVien_VaiTro.Size = new System.Drawing.Size(70, 60);
-            this.btnLuuNhanVien_VaiTro.TabIndex = 3;
-            this.btnLuuNhanVien_VaiTro.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Image = global::GUI.Properties.Resources.icons8_refresh_32;
-            this.button2.Location = new System.Drawing.Point(394, 149);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(70, 60);
-            this.button2.TabIndex = 3;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnLuuQuyen
-            // 
-            this.btnLuuQuyen.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnLuuQuyen.Location = new System.Drawing.Point(394, 80);
-            this.btnLuuQuyen.Name = "btnLuuQuyen";
-            this.btnLuuQuyen.Size = new System.Drawing.Size(70, 60);
-            this.btnLuuQuyen.TabIndex = 3;
-            this.btnLuuQuyen.UseVisualStyleBackColor = true;
-            // 
-            // btnThemQuyen
-            // 
-            this.btnThemQuyen.Image = global::GUI.Properties.Resources.icons8_add_32;
-            this.btnThemQuyen.Location = new System.Drawing.Point(394, 11);
-            this.btnThemQuyen.Name = "btnThemQuyen";
-            this.btnThemQuyen.Size = new System.Drawing.Size(70, 60);
-            this.btnThemQuyen.TabIndex = 3;
-            this.btnThemQuyen.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Image = global::GUI.Properties.Resources.icons8_refresh_32;
-            this.button1.Location = new System.Drawing.Point(394, 153);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(70, 60);
-            this.button1.TabIndex = 3;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnCapNhatVaiTro
-            // 
-            this.btnCapNhatVaiTro.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnCapNhatVaiTro.Location = new System.Drawing.Point(394, 82);
-            this.btnCapNhatVaiTro.Name = "btnCapNhatVaiTro";
-            this.btnCapNhatVaiTro.Size = new System.Drawing.Size(70, 60);
-            this.btnCapNhatVaiTro.TabIndex = 3;
-            this.btnCapNhatVaiTro.UseVisualStyleBackColor = true;
-            // 
-            // btnThemVaiTro
-            // 
-            this.btnThemVaiTro.Image = global::GUI.Properties.Resources.icons8_add_32;
-            this.btnThemVaiTro.Location = new System.Drawing.Point(394, 11);
-            this.btnThemVaiTro.Name = "btnThemVaiTro";
-            this.btnThemVaiTro.Size = new System.Drawing.Size(70, 60);
-            this.btnThemVaiTro.TabIndex = 3;
-            this.btnThemVaiTro.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Image = global::GUI.Properties.Resources.icons8_refresh_32;
-            this.button3.Location = new System.Drawing.Point(865, 396);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(70, 60);
-            this.button3.TabIndex = 3;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Image = global::GUI.Properties.Resources.icons8_refresh_32;
-            this.button4.Location = new System.Drawing.Point(865, 396);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(70, 60);
-            this.button4.TabIndex = 3;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // frm_QuanLyPhanQuyen
             // 

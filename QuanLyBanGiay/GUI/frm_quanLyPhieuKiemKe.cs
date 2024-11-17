@@ -23,6 +23,26 @@ namespace GUI
             dgvKiemKe.SelectionChanged += DgvKiemKe_SelectionChanged;
             dgvChiTietKiemKe.SelectionChanged += DgvChiTietKiemKe_SelectionChanged;
             nudSoLuongThucTe.ValueChanged += NudSoLuongThucTe_ValueChanged;
+            dgvChiTietKiemKe.RowPrePaint += DgvChiTietKiemKe_RowPrePaint;
+        }
+
+        private void DgvChiTietKiemKe_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            // Lấy dòng hiện tại
+            var row = dgvChiTietKiemKe.Rows[e.RowIndex];
+
+            // Kiểm tra cột "ChenhLech" xem có giá trị khác 0 hay không
+            if (row.Cells["ChenhLech"].Value != null && Convert.ToInt32(row.Cells["ChenhLech"].Value) != 0)
+            {
+                row.DefaultCellStyle.BackColor = Color.LightCoral; // Tô màu nền đỏ nhạt
+                row.DefaultCellStyle.ForeColor = Color.White;      // Tô chữ màu trắng
+            }
+            else
+            {
+                // Nếu không có chênh lệch, đặt màu mặc định
+                row.DefaultCellStyle.BackColor = dgvChiTietKiemKe.DefaultCellStyle.BackColor;
+                row.DefaultCellStyle.ForeColor = dgvChiTietKiemKe.DefaultCellStyle.ForeColor;
+            }
         }
 
         private void NudSoLuongThucTe_ValueChanged(object sender, EventArgs e)
@@ -208,7 +228,7 @@ namespace GUI
                 var saveFileDialog = new SaveFileDialog
                 {
                     Filter = "Word Documents (*.docx)|*.docx",
-                    FileName = "Báo cáo ngày " + DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss") + ".docx"
+                    FileName = "Báo cáo ngày " + DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss") + ".docx"
                 };
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
