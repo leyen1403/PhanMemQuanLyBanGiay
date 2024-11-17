@@ -3,27 +3,51 @@
   "WorkspaceRootPath": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A99687FA-EDFE-4FBC-AB8F-A9A8121AD78D}|BLL\\BLL.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\bll\\dichvuphanquyenbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A99687FA-EDFE-4FBC-AB8F-A9A8121AD78D}|BLL\\BLL.csproj|solutionrelative:bll\\dichvuphanquyenbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\dal\\dichvuphanquyendal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|solutionrelative:dal\\dichvuphanquyendal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\gui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C4A4636A-BCAF-4C6C-ACC2-D2609ACED279}|DTO\\DTO.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\dto\\db_quanlybangiay.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|",
+      "RelativeMoniker": "D:0:0:{C4A4636A-BCAF-4C6C-ACC2-D2609ACED279}|DTO\\DTO.csproj|solutionrelative:dto\\db_quanlybangiay.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_quanlynhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_quanlynhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_quanlynhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\gui\\frm_quanlynhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_quanlynhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A99687FA-EDFE-4FBC-AB8F-A9A8121AD78D}|BLL\\BLL.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\bll\\nhanvienbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{A99687FA-EDFE-4FBC-AB8F-A9A8121AD78D}|BLL\\BLL.csproj|D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\bll\\nhanvienbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A99687FA-EDFE-4FBC-AB8F-A9A8121AD78D}|BLL\\BLL.csproj|solutionrelative:bll\\nhanvienbll.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\dal\\nhanviendal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\dal\\nhanviendal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{290D5924-281A-4E6E-B843-13B73E6EBD02}|DAL\\DAL.csproj|solutionrelative:dal\\nhanviendal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_quanlydondathang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\gui\\frm_quanlydondathang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_quanlydondathang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|d:\\github\\phanmemquanlybangiay\\quanlybangiay\\gui\\frm_quanlydondathang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\gui\\frm_quanlydondathang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{16B35128-B4BC-41C4-8885-F0AA20E06589}|GUI\\GUI.csproj|solutionrelative:gui\\frm_quanlydondathang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -34,11 +58,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "frm_quanLyNhanVien.cs [Design]",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyNhanVien.cs",
               "RelativeDocumentMoniker": "GUI\\frm_quanLyNhanVien.cs",
@@ -51,13 +75,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 6,
               "Title": "frm_quanLyNhanVien.cs",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyNhanVien.cs",
               "RelativeDocumentMoniker": "GUI\\frm_quanLyNhanVien.cs",
               "ToolTip": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyNhanVien.cs",
               "RelativeToolTip": "GUI\\frm_quanLyNhanVien.cs",
-              "ViewState": "AgIAAKUAAAAAAAAAAAAQwKsAAABBAAAAAAAAAA==",
+              "ViewState": "AgIAAIIAAAAAAAAAAAAqwKsAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-17T02:01:10.87Z",
               "IsPinned": true,
@@ -81,7 +105,83 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frm_main.cs [Design]",
+              "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_Main.cs",
+              "RelativeDocumentMoniker": "GUI\\frm_Main.cs",
+              "ToolTip": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_Main.cs [Design]",
+              "RelativeToolTip": "GUI\\frm_Main.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:46:14.375Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "DichVuPhanQuyenBLL.cs",
+              "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\BLL\\DichVuPhanQuyenBLL.cs",
+              "RelativeDocumentMoniker": "BLL\\DichVuPhanQuyenBLL.cs",
+              "ToolTip": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\BLL\\DichVuPhanQuyenBLL.cs",
+              "RelativeToolTip": "BLL\\DichVuPhanQuyenBLL.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAlwBUAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:45:24.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frm_main.cs",
+              "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_Main.cs",
+              "RelativeDocumentMoniker": "GUI\\frm_Main.cs",
+              "ToolTip": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_Main.cs",
+              "RelativeToolTip": "GUI\\frm_Main.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:44:40.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DichVuPhanQuyenDAL.cs",
+              "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DAL\\DichVuPhanQuyenDAL.cs",
+              "RelativeDocumentMoniker": "DAL\\DichVuPhanQuyenDAL.cs",
+              "ToolTip": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DAL\\DichVuPhanQuyenDAL.cs",
+              "RelativeToolTip": "DAL\\DichVuPhanQuyenDAL.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAwCoAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:45:06.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\Program.cs",
+              "RelativeDocumentMoniker": "GUI\\Program.cs",
+              "ToolTip": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\Program.cs",
+              "RelativeToolTip": "GUI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-17T04:34:18.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "db_QuanLyBanGiay.dbml",
+              "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DTO\\db_QuanLyBanGiay.dbml",
+              "RelativeDocumentMoniker": "DTO\\db_QuanLyBanGiay.dbml",
+              "ToolTip": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DTO\\db_QuanLyBanGiay.dbml",
+              "RelativeToolTip": "DTO\\db_QuanLyBanGiay.dbml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001722|",
+              "WhenOpened": "2024-11-17T04:30:11.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "NhanVienBLL.cs",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\BLL\\NhanVienBLL.cs",
               "RelativeDocumentMoniker": "BLL\\NhanVienBLL.cs",
@@ -94,7 +194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 9,
               "Title": "NhanVienDAL.cs",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\DAL\\NhanVienDAL.cs",
               "RelativeDocumentMoniker": "DAL\\NhanVienDAL.cs",
@@ -107,7 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 11,
               "Title": "frm_quanLyDonDatHang.cs [Design]",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyDonDatHang.cs",
               "RelativeDocumentMoniker": "GUI\\frm_quanLyDonDatHang.cs",
@@ -119,7 +219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "frm_quanLyDonDatHang.cs",
               "DocumentMoniker": "D:\\Github\\PhanMemQuanLyBanGiay\\QuanLyBanGiay\\GUI\\frm_quanLyDonDatHang.cs",
               "RelativeDocumentMoniker": "GUI\\frm_quanLyDonDatHang.cs",
