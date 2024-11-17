@@ -49,13 +49,10 @@
             this.txt_ghiChu = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.btn_luuHoaDon = new System.Windows.Forms.Button();
-            this.btn_suaHoaDon = new System.Windows.Forms.Button();
             this.txt_maNhanVien = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.txt_diemTichLuy = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.btn_clearALLHD = new System.Windows.Forms.Button();
-            this.btn_timKiem = new System.Windows.Forms.Button();
             this.btn_inHoaDon = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_tongTien = new System.Windows.Forms.TextBox();
@@ -301,13 +298,10 @@
             this.groupBox1.Controls.Add(this.txt_maHDBH);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.btn_luuHoaDon);
-            this.groupBox1.Controls.Add(this.btn_suaHoaDon);
             this.groupBox1.Controls.Add(this.txt_maNhanVien);
             this.groupBox1.Controls.Add(this.label24);
             this.groupBox1.Controls.Add(this.txt_diemTichLuy);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.btn_clearALLHD);
-            this.groupBox1.Controls.Add(this.btn_timKiem);
             this.groupBox1.Controls.Add(this.btn_inHoaDon);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txt_tongTien);
@@ -356,27 +350,12 @@
             this.btn_luuHoaDon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_luuHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_luuHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_luuHoaDon.Location = new System.Drawing.Point(486, 176);
+            this.btn_luuHoaDon.Location = new System.Drawing.Point(469, 26);
             this.btn_luuHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.btn_luuHoaDon.Name = "btn_luuHoaDon";
             this.btn_luuHoaDon.Size = new System.Drawing.Size(47, 37);
             this.btn_luuHoaDon.TabIndex = 41;
             this.btn_luuHoaDon.UseVisualStyleBackColor = false;
-            // 
-            // btn_suaHoaDon
-            // 
-            this.btn_suaHoaDon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_suaHoaDon.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_suaHoaDon.BackgroundImage = global::GUI.Properties.Resources.icons8_update_32;
-            this.btn_suaHoaDon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_suaHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_suaHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_suaHoaDon.Location = new System.Drawing.Point(486, 127);
-            this.btn_suaHoaDon.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_suaHoaDon.Name = "btn_suaHoaDon";
-            this.btn_suaHoaDon.Size = new System.Drawing.Size(47, 37);
-            this.btn_suaHoaDon.TabIndex = 40;
-            this.btn_suaHoaDon.UseVisualStyleBackColor = false;
             // 
             // txt_maNhanVien
             // 
@@ -424,30 +403,6 @@
             this.label4.TabIndex = 17;
             this.label4.Text = "Điểm tích luỹ";
             // 
-            // btn_clearALLHD
-            // 
-            this.btn_clearALLHD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_clearALLHD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_clearALLHD.Image = global::GUI.Properties.Resources.icons8_clear_32;
-            this.btn_clearALLHD.Location = new System.Drawing.Point(486, 76);
-            this.btn_clearALLHD.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_clearALLHD.Name = "btn_clearALLHD";
-            this.btn_clearALLHD.Size = new System.Drawing.Size(42, 38);
-            this.btn_clearALLHD.TabIndex = 16;
-            this.btn_clearALLHD.UseVisualStyleBackColor = true;
-            // 
-            // btn_timKiem
-            // 
-            this.btn_timKiem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_timKiem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_timKiem.Image = global::GUI.Properties.Resources.icons8_find_35;
-            this.btn_timKiem.Location = new System.Drawing.Point(486, 26);
-            this.btn_timKiem.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_timKiem.Name = "btn_timKiem";
-            this.btn_timKiem.Size = new System.Drawing.Size(42, 38);
-            this.btn_timKiem.TabIndex = 14;
-            this.btn_timKiem.UseVisualStyleBackColor = true;
-            // 
             // btn_inHoaDon
             // 
             this.btn_inHoaDon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -455,7 +410,7 @@
             this.btn_inHoaDon.BackColor = System.Drawing.Color.Navy;
             this.btn_inHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_inHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_inHoaDon.Location = new System.Drawing.Point(447, 234);
+            this.btn_inHoaDon.Location = new System.Drawing.Point(449, 67);
             this.btn_inHoaDon.Margin = new System.Windows.Forms.Padding(2);
             this.btn_inHoaDon.Name = "btn_inHoaDon";
             this.btn_inHoaDon.Size = new System.Drawing.Size(103, 37);
@@ -760,13 +715,10 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btn_luuHoaDon;
-        private System.Windows.Forms.Button btn_suaHoaDon;
         private System.Windows.Forms.TextBox txt_maNhanVien;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox txt_diemTichLuy;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btn_clearALLHD;
-        private System.Windows.Forms.Button btn_timKiem;
         private System.Windows.Forms.Button btn_inHoaDon;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txt_tongTien;
