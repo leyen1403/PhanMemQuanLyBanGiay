@@ -140,7 +140,7 @@ namespace GUI
 
         private void btn_LapThongKeBaoCao_Click_1(object sender, EventArgs e)
         {
-
+            loadForm(new frm_lapThongKeBaoCao());
         }
 
         private void btn_LapDonDatHang_Click_1(object sender, EventArgs e)

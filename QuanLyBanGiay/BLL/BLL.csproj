@@ -64,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuyenBLL.cs" />
     <Compile Include="SanPhamBLL.cs" />
+    <Compile Include="ThongKeBaoCaoBLL.cs" />
     <Compile Include="ThuongHieuBLL.cs" />
     <Compile Include="VaiTroBLL.cs" />
     <Compile Include="VaiTro_QuyenBLL.cs" />
