@@ -126,13 +126,16 @@
             // 
             // cboNhaCungCap
             // 
-            this.cboNhaCungCap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboNhaCungCap.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboNhaCungCap.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNhaCungCap.Enabled = false;
             this.cboNhaCungCap.FormattingEnabled = true;
             this.cboNhaCungCap.Location = new System.Drawing.Point(204, 81);
             this.cboNhaCungCap.Name = "cboNhaCungCap";
             this.cboNhaCungCap.Size = new System.Drawing.Size(308, 27);
             this.cboNhaCungCap.TabIndex = 14;
+            this.cboNhaCungCap.TextChanged += new System.EventHandler(this.cboNhaCungCap_TextChanged);
+            this.cboNhaCungCap.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cboNhaCungCap_KeyUp);
             // 
             // txtGhiChuDDH
             // 
@@ -142,6 +145,7 @@
             this.txtGhiChuDDH.Name = "txtGhiChuDDH";
             this.txtGhiChuDDH.Size = new System.Drawing.Size(308, 78);
             this.txtGhiChuDDH.TabIndex = 13;
+            this.txtGhiChuDDH.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtGhiChuDDH_KeyUp);
             // 
             // txtTenNhanVien
             // 
@@ -220,7 +224,7 @@
             // 
             // dgvSanPham
             // 
-            this.dgvSanPham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSanPham.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvSanPham.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSanPham.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSanPham.Location = new System.Drawing.Point(3, 23);
@@ -409,6 +413,7 @@
             this.cboLoaiSP.Name = "cboLoaiSP";
             this.cboLoaiSP.Size = new System.Drawing.Size(352, 27);
             this.cboLoaiSP.TabIndex = 14;
+            this.cboLoaiSP.TextChanged += new System.EventHandler(this.cboLoaiSP_TextChanged);
             // 
             // groupBox4
             // 
@@ -426,6 +431,7 @@
             // 
             // dgvChiTietDDH
             // 
+            this.dgvChiTietDDH.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvChiTietDDH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChiTietDDH.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvChiTietDDH.Location = new System.Drawing.Point(3, 23);

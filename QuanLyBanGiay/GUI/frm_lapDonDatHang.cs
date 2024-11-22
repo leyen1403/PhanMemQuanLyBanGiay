@@ -38,6 +38,32 @@ namespace GUI
         private void Frm_lapDonDatHang_Load(object sender, EventArgs e)
         {
             txtTenNhanVien.Text = new NhanVienBLL().LayNhanVien(MaNhanVien).TenNhanVien;
+            AddPlaceholder(txtTim, "Nhập mã hoặc tên sản phẩm");
+        }
+
+        private void AddPlaceholder(TextBox textBox, string placeholderText)
+        {
+            textBox.Text = placeholderText;
+            textBox.ForeColor = Color.Gray;
+
+            // Xử lý sự kiện khi TextBox nhận hoặc mất focus
+            textBox.GotFocus += (sender, e) =>
+            {
+                if (textBox.Text == placeholderText)
+                {
+                    textBox.Text = string.Empty;
+                    textBox.ForeColor = Color.Black;
+                }
+            };
+
+            textBox.LostFocus += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = placeholderText;
+                    textBox.ForeColor = Color.Gray;
+                }
+            };
         }
 
         private void btnTaoDDH_Click(object sender, EventArgs e)
@@ -52,7 +78,8 @@ namespace GUI
                 DonDatHang ddh = new DonDatHang();
                 ddh.MaDonDatHang = MaDonDatHang;
                 ddh.GhiChu = txtGhiChuDDH.Text;
-
+                ddh.TrangThai = "Chưa xác nhận";
+                ddh.MaNhanVien = MaNhanVien;
                 if (!new DonDatHangBLL().ThemDonDatHang(ddh))
                 {
                     MessageBox.Show("Tạo đơn đặt hàng thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -117,14 +144,19 @@ namespace GUI
 
         private void CboNhaCungCap_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            txtMaNCC.Text = cboNhaCungCap.SelectedValue.ToString();
-            txtTenNCC.Text = cboNhaCungCap.Text;
-            NhaCungCap ncc = new NhaCungCapBLL().LayDanhSachNhaCungCap().Where(n => n.MaNhaCungCap == txtMaNCC.Text).FirstOrDefault();
-            txtNguoiDaiDien.Text = ncc.NguoiDaiDien;
-            txtEmail.Text = ncc.Email;
-            txtDiaChi.Text = ncc.DiaChi;
-            txtSDT.Text = ncc.SoDienThoai;
+            if (cboNhaCungCap.SelectedValue != null)
+            {
+                txtMaNCC.Text = cboNhaCungCap.SelectedValue.ToString();
+                txtTenNCC.Text = cboNhaCungCap.Text;
+                NhaCungCap ncc = new NhaCungCapBLL().LayDanhSachNhaCungCap().Where(n => n.MaNhaCungCap == txtMaNCC.Text).FirstOrDefault();
+                if (ncc != null)
+                {
+                    txtNguoiDaiDien.Text = ncc.NguoiDaiDien;
+                    txtEmail.Text = ncc.Email;
+                    txtDiaChi.Text = ncc.DiaChi;
+                    txtSDT.Text = ncc.SoDienThoai;
+                }
+            }
         }
 
         private void loadDGVSanPham()
@@ -196,17 +228,31 @@ namespace GUI
         private void dinhDangDGVSanPham()
         {
             dgvSanPham.Columns["MaSanPham"].HeaderText = "Mã sản phẩm"; 
+
             dgvSanPham.Columns["TenSanPham"].HeaderText = "Tên sản phẩm";
+
             dgvSanPham.Columns["MaLoaiSanPham"].Visible = false;
+
             dgvSanPham.Columns["MaThuongHieu"].Visible = false;
+
             dgvSanPham.Columns["MaMauSac"].Visible = false; 
+
             dgvSanPham.Columns["MaKichThuoc"].Visible = false; 
+
             dgvSanPham.Columns["GiaNhap"].HeaderText = "Giá nhập";
             dgvSanPham.Columns["GiaNhap"].DefaultCellStyle.Format = "N0";
+            dgvSanPham.Columns["GiaNhap"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             dgvSanPham.Columns["GiaBan"].Visible = false;
+
             dgvSanPham.Columns["DonViTinh"].Visible = false; 
+
             dgvSanPham.Columns["SoLuong"].HeaderText = "Tồn kho"; 
+            dgvSanPham.Columns["SoLuong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             dgvSanPham.Columns["SoLuongToiThieu"].HeaderText = "Tối thiểu"; 
+            dgvSanPham.Columns["SoLuongToiThieu"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             dgvSanPham.Columns["MoTa"].Visible = false; 
             dgvSanPham.Columns["HinhAnh"].Visible = false; 
             dgvSanPham.Columns["TrangThaiHoatDong"].Visible = false;
@@ -294,7 +340,18 @@ namespace GUI
 
         private void btnTim_Click(object sender, EventArgs e)
         {
-
+            if(txtTim.Text == "Nhập mã hoặc tên sản phẩm" || txtTim.Text == "")
+            {
+                loadDGVSanPham();
+            }
+            else
+            {
+                string key = txtTim.Text;
+                SanPhamBLL sanPhamBLL = new SanPhamBLL();
+                List<SanPham> lstSP = sanPhamBLL.layDanhSachSanPham().Where(sp => sp.MaSanPham.Contains(key) || sp.TenSanPham.Contains(key)).ToList();
+                dgvSanPham.DataSource = lstSP;
+                dinhDangDGVSanPham();
+            }
         }
 
         private void btnThemVaoDonDatHang_Click(object sender, EventArgs e)
@@ -360,11 +417,17 @@ namespace GUI
             dgvChiTietDDH.Columns["MaDonDatHang"].Visible = false;
             dgvChiTietDDH.Columns["MaSanPham"].HeaderText = "Mã sản phẩm";
             dgvChiTietDDH.Columns["SoLuongYeuCau"].HeaderText = "Số lượng yêu cầu";
+            dgvChiTietDDH.Columns["SoLuongYeuCau"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvChiTietDDH.Columns["SoLuongCungCap"].HeaderText = "Số lượng cung cấp";
+            dgvChiTietDDH.Columns["SoLuongCungCap"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvChiTietDDH.Columns["SoLuongThieu"].Visible = false;
             dgvChiTietDDH.Columns["DonGia"].HeaderText = "Đơn giá";
+            dgvChiTietDDH.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvChiTietDDH.Columns["DonGia"].DefaultCellStyle.Format = "N0";
             dgvChiTietDDH.Columns["ThanhTien"].DefaultCellStyle.Format = "N0";
+            dgvChiTietDDH.Columns["ThanhTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvChiTietDDH.Columns["ThanhTien"].HeaderText = "Thành tiền";
+
             dgvChiTietDDH.Columns["DonDatHang"].Visible = false;
             dgvChiTietDDH.Columns["SanPham"].Visible = false;
         }
@@ -422,6 +485,42 @@ namespace GUI
                         MessageBox.Show("Xoá sản phẩm khỏi đơn đặt hàng thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+
+        private void cboLoaiSP_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboNhaCungCap_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtGhiChuDDH_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void cboNhaCungCap_KeyUp(object sender, KeyEventArgs e)
+        {
+            ComboBox cbo = sender as ComboBox;
+            if (cbo != null && cbo.DataSource != null)
+            {
+                string searchText = cbo.Text.ToLower();
+                var dataSource = new NhaCungCapBLL().LayDanhSachNhaCungCap()
+                    .Where(ncc => ncc.TenNhaCungCap.ToLower().Contains(searchText))
+                    .ToList();
+
+                cbo.DataSource = null;
+                cbo.DataSource = dataSource;
+                cbo.DisplayMember = "TenNhaCungCap";
+                cbo.ValueMember = "MaNhaCungCap";
+                cbo.DroppedDown = true; // Hiển thị danh sách gợi ý
+                cbo.Text = searchText; // Giữ lại từ khóa người dùng đã nhập
+                cbo.SelectionStart = searchText.Length; // Đặt con trỏ ở cuối
+                cbo.SelectionLength = 0; // Không chọn thêm ký tự
             }
         }
     }

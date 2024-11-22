@@ -233,8 +233,16 @@ namespace GUI
                 }
                 // Trạng thái đơn đặt hàng
                 TaoDanhSachTrangThai(cbbTrangThaiCTDDH);
-                string trangThai = dgvDonDatHang.CurrentRow.Cells["TrangThai"].Value.ToString();
-                cbbTrangThaiCTDDH.SelectedValue = trangThai;
+                if (dgvDonDatHang.CurrentRow?.Cells["TrangThai"]?.Value != null)
+                {
+                    string trangThai = dgvDonDatHang.CurrentRow.Cells["TrangThai"].Value.ToString();
+                    cbbTrangThaiCTDDH.SelectedValue = trangThai;
+                }
+                else
+                {
+                    // Handle the case where the value is null
+                    MessageBox.Show("Trạng thái không hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 // Tên sản phẩm
                 string tenSanPham = "Lỗi";
                 tenSanPham = sanPhamBLL.laySanPhamTheoMa(maSanPham).TenSanPham;
