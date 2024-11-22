@@ -66,5 +66,22 @@ namespace DAL
                 return null;
             }
         }
+
+        public bool CapNhatChiTietHoaDon(ChiTietHoaDon cthdOld)
+        {
+            try
+            {
+                ChiTietHoaDon cthdNew = db.ChiTietHoaDons.Where(p => p.MaHoaDon == cthdOld.MaHoaDon && p.MaSanPham == cthdOld.MaSanPham).FirstOrDefault();
+                cthdNew.SoLuong = cthdOld.SoLuong;
+                cthdNew.DonGia = cthdOld.DonGia;
+                cthdNew.ThanhTien = cthdNew.SoLuong * cthdNew.DonGia;
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

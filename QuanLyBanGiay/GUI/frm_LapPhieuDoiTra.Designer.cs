@@ -42,7 +42,7 @@
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtSoTienHoanLai = new System.Windows.Forms.TextBox();
             this.nudSoLuong = new System.Windows.Forms.NumericUpDown();
             this.txtMau = new System.Windows.Forms.TextBox();
             this.txtSize = new System.Windows.Forms.TextBox();
@@ -166,7 +166,7 @@
             // 
             // dgvChiTietDDH
             // 
-            this.dgvChiTietDDH.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvChiTietDDH.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvChiTietDDH.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChiTietDDH.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvChiTietDDH.Location = new System.Drawing.Point(3, 23);
@@ -180,7 +180,7 @@
             this.groupBox3.Controls.Add(this.btnLuu);
             this.groupBox3.Controls.Add(this.btnXoa);
             this.groupBox3.Controls.Add(this.btnThem);
-            this.groupBox3.Controls.Add(this.textBox8);
+            this.groupBox3.Controls.Add(this.txtSoTienHoanLai);
             this.groupBox3.Controls.Add(this.nudSoLuong);
             this.groupBox3.Controls.Add(this.txtMau);
             this.groupBox3.Controls.Add(this.txtSize);
@@ -216,6 +216,7 @@
             this.btnLuu.TabIndex = 4;
             this.btnLuu.UseVisualStyleBackColor = true;
             this.btnLuu.Visible = false;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // btnXoa
             // 
@@ -227,6 +228,7 @@
             this.btnXoa.TabIndex = 4;
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Visible = false;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnThem
             // 
@@ -239,12 +241,12 @@
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // textBox8
+            // txtSoTienHoanLai
             // 
-            this.textBox8.Location = new System.Drawing.Point(178, 416);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(651, 27);
-            this.textBox8.TabIndex = 3;
+            this.txtSoTienHoanLai.Location = new System.Drawing.Point(178, 416);
+            this.txtSoTienHoanLai.Name = "txtSoTienHoanLai";
+            this.txtSoTienHoanLai.Size = new System.Drawing.Size(651, 27);
+            this.txtSoTienHoanLai.TabIndex = 3;
             // 
             // nudSoLuong
             // 
@@ -406,12 +408,14 @@
             // 
             // dgvTraSanPhamChiTiet
             // 
+            this.dgvTraSanPhamChiTiet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvTraSanPhamChiTiet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTraSanPhamChiTiet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTraSanPhamChiTiet.Location = new System.Drawing.Point(3, 23);
             this.dgvTraSanPhamChiTiet.Name = "dgvTraSanPhamChiTiet";
             this.dgvTraSanPhamChiTiet.Size = new System.Drawing.Size(837, 349);
             this.dgvTraSanPhamChiTiet.TabIndex = 0;
+            this.dgvTraSanPhamChiTiet.SelectionChanged += new System.EventHandler(this.dgvTraSanPhamChiTiet_SelectionChanged);
             // 
             // frm_LapPhieuDoiTra
             // 
@@ -467,7 +471,7 @@
         private System.Windows.Forms.TextBox txtThuongHieu;
         private System.Windows.Forms.TextBox txtMaSanPham;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txtSoTienHoanLai;
         private System.Windows.Forms.NumericUpDown nudSoLuong;
         private System.Windows.Forms.TextBox txtLoai;
         private System.Windows.Forms.TextBox txtTinhTrangSanPham;

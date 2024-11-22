@@ -23,10 +23,11 @@ namespace GUI
         ChiTietHoaDonBLL chiTietHoaDonBLL = new ChiTietHoaDonBLL();
         TraSanPhamBLL traSanPhamBll = new TraSanPhamBLL();
         TraSanPhamChiTietBLL traSanPhamChiTietBLL = new TraSanPhamChiTietBLL();
-        HoaDon _HoaDon = new HoaDon();
+        private HoaDon _HoaDon = new HoaDon();
         KhachHang _KhachHang = new KhachHang();
-        List<ChiTietHoaDon> _ListChiTietHoaDon = new List<ChiTietHoaDon>();
         TraSanPham traSanPham = new TraSanPham();
+        List<ChiTietHoaDon> _ListChiTietHoaDon = new List<ChiTietHoaDon>();
+        List<TraSanPhamChiTiet> lstTSPCT = new List<TraSanPhamChiTiet>();
 
         public frm_LapPhieuDoiTra()
         {
@@ -85,49 +86,54 @@ namespace GUI
                 }
                 else
                 {
-                    // Gán cho biến toàn cục
-                    _HoaDon = hd;
-                    _ListChiTietHoaDon = chiTietHoaDonBLL.LayChiTietHoaDonTheoMaHoaDon(maHD);
-                    // Hiển thị ngày lập hóa đơn
-                    if (_HoaDon.NgayTao != null)
-                    {
-                        dtpNgayTao.Value = (DateTime)_HoaDon.NgayTao;
-                    }
-                    else
-                    {
-                        dtpNgayTao.Value = DateTime.Now;
-                    }
-                    // Hiển thị người lập hóa đơn
-                    if (_HoaDon.NhanVien.TenNhanVien != null)
-                    {
-                        txtTenNhanVien.Text = _HoaDon.NhanVien.TenNhanVien;
-                    }
-                    else
-                    {
-                        txtTenNhanVien.Text = "";
-                    }
-                    // Hiển thị sản phẩm đã mua
-                    var dataDGVChiTietHD = from cthd in _ListChiTietHoaDon
-                                           select new
-                                           {
-                                               cthd.MaHoaDon,
-                                               cthd.MaSanPham,
-                                               cthd.SanPham.TenSanPham,
-                                               cthd.SoLuong,
-                                               cthd.DonGia,
-                                               cthd.ThanhTien
-                                           };
-                    if (_ListChiTietHoaDon != null && _ListChiTietHoaDon.Any())
-                    {
-                        dgvChiTietDDH.DataSource = dataDGVChiTietHD.ToList();
-                        DinhDangDGVChiTietDH();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không có chi tiết hóa đơn.");
-                        dgvChiTietDDH.DataSource = null;
-                    }
+                    loadDGVChiTietHoaDon(hd);
                 }
+            }
+        }
+
+        private void loadDGVChiTietHoaDon(HoaDon hd)
+        {
+            // Gán cho biến toàn cục
+            _HoaDon = hd;
+            _ListChiTietHoaDon = chiTietHoaDonBLL.LayChiTietHoaDonTheoMaHoaDon(hd.MaHoaDon);
+            // Hiển thị ngày lập hóa đơn
+            if (_HoaDon.NgayTao != null)
+            {
+                dtpNgayTao.Value = (DateTime)_HoaDon.NgayTao;
+            }
+            else
+            {
+                dtpNgayTao.Value = DateTime.Now;
+            }
+            // Hiển thị người lập hóa đơn
+            if (_HoaDon.NhanVien.TenNhanVien != null)
+            {
+                txtTenNhanVien.Text = _HoaDon.NhanVien.TenNhanVien;
+            }
+            else
+            {
+                txtTenNhanVien.Text = "";
+            }
+            // Hiển thị sản phẩm đã mua
+            var dataDGVChiTietHD = from cthd in _ListChiTietHoaDon
+                                   select new
+                                   {
+                                       cthd.MaHoaDon,
+                                       cthd.MaSanPham,
+                                       cthd.SanPham.TenSanPham,
+                                       cthd.SoLuong,
+                                       cthd.DonGia,
+                                       cthd.ThanhTien
+                                   };
+            if (_ListChiTietHoaDon != null && _ListChiTietHoaDon.Any())
+            {
+                dgvChiTietDDH.DataSource = dataDGVChiTietHD.ToList();
+                DinhDangDGVChiTietDH();
+            }
+            else
+            {
+                MessageBox.Show("Không có chi tiết hóa đơn.");
+                dgvChiTietDDH.DataSource = null;
             }
         }
 
@@ -139,11 +145,14 @@ namespace GUI
                 dgvChiTietDDH.Columns["MaHoaDon"].Visible = false;
                 dgvChiTietDDH.Columns["MaSanPham"].Visible = false;
                 dgvChiTietDDH.Columns["TenSanPham"].HeaderText = "Tên sản phẩm";
-                dgvChiTietDDH.Columns["SoLuong"].HeaderText = "Số lượng";
+                dgvChiTietDDH.Columns["SoLuong"].HeaderText = "SL";
+                dgvChiTietDDH.Columns["SoLuong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dgvChiTietDDH.Columns["DonGia"].HeaderText = "Đơn giá";
                 dgvChiTietDDH.Columns["DonGia"].DefaultCellStyle.Format = "N0";
+                dgvChiTietDDH.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                 dgvChiTietDDH.Columns["ThanhTien"].HeaderText = "Thành tiền";
                 dgvChiTietDDH.Columns["ThanhTien"].DefaultCellStyle.Format = "N0";
+                dgvChiTietDDH.Columns["ThanhTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             }
             else
             {
@@ -181,6 +190,7 @@ namespace GUI
                 if (dgvChiTietDDH.CurrentRow != null)
                 {
                     string maSanPham = dgvChiTietDDH.CurrentRow.Cells["MaSanPham"].Value?.ToString();
+
                     if (maSanPham != null)
                     {
                         ChiTietHoaDon cthd = new ChiTietHoaDon();
@@ -197,6 +207,26 @@ namespace GUI
                             txtThuongHieu.Text = cthd.SanPham.ThuongHieu.TenThuongHieu;
                             txtLoai.Text = cthd.SanPham.LoaiSanPham.TenLoaiSanPham;
                             txtTenSanPham.Text = cthd.SanPham.TenSanPham;
+                            // Nếu sản phẩm vừa có trong hoá đơn và vừa có trong lstTSPCT thì hiển thị nút xoá và nút lưu
+                            if (lstTSPCT.Any(x => x.MaSanPham == maSanPham))
+                            {
+                                btnXoa.Visible = true;
+                                btnLuu.Visible = true;
+                                btnThem.Visible = false;
+                                txtTinhTrangSanPham.Text = lstTSPCT.FirstOrDefault(x => x.MaSanPham == maSanPham).TinhTrangSanPham;
+                                nudSoLuong.Value = lstTSPCT.FirstOrDefault(x => x.MaSanPham == maSanPham).SoLuong ?? 0;
+                                txtSoTienHoanLai.Text = lstTSPCT.FirstOrDefault(x => x.MaSanPham == maSanPham).SoTienHoanLai?.ToString("N0");
+
+                            }
+                            else
+                            {
+                                btnXoa.Visible = false;
+                                btnLuu.Visible = false;
+                                btnThem.Visible = true;
+                                txtTinhTrangSanPham.Text = "";
+                                nudSoLuong.Value = 0;
+                                txtSoTienHoanLai.Text = "0";
+                            }
                         }
                         else
                         {
@@ -245,7 +275,7 @@ namespace GUI
                     decimal soLuong, donGia;
                     soLuong = soLuongHoanTra;
                     donGia = (decimal)_HoaDon.ChiTietHoaDons.FirstOrDefault(x => x.MaSanPham == maSanPham).DonGia;
-                    soTienHoanLai = soLuong * donGia * 0.9m;
+                    soTienHoanLai = soLuong * donGia;
                     if(traSanPham.MaTraSanPham == null)
                     {
                         // Tạo mã trả sản phẩm
@@ -277,6 +307,8 @@ namespace GUI
                             if (traSanPhamChiTietBLL.ThemTraSanPhamChiTiet(traSanPhamChiTiet))
                             {
                                 MessageBox.Show("Thêm trả sản phẩm thành công");
+                                lstTSPCT.Add(traSanPhamChiTiet);
+                                loadDGVChiTietHoaDon(_HoaDon);
                                 loadDGVTraSanPhamChiTiet();
                                 return;
                             }
@@ -304,6 +336,8 @@ namespace GUI
                         if (traSanPhamChiTietBLL.ThemTraSanPhamChiTiet(traSanPhamChiTiet))
                         {
                             MessageBox.Show("Thêm trả sản phẩm thành công");
+                            lstTSPCT.Add(traSanPhamChiTiet);
+                            loadDGVChiTietHoaDon(_HoaDon);
                             loadDGVTraSanPhamChiTiet();
                             return;
                         }
@@ -333,13 +367,33 @@ namespace GUI
             var data = from tspct in traSanPhamChiTietBLL.LayTraSanPhamChiTietTheoMaTraSanPham(maTraSanPham)
                        select new
                        {
+                           tspct.MaSanPham,
                            tspct.ChiTietHoaDon.SanPham.TenSanPham,
                            tspct.MaHoaDon,
                            tspct.SoLuong,
+                           tspct.SoTienHoanLai,
                            tspct.TinhTrangSanPham,
-                           tspct.SoTienHoanLai
                        };
             dgvTraSanPhamChiTiet.DataSource = data.ToList();
+            DinhDangDGVTraSanPhamChiTiet();
+        }
+
+        private void DinhDangDGVTraSanPhamChiTiet()
+        {
+            dgvTraSanPhamChiTiet.Columns["MaSanPham"].Visible = false;
+
+            dgvTraSanPhamChiTiet.Columns["TenSanPham"].HeaderText = "Tên sản phẩm";
+
+            dgvTraSanPhamChiTiet.Columns["MaHoaDon"].Visible = false;
+
+            dgvTraSanPhamChiTiet.Columns["SoLuong"].HeaderText = "Số lượng";
+            dgvTraSanPhamChiTiet.Columns["SoLuong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+            dgvTraSanPhamChiTiet.Columns["TinhTrangSanPham"].HeaderText = "Tình trạng sản phẩm";
+
+            dgvTraSanPhamChiTiet.Columns["SoTienHoanLai"].HeaderText = "Số tiền hoàn lại";
+            dgvTraSanPhamChiTiet.Columns["SoTienHoanLai"].DefaultCellStyle.Format = "N0";
+            dgvTraSanPhamChiTiet.Columns["SoTienHoanLai"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
         private string taoMaTraSanPham()
@@ -356,6 +410,70 @@ namespace GUI
                 int soMoi = int.Parse(soCuoi) + 1;
                 string maTraSanPhamMoi = "TSP" + soMoi.ToString().PadLeft(3, '0');
                 return maTraSanPhamMoi;
+            }
+        }
+
+        private void dgvTraSanPhamChiTiet_SelectionChanged(object sender, EventArgs e)
+        {
+            btnXoa.Visible = true;
+            btnLuu.Visible = true;
+            btnThem.Visible = false;
+
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            string maSanPham = txtMaSanPham.Text;
+            string maTraSanPham = MaTraSanPham;
+            TraSanPhamChiTiet traSanPhamChiTiet = traSanPhamChiTietBLL.LayTraSanPhamChiTietTheoMaTraSanPham(maTraSanPham).FirstOrDefault(x => x.MaSanPham == maSanPham);
+            if(traSanPhamChiTiet != null)
+            {
+                if (traSanPhamChiTietBLL.XoaTraSanPhamChiTiet(traSanPhamChiTiet))
+                {
+                    MessageBox.Show("Xoá thành công");
+                    loadDGVTraSanPhamChiTiet();
+                }
+                else
+                {
+                    MessageBox.Show("Xoá thất bại");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy sản phẩm này");
+                return;
+            }
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            string maSanPham = txtMaSanPham.Text;
+            string maTraSanPham = MaTraSanPham;
+            TraSanPhamChiTiet traSanPhamChiTiet = new TraSanPhamChiTiet();
+            traSanPhamChiTiet = traSanPhamChiTietBLL.LayTraSanPhamChiTietTheoMaTraSanPham(maTraSanPham).FirstOrDefault(x => x.MaSanPham == maSanPham);
+            if (traSanPhamChiTiet != null)
+            {
+                traSanPhamChiTiet.SoLuong = (int)nudSoLuong.Value;
+                traSanPhamChiTiet.TinhTrangSanPham = txtTinhTrangSanPham.Text;
+                traSanPhamChiTiet.SoTienHoanLai = decimal.Parse(txtSoTienHoanLai.Text);
+                if (traSanPhamChiTietBLL.CapNhatTraSanPhamChiTiet(traSanPhamChiTiet))
+                {
+                    MessageBox.Show("Cập nhật trả sản phẩm thành công");
+                    loadDGVTraSanPhamChiTiet();
+                    loadDGVChiTietHoaDon(_HoaDon);
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật trả sản phẩm thất bại");
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy trả sản phẩm");
+                return;
             }
         }
     }
