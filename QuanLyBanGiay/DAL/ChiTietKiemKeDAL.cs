@@ -44,6 +44,13 @@ namespace DAL
             {
                 ChiTietKiemKe chiTietKiemKe1 = db.ChiTietKiemKes.Where(p => p.MaKiemKe == chiTietKiemKe.MaKiemKe && p.MaSanPham == chiTietKiemKe.MaSanPham).FirstOrDefault();
                 if (chiTietKiemKe1 == null) { return false; }
+                // Cập nhật số lượng sản phẩm
+                SanPham spNew = db.SanPhams.Where(p => p.MaSanPham == chiTietKiemKe1.MaSanPham).FirstOrDefault();
+                if (spNew != null)
+                {
+                    spNew.SoLuong = chiTietKiemKe1.SoLuongThucTe - chiTietKiemKe1.ChenhLech;
+                    spNew.NgayCapNhat = DateTime.Now;
+                }
                 db.ChiTietKiemKes.DeleteOnSubmit(chiTietKiemKe1);
                 db.SubmitChanges();
                 return true;

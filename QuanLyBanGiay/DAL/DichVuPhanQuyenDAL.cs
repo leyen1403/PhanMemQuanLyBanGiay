@@ -40,9 +40,9 @@ namespace DAL
                         join vaitroquyen in _context.VaiTro_Quyens on vaitro.MaVaiTro equals vaitroquyen.MaVaiTro
                         join quyen in _context.Quyens on vaitroquyen.MaQuyen equals quyen.MaQuyen
                         where nv.MaNhanVien == maNhanVien
-                        select quyen.TenQuyen;
+                        select quyen.MaQuyen;
 
-            return query.Distinct().ToList(); // Distinct() để loại bỏ quyền trùng lặp
+            return query.Distinct().ToList();
         }
 
     }

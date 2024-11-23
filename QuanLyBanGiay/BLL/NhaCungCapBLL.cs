@@ -24,5 +24,13 @@ namespace BLL
         {
             return nhaCungCapDAL.CapNhatNhaCungCap(ncc);
         }
+        public bool ThemNhaCungCap(NhaCungCap ncc)
+        {
+            return nhaCungCapDAL.ThemNhaCungCap(ncc);
+        }
+        public bool KiemTraTenNhaCungCap(string tenNhaCungCap)
+        {
+            return nhaCungCapDAL.KiemTraTenNhaCungCap(tenNhaCungCap);
+        }
     }
 }

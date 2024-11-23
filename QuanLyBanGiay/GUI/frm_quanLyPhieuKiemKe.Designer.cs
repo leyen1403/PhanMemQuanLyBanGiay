@@ -35,6 +35,7 @@
             this.dgvChiTietKiemKe = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnXuatWord = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnLuuChiTietKiemKe = new System.Windows.Forms.Button();
             this.txtLyDoChenhLech = new System.Windows.Forms.TextBox();
@@ -57,7 +58,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblMaPhieu = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnXuatWord = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKiemKe)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -101,6 +101,7 @@
             this.dgvKiemKe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvKiemKe.Location = new System.Drawing.Point(3, 23);
             this.dgvKiemKe.Name = "dgvKiemKe";
+            this.dgvKiemKe.ReadOnly = true;
             this.dgvKiemKe.Size = new System.Drawing.Size(643, 468);
             this.dgvKiemKe.TabIndex = 0;
             // 
@@ -124,6 +125,7 @@
             this.dgvChiTietKiemKe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvChiTietKiemKe.Location = new System.Drawing.Point(3, 23);
             this.dgvChiTietKiemKe.Name = "dgvChiTietKiemKe";
+            this.dgvChiTietKiemKe.ReadOnly = true;
             this.dgvChiTietKiemKe.Size = new System.Drawing.Size(637, 251);
             this.dgvChiTietKiemKe.TabIndex = 0;
             // 
@@ -172,10 +174,20 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Thông tin sản phẩm";
             // 
+            // btnXuatWord
+            // 
+            this.btnXuatWord.Image = global::GUI.Properties.Resources.icons8_word_32;
+            this.btnXuatWord.Location = new System.Drawing.Point(313, 298);
+            this.btnXuatWord.Name = "btnXuatWord";
+            this.btnXuatWord.Size = new System.Drawing.Size(70, 60);
+            this.btnXuatWord.TabIndex = 10;
+            this.btnXuatWord.UseVisualStyleBackColor = true;
+            this.btnXuatWord.Click += new System.EventHandler(this.btnXuatWord_Click);
+            // 
             // btnRefresh
             // 
             this.btnRefresh.Image = global::GUI.Properties.Resources.icons8_refresh_32;
-            this.btnRefresh.Location = new System.Drawing.Point(222, 298);
+            this.btnRefresh.Location = new System.Drawing.Point(237, 298);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(70, 60);
             this.btnRefresh.TabIndex = 10;
@@ -185,7 +197,7 @@
             // btnLuuChiTietKiemKe
             // 
             this.btnLuuChiTietKiemKe.Image = global::GUI.Properties.Resources.icons8_save_as_32;
-            this.btnLuuChiTietKiemKe.Location = new System.Drawing.Point(146, 298);
+            this.btnLuuChiTietKiemKe.Location = new System.Drawing.Point(161, 298);
             this.btnLuuChiTietKiemKe.Name = "btnLuuChiTietKiemKe";
             this.btnLuuChiTietKiemKe.Size = new System.Drawing.Size(70, 60);
             this.btnLuuChiTietKiemKe.TabIndex = 10;
@@ -194,7 +206,7 @@
             // 
             // txtLyDoChenhLech
             // 
-            this.txtLyDoChenhLech.Location = new System.Drawing.Point(146, 179);
+            this.txtLyDoChenhLech.Location = new System.Drawing.Point(161, 179);
             this.txtLyDoChenhLech.Multiline = true;
             this.txtLyDoChenhLech.Name = "txtLyDoChenhLech";
             this.txtLyDoChenhLech.Size = new System.Drawing.Size(545, 113);
@@ -203,7 +215,7 @@
             // nudChenhLech
             // 
             this.nudChenhLech.Enabled = false;
-            this.nudChenhLech.Location = new System.Drawing.Point(597, 117);
+            this.nudChenhLech.Location = new System.Drawing.Point(633, 117);
             this.nudChenhLech.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -220,7 +232,7 @@
             // 
             // nudSoLuongThucTe
             // 
-            this.nudSoLuongThucTe.Location = new System.Drawing.Point(398, 117);
+            this.nudSoLuongThucTe.Location = new System.Drawing.Point(430, 117);
             this.nudSoLuongThucTe.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -238,7 +250,7 @@
             // nudSoLuongHeThong
             // 
             this.nudSoLuongHeThong.Enabled = false;
-            this.nudSoLuongHeThong.Location = new System.Drawing.Point(159, 117);
+            this.nudSoLuongHeThong.Location = new System.Drawing.Point(175, 117);
             this.nudSoLuongHeThong.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -256,7 +268,7 @@
             // lblTenSanPham
             // 
             this.lblTenSanPham.AutoSize = true;
-            this.lblTenSanPham.Location = new System.Drawing.Point(128, 35);
+            this.lblTenSanPham.Location = new System.Drawing.Point(141, 35);
             this.lblTenSanPham.Name = "lblTenSanPham";
             this.lblTenSanPham.Size = new System.Drawing.Size(139, 19);
             this.lblTenSanPham.TabIndex = 0;
@@ -265,7 +277,7 @@
             // lblTenLoai
             // 
             this.lblTenLoai.AutoSize = true;
-            this.lblTenLoai.Location = new System.Drawing.Point(56, 74);
+            this.lblTenLoai.Location = new System.Drawing.Point(61, 74);
             this.lblTenLoai.Name = "lblTenLoai";
             this.lblTenLoai.Size = new System.Drawing.Size(66, 19);
             this.lblTenLoai.TabIndex = 0;
@@ -274,54 +286,66 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(498, 119);
+            this.label8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Navy;
+            this.label8.Location = new System.Drawing.Point(530, 119);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 19);
+            this.label8.Size = new System.Drawing.Size(104, 19);
             this.label8.TabIndex = 0;
             this.label8.Text = "Chênh lệch:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(259, 119);
+            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Navy;
+            this.label7.Location = new System.Drawing.Point(275, 119);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(133, 19);
+            this.label7.Size = new System.Drawing.Size(149, 19);
             this.label7.TabIndex = 0;
             this.label7.Text = "Số lượng thực tế:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Navy;
             this.label10.Location = new System.Drawing.Point(6, 182);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(134, 19);
+            this.label10.Size = new System.Drawing.Size(149, 19);
             this.label10.TabIndex = 0;
             this.label10.Text = "Lý do chênh lệch:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Navy;
             this.label6.Location = new System.Drawing.Point(6, 119);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(147, 19);
+            this.label6.Size = new System.Drawing.Size(163, 19);
             this.label6.TabIndex = 0;
             this.label6.Text = "Số lượng hệ thống:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Navy;
             this.label11.Location = new System.Drawing.Point(6, 74);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(44, 19);
+            this.label11.Size = new System.Drawing.Size(49, 19);
             this.label11.TabIndex = 0;
             this.label11.Text = "Loại:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Navy;
             this.label9.Location = new System.Drawing.Point(6, 35);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(116, 19);
+            this.label9.Size = new System.Drawing.Size(129, 19);
             this.label9.TabIndex = 0;
             this.label9.Text = "Tên sản phẩm:";
             // 
@@ -347,7 +371,7 @@
             // lblTenNVTao
             // 
             this.lblTenNVTao.AutoSize = true;
-            this.lblTenNVTao.Location = new System.Drawing.Point(134, 116);
+            this.lblTenNVTao.Location = new System.Drawing.Point(149, 116);
             this.lblTenNVTao.Name = "lblTenNVTao";
             this.lblTenNVTao.Size = new System.Drawing.Size(107, 19);
             this.lblTenNVTao.TabIndex = 0;
@@ -356,16 +380,18 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Navy;
             this.label4.Location = new System.Drawing.Point(15, 116);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 19);
+            this.label4.Size = new System.Drawing.Size(128, 19);
             this.label4.TabIndex = 0;
             this.label4.Text = "Nhân viên tạo:";
             // 
             // lblNgayTao
             // 
             this.lblNgayTao.AutoSize = true;
-            this.lblNgayTao.Location = new System.Drawing.Point(101, 74);
+            this.lblNgayTao.Location = new System.Drawing.Point(109, 74);
             this.lblNgayTao.Name = "lblNgayTao";
             this.lblNgayTao.Size = new System.Drawing.Size(93, 19);
             this.lblNgayTao.TabIndex = 0;
@@ -374,16 +400,18 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Navy;
             this.label3.Location = new System.Drawing.Point(15, 74);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 19);
+            this.label3.Size = new System.Drawing.Size(88, 19);
             this.label3.TabIndex = 0;
             this.label3.Text = "Ngày tạo:";
             // 
             // lblMaPhieu
             // 
             this.lblMaPhieu.AutoSize = true;
-            this.lblMaPhieu.Location = new System.Drawing.Point(100, 33);
+            this.lblMaPhieu.Location = new System.Drawing.Point(110, 33);
             this.lblMaPhieu.Name = "lblMaPhieu";
             this.lblMaPhieu.Size = new System.Drawing.Size(54, 19);
             this.lblMaPhieu.TabIndex = 0;
@@ -392,21 +420,13 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Navy;
             this.label2.Location = new System.Drawing.Point(15, 33);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 19);
+            this.label2.Size = new System.Drawing.Size(89, 19);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã phiếu:";
-            // 
-            // btnXuatWord
-            // 
-            this.btnXuatWord.Image = global::GUI.Properties.Resources.icons8_word_32;
-            this.btnXuatWord.Location = new System.Drawing.Point(298, 298);
-            this.btnXuatWord.Name = "btnXuatWord";
-            this.btnXuatWord.Size = new System.Drawing.Size(70, 60);
-            this.btnXuatWord.TabIndex = 10;
-            this.btnXuatWord.UseVisualStyleBackColor = true;
-            this.btnXuatWord.Click += new System.EventHandler(this.btnXuatWord_Click);
             // 
             // frm_quanLyPhieuKiemKe
             // 

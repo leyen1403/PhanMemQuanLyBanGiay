@@ -1,5 +1,6 @@
 ﻿using BLL;
 using DevExpress.XtraBars;
+using DevExpress.XtraBars.Navigation;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -38,128 +39,46 @@ namespace GUI
             pnMain.Height = this.ClientSize.Height;
             pnMain.Width = this.ClientSize.Width - pnLeft.Width;
             this.MaximizeBox = false;
-            this.btn_LapDonDatHang.Click += Btn_LapDonDatHang_Click;
-            this.btn_LapHoaDon.Click += Btn_LapHoaDon_Click;
-            this.btn_LapThongKeBaoCao.Click += Btn_LapThongKeBaoCao_Click;
-            this.btn_Loai.Click += Btn_Loai_Click;
-            this.btn_DonDatHang.Click += Btn_DonDatHang_Click;
-            this.btn_HoaDon.Click += Btn_HoaDon_Click;
-            this.btn_KhachHang.Click += Btn_KhachHang_Click;
-            this.btn_Kho.Click += Btn_Kho_Click;
-            this.btn_NhaCC.Click += Btn_NhaCC_Click;
-            this.btn_NhanVien.Click += Btn_NhanVien_Click;
-            this.btnQuanLyPhieuKiemKe.Click += BtnQuanLyPhieuKiemKe_Click;
-            this.btn_dangXuat.ItemClick += Btn_dangXuat_ItemClick;
-            this.btn_Thoat.ItemClick += Btn_Thoat_ItemClick;
             label_tenNV.Caption = _nhanVien.TenNhanVien.ToString();
-            //PhanQuyen();
-        }
-
-        private void Btn_Thoat_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            // Hiển thị form đăng nhập
-            frm_dangNhap frm = new frm_dangNhap();
-            frm.Show();
-            this.Close();
-        }
-
-        private void Btn_Thoat_Click(object sender, EventArgs e)
-        {
-            // Hiển thị form đăng nhập
-            frm_dangNhap frm = new frm_dangNhap();
-            frm.Show();
-            this.Close();
-        }
-
-        private void Btn_dangXuat_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            // Hiển thị form đăng nhập
-            frm_dangNhap frm = new frm_dangNhap();
-            frm.Show();
-            this.Close();
+            PhanQuyen();
         }
 
         private void PhanQuyen()
         {
-            // Lấy danh sách quyền của nhân viên
-            List<string> danhSachQuyen = _phanQuyenBLL.LayDanhSachQuyen("NV004");
+            List<string> danhSachQuyen = _phanQuyenBLL.LayDanhSachQuyen(_nhanVien.MaNhanVien);
 
-            // Kiểm tra và ẩn/hiện nút dựa trên quyền
-            btn_LapDonDatHang.Visible = danhSachQuyen.Contains("Xem màn hình bán hàng");
-            btn_LapHoaDon.Visible = danhSachQuyen.Contains("Xem màn hình bán hàng");
-            btn_LapPhieuKiemKe.Visible = danhSachQuyen.Contains("Lập phiếu kiểm kê");
-            btn_LapThongKeBaoCao.Visible = danhSachQuyen.Contains("Xem màn hình báo cáo");
-            btn_Loai.Visible = danhSachQuyen.Contains("Quản lý loại sản phẩm");
-            btn_DonDatHang.Visible = danhSachQuyen.Contains("Quản lý đơn đặt hàng");
-            btn_HoaDon.Visible = danhSachQuyen.Contains("Quản lý hóa đơn");
-            btn_KhachHang.Visible = danhSachQuyen.Contains("Quản lý khách hàng");
-            btn_Kho.Visible = danhSachQuyen.Contains("Xem màn hình quản lý kho");
-            btn_NhaCC.Visible = danhSachQuyen.Contains("Quản lý nhà cung cấp");
-            btn_NhanVien.Visible = danhSachQuyen.Contains("Quản lý nhân viên");
-            btnQuanLyPhieuKiemKe.Visible = danhSachQuyen.Contains("Quản lý phiếu kiểm kê");
-            accordionControlElement4.Visible = danhSachQuyen.Contains("Quản lý phân quyền");
+            // Lặp qua tất cả các control trong form
+            foreach (AccordionControlElement control in accordionControl1.Elements)
+            {
+                foreach (AccordionControlElement element in control.Elements)
+                {
+                    if (element.Tag != null)
+                    {
+                        List<string> requiredPermissions = element.Tag.ToString().Split(',').ToList();
+                        if (requiredPermissions.Any(permission => danhSachQuyen.Contains(permission)))
+                        {
+                            element.Visible = true;
+                            element.Enabled = true;
+                        }
+                        else
+                        {
+                            element.Visible = false;
+                            element.Enabled = false;
+                        }
+                    }
+                }
+            }
         }
+
         private void BtnQuanLyPhieuKiemKe_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void Btn_NhanVien_Click(object sender, EventArgs e)
-        {
-            loadForm(new frm_quanLyNhanVien());
-        }
-
-        private void Btn_NhaCC_Click(object sender, EventArgs e)
-        {
-            loadForm(new frm_quanLyNhaCungCap());
-        }
-
-        private void Btn_Kho_Click(object sender, EventArgs e)
-        {
-            loadForm(new frm_quanLyKhoHang());
-        }
-
-        private void Btn_KhachHang_Click(object sender, EventArgs e)
-        {
-
-            loadForm(new frm_quanLyKhachHang());
-        }
-
-        private void Btn_HoaDon_Click(object sender, EventArgs e)
-        {
-            loadForm(new frm_quanLyHoaDon());
-        }
-
-        private void Btn_DonDatHang_Click(object sender, EventArgs e)
-        {
-            loadForm(new frm_quanLyDonDatHang());
-        }
-
-        private void Btn_Loai_Click(object sender, EventArgs e)
-        {
-
-            loadForm(new frm_quanLyChungLoai());
-        }
-
         private void Btn_LapThongKeBaoCao_Click(object sender, EventArgs e)
         {
             loadForm(new frm_lapThongKeBaoCao());
         }
-      
-
-        private void Btn_LapHoaDon_Click(object sender, EventArgs e)
-        {
-            frm_lapHoaDon frm_LapHoaDon = new frm_lapHoaDon();
-            frm_LapHoaDon.MaNhanVien = _nhanVien.MaNhanVien;
-            loadForm(frm_LapHoaDon);
-        }
-
-        private void Btn_LapDonDatHang_Click(object sender, EventArgs e)
-        {
-            frm_lapDonDatHang lapDonDatHang = new frm_lapDonDatHang();
-            lapDonDatHang.MaNhanVien = _nhanVien.MaNhanVien;
-            loadForm(lapDonDatHang);
-        }
+     
 
         void loadForm(Form form)
         {
@@ -212,5 +131,73 @@ namespace GUI
             loadForm(quanLyPhieuKiemKe);
         }
 
+        private void btn_LapHoaDon_Click_1(object sender, EventArgs e)
+        {
+            frm_lapHoaDon frm_LapHoaDon = new frm_lapHoaDon();
+            frm_LapHoaDon.MaNhanVien = _nhanVien.MaNhanVien;
+            loadForm(frm_LapHoaDon);
+        }
+
+        private void btn_LapThongKeBaoCao_Click_1(object sender, EventArgs e)
+        {
+            loadForm(new frm_lapThongKeBaoCao());
+        }
+
+        private void btn_LapDonDatHang_Click_1(object sender, EventArgs e)
+        {
+            frm_lapDonDatHang lapDonDatHang = new frm_lapDonDatHang();
+            lapDonDatHang.MaNhanVien = _nhanVien.MaNhanVien;
+            loadForm(lapDonDatHang);
+        }
+
+        private void btn_LapPhieuDoiTra_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_HoaDon_Click_1(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyHoaDon());
+        }
+
+        private void btn_DonDatHang_Click_1(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyDonDatHang());
+        }
+
+        private void btn_DoiTra_Click(object sender, EventArgs e)
+        {
+            loadForm(new frm_QuanLyPhieuTraHang() { MaNhanVien = _nhanVien.MaNhanVien});
+        }
+
+        private void btn_NhaCC_Click_1(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyNhaCungCap());
+        }
+
+        private void btn_KhachHang_Click_1(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyKhachHang());
+        }
+
+        private void btn_Kho_Click_1(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyKhoHang());
+        }
+
+        private void btn_NhanVien_Click_1(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyNhanVien());
+        }
+
+        private void btn_HoanTra_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_Loai_Click_1(object sender, EventArgs e)
+        {
+            loadForm(new frm_quanLyChungLoai());
+        }
     }
 }

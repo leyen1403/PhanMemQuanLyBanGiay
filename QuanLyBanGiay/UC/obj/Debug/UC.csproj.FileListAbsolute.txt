@@ -12,13 +12,13 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.P
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.GenerateResource.cache
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\UC.dll
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\UC.pdb
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.dll
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.pdb
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.dll.config
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.AssemblyReference.cache
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.ProductItem.resources
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.GenerateResource.cache
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.CoreCompileInputs.cache
-D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.Up2Date
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.dll
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.pdb
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.dll
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.pdb
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.dll.config
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.Up2Date

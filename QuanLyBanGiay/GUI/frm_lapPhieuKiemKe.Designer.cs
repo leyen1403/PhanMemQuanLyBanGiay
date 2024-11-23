@@ -406,6 +406,7 @@
             // 
             // cboLoaiSanPham
             // 
+            this.cboLoaiSanPham.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLoaiSanPham.Enabled = false;
             this.cboLoaiSanPham.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLoaiSanPham.FormattingEnabled = true;

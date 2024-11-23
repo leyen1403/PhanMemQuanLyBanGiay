@@ -35,5 +35,9 @@ namespace BLL
         {
             return _khachHangDAL.AddDiemCongTichLuy(maKhachHang, diemCong);
         }
+        public bool SuaThongTinKhachHang(KhachHang kh)
+        {
+            return _khachHangDAL.SuathongtinKhachHang(kh);
+        }
     }
 }

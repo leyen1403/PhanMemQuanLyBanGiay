@@ -199,21 +199,29 @@
             this.btn_LapHoaDon.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_LapHoaDon.ImageOptions.Image")));
             this.btn_LapHoaDon.Name = "btn_LapHoaDon";
             this.btn_LapHoaDon.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_LapHoaDon.Tag = "Q001";
             this.btn_LapHoaDon.Text = "Lập Hoá Đơn";
+            this.btn_LapHoaDon.Visible = false;
+            this.btn_LapHoaDon.Click += new System.EventHandler(this.btn_LapHoaDon_Click_1);
             // 
             // btn_LapThongKeBaoCao
             // 
             this.btn_LapThongKeBaoCao.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_LapThongKeBaoCao.ImageOptions.Image")));
             this.btn_LapThongKeBaoCao.Name = "btn_LapThongKeBaoCao";
             this.btn_LapThongKeBaoCao.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_LapThongKeBaoCao.Tag = "Q002";
             this.btn_LapThongKeBaoCao.Text = "Lập thống kê báo cáo";
+            this.btn_LapThongKeBaoCao.Visible = false;
+            this.btn_LapThongKeBaoCao.Click += new System.EventHandler(this.btn_LapThongKeBaoCao_Click_1);
             // 
             // btn_LapPhieuKiemKe
             // 
             this.btn_LapPhieuKiemKe.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_LapPhieuKiemKe.ImageOptions.Image")));
             this.btn_LapPhieuKiemKe.Name = "btn_LapPhieuKiemKe";
             this.btn_LapPhieuKiemKe.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_LapPhieuKiemKe.Tag = "Q003";
             this.btn_LapPhieuKiemKe.Text = "Lập Phiếu Kiểm Kê";
+            this.btn_LapPhieuKiemKe.Visible = false;
             this.btn_LapPhieuKiemKe.Click += new System.EventHandler(this.btn_LapPhieuKiemKe_Click);
             // 
             // btn_LapDonDatHang
@@ -221,14 +229,20 @@
             this.btn_LapDonDatHang.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_LapDonDatHang.ImageOptions.Image")));
             this.btn_LapDonDatHang.Name = "btn_LapDonDatHang";
             this.btn_LapDonDatHang.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_LapDonDatHang.Tag = "Q004";
             this.btn_LapDonDatHang.Text = "Lập Đơn Đặt Hàng";
+            this.btn_LapDonDatHang.Visible = false;
+            this.btn_LapDonDatHang.Click += new System.EventHandler(this.btn_LapDonDatHang_Click_1);
             // 
             // btn_LapPhieuDoiTra
             // 
             this.btn_LapPhieuDoiTra.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_LapPhieuDoiTra.ImageOptions.Image")));
             this.btn_LapPhieuDoiTra.Name = "btn_LapPhieuDoiTra";
             this.btn_LapPhieuDoiTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_LapPhieuDoiTra.Tag = "Q005";
             this.btn_LapPhieuDoiTra.Text = "Lập Phiếu Đổi Trả";
+            this.btn_LapPhieuDoiTra.Visible = false;
+            this.btn_LapPhieuDoiTra.Click += new System.EventHandler(this.btn_LapPhieuDoiTra_Click);
             // 
             // accordionControlElement2
             // 
@@ -254,21 +268,29 @@
             this.btn_HoaDon.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_HoaDon.ImageOptions.Image")));
             this.btn_HoaDon.Name = "btn_HoaDon";
             this.btn_HoaDon.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_HoaDon.Tag = "Q006";
             this.btn_HoaDon.Text = "Quản lý hoá đơn";
+            this.btn_HoaDon.Visible = false;
+            this.btn_HoaDon.Click += new System.EventHandler(this.btn_HoaDon_Click_1);
             // 
             // btn_DonDatHang
             // 
             this.btn_DonDatHang.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_DonDatHang.ImageOptions.Image")));
             this.btn_DonDatHang.Name = "btn_DonDatHang";
             this.btn_DonDatHang.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_DonDatHang.Tag = "Q007";
             this.btn_DonDatHang.Text = "Quản lý đơn đặt hàng";
+            this.btn_DonDatHang.Visible = false;
+            this.btn_DonDatHang.Click += new System.EventHandler(this.btn_DonDatHang_Click_1);
             // 
             // btnQuanLyPhieuKiemKe
             // 
             this.btnQuanLyPhieuKiemKe.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnQuanLyPhieuKiemKe.ImageOptions.Image")));
             this.btnQuanLyPhieuKiemKe.Name = "btnQuanLyPhieuKiemKe";
             this.btnQuanLyPhieuKiemKe.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btnQuanLyPhieuKiemKe.Tag = "Q008";
             this.btnQuanLyPhieuKiemKe.Text = "Quản lý phiếu kiểm kê";
+            this.btnQuanLyPhieuKiemKe.Visible = false;
             this.btnQuanLyPhieuKiemKe.Click += new System.EventHandler(this.btnQuanLyPhieuKiemKe_Click_1);
             // 
             // btn_DoiTra
@@ -276,56 +298,79 @@
             this.btn_DoiTra.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_DoiTra.ImageOptions.Image")));
             this.btn_DoiTra.Name = "btn_DoiTra";
             this.btn_DoiTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_DoiTra.Tag = "Q009";
             this.btn_DoiTra.Text = "Quản lý đổi trả sản phẩm";
+            this.btn_DoiTra.Visible = false;
+            this.btn_DoiTra.Click += new System.EventHandler(this.btn_DoiTra_Click);
             // 
             // btn_NhaCC
             // 
             this.btn_NhaCC.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_NhaCC.ImageOptions.Image")));
             this.btn_NhaCC.Name = "btn_NhaCC";
             this.btn_NhaCC.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_NhaCC.Tag = "Q010";
             this.btn_NhaCC.Text = "Quản lý nhà cung cấp";
+            this.btn_NhaCC.Visible = false;
+            this.btn_NhaCC.Click += new System.EventHandler(this.btn_NhaCC_Click_1);
             // 
             // btn_KhachHang
             // 
             this.btn_KhachHang.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_KhachHang.ImageOptions.Image")));
             this.btn_KhachHang.Name = "btn_KhachHang";
             this.btn_KhachHang.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_KhachHang.Tag = "Q011";
             this.btn_KhachHang.Text = "Quản lý khách hàng";
+            this.btn_KhachHang.Visible = false;
+            this.btn_KhachHang.Click += new System.EventHandler(this.btn_KhachHang_Click_1);
             // 
             // btn_Kho
             // 
             this.btn_Kho.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Kho.ImageOptions.Image")));
             this.btn_Kho.Name = "btn_Kho";
             this.btn_Kho.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_Kho.Tag = "Q012";
             this.btn_Kho.Text = "Quản lý kho hàng";
+            this.btn_Kho.Visible = false;
+            this.btn_Kho.Click += new System.EventHandler(this.btn_Kho_Click_1);
             // 
             // btn_NhanVien
             // 
             this.btn_NhanVien.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_NhanVien.ImageOptions.Image")));
             this.btn_NhanVien.Name = "btn_NhanVien";
             this.btn_NhanVien.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_NhanVien.Tag = "Q013";
             this.btn_NhanVien.Text = "Quản lý nhân viên";
+            this.btn_NhanVien.Visible = false;
+            this.btn_NhanVien.Click += new System.EventHandler(this.btn_NhanVien_Click_1);
             // 
             // btn_HoanTra
             // 
             this.btn_HoanTra.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_HoanTra.ImageOptions.Image")));
             this.btn_HoanTra.Name = "btn_HoanTra";
             this.btn_HoanTra.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_HoanTra.Tag = "Q014";
             this.btn_HoanTra.Text = "Quản lý hoàn sản phẩm";
+            this.btn_HoanTra.Visible = false;
+            this.btn_HoanTra.Click += new System.EventHandler(this.btn_HoanTra_Click);
             // 
             // btn_Loai
             // 
             this.btn_Loai.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btn_Loai.ImageOptions.Image")));
             this.btn_Loai.Name = "btn_Loai";
             this.btn_Loai.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_Loai.Tag = "Q015";
             this.btn_Loai.Text = "Quản lý chủng loại sản phẩm";
+            this.btn_Loai.Visible = false;
+            this.btn_Loai.Click += new System.EventHandler(this.btn_Loai_Click_1);
             // 
             // accordionControlElement4
             // 
             this.accordionControlElement4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement4.ImageOptions.Image")));
             this.accordionControlElement4.Name = "accordionControlElement4";
             this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement4.Tag = "Q016";
             this.accordionControlElement4.Text = "Quản lý phân quyền";
+            this.accordionControlElement4.Visible = false;
             this.accordionControlElement4.Click += new System.EventHandler(this.accordionControlElement4_Click);
             // 
             // accordionControlElement3

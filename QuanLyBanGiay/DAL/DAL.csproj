@@ -64,7 +64,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuyenDAL.cs" />
     <Compile Include="SanPhamDAL.cs" />
+    <Compile Include="ThongKeBaoCaoDAL.cs" />
     <Compile Include="ThuongHieuDAL.cs" />
+    <Compile Include="TraSanPhamChiTietDAL.cs" />
+    <Compile Include="TraSanPhamDAL.cs" />
     <Compile Include="VaiTroDAL.cs" />
     <Compile Include="VaiTro_QuyenDAL.cs" />
   </ItemGroup>

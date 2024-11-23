@@ -43,5 +43,25 @@ namespace DAL
                 return false;
             }
         }
+        public bool ThemNhaCungCap(NhaCungCap ncc)
+        {
+            try
+            {
+                db.NhaCungCaps.InsertOnSubmit(ncc);
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        // viết hàm kiểm tra tên nhà cung cấp đã tồn tại chưa
+        public bool KiemTraTenNhaCungCap(string tenNhaCungCap)
+        {
+            NhaCungCap ncc = db.NhaCungCaps.Where(x => x.TenNhaCungCap == tenNhaCungCap).FirstOrDefault();
+            if (ncc == null) { return false; }
+            return true;
+        }
     }
 }

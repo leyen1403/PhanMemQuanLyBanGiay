@@ -71,18 +71,18 @@ namespace GUI
 
         private void hienThiThongTinSanPham()
         {
-            txtMaSanPham.Text = dgvSanPham.CurrentRow.Cells["MaSanPham"].Value.ToString();
-            txtTenSanPham.Text = dgvSanPham.CurrentRow.Cells["TenSanPham"].Value.ToString();
-            nudSoLuongHeThong.Value = Convert.ToInt32(dgvSanPham.CurrentRow.Cells["SoLuong"].Value.ToString());
-            nudSoLuongKiemKe.Value = Convert.ToInt32(dgvSanPham.CurrentRow.Cells["SoLuong"].Value.ToString());
-            nudSoLuongChenhLech.Value = tinhSoLuongChenhLech(nudSoLuongHeThong.Value, nudSoLuongKiemKe.Value);
-            if (nudSoLuongChenhLech.Value == 0)
+            if (dgvSanPham.CurrentRow != null)
             {
-                nudSoLuongChenhLech.BackColor = Color.White;
-            }
-            else
-            {
-                nudSoLuongChenhLech.BackColor = Color.Red;
+                var cells = dgvSanPham.CurrentRow.Cells;
+                if (cells["MaSanPham"]?.Value != null && cells["TenSanPham"]?.Value != null && cells["SoLuong"]?.Value != null)
+                {
+                    txtMaSanPham.Text = cells["MaSanPham"].Value.ToString();
+                    txtTenSanPham.Text = cells["TenSanPham"].Value.ToString();
+                    nudSoLuongHeThong.Value = Convert.ToInt32(cells["SoLuong"].Value.ToString());
+                    nudSoLuongKiemKe.Value = Convert.ToInt32(cells["SoLuong"].Value.ToString());
+                    nudSoLuongChenhLech.Value = tinhSoLuongChenhLech(nudSoLuongHeThong.Value, nudSoLuongKiemKe.Value);
+                    nudSoLuongChenhLech.BackColor = nudSoLuongChenhLech.Value == 0 ? Color.White : Color.Red;
+                }
             }
         }
 
