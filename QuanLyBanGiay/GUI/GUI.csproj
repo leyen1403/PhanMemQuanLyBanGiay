@@ -87,6 +87,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PhanMemQuanLyBanGiay\AppBanGiay\GUI\bin\Debug\DevExpress.XtraEditors.v22.2.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraGrid.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v22.2, Version=22.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\PhanMemQuanLyBanGiay\AppBanGiay\GUI\bin\Debug\DevExpress.XtraLayout.v22.2.dll</HintPath>
@@ -135,12 +136,6 @@
     </Compile>
     <Compile Include="frm_lapHoaDon.Designer.cs">
       <DependentUpon>frm_lapHoaDon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm_LapPhieuDoiTra.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm_LapPhieuDoiTra.Designer.cs">
-      <DependentUpon>frm_LapPhieuDoiTra.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_lapPhieuKiemKe.cs">
       <SubType>Form</SubType>
@@ -214,6 +209,12 @@
     <Compile Include="frm_quanLyPhieuKiemKe.Designer.cs">
       <DependentUpon>frm_quanLyPhieuKiemKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_QuanLyPhieuTraHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_QuanLyPhieuTraHang.Designer.cs">
+      <DependentUpon>frm_QuanLyPhieuTraHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_ThemNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,9 +256,6 @@
     <EmbeddedResource Include="frm_lapHoaDon.resx">
       <DependentUpon>frm_lapHoaDon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_LapPhieuDoiTra.resx">
-      <DependentUpon>frm_LapPhieuDoiTra.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frm_lapPhieuKiemKe.resx">
       <DependentUpon>frm_lapPhieuKiemKe.cs</DependentUpon>
     </EmbeddedResource>
@@ -293,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_quanLyPhieuKiemKe.resx">
       <DependentUpon>frm_quanLyPhieuKiemKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_QuanLyPhieuTraHang.resx">
+      <DependentUpon>frm_QuanLyPhieuTraHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_ThemNhanVien.resx">
       <DependentUpon>frm_ThemNhanVien.cs</DependentUpon>

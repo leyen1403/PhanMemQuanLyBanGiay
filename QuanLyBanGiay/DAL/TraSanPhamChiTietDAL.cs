@@ -45,6 +45,14 @@ namespace DAL
                     {
                         return false;
                     }
+                    // Cập nhật lại tổng tiền của TraSanPham
+                    TraSanPhamDAL traSanPhamDAL = new TraSanPhamDAL();
+                    TraSanPham traSanPham = traSanPhamDAL.LayDanhSachTraSanPham().Where(x=>x.MaTraSanPham == traSanPhamChiTiet.MaTraSanPham).FirstOrDefault();
+                    traSanPham.TongTienHoanLai += traSanPhamChiTiet.SoTienHoanLai;
+                    if (traSanPhamDAL.CapNhatTraSanPham(traSanPham) == false)
+                    {
+                        return false;
+                    }
                     db.SubmitChanges();
                     return true;
                 }
@@ -58,45 +66,23 @@ namespace DAL
         {
             try
             {
-                TraSanPhamChiTiet traSanPhamChiTietUpdate = db.TraSanPhamChiTiets.Where(p => p.MaTraSanPham == traSanPhamChiTiet.MaTraSanPham && p.MaSanPham == traSanPhamChiTiet.MaSanPham).FirstOrDefault();
-                traSanPhamChiTietUpdate.MaHoaDon = traSanPhamChiTiet.MaHoaDon;
-                traSanPhamChiTietUpdate.SoLuong = traSanPhamChiTiet.SoLuong;
-                traSanPhamChiTietUpdate.TinhTrangSanPham = traSanPhamChiTiet.TinhTrangSanPham;
-                traSanPhamChiTietUpdate.SoTienHoanLai = traSanPhamChiTiet.SoTienHoanLai;
-                // Cập nhật số lượng sản phẩm trong kho
-                SanPhamDAL sanPhamDAL = new SanPhamDAL();
-                SanPham sanPham = sanPhamDAL.laySanPhamTheoMa(traSanPhamChiTiet.MaSanPham);
-                sanPham.SoLuong += traSanPhamChiTietUpdate.SoLuong - traSanPhamChiTiet.SoLuong;
-                sanPham.NgayCapNhat = DateTime.Now;
-                if (sanPhamDAL.suaSanPham(sanPham) == false)
+                TraSanPhamChiTiet tspctNew = db.TraSanPhamChiTiets.Where(p => p.MaTraSanPham == traSanPhamChiTiet.MaTraSanPham && p.MaSanPham == traSanPhamChiTiet.MaSanPham).FirstOrDefault();
+                if (tspctNew == null)
                 {
                     return false;
                 }
-                // Cập nhật lại tổng tiền của hóa đơn
-                HoaDonDAL hoaDonDAL = new HoaDonDAL();
-                HoaDon hoaDon = hoaDonDAL.TimHoaDonTheoMaHoaDon(traSanPhamChiTiet.MaHoaDon).FirstOrDefault();
-                hoaDon.TongTien += traSanPhamChiTietUpdate.SoTienHoanLai - traSanPhamChiTiet.SoTienHoanLai;
-                if (hoaDonDAL.SuaHoaDon(hoaDon) == false)
-                {
-                    return false;
-                }
-                // Cập nhật lại số lượng trong chi tiết hoá đơn
-                ChiTietHoaDonDAL chiTietHoaDonDAL = new ChiTietHoaDonDAL();
-                ChiTietHoaDon chiTietHoaDon = chiTietHoaDonDAL.LayChiTietHoaDonTheoMaHoaDon(traSanPhamChiTiet.MaHoaDon).Where(p => p.MaSanPham == traSanPhamChiTiet.MaSanPham).FirstOrDefault();
-                chiTietHoaDon.SoLuong += traSanPhamChiTietUpdate.SoLuong - traSanPhamChiTiet.SoLuong;
-                chiTietHoaDon.ThanhTien += traSanPhamChiTietUpdate.SoTienHoanLai - traSanPhamChiTiet.SoTienHoanLai;
-                if (chiTietHoaDonDAL.CapNhatChiTietHoaDon(chiTietHoaDon) == false)
-                {
-                    return false;
-                }
+                tspctNew.SoLuong = traSanPhamChiTiet.SoLuong;
+                tspctNew.SoTienHoanLai = traSanPhamChiTiet.SoTienHoanLai;
+                tspctNew.TinhTrangSanPham = traSanPhamChiTiet.TinhTrangSanPham;
                 db.SubmitChanges();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
         }
+
         public bool XoaTraSanPhamChiTiet(TraSanPhamChiTiet traSanPhamChiTiet)
         {
             try
@@ -141,6 +127,11 @@ namespace DAL
         public List<TraSanPhamChiTiet> LayTraSanPhamChiTiet(string maTraSanPham)
         {
             return LayTraSanPhamChiTiet().Where(p => p.MaTraSanPham == maTraSanPham).ToList();
+        }
+
+        public TraSanPhamChiTiet LayTraSanPhamChiTietTheoMaTraSanPhamVaMaSanPham(string maPhieuHoanTra, string maSanPham)
+        {
+            return db.TraSanPhamChiTiets.FirstOrDefault(p => p.MaTraSanPham == maPhieuHoanTra && p.MaSanPham == maSanPham);
         }
     }
 }

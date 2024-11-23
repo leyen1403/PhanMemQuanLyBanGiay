@@ -152,9 +152,7 @@ namespace GUI
 
         private void btn_LapPhieuDoiTra_Click(object sender, EventArgs e)
         {
-            frm_LapPhieuDoiTra frm = new frm_LapPhieuDoiTra();
-            frm.MaNhanVien = _nhanVien.MaNhanVien;
-            loadForm(frm);
+
         }
 
         private void btn_HoaDon_Click_1(object sender, EventArgs e)
@@ -169,7 +167,7 @@ namespace GUI
 
         private void btn_DoiTra_Click(object sender, EventArgs e)
         {
-
+            loadForm(new frm_QuanLyPhieuTraHang());
         }
 
         private void btn_NhaCC_Click_1(object sender, EventArgs e)

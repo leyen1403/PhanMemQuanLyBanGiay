@@ -29,5 +29,10 @@ namespace BLL
         {
             return traSanPhamChiTietDAL.LayTraSanPhamChiTiet(maTraSanPham);
         }
+
+        public TraSanPhamChiTiet LayTraSanPhamChiTietTheoMaTraSanPhamVaMaSanPham(string maPhieuHoanTra, string maSanPham)
+        {
+            return traSanPhamChiTietDAL.LayTraSanPhamChiTietTheoMaTraSanPhamVaMaSanPham(maPhieuHoanTra, maSanPham);
+        }
     }
 }

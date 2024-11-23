@@ -24,5 +24,10 @@ namespace BLL
         {
             return traSanPhamDAL.LayDanhSachTraSanPham();
         }
+
+        public TraSanPham LayDanhSachTraSanPhamTheoMaTraSanPham(string maTraSanPham)
+        {
+            return traSanPhamDAL.LayDanhSachTraSanPham().Where(p => p.MaTraSanPham == maTraSanPham).FirstOrDefault();
+        }
     }
 }
