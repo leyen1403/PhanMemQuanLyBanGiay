@@ -213,3 +213,4 @@ D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\DevExpress.XtraVertic
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\DevExpress.XtraGrid.v22.2.xml
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\DevExpress.XtraNavBar.v22.2.xml
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_QuanLyPhieuTraHang.resources
+D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_ThemPhieuDoiTra.resources

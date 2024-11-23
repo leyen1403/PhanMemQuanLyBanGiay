@@ -54,6 +54,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SanPhamDoiTraDTO.cs" />
     <Compile Include="SanPhamDTO.cs" />
     <Compile Include="ThongKeLoai.cs" />
   </ItemGroup>

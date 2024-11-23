@@ -34,5 +34,10 @@ namespace BLL
         {
             return traSanPhamChiTietDAL.LayTraSanPhamChiTietTheoMaTraSanPhamVaMaSanPham(maPhieuHoanTra, maSanPham);
         }
+
+        public bool ThemListTraSanPhamChiTiet(List<TraSanPhamChiTiet> lstTraSanPhamChiTiet)
+        {
+            return traSanPhamChiTietDAL.ThemListTraSanPhamChiTiet(lstTraSanPhamChiTiet);    
+        }
     }
 }

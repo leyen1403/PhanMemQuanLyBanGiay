@@ -83,5 +83,10 @@ namespace DAL
                 return false;
             }
         }
+
+        public List<ChiTietHoaDon> LayDanhSachChiTietHoaDonTheoMaHoaDon(string maHoaDon)
+        {
+            return db.ChiTietHoaDons.ToList().Where(p => p.MaHoaDon == maHoaDon).ToList();
+        }
     }
 }

@@ -15,47 +15,9 @@ namespace DAL
         {
             try
             {
-                TraSanPhamChiTiet t = db.TraSanPhamChiTiets.Where(p => p.MaTraSanPham == traSanPhamChiTiet.MaTraSanPham && p.MaSanPham == traSanPhamChiTiet.MaSanPham).FirstOrDefault();
-                if (t != null)
-                {
-                    return false;
-                }
-                else
-                {
-                    db.TraSanPhamChiTiets.InsertOnSubmit(traSanPhamChiTiet);
-                    // Trừ đi số lượng tồn kho của sản phẩm
-                    SanPhamDAL sanPhamDAL = new SanPhamDAL();
-                    SanPham sanPham = sanPhamDAL.laySanPhamTheoMa(traSanPhamChiTiet.MaSanPham);
-                    sanPham.SoLuong -= traSanPhamChiTiet.SoLuong;
-                    sanPham.NgayCapNhat = DateTime.Now;
-                    // Cập nhật lại tổng tiền của hóa đơn
-                    HoaDonDAL hoaDonDAL = new HoaDonDAL();
-                    HoaDon hoaDon = hoaDonDAL.TimHoaDonTheoMaHoaDon(traSanPhamChiTiet.MaHoaDon).FirstOrDefault();
-                    hoaDon.TongTien -= traSanPhamChiTiet.SoTienHoanLai;
-                    if (hoaDonDAL.SuaHoaDon(hoaDon) == false)
-                    {
-                        return false;
-                    }
-                    // Cập nhật lại số lượng trong chi tiết hoá đơn
-                    ChiTietHoaDonDAL chiTietHoaDonDAL = new ChiTietHoaDonDAL();
-                    ChiTietHoaDon chiTietHoaDon = chiTietHoaDonDAL.LayChiTietHoaDonTheoMaHoaDon(traSanPhamChiTiet.MaHoaDon).Where(p => p.MaSanPham == traSanPhamChiTiet.MaSanPham).FirstOrDefault();
-                    chiTietHoaDon.SoLuong -= traSanPhamChiTiet.SoLuong;
-                    chiTietHoaDon.ThanhTien -= traSanPhamChiTiet.SoTienHoanLai;
-                    if (chiTietHoaDonDAL.CapNhatChiTietHoaDon(chiTietHoaDon) == false)
-                    {
-                        return false;
-                    }
-                    // Cập nhật lại tổng tiền của TraSanPham
-                    TraSanPhamDAL traSanPhamDAL = new TraSanPhamDAL();
-                    TraSanPham traSanPham = traSanPhamDAL.LayDanhSachTraSanPham().Where(x=>x.MaTraSanPham == traSanPhamChiTiet.MaTraSanPham).FirstOrDefault();
-                    traSanPham.TongTienHoanLai += traSanPhamChiTiet.SoTienHoanLai;
-                    if (traSanPhamDAL.CapNhatTraSanPham(traSanPham) == false)
-                    {
-                        return false;
-                    }
-                    db.SubmitChanges();
-                    return true;
-                }
+                db.TraSanPhamChiTiets.InsertOnSubmit(traSanPhamChiTiet);
+                db.SubmitChanges();
+                return true;
             }
             catch
             {
@@ -87,31 +49,12 @@ namespace DAL
         {
             try
             {
-                TraSanPhamChiTiet traSanPhamChiTietDelete = db.TraSanPhamChiTiets.Where(p => p.MaTraSanPham == traSanPhamChiTiet.MaTraSanPham && p.MaSanPham == traSanPhamChiTiet.MaSanPham).FirstOrDefault();
-                // Cập nhật số lượng sản phẩm trong kho
-                SanPhamDAL sanPhamDAL = new SanPhamDAL();
-                SanPham sanPham = sanPhamDAL.laySanPhamTheoMa(traSanPhamChiTietDelete.MaSanPham);
-                sanPham.SoLuong += traSanPhamChiTietDelete.SoLuong;
-                sanPham.NgayCapNhat = DateTime.Now;
-                if (sanPhamDAL.suaSanPham(sanPham) == false)
+                TraSanPhamChiTiet tspct = db.TraSanPhamChiTiets.Where(p => p.MaTraSanPham == traSanPhamChiTiet.MaTraSanPham && p.MaSanPham == traSanPhamChiTiet.MaSanPham).FirstOrDefault();
+                if (tspct == null)
                 {
                     return false;
                 }
-                // Cập nhật tổng tiền của hoá đơn
-                HoaDonDAL hoaDonDAL = new HoaDonDAL();
-                HoaDon hoaDon = hoaDonDAL.TimHoaDonTheoMaHoaDon(traSanPhamChiTiet.MaHoaDon).FirstOrDefault();
-                hoaDon.TongTien += traSanPhamChiTiet.SoTienHoanLai;
-                if (hoaDonDAL.SuaHoaDon(hoaDon) == false) { return false; }
-                // Cập nhật số lượng và thành tiền của hoá đơn
-                ChiTietHoaDonDAL chiTietHoaDonDAL = new ChiTietHoaDonDAL();
-                ChiTietHoaDon chiTietHoaDon = chiTietHoaDonDAL.LayChiTietHoaDonTheoMaHoaDon(traSanPhamChiTietDelete.MaHoaDon).Where(x => x.MaSanPham == traSanPhamChiTiet.MaSanPham).FirstOrDefault();
-                chiTietHoaDon.SoLuong += traSanPhamChiTietDelete.SoLuong;
-                chiTietHoaDon.ThanhTien += traSanPhamChiTietDelete.SoTienHoanLai;
-                if (chiTietHoaDonDAL.CapNhatChiTietHoaDon(chiTietHoaDon) == false)
-                {
-                    return false;
-                }
-                db.TraSanPhamChiTiets.DeleteOnSubmit(traSanPhamChiTietDelete);
+                db.TraSanPhamChiTiets.DeleteOnSubmit(tspct);
                 db.SubmitChanges();
                 return true;
             }
@@ -132,6 +75,20 @@ namespace DAL
         public TraSanPhamChiTiet LayTraSanPhamChiTietTheoMaTraSanPhamVaMaSanPham(string maPhieuHoanTra, string maSanPham)
         {
             return db.TraSanPhamChiTiets.FirstOrDefault(p => p.MaTraSanPham == maPhieuHoanTra && p.MaSanPham == maSanPham);
+        }
+
+        public bool ThemListTraSanPhamChiTiet(List<TraSanPhamChiTiet> lstTraSanPhamChiTiet)
+        {
+            try
+            {
+                db.TraSanPhamChiTiets.InsertAllOnSubmit(lstTraSanPhamChiTiet);
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

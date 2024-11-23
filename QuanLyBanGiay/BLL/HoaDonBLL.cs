@@ -50,5 +50,9 @@ namespace BLL
         {
             return _hoaDonDAL.TimHoaDonTheoTenNhanVien(key);
         }
+        public HoaDon TimHoaDonByMaHoaDon(string maHoaDon)
+        {
+            return _hoaDonDAL.LayTatCaHoaDon().Where(t => t.MaHoaDon == maHoaDon).FirstOrDefault();
+        }
     }
 }

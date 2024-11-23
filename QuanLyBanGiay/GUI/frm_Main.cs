@@ -167,7 +167,7 @@ namespace GUI
 
         private void btn_DoiTra_Click(object sender, EventArgs e)
         {
-            loadForm(new frm_QuanLyPhieuTraHang());
+            loadForm(new frm_QuanLyPhieuTraHang() { MaNhanVien = _nhanVien.MaNhanVien});
         }
 
         private void btn_NhaCC_Click_1(object sender, EventArgs e)

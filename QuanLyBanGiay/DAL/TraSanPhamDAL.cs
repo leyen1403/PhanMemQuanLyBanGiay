@@ -49,5 +49,24 @@ namespace DAL
         {
             return db.TraSanPhams.ToList();
         }
+
+        public bool XoaTraSanPham(TraSanPham traSanPham)
+        {
+            try
+            {
+                TraSanPham tsp = db.TraSanPhams.Where(p => p.MaTraSanPham == traSanPham.MaTraSanPham).FirstOrDefault();
+                if (tsp == null)
+                {
+                    return false;
+                }
+                db.TraSanPhams.DeleteOnSubmit(tsp);
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

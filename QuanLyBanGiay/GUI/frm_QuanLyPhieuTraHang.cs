@@ -16,7 +16,7 @@ namespace GUI
 {
     public partial class frm_QuanLyPhieuTraHang : Form
     {
-
+        public string MaNhanVien { get; set; }
         public frm_QuanLyPhieuTraHang()
         {
             InitializeComponent();
@@ -25,17 +25,49 @@ namespace GUI
         private void frm_QuanLyPhieuTraHang_Load(object sender, EventArgs e)
         {
             loadDGVDanhSachPhieuHoanTra();
+            SetPlaceholder(txtTim, "Nhập mã hoá đơn, mã trả sản phẩm, mã nhân viên, tên nhân viên, mã khách hàng, tên khách hàng, ngày lập,...");
+        }
+        private void SetPlaceholder(TextBox txtBox, string placeholderText)
+        {
+            txtBox.Text = placeholderText;
+            txtBox.ForeColor = Color.Gray;
+
+            // Sự kiện khi người dùng click vào TextBox
+            txtBox.Enter += (sender, e) =>
+            {
+                if (txtBox.Text == placeholderText)
+                {
+                    txtBox.Text = "";
+                    txtBox.ForeColor = Color.Black;
+                }
+            };
+
+            // Sự kiện khi người dùng rời khỏi TextBox
+            txtBox.Leave += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(txtBox.Text))
+                {
+                    txtBox.Text = placeholderText;
+                    txtBox.ForeColor = Color.Gray;
+                }
+            };
         }
 
         private void loadDGVDanhSachPhieuHoanTra()
         {
             // Lấy danh sách phiếu hoàn trả từ database
             TraSanPhamBLL traSanPhamBLL = new TraSanPhamBLL();
-            List<TraSanPham> lstTraSanPham = traSanPhamBLL.LayDanhSachTraSanPham().OrderByDescending(x=>x.MaTraSanPham).ToList();
+            List<TraSanPham> lstTraSanPham = traSanPhamBLL.LayDanhSachTraSanPham().OrderByDescending(x => x.MaTraSanPham).ToList();
             dgvDanhSachPhieuHoanTra.DataSource = lstTraSanPham;
 
             // Định dạng hiển thị cho các cột
             dinhDangDGVDanhSachPhieuHoanTra();
+
+            // Kiểm tra nếu có hàng nào được chọn
+            if (dgvDanhSachPhieuHoanTra.SelectedRows.Count > 0)
+            {
+                dgvDanhSachPhieuHoanTra.SelectedRows[0].Selected = true;
+            }
 
             // Đảm bảo rằng số thứ tự được vẽ mỗi khi cập nhật dòng
             dgvDanhSachPhieuHoanTra.RowPostPaint += dgvDanhSachPhieuHoanTra_RowPostPaint;
@@ -100,8 +132,10 @@ namespace GUI
             if (result == DialogResult.Yes)
             {
                 // Mở form tạo phiếu đổi trả
-
-                // Sau khi tạo phiếu đổi trả, cập nhật lại DataGridView
+                frm_ThemPhieuDoiTra themPhieuDoiTra = new frm_ThemPhieuDoiTra();
+                themPhieuDoiTra.MaNhanVien = MaNhanVien;
+                themPhieuDoiTra.ShowDialog();
+                // Sau khi tạo phiếu đổi trả thành công, cập nhật lại DataGridView
                 loadDGVDanhSachPhieuHoanTra();
             }
         }
@@ -113,15 +147,46 @@ namespace GUI
             if (result == DialogResult.Yes)
             {
                 // Lấy mã phiếu đổi trả từ dgvDanhSachPhieuHoanTra
+                string maTraSanPham = dgvDanhSachPhieuHoanTra.CurrentRow.Cells["MaTraSanPham"].Value.ToString();
+                TraSanPhamChiTietBLL traSanPhamChiTietBLL = new TraSanPhamChiTietBLL();
+                List<TraSanPhamChiTiet> lstTraSanPhamChiTiet = traSanPhamChiTietBLL.LayTraSanPhamChiTietTheoMaTraSanPham(maTraSanPham);
+                foreach (TraSanPhamChiTiet traSanPhamChiTiet in lstTraSanPhamChiTiet)
+                {
+                    // Cập nhật số lượng trong kho
+                    SanPhamBLL sanPhamBLL = new SanPhamBLL();
+                    SanPham sanPham = sanPhamBLL.LaySanPhamTheoMaSanPham(traSanPhamChiTiet.MaSanPham);
+                    sanPham.SoLuong += traSanPhamChiTiet.SoLuong;
+                    bool capNhatSoLuong = sanPhamBLL.suaSanPham(sanPham);
 
+                    // Xóa chi tiết phiếu đổi trả
+                    bool xoaTraSanPhamChiTiet = traSanPhamChiTietBLL.XoaTraSanPhamChiTiet(traSanPhamChiTiet);
+                    if (!capNhatSoLuong || !xoaTraSanPhamChiTiet)
+                    {
+                        // Xóa thất bại
+                        MessageBox.Show("Xóa phiếu đổi trả thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                TraSanPhamBLL traSanPhamBLL = new TraSanPhamBLL();
+                TraSanPham traSanPham = traSanPhamBLL.LayDanhSachTraSanPhamTheoMaTraSanPham(maTraSanPham);
+                bool xoaTraSanPham = traSanPhamBLL.XoaTraSanPham(traSanPham);
+                if (xoaTraSanPham)
+                {
+                    MessageBox.Show("Xóa phiếu đổi trả thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadDGVDanhSachPhieuHoanTra();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa phiếu đổi trả thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void dgvDanhSachPhieuHoanTra_SelectionChanged(object sender, EventArgs e)
-        {            
+        {
             try
             {
-                if(dgvDanhSachPhieuHoanTra.CurrentRow.Cells["MaTraSanPham"].Value != null)
+                if (dgvDanhSachPhieuHoanTra.CurrentRow.Cells["MaTraSanPham"].Value != null)
                 {
                     // Lấy mã phiếu hoàn trả từ dgvDanhSachPhieuHoanTra
                     string maTraSanPham = dgvDanhSachPhieuHoanTra.CurrentRow.Cells["MaTraSanPham"].Value.ToString();
@@ -132,8 +197,23 @@ namespace GUI
                     // Hiển thị thông tin chi tiết phiếu hoàn trả
                     TraSanPhamBLL traSanPhamBLL = new TraSanPhamBLL();
                     TraSanPham traSanPham = traSanPhamBLL.LayDanhSachTraSanPhamTheoMaTraSanPham(maTraSanPham);
-                    
+
                     // Mã phiếu hoàn trả
+                    if (traSanPham != null)
+                    {
+                        lblMaPhieuHoanTra.Text = traSanPham.MaTraSanPham;
+                        lblNgayHoanTra.Text = traSanPham.NgayTra?.ToString("dd/MM/yyyy") ?? string.Empty;
+                        txtLyDoHoanTra.Text = traSanPham.LyDoTra;
+                        lblTongTien.Text = traSanPham.TongTienHoanLai?.ToString("N0") + " VND" ?? string.Empty;
+                        lblMaKhachHang.Text = traSanPham.MaKhachHang;
+                        lblTenKhachHang.Text = traSanPham.KhachHang.TenKhachHang;
+                        lblMaNhanVien.Text = traSanPham.MaNhanVien;
+                        lblTenNhanVien.Text = traSanPham.NhanVien.TenNhanVien;
+                    }
+                    else
+                    {
+                        return;
+                    }
                     lblMaPhieuHoanTra.Text = traSanPham.MaTraSanPham;
 
                     // Ngày lập phiếu
@@ -158,7 +238,7 @@ namespace GUI
                     lblTenNhanVien.Text = traSanPham.NhanVien.TenNhanVien;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
@@ -210,7 +290,7 @@ namespace GUI
 
         private void dinhDangDGVDanhSachSanPhamHoanTra()
         {
-            if(dgvDanhSachSanPhamHoanTra.DataSource == null)
+            if (dgvDanhSachSanPhamHoanTra.DataSource == null)
             {
                 // Hiện thông báo không có dữ liệu
                 MessageBox.Show("Không có dữ liệu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -257,7 +337,7 @@ namespace GUI
 
         private void dgvDanhSachPhieuHoanTra_KeyDown(object sender, KeyEventArgs e)
         {
-            
+
         }
 
         private bool IsCharacterKey(KeyPressEventArgs e)
@@ -265,7 +345,6 @@ namespace GUI
             // Kiểm tra xem ký tự nhấn có phải là một chữ cái hoặc số không
             return Char.IsLetterOrDigit(e.KeyChar);
         }
-
         private void dgvDanhSachPhieuHoanTra_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Kiểm tra nếu phím nhấn là một ký tự (chữ cái hoặc số)
@@ -284,12 +363,12 @@ namespace GUI
             if (IsCharacterKey(e))
             {
                 // Nếu là phím ký tự và ô đang chọn là số lượng thì forcus vào nudSoLuong
-                if(dgvDanhSachSanPhamHoanTra.CurrentCell.ColumnIndex == dgvDanhSachSanPhamHoanTra.Columns["SoLuong"].Index)
+                if (dgvDanhSachSanPhamHoanTra.CurrentCell.ColumnIndex == dgvDanhSachSanPhamHoanTra.Columns["SoLuong"].Index)
                 {
                     nudSoLuongHoanTra.Focus();
                 }
                 // Nếu ô đang chọn là TinhTrangSanPham thì focus vào txtTinhTrang
-                else if(dgvDanhSachSanPhamHoanTra.CurrentCell.ColumnIndex == dgvDanhSachSanPhamHoanTra.Columns["TinhTrangSanPham"].Index)
+                else if (dgvDanhSachSanPhamHoanTra.CurrentCell.ColumnIndex == dgvDanhSachSanPhamHoanTra.Columns["TinhTrangSanPham"].Index)
                 {
                     txtTinhTrangSanPham.Focus();
                 }
@@ -319,14 +398,24 @@ namespace GUI
             string maPhieuHoanTra = lblMaPhieuHoanTra.Text;
             // Lấy mã sản phẩm từ datagridview
             string maSanPham = dgvDanhSachSanPhamHoanTra.CurrentRow.Cells["MaSanPham"].Value.ToString();
-            if(maPhieuHoanTra != null && maSanPham != null)
+            if (maPhieuHoanTra != null && maSanPham != null)
             {
                 // Lấy chi tiết phiếu trả từ database
                 TraSanPhamChiTietBLL traSanPhamChiTietBLL = new TraSanPhamChiTietBLL();
                 TraSanPhamChiTiet traSanPhamChiTiet = traSanPhamChiTietBLL.LayTraSanPhamChiTietTheoMaTraSanPhamVaMaSanPham(maPhieuHoanTra, maSanPham);
 
+                ChiTietHoaDonBLL chiTietHoaDonBLL = new ChiTietHoaDonBLL();
+                ChiTietHoaDon cthd = chiTietHoaDonBLL.LayChiTietHoaDonTheoMaHoaDon(traSanPhamChiTiet.MaHoaDon).Where(x => x.MaSanPham == maSanPham).FirstOrDefault();
+                int soLuongHoaDon = cthd.SoLuong ?? 0;
+
                 // Cập nhật số lượng hoàn trả, số tiền hoàn lại, tình trạng sản phẩm của chi tiết hoàn trả
                 traSanPhamChiTiet.SoLuong = (int?)nudSoLuongHoanTra.Value;
+
+                if (traSanPhamChiTiet.SoLuong > soLuongHoaDon)
+                {
+                    MessageBox.Show("Số lượng hoàn trả không được lớn hơn số lượng trong hóa đơn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 // Chuyển đổi giá trị từ lblSoTienHoanTra.Text về decimal
                 decimal soTienHoanLai = 0;
                 if (decimal.TryParse(lblSoTienHoanTra.Text.Replace(" VND", "").Replace(",", ""), out soTienHoanLai))
@@ -405,18 +494,18 @@ namespace GUI
 
             // Lấy số lương hoàn trả trên nudSoLuongHoanTra
             decimal soLuongHoanTra = nudSoLuongHoanTra.Value;
-            
+
             // Lấy đơn giá từ database
             string maSanPham = dgvDanhSachSanPhamHoanTra.CurrentRow.Cells["MaSanPham"].Value.ToString();
             SanPhamBLL sanPhamBLL = new SanPhamBLL();
             SanPham sanPham = sanPhamBLL.laySanPhamTheoMa(maSanPham);
-            if(sanPham == null)
+            if (sanPham == null)
             {
                 // Giá trị nud không thay đổi
                 nudSoLuongHoanTra.Value = Convert.ToDecimal(dgvDanhSachSanPhamHoanTra.CurrentRow.Cells["SoLuong"].Value);
                 return;
             }
-            decimal donGia = sanPham.GiaBan?? 0;
+            decimal donGia = sanPham.GiaBan ?? 0;
             decimal thanhTien = soLuongHoanTra * donGia;
             lblSoTienHoanTra.Text = string.Format("{0:N0} VND", thanhTien);
 
@@ -429,15 +518,32 @@ namespace GUI
             // Hiển thị tổng tiền và số tiền hoàn trả của sản phẩm ra màn hình
             lblTongTien.Text = string.Format("{0:N0} VND", tongTienMoi);
             lblSoTienHoanTra.Text = string.Format("{0:N0} VND", thanhTien);
-            
 
-            
 
-            
 
-            
-            
-            
+
+
+
+
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if(txtTim.Text != "Nhập mã hoá đơn, mã trả sản phẩm, mã nhân viên, tên nhân viên, mã khách hàng, tên khách hàng, ngày lập,..." || txtTim.Text != "")
+            {
+                string key = txtTim.Text;
+                TraSanPhamBLL traSanPhamBLL = new TraSanPhamBLL();
+                List<TraSanPham> lstTraSanPham = traSanPhamBLL.LayDanhSachTraSanPham().Where(x => x.MaTraSanPham == key || x.MaHoaDon == key || x.MaNhanVien == key || x.MaKhachHang == key || x.KhachHang.TenKhachHang == key).ToList();
+                dgvDanhSachPhieuHoanTra.DataSource = lstTraSanPham;
+                dinhDangDGVDanhSachPhieuHoanTra();
+
+            }
+            else
+            {
+                loadDGVDanhSachPhieuHoanTra();
+            }
         }
     }
 }
