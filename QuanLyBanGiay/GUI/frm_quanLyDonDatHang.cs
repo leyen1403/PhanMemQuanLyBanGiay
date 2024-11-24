@@ -552,7 +552,7 @@ namespace GUI
                         // Mở tài liệu Word mẫu sẵn
                         var wordApp = new Microsoft.Office.Interop.Word.Application();
                         string url = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-                        var document = wordApp.Documents.Open(url + @"\Resources\New Microsoft Word Document.docx");
+                        var document = wordApp.Documents.Open(url + @"\Resources\BaoCaoDonDatHang.docx");
 
                         // Thay thế các thông tin trong tài liệu Word
                         // Mã đơn đặt hàng
