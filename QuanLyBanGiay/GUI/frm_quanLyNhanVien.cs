@@ -271,33 +271,38 @@ namespace GUI
         {
             // Thông báo xác nhận trước khi cập nhật
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn cập nhật thông tin nhân viên này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
-                string maNhanVien = txtMaNhanVien.Text;
-                NhanVien nv = nhanVienBLL.LayNhanVien(maNhanVien); 
+                capNhatNhanVien();
+            }
+        }
 
-                nv.TenNhanVien = txtTenNhanVien.Text;
-                nv.NgaySinh = dtpNgaySinh.Value;
-                nv.GioiTinh = cbbGioiTinh.SelectedItem.ToString();
-                nv.SoDienThoai = txtSoDienThoai.Text;
-                nv.Email = txtEmail.Text;
-                nv.ChucVu = txtChucVu.Text;
-                nv.TaiKhoan = txtTaiKhoan.Text;
-                nv.MatKhau = txtMatKhau.Text;
-                nv.TrangThaiHoatDong = cbbTrangThai.SelectedItem.ToString() == "Đang làm việc" ? true : false;
-                nv.NgayTao = dtpNgayVaoLam.Value;
-                nv.NgayCapNhat = DateTime.Now;
-                nv.DiaChi = txtDiaChi.Text;
+        private void capNhatNhanVien()
+        {
+            string maNhanVien = txtMaNhanVien.Text;
+            NhanVien nv = nhanVienBLL.LayNhanVien(maNhanVien);
 
-                if (nhanVienBLL.CapNhatNhanVien(nv))
-                {
-                    MessageBox.Show("Cập nhật nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadDGVNhanVien();
-                }
-                else
-                {
-                    MessageBox.Show("Cập nhật nhân viên thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            nv.TenNhanVien = txtTenNhanVien.Text;
+            nv.NgaySinh = dtpNgaySinh.Value;
+            nv.GioiTinh = cbbGioiTinh.SelectedItem.ToString();
+            nv.SoDienThoai = txtSoDienThoai.Text;
+            nv.Email = txtEmail.Text;
+            nv.ChucVu = txtChucVu.Text;
+            nv.TaiKhoan = txtTaiKhoan.Text;
+            nv.MatKhau = txtMatKhau.Text;
+            nv.TrangThaiHoatDong = cbbTrangThai.SelectedItem.ToString() == "Đang làm việc" ? true : false;
+            nv.NgayTao = dtpNgayVaoLam.Value;
+            nv.NgayCapNhat = DateTime.Now;
+            nv.DiaChi = txtDiaChi.Text;
+
+            if (nhanVienBLL.CapNhatNhanVien(nv))
+            {
+                MessageBox.Show("Cập nhật nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadDGVNhanVien();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật nhân viên thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -368,7 +373,7 @@ namespace GUI
 
         private void btnTaoNhanVien_Click(object sender, EventArgs e)
         {
-            frm_ThemNhanVien frm = new frm_ThemNhanVien();            
+            frm_ThemNhanVien frm = new frm_ThemNhanVien();
             frm.ShowDialog();
             frm.Tao += Frm_Tao;
         }
@@ -385,6 +390,52 @@ namespace GUI
             dgvNhanVien.DataSource = lstNhanVien;
             DinhDangDGVNhanVien();
             ThemCotSTT(dgvNhanVien);
+        }
+
+        private void txtTim_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Ngăn AcceptButton xử lý Enter
+                loadDGVNhanVien();         // Thực hiện hành động mong muốn
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            // Hiện thông báo xác nhận xoá
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn xoá nhân viên này không", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                string maNhanVien = "";
+                maNhanVien = txtMaNhanVien.Text;
+                NhanVienBLL nhanVienBLL = new NhanVienBLL();
+                NhanVien nv = nhanVienBLL.LayNhanVien(maNhanVien);
+                if (nv != null)
+                {
+                    bool xoaNhanVien = nhanVienBLL.XoaNhanVien(nv);
+                    if(xoaNhanVien)
+                    {
+                        MessageBox.Show("Xoá nhân viên thành công");
+                        loadDGVNhanVien();
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã xảy ra lỗi trong quá trình xoá");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy nhân viên");
+                }
+            }
+        }
+
+        private void frm_quanLyNhanVien_Load_1(object sender, EventArgs e)
+        {
+            loadDGVNhanVien();
         }
     }
 }

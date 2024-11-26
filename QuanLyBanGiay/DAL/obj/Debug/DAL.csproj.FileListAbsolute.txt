@@ -18,3 +18,13 @@ D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.CoreCompil
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.Up2Date
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.dll
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.pdb
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DAL.dll
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DAL.pdb
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.dll
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.pdb
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\bin\Debug\DTO.dll.config
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.csproj.Up2Date
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.dll
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\DAL\obj\Debug\DAL.pdb

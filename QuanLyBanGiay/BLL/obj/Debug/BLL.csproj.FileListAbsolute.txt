@@ -22,3 +22,15 @@ D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.csproj.CoreCompil
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.csproj.Up2Date
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.dll
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.pdb
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\bin\Debug\BLL.dll
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\bin\Debug\BLL.pdb
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\bin\Debug\DAL.dll
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\bin\Debug\DTO.dll
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\bin\Debug\DAL.pdb
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\bin\Debug\DTO.pdb
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\bin\Debug\DTO.dll.config
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.csproj.AssemblyReference.cache
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.csproj.Up2Date
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.dll
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\BLL\obj\Debug\BLL.pdb
