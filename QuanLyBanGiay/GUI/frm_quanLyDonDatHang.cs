@@ -178,7 +178,7 @@ namespace GUI
         private void LoadDGVDonDatHang()
         {
             DonDatHangBLL donDatHangBLL = new DonDatHangBLL();
-            dgvDonDatHang.DataSource = donDatHangBLL.LayDanhSachDonDatHang();
+            dgvDonDatHang.DataSource = donDatHangBLL.LayDanhSachDonDatHang().OrderByDescending(x => x.NgayTao).ToList();
             DinhDangDGVDonDatHang();
             ThemCotSTT(dgvDonDatHang);
         }
@@ -403,7 +403,7 @@ namespace GUI
 
             string luaChon = cbbLuaChonHienThi.SelectedValue.ToString();
             DonDatHangBLL donDatHangBLL = new DonDatHangBLL();
-            var danhSachDonDatHang = donDatHangBLL.LayDanhSachDonDatHang();
+            var danhSachDonDatHang = donDatHangBLL.LayDanhSachDonDatHang().OrderByDescending(x=>x.MaDonDatHang).ToList();
 
             // Lọc dữ liệu dựa trên lựa chọn
             switch (luaChon)
