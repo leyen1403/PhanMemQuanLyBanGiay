@@ -64,6 +64,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.gbxChiTietPhieuHoanTra = new System.Windows.Forms.GroupBox();
             this.dgvDanhSachSanPhamHoanTra = new System.Windows.Forms.DataGridView();
+            this.btnWord = new System.Windows.Forms.Button();
             this.pnlDanhSachPhieuHoanTra.SuspendLayout();
             this.gbxDanhSachPhieuHoanTra.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachPhieuHoanTra)).BeginInit();
@@ -145,6 +146,7 @@
             // 
             this.gbxThongTinPhieuHoanTra.Controls.Add(this.btnCapNhatPhieuDoiTra);
             this.gbxThongTinPhieuHoanTra.Controls.Add(this.btnXoaPhieuDoiTra);
+            this.gbxThongTinPhieuHoanTra.Controls.Add(this.btnWord);
             this.gbxThongTinPhieuHoanTra.Controls.Add(this.btnTaoPhieuDoiTra);
             this.gbxThongTinPhieuHoanTra.Controls.Add(this.txtLyDoHoanTra);
             this.gbxThongTinPhieuHoanTra.Controls.Add(this.txtTinhTrangSanPham);
@@ -470,6 +472,21 @@
             this.dgvDanhSachSanPhamHoanTra.SelectionChanged += new System.EventHandler(this.dgvDanhSachSanPhamHoanTra_SelectionChanged);
             this.dgvDanhSachSanPhamHoanTra.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvDanhSachSanPhamHoanTra_KeyPress);
             // 
+            // btnWord
+            // 
+            this.btnWord.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnWord.AutoSize = true;
+            this.btnWord.Image = global::GUI.Properties.Resources.icons8_word_32;
+            this.btnWord.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnWord.Location = new System.Drawing.Point(1360, 17);
+            this.btnWord.Name = "btnWord";
+            this.btnWord.Size = new System.Drawing.Size(87, 53);
+            this.btnWord.TabIndex = 3;
+            this.btnWord.Text = "In";
+            this.btnWord.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnWord.UseVisualStyleBackColor = true;
+            this.btnWord.Click += new System.EventHandler(this.btnWord_Click);
+            // 
             // frm_QuanLyPhieuTraHang
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,5 +549,6 @@
         private System.Windows.Forms.Label lblMaKhachHang;
         private System.Windows.Forms.Label lblTenNhanVien;
         private System.Windows.Forms.Label lblMaNhanVien;
+        private System.Windows.Forms.Button btnWord;
     }
 }

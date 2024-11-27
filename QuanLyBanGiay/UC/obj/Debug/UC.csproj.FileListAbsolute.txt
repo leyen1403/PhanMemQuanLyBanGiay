@@ -22,3 +22,15 @@ D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.dll
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.pdb
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.dll.config
 D:\Github\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.Up2Date
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\UC.dll
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\UC.pdb
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.dll
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.pdb
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\bin\Debug\DTO.dll.config
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.AssemblyReference.cache
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.ProductItem.resources
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.GenerateResource.cache
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.CoreCompileInputs.cache
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.csproj.Up2Date
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.dll
+D:\temp\PhanMemQuanLyBanGiay\QuanLyBanGiay\UC\obj\Debug\UC.pdb

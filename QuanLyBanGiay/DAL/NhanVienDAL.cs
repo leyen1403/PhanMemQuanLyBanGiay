@@ -85,8 +85,8 @@ namespace DAL
         {
             try
             {
-                NhanVien nvNew = db.NhanViens.Where(x=>x.MaNhanVien == nv.MaNhanVien).FirstOrDefault();
-                if(nvNew != null)
+                NhanVien nvNew = db.NhanViens.Where(x => x.MaNhanVien == nv.MaNhanVien).FirstOrDefault();
+                if (nvNew != null)
                 {
                     return false;
                 }
@@ -116,6 +116,21 @@ namespace DAL
             {
                 return false;
             }
+        }
+        public bool XoaNhanVien(NhanVien nv)
+        {
+            try
+            {
+                NhanVien nvDel = db.NhanViens.Where(x=>x.MaNhanVien == nv.MaNhanVien).FirstOrDefault();
+                if (nvDel != null)
+                {
+                    db.NhanViens.DeleteOnSubmit(nvDel);
+                    db.SubmitChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch { return false; }
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -27,6 +28,7 @@ namespace GUI
             loadDGVDanhSachPhieuHoanTra();
             SetPlaceholder(txtTim, "Nhập mã hoá đơn, mã trả sản phẩm, mã nhân viên, tên nhân viên, mã khách hàng, tên khách hàng, ngày lập,...");
         }
+
         private void SetPlaceholder(TextBox txtBox, string placeholderText)
         {
             txtBox.Text = placeholderText;
@@ -413,7 +415,7 @@ namespace GUI
 
                 if (traSanPhamChiTiet.SoLuong > soLuongHoaDon)
                 {
-                    MessageBox.Show("Số lượng hoàn trả không được lớn hơn số lượng trong hóa đơn.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Số lượng hoàn trả không được lớn hơn số lượng trong hóa đơn.\n Số lượng trong hoá đơn: "+ soLuongHoaDon, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 // Chuyển đổi giá trị từ lblSoTienHoanTra.Text về decimal
@@ -545,5 +547,110 @@ namespace GUI
                 loadDGVDanhSachPhieuHoanTra();
             }
         }
+
+        private void btnWord_Click(object sender, EventArgs e)
+        {
+            // Hiển thị thông báo xác nhận
+            DialogResult result = MessageBox.Show("Bạn có muốn xuất file Word không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (dgvDanhSachPhieuHoanTra.CurrentRow == null)
+                {
+                    MessageBox.Show("Chưa chọn phiếu trả hàng cần xuất file Word.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Lấy mã phiếu trả hàng từ dgvDanhSachPhieuHoanTra
+                string maTraSanPham = dgvDanhSachPhieuHoanTra.CurrentRow.Cells["MaTraSanPham"].Value.ToString();
+
+                // Tạo SaveFileDialog để lưu file Word
+                var saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "Word Documents (*.docx)|*.docx",
+                    FileName = "Phiếu trả hàng " + maTraSanPham + DateTime.Now.ToString("dd-MM-yyyy HH-mm-ss") + ".docx"
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    // Mở tài liệu Word mẫu sẵn
+                    var wordApp = new Microsoft.Office.Interop.Word.Application();
+                    string url = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+                    var document = wordApp.Documents.Open(url + @"\Resources\MauPhieuTraHang.docx");
+
+                    try
+                    {
+                        // Điền các thông tin cơ bản
+                        FillBookmark(document, "SoPhieuTraHang", maTraSanPham);
+                        FillBookmark(document, "NgayLap", DateTime.Now.ToString("dd/MM/yyyy"));
+                        FillBookmark(document, "NhanVienLap", lblTenNhanVien.Text);
+                        FillBookmark(document, "MaNhanVien", lblMaNhanVien.Text);
+                        FillBookmark(document, "TenKhachHang", lblTenKhachHang.Text);
+
+                        // Lấy thông tin khách hàng
+                        string maKhachHang = lblMaKhachHang.Text;
+                        string soDienThoai = new KhachHangBLL().LayKhachHangTheoMa(maKhachHang).SoDienThoai ?? "Không có dữ liệu";
+                        FillBookmark(document, "SoDienThoai", soDienThoai);
+
+                        // Lấy thông tin trả hàng
+                        var traSanPham = new TraSanPhamBLL().LayDanhSachTraSanPhamTheoMaTraSanPham(maTraSanPham);
+                        FillBookmark(document, "SoTienHoanLai", traSanPham.TongTienHoanLai?.ToString("N0") ?? "0");
+                        FillBookmark(document, "LyDoTraHang", traSanPham.LyDoTra ?? "Không có lý do");
+
+                        // Lấy danh sách sản phẩm trả
+                        var lstSanPham = new TraSanPhamChiTietBLL()
+                            .LayTraSanPhamChiTietTheoMaTraSanPham(maTraSanPham)
+                            .Select((item, index) => new
+                            {
+                                STT = index + 1,
+                                MaSanPham = item.MaSanPham,
+                                TenSanPham = item.ChiTietHoaDon.SanPham.TenSanPham,
+                                SoLuong = item.SoLuong,
+                                SoTienHoanLai = item.SoTienHoanLai ?? 0,
+                                TinhTrangSanPham = item.TinhTrangSanPham
+                            }).ToList();
+
+                        // Điền dữ liệu vào bảng
+                        var table = document.Tables[1];
+                        foreach (var sanPham in lstSanPham)
+                        {
+                            var newRow = table.Rows.Add(); // Thêm dòng mới
+                            newRow.Cells[1].Range.Text = sanPham.STT.ToString();
+                            newRow.Cells[2].Range.Text = sanPham.MaSanPham;
+                            newRow.Cells[3].Range.Text = sanPham.TenSanPham;
+                            newRow.Cells[4].Range.Text = sanPham.SoLuong.ToString();
+                            newRow.Cells[5].Range.Text = sanPham.SoTienHoanLai.ToString("N0");
+                            newRow.Cells[6].Range.Text = sanPham.TinhTrangSanPham;
+                        }
+
+                        // Lưu tài liệu
+                        document.SaveAs2(saveFileDialog.FileName);
+
+                        MessageBox.Show("Xuất báo cáo thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi khi xuất báo cáo: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        // Đóng tài liệu và giải phóng tài nguyên
+                        document.Close(false);
+                        wordApp.Quit();
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(document);
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(wordApp);
+                    }
+                }
+            }
+        }
+
+        // Hàm điền dữ liệu vào bookmark
+        private void FillBookmark(Microsoft.Office.Interop.Word.Document document, string bookmarkName, string text)
+        {
+            if (document.Bookmarks.Exists(bookmarkName))
+            {
+                document.Bookmarks[bookmarkName].Range.Text = text;
+            }
+        }
+
     }
 }

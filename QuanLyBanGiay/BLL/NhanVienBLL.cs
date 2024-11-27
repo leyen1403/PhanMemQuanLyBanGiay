@@ -60,5 +60,10 @@ namespace BLL
         {
             return LayNhanVien(maNhanVien);
         }
+
+        public bool XoaNhanVien(NhanVien nv)
+        {
+            return _nhanVienDAL.XoaNhanVien(nv) ;
+        }
     }
 }

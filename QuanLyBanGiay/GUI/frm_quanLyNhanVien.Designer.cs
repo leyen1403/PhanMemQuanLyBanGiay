@@ -30,7 +30,7 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.picHinhAnh = new System.Windows.Forms.PictureBox();
-            this.btnClear = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnCapNhat = new System.Windows.Forms.Button();
             this.btnDoiHinhAnh = new System.Windows.Forms.Button();
             this.btnTaoNhanVien = new System.Windows.Forms.Button();
@@ -76,7 +76,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.picHinhAnh);
-            this.groupBox1.Controls.Add(this.btnClear);
+            this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnCapNhat);
             this.groupBox1.Controls.Add(this.btnDoiHinhAnh);
             this.groupBox1.Controls.Add(this.btnTaoNhanVien);
@@ -122,14 +122,15 @@
             this.picHinhAnh.TabIndex = 11;
             this.picHinhAnh.TabStop = false;
             // 
-            // btnClear
+            // btnDelete
             // 
-            this.btnClear.Image = global::GUI.Properties.Resources.icons8_clear_32;
-            this.btnClear.Location = new System.Drawing.Point(821, 333);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(70, 60);
-            this.btnClear.TabIndex = 14;
-            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnDelete.Image = global::GUI.Properties.Resources.icons8_delete_35;
+            this.btnDelete.Location = new System.Drawing.Point(821, 333);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(70, 60);
+            this.btnDelete.TabIndex = 14;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnCapNhat
             // 
@@ -427,6 +428,7 @@
             this.txtTim.Name = "txtTim";
             this.txtTim.Size = new System.Drawing.Size(513, 33);
             this.txtTim.TabIndex = 13;
+            this.txtTim.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTim_KeyDown);
             // 
             // cbbVaiTro
             // 
@@ -487,6 +489,7 @@
             this.Controls.Add(this.btnTim);
             this.Name = "frm_quanLyNhanVien";
             this.Text = "frm_quanLyNhanVien";
+            this.Load += new System.EventHandler(this.frm_quanLyNhanVien_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picHinhAnh)).EndInit();
@@ -518,7 +521,7 @@
         private System.Windows.Forms.TextBox txtChucVu;
         private System.Windows.Forms.TextBox txtMaNhanVien;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnCapNhat;
         private System.Windows.Forms.Button btnTaoNhanVien;
         private System.Windows.Forms.DateTimePicker dtpNgayVaoLam;

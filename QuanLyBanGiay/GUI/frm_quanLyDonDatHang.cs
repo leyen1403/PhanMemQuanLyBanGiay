@@ -178,7 +178,7 @@ namespace GUI
         private void LoadDGVDonDatHang()
         {
             DonDatHangBLL donDatHangBLL = new DonDatHangBLL();
-            dgvDonDatHang.DataSource = donDatHangBLL.LayDanhSachDonDatHang();
+            dgvDonDatHang.DataSource = donDatHangBLL.LayDanhSachDonDatHang().OrderByDescending(x => x.NgayTao).ToList();
             DinhDangDGVDonDatHang();
             ThemCotSTT(dgvDonDatHang);
         }
@@ -403,7 +403,7 @@ namespace GUI
 
             string luaChon = cbbLuaChonHienThi.SelectedValue.ToString();
             DonDatHangBLL donDatHangBLL = new DonDatHangBLL();
-            var danhSachDonDatHang = donDatHangBLL.LayDanhSachDonDatHang();
+            var danhSachDonDatHang = donDatHangBLL.LayDanhSachDonDatHang().OrderByDescending(x=>x.MaDonDatHang).ToList();
 
             // Lọc dữ liệu dựa trên lựa chọn
             switch (luaChon)
@@ -552,7 +552,7 @@ namespace GUI
                         // Mở tài liệu Word mẫu sẵn
                         var wordApp = new Microsoft.Office.Interop.Word.Application();
                         string url = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-                        var document = wordApp.Documents.Open(url + @"\Resources\New Microsoft Word Document.docx");
+                        var document = wordApp.Documents.Open(url + @"\Resources\BaoCaoDonDatHang.docx");
 
                         // Thay thế các thông tin trong tài liệu Word
                         // Mã đơn đặt hàng

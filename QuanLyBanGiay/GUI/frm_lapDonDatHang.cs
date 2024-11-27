@@ -25,6 +25,11 @@ namespace GUI
             FormClosing += Frm_lapDonDatHang_FormClosing;
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi form đóng
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Frm_lapDonDatHang_FormClosing(object sender, FormClosingEventArgs e)
         {
             DonDatHang d = new DonDatHangBLL().LayDanhSachDonDatHang().Where(x => x.MaDonDatHang == MaDonDatHang).FirstOrDefault();
@@ -35,12 +40,22 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi form load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Frm_lapDonDatHang_Load(object sender, EventArgs e)
         {
             txtTenNhanVien.Text = new NhanVienBLL().LayNhanVien(MaNhanVien).TenNhanVien;
             AddPlaceholder(txtTim, "Nhập mã hoặc tên sản phẩm");
         }
 
+        /// <summary>
+        /// Thêm placeholder cho TextBox
+        /// </summary>
+        /// <param name="textBox"></param>
+        /// <param name="placeholderText"></param>
         private void AddPlaceholder(TextBox textBox, string placeholderText)
         {
             textBox.Text = placeholderText;
@@ -66,6 +81,11 @@ namespace GUI
             };
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Tạo đơn đặt hàng"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTaoDDH_Click(object sender, EventArgs e)
         {
             // Hiển thị thông báo xác nhận tạo đơn đặt hàng
@@ -125,6 +145,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi chọn loại sản phẩm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CboLoaiSP_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboLoaiSP.SelectedValue.ToString() == "TatCa")
@@ -142,6 +167,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi chọn nhà cung cấp
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CboNhaCungCap_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboNhaCungCap.SelectedValue != null)
@@ -159,6 +189,9 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Load dữ liệu cho DataGridView "dgvSanPham"
+        /// </summary>
         private void loadDGVSanPham()
         {
             dgvSanPham.DataSource = new SanPhamBLL().layDanhSachSanPham();
@@ -167,6 +200,11 @@ namespace GUI
             dgvSanPham.SelectionChanged += DgvSanPham_SelectionChanged;
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi chọn sản phẩm trong DataGridView "dgvSanPham"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DgvSanPham_SelectionChanged(object sender, EventArgs e)
         {
             txtMaSP.Text = dgvSanPham.CurrentRow.Cells["MaSanPham"].Value.ToString();
@@ -202,6 +240,10 @@ namespace GUI
             btnLuuChiTietDDH.Visible = false;
         }
 
+        /// <summary>
+        /// Thêm cột "SoThuTu" vào DataGridView
+        /// </summary>
+        /// <param name="dgvSanPham"></param>
         private void themCotSoThuTu(DataGridView dgvSanPham)
         {
             // Kiểm tra nếu cột "SoThuTu" đã tồn tại thì không thêm nữa
@@ -225,6 +267,9 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Định dạng DataGridView "dgvSanPham"
+        /// </summary>
         private void dinhDangDGVSanPham()
         {
             dgvSanPham.Columns["MaSanPham"].HeaderText = "Mã sản phẩm"; 
@@ -264,6 +309,11 @@ namespace GUI
             dgvSanPham.Columns["ThuongHieu"].Visible = false; 
         }
 
+        /// <summary>
+        /// Tạo mã đơn đặt hàng
+        /// </summary>
+        /// <param name="lstDDH"></param>
+        /// <returns></returns>
         private string taoMaDDH(List<DonDatHang> lstDDH)
         {
             if(lstDDH.Count == 0)
@@ -278,6 +328,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Lưu nhà cung cấp"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLuuNCC_Click(object sender, EventArgs e)
         {
             // Hiện thông báo xác nhận lưu nhà cung cấp
@@ -306,6 +361,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Cập nhật"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCapNhatDDH_Click(object sender, EventArgs e)
         {
             // Hiển thị thông báo xác nhận cập nhật đơn đặt hàng
@@ -338,6 +398,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Tìm"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTim_Click(object sender, EventArgs e)
         {
             if(txtTim.Text == "Nhập mã hoặc tên sản phẩm" || txtTim.Text == "")
@@ -354,6 +419,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Thêm vào đơn đặt hàng"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnThemVaoDonDatHang_Click(object sender, EventArgs e)
         {
             if(cboNhaCungCap.SelectedValue == null)
@@ -386,6 +456,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Sử lý sự kiện khi chọn 1 dòng trong DataGridView "dgvChiTietDDH"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DgvChiTietDDH_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvChiTietDDH.CurrentRow != null && dgvChiTietDDH.CurrentRow.Cells["MaSanPham"] != null)
@@ -412,6 +487,9 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Định dạng DataGridView "dgvChiTietDDH"
+        /// </summary>
         private void dinhDangDGVChiTietDDH()
         {
             dgvChiTietDDH.Columns["MaDonDatHang"].Visible = false;
@@ -432,6 +510,11 @@ namespace GUI
             dgvChiTietDDH.Columns["SanPham"].Visible = false;
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Lưu chi tiết đơn đặt hàng"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLuuChiTietDDH_Click(object sender, EventArgs e)
         {
             string maSP = txtMaSP.Text;
@@ -461,6 +544,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Xoá chi tiết đơn đặt hàng"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnXoaChiTietDDH_Click(object sender, EventArgs e)
         {
             string maSP = txtMaSP.Text;
@@ -503,6 +591,11 @@ namespace GUI
             
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn phím sẽ hiển thị danh sách gợi ý
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cboNhaCungCap_KeyUp(object sender, KeyEventArgs e)
         {
             ComboBox cbo = sender as ComboBox;
