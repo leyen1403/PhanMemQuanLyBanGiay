@@ -25,6 +25,11 @@ namespace GUI
             FormClosing += Frm_lapDonDatHang_FormClosing;
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi form đóng
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Frm_lapDonDatHang_FormClosing(object sender, FormClosingEventArgs e)
         {
             DonDatHang d = new DonDatHangBLL().LayDanhSachDonDatHang().Where(x => x.MaDonDatHang == MaDonDatHang).FirstOrDefault();
@@ -35,11 +40,52 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi form load
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Frm_lapDonDatHang_Load(object sender, EventArgs e)
         {
             txtTenNhanVien.Text = new NhanVienBLL().LayNhanVien(MaNhanVien).TenNhanVien;
+            AddPlaceholder(txtTim, "Nhập mã hoặc tên sản phẩm");
         }
 
+        /// <summary>
+        /// Thêm placeholder cho TextBox
+        /// </summary>
+        /// <param name="textBox"></param>
+        /// <param name="placeholderText"></param>
+        private void AddPlaceholder(TextBox textBox, string placeholderText)
+        {
+            textBox.Text = placeholderText;
+            textBox.ForeColor = Color.Gray;
+
+            // Xử lý sự kiện khi TextBox nhận hoặc mất focus
+            textBox.GotFocus += (sender, e) =>
+            {
+                if (textBox.Text == placeholderText)
+                {
+                    textBox.Text = string.Empty;
+                    textBox.ForeColor = Color.Black;
+                }
+            };
+
+            textBox.LostFocus += (sender, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(textBox.Text))
+                {
+                    textBox.Text = placeholderText;
+                    textBox.ForeColor = Color.Gray;
+                }
+            };
+        }
+
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Tạo đơn đặt hàng"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTaoDDH_Click(object sender, EventArgs e)
         {
             // Hiển thị thông báo xác nhận tạo đơn đặt hàng
@@ -52,7 +98,8 @@ namespace GUI
                 DonDatHang ddh = new DonDatHang();
                 ddh.MaDonDatHang = MaDonDatHang;
                 ddh.GhiChu = txtGhiChuDDH.Text;
-
+                ddh.TrangThai = "Chưa xác nhận";
+                ddh.MaNhanVien = MaNhanVien;
                 if (!new DonDatHangBLL().ThemDonDatHang(ddh))
                 {
                     MessageBox.Show("Tạo đơn đặt hàng thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -98,6 +145,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi chọn loại sản phẩm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CboLoaiSP_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboLoaiSP.SelectedValue.ToString() == "TatCa")
@@ -115,18 +167,31 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi chọn nhà cung cấp
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CboNhaCungCap_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            txtMaNCC.Text = cboNhaCungCap.SelectedValue.ToString();
-            txtTenNCC.Text = cboNhaCungCap.Text;
-            NhaCungCap ncc = new NhaCungCapBLL().LayDanhSachNhaCungCap().Where(n => n.MaNhaCungCap == txtMaNCC.Text).FirstOrDefault();
-            txtNguoiDaiDien.Text = ncc.NguoiDaiDien;
-            txtEmail.Text = ncc.Email;
-            txtDiaChi.Text = ncc.DiaChi;
-            txtSDT.Text = ncc.SoDienThoai;
+            if (cboNhaCungCap.SelectedValue != null)
+            {
+                txtMaNCC.Text = cboNhaCungCap.SelectedValue.ToString();
+                txtTenNCC.Text = cboNhaCungCap.Text;
+                NhaCungCap ncc = new NhaCungCapBLL().LayDanhSachNhaCungCap().Where(n => n.MaNhaCungCap == txtMaNCC.Text).FirstOrDefault();
+                if (ncc != null)
+                {
+                    txtNguoiDaiDien.Text = ncc.NguoiDaiDien;
+                    txtEmail.Text = ncc.Email;
+                    txtDiaChi.Text = ncc.DiaChi;
+                    txtSDT.Text = ncc.SoDienThoai;
+                }
+            }
         }
 
+        /// <summary>
+        /// Load dữ liệu cho DataGridView "dgvSanPham"
+        /// </summary>
         private void loadDGVSanPham()
         {
             dgvSanPham.DataSource = new SanPhamBLL().layDanhSachSanPham();
@@ -135,6 +200,11 @@ namespace GUI
             dgvSanPham.SelectionChanged += DgvSanPham_SelectionChanged;
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi chọn sản phẩm trong DataGridView "dgvSanPham"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DgvSanPham_SelectionChanged(object sender, EventArgs e)
         {
             txtMaSP.Text = dgvSanPham.CurrentRow.Cells["MaSanPham"].Value.ToString();
@@ -170,6 +240,10 @@ namespace GUI
             btnLuuChiTietDDH.Visible = false;
         }
 
+        /// <summary>
+        /// Thêm cột "SoThuTu" vào DataGridView
+        /// </summary>
+        /// <param name="dgvSanPham"></param>
         private void themCotSoThuTu(DataGridView dgvSanPham)
         {
             // Kiểm tra nếu cột "SoThuTu" đã tồn tại thì không thêm nữa
@@ -193,20 +267,37 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Định dạng DataGridView "dgvSanPham"
+        /// </summary>
         private void dinhDangDGVSanPham()
         {
             dgvSanPham.Columns["MaSanPham"].HeaderText = "Mã sản phẩm"; 
+
             dgvSanPham.Columns["TenSanPham"].HeaderText = "Tên sản phẩm";
+
             dgvSanPham.Columns["MaLoaiSanPham"].Visible = false;
+
             dgvSanPham.Columns["MaThuongHieu"].Visible = false;
+
             dgvSanPham.Columns["MaMauSac"].Visible = false; 
+
             dgvSanPham.Columns["MaKichThuoc"].Visible = false; 
+
             dgvSanPham.Columns["GiaNhap"].HeaderText = "Giá nhập";
             dgvSanPham.Columns["GiaNhap"].DefaultCellStyle.Format = "N0";
+            dgvSanPham.Columns["GiaNhap"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             dgvSanPham.Columns["GiaBan"].Visible = false;
+
             dgvSanPham.Columns["DonViTinh"].Visible = false; 
+
             dgvSanPham.Columns["SoLuong"].HeaderText = "Tồn kho"; 
+            dgvSanPham.Columns["SoLuong"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             dgvSanPham.Columns["SoLuongToiThieu"].HeaderText = "Tối thiểu"; 
+            dgvSanPham.Columns["SoLuongToiThieu"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             dgvSanPham.Columns["MoTa"].Visible = false; 
             dgvSanPham.Columns["HinhAnh"].Visible = false; 
             dgvSanPham.Columns["TrangThaiHoatDong"].Visible = false;
@@ -218,6 +309,11 @@ namespace GUI
             dgvSanPham.Columns["ThuongHieu"].Visible = false; 
         }
 
+        /// <summary>
+        /// Tạo mã đơn đặt hàng
+        /// </summary>
+        /// <param name="lstDDH"></param>
+        /// <returns></returns>
         private string taoMaDDH(List<DonDatHang> lstDDH)
         {
             if(lstDDH.Count == 0)
@@ -232,6 +328,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Lưu nhà cung cấp"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLuuNCC_Click(object sender, EventArgs e)
         {
             // Hiện thông báo xác nhận lưu nhà cung cấp
@@ -260,6 +361,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Cập nhật"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCapNhatDDH_Click(object sender, EventArgs e)
         {
             // Hiển thị thông báo xác nhận cập nhật đơn đặt hàng
@@ -292,11 +398,32 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Tìm"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTim_Click(object sender, EventArgs e)
         {
-
+            if(txtTim.Text == "Nhập mã hoặc tên sản phẩm" || txtTim.Text == "")
+            {
+                loadDGVSanPham();
+            }
+            else
+            {
+                string key = txtTim.Text;
+                SanPhamBLL sanPhamBLL = new SanPhamBLL();
+                List<SanPham> lstSP = sanPhamBLL.layDanhSachSanPham().Where(sp => sp.MaSanPham.Contains(key) || sp.TenSanPham.Contains(key)).ToList();
+                dgvSanPham.DataSource = lstSP;
+                dinhDangDGVSanPham();
+            }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Thêm vào đơn đặt hàng"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnThemVaoDonDatHang_Click(object sender, EventArgs e)
         {
             if(cboNhaCungCap.SelectedValue == null)
@@ -329,6 +456,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Sử lý sự kiện khi chọn 1 dòng trong DataGridView "dgvChiTietDDH"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DgvChiTietDDH_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvChiTietDDH.CurrentRow != null && dgvChiTietDDH.CurrentRow.Cells["MaSanPham"] != null)
@@ -355,20 +487,34 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Định dạng DataGridView "dgvChiTietDDH"
+        /// </summary>
         private void dinhDangDGVChiTietDDH()
         {
             dgvChiTietDDH.Columns["MaDonDatHang"].Visible = false;
             dgvChiTietDDH.Columns["MaSanPham"].HeaderText = "Mã sản phẩm";
             dgvChiTietDDH.Columns["SoLuongYeuCau"].HeaderText = "Số lượng yêu cầu";
+            dgvChiTietDDH.Columns["SoLuongYeuCau"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvChiTietDDH.Columns["SoLuongCungCap"].HeaderText = "Số lượng cung cấp";
+            dgvChiTietDDH.Columns["SoLuongCungCap"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvChiTietDDH.Columns["SoLuongThieu"].Visible = false;
             dgvChiTietDDH.Columns["DonGia"].HeaderText = "Đơn giá";
+            dgvChiTietDDH.Columns["DonGia"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvChiTietDDH.Columns["DonGia"].DefaultCellStyle.Format = "N0";
             dgvChiTietDDH.Columns["ThanhTien"].DefaultCellStyle.Format = "N0";
+            dgvChiTietDDH.Columns["ThanhTien"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvChiTietDDH.Columns["ThanhTien"].HeaderText = "Thành tiền";
+
             dgvChiTietDDH.Columns["DonDatHang"].Visible = false;
             dgvChiTietDDH.Columns["SanPham"].Visible = false;
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Lưu chi tiết đơn đặt hàng"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLuuChiTietDDH_Click(object sender, EventArgs e)
         {
             string maSP = txtMaSP.Text;
@@ -398,6 +544,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi click vào Button "Xoá chi tiết đơn đặt hàng"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnXoaChiTietDDH_Click(object sender, EventArgs e)
         {
             string maSP = txtMaSP.Text;
@@ -422,6 +573,47 @@ namespace GUI
                         MessageBox.Show("Xoá sản phẩm khỏi đơn đặt hàng thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+        }
+
+        private void cboLoaiSP_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboNhaCungCap_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtGhiChuDDH_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn phím sẽ hiển thị danh sách gợi ý
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void cboNhaCungCap_KeyUp(object sender, KeyEventArgs e)
+        {
+            ComboBox cbo = sender as ComboBox;
+            if (cbo != null && cbo.DataSource != null)
+            {
+                string searchText = cbo.Text.ToLower();
+                var dataSource = new NhaCungCapBLL().LayDanhSachNhaCungCap()
+                    .Where(ncc => ncc.TenNhaCungCap.ToLower().Contains(searchText))
+                    .ToList();
+
+                cbo.DataSource = null;
+                cbo.DataSource = dataSource;
+                cbo.DisplayMember = "TenNhaCungCap";
+                cbo.ValueMember = "MaNhaCungCap";
+                cbo.DroppedDown = true; // Hiển thị danh sách gợi ý
+                cbo.Text = searchText; // Giữ lại từ khóa người dùng đã nhập
+                cbo.SelectionStart = searchText.Length; // Đặt con trỏ ở cuối
+                cbo.SelectionLength = 0; // Không chọn thêm ký tự
             }
         }
     }

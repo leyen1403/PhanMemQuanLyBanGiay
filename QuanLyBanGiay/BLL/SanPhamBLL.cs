@@ -98,5 +98,10 @@ namespace BLL
         {
             return sanPhamDAL.layGiaBanTheoMaSanPham(maSanPham);
         }
+
+        public SanPham LaySanPhamTheoMaSanPham(string maSanPham)
+        {
+            return sanPhamDAL.laySanPhamTheoMa(maSanPham);
+        }
     }
 }

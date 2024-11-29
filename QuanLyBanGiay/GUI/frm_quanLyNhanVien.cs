@@ -28,6 +28,11 @@ namespace GUI
 
         }
 
+        /// <summary>
+        /// Hiển thị danh sách nhân viên dựa trên vai trò được chọn
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cbbVaiTro_SelectedIndexChanged(object sender, EventArgs e)
         {
             List<NhanVien> lstNhanVien = new List<NhanVien>();
@@ -44,6 +49,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Hiển thị thông tin nhân viên khi chọn từ danh sách
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvDonDatHang_SelectionChanged(object sender, EventArgs e)
         {
             string maNhanVien = dgvNhanVien.CurrentRow.Cells["MaNhanVien"].Value.ToString();
@@ -112,6 +122,11 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Load dữ liệu khi mở form
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Frm_quanLyNhanVien_Load(object sender, EventArgs e)
         {
             AddPlaceholder(txtTim, "Nhập mã, tên, số điện thoại, email...");
@@ -119,6 +134,9 @@ namespace GUI
             loadComboBoxVaiTro();
         }
 
+        /// <summary>
+        /// Load dữ liệu vào ComboBox VaiTro
+        /// </summary>
         private void loadComboBoxVaiTro()
         {
             List<VaiTro> lstVaiTro = new List<VaiTro>();
@@ -129,6 +147,9 @@ namespace GUI
             cbbVaiTro.ValueMember = "MaVaiTro";
         }
 
+        /// <summary>
+        /// Load dữ liệu vào DataGridView NhanVien
+        /// </summary>
         private void loadDGVNhanVien()
         {
             List<NhanVien> lstNhanVien = new List<NhanVien>();
@@ -148,7 +169,9 @@ namespace GUI
             ThemCotSTT(dgvNhanVien);
         }
 
-        // Định dạng hiển thị DataGridView NhanVien
+        /// <summary>
+        /// Định dạng DataGridView NhanVien
+        /// </summary>
         private void DinhDangDGVNhanVien()
         {
             dgvNhanVien.Columns["MaNhanVien"].HeaderText = "Mã nhân viên";
@@ -172,7 +195,11 @@ namespace GUI
             dgvNhanVien.Columns["DiaChi"].HeaderText = "Địa chỉ";
         }
 
-
+        /// <summary>
+        /// Định dạng cột TrangThaiHoatDong trong DataGridView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dgvNhanVien_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // Kiểm tra cột cần định dạng
@@ -200,7 +227,10 @@ namespace GUI
             }
         }
 
-
+        /// <summary>
+        /// Thêm cột STT vào DataGridView
+        /// </summary>
+        /// <param name="dgv"></param>
         private void ThemCotSTT(DataGridView dgv)
         {
             // Kiểm tra nếu chưa có cột STT, thêm cột mới
@@ -221,7 +251,10 @@ namespace GUI
             CapNhatSTT(dgv);
         }
 
-        // Hàm cập nhật giá trị STT
+        /// <summary>
+        /// Cập nhật số thứ tự cho từng dòng trong DataGridView
+        /// </summary>
+        /// <param name="dgv"></param>
         private void CapNhatSTT(DataGridView dgv)
         {
             for (int i = 0; i < dgv.Rows.Count; i++)
@@ -236,12 +269,21 @@ namespace GUI
             ThemCotSTT(sender as DataGridView);
         }
 
+        /// <summary>
+        /// Tìm kiếm nhân viên
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTim_Click(object sender, EventArgs e)
         {
             loadDGVNhanVien();
         }
 
-        // Thêm placeholder cho TextBox
+        /// <summary>
+        /// Thêm placeholder cho TextBox
+        /// </summary>
+        /// <param name="textBox"></param>
+        /// <param name="placeholderText"></param>
         private void AddPlaceholder(TextBox textBox, string placeholderText)
         {
             textBox.Text = placeholderText;
@@ -267,40 +309,58 @@ namespace GUI
             };
         }
 
+        /// <summary>
+        /// Xử lý sự kiện cập nhật thông tin nhân viên khi nhấn nút cập nhật
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
             // Thông báo xác nhận trước khi cập nhật
             DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn cập nhật thông tin nhân viên này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
-                string maNhanVien = txtMaNhanVien.Text;
-                NhanVien nv = nhanVienBLL.LayNhanVien(maNhanVien); 
-
-                nv.TenNhanVien = txtTenNhanVien.Text;
-                nv.NgaySinh = dtpNgaySinh.Value;
-                nv.GioiTinh = cbbGioiTinh.SelectedItem.ToString();
-                nv.SoDienThoai = txtSoDienThoai.Text;
-                nv.Email = txtEmail.Text;
-                nv.ChucVu = txtChucVu.Text;
-                nv.TaiKhoan = txtTaiKhoan.Text;
-                nv.MatKhau = txtMatKhau.Text;
-                nv.TrangThaiHoatDong = cbbTrangThai.SelectedItem.ToString() == "Đang làm việc" ? true : false;
-                nv.NgayTao = dtpNgayVaoLam.Value;
-                nv.NgayCapNhat = DateTime.Now;
-                nv.DiaChi = txtDiaChi.Text;
-
-                if (nhanVienBLL.CapNhatNhanVien(nv))
-                {
-                    MessageBox.Show("Cập nhật nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadDGVNhanVien();
-                }
-                else
-                {
-                    MessageBox.Show("Cập nhật nhân viên thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                capNhatNhanVien();
             }
         }
 
+        /// <summary>
+        /// Cập nhật thông tin nhân viên
+        /// </summary>
+        private void capNhatNhanVien()
+        {
+            string maNhanVien = txtMaNhanVien.Text;
+            NhanVien nv = nhanVienBLL.LayNhanVien(maNhanVien);
+
+            nv.TenNhanVien = txtTenNhanVien.Text;
+            nv.NgaySinh = dtpNgaySinh.Value;
+            nv.GioiTinh = cbbGioiTinh.SelectedItem.ToString();
+            nv.SoDienThoai = txtSoDienThoai.Text;
+            nv.Email = txtEmail.Text;
+            nv.ChucVu = txtChucVu.Text;
+            nv.TaiKhoan = txtTaiKhoan.Text;
+            nv.MatKhau = txtMatKhau.Text;
+            nv.TrangThaiHoatDong = cbbTrangThai.SelectedItem.ToString() == "Đang làm việc" ? true : false;
+            nv.NgayTao = dtpNgayVaoLam.Value;
+            nv.NgayCapNhat = DateTime.Now;
+            nv.DiaChi = txtDiaChi.Text;
+
+            if (nhanVienBLL.CapNhatNhanVien(nv))
+            {
+                MessageBox.Show("Cập nhật nhân viên thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadDGVNhanVien();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật nhân viên thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn nút đổi hình ảnh
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnDoiHinhAnh_Click(object sender, EventArgs e)
         {
             // Lấy mã nhân viên hiện tại
@@ -366,18 +426,33 @@ namespace GUI
             }
         }
 
+        /// <summary>
+        /// Xử lý sự kiện tạo nhân viên mới
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnTaoNhanVien_Click(object sender, EventArgs e)
         {
-            frm_ThemNhanVien frm = new frm_ThemNhanVien();            
+            frm_ThemNhanVien frm = new frm_ThemNhanVien();
             frm.ShowDialog();
             frm.Tao += Frm_Tao;
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi tạo nhân viên mới
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Frm_Tao(object sender, EventArgs e)
         {
             loadDGVNhanVien();
         }
 
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn nút làm mới
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             List<NhanVien> lstNhanVien = new List<NhanVien>();
@@ -385,6 +460,62 @@ namespace GUI
             dgvNhanVien.DataSource = lstNhanVien;
             DinhDangDGVNhanVien();
             ThemCotSTT(dgvNhanVien);
+        }
+
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn nút enter trong TextBox tìm kiếm
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtTim_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Ngăn AcceptButton xử lý Enter
+                loadDGVNhanVien();         // Thực hiện hành động mong muốn
+            }
+        }
+
+        /// <summary>
+        /// Xử lý sự kiện khi nhấn nút xoá nhân viên
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            // Hiện thông báo xác nhận xoá
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn xoá nhân viên này không", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                string maNhanVien = "";
+                maNhanVien = txtMaNhanVien.Text;
+                NhanVienBLL nhanVienBLL = new NhanVienBLL();
+                NhanVien nv = nhanVienBLL.LayNhanVien(maNhanVien);
+                if (nv != null)
+                {
+                    bool xoaNhanVien = nhanVienBLL.XoaNhanVien(nv);
+                    if(xoaNhanVien)
+                    {
+                        MessageBox.Show("Xoá nhân viên thành công");
+                        loadDGVNhanVien();
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Đã xảy ra lỗi trong quá trình xoá");
+                        return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy nhân viên");
+                }
+            }
+        }
+
+        private void frm_quanLyNhanVien_Load_1(object sender, EventArgs e)
+        {
+            loadDGVNhanVien();
         }
     }
 }

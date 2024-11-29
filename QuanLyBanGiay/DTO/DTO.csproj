@@ -55,6 +55,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SanPhamDoiTraDTO.cs" />
     <Compile Include="SanPhamDTO.cs" />
     <Compile Include="ThongKeLoai.cs" />
   </ItemGroup>
@@ -65,9 +66,6 @@
       <LastGenOutput>db_QuanLyBanGiay.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="db_QuanLyBanGiay.dbml.layout">
-      <DependentUpon>db_QuanLyBanGiay.dbml</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -75,6 +73,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="db_QuanLyBanGiay.dbml.layout">
+      <DependentUpon>db_QuanLyBanGiay.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

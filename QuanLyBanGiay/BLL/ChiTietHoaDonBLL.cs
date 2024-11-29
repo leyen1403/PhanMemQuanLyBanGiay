@@ -31,5 +31,10 @@ namespace BLL
         {
             return _chiTietHoaDonDAL.TimChiTietHoaDonTheoMaHoaDon(maHD);
         }
+
+        public List<ChiTietHoaDon> LayDanhSachChiTietHoaDonTheoMaHoaDon(string maHoaDon)
+        {
+            return _chiTietHoaDonDAL.LayDanhSachChiTietHoaDonTheoMaHoaDon(maHoaDon);
+        }
     }
 }

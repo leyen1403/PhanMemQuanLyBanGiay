@@ -39,5 +39,10 @@ namespace BLL
         {
             return _khachHangDAL.SuathongtinKhachHang(kh);
         }
+
+        public KhachHang LayKhachHangTheoMa(string maKhachHang)
+        {
+            return _khachHangDAL.LayTatCaKhachHang().Where(x => x.MaKhachHang == maKhachHang).FirstOrDefault();
+        }
     }
 }

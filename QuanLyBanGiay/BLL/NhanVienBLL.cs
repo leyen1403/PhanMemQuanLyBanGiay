@@ -55,5 +55,15 @@ namespace BLL
         {
             return _nhanVienDAL.ThemNhanVien(nv);
         }
+
+        public NhanVien LayNhanVienTheoMa(string maNhanVien)
+        {
+            return LayNhanVien(maNhanVien);
+        }
+
+        public bool XoaNhanVien(NhanVien nv)
+        {
+            return _nhanVienDAL.XoaNhanVien(nv) ;
+        }
     }
 }
