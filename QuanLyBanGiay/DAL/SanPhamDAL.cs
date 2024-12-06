@@ -214,10 +214,10 @@ namespace DAL
                 sanPham.SoLuongToiThieu = sp.SoLuongToiThieu;
                 sanPham.GiaBan = sp.GiaBan;
                 sanPham.GiaNhap = sp.GiaNhap;
-                sanPham.SoLuong = sp.SoLuong;
                 sanPham.MoTa = sp.MoTa;
                 sanPham.HinhAnh = sp.HinhAnh;
                 sanPham.NgayCapNhat = DateTime.Now;
+                sanPham.TrangThaiHoatDong = sp.TrangThaiHoatDong;
                 db.SubmitChanges();
                 return true;
             }

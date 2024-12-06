@@ -277,6 +277,7 @@
     <Compile Include="PhanTich.Designer.cs">
       <DependentUpon>PhanTich.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlaceHoder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frm_dangNhap.resx">

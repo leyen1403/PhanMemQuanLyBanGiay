@@ -75,6 +75,48 @@ namespace GUI
             txt_soLuong.Maximum = 100;
             txt_soLuong.Value = 1;
             InitializeDataGridView();
+            PlaceHolder.SetPlaceholder(txt_tenSanPham, "Nhập thông tin sản phẩm");
+            // nhập số lượng không lớn hơn số lượng tồn
+            txt_SL.Minimum = 1;
+            txt_SL.Maximum = 100;
+            //su kien khi nhập vào ô số lượng không lớn hơn số lượng tồn
+            txt_soLuong.TextChanged += Txt_soLuong_TextChanged;
+            txt_soLuong.KeyPress += Txt_soLuong_KeyPress;
+        }
+
+        private void Txt_soLuong_TextChanged(object sender, EventArgs e)
+        {
+            // Kiểm tra nếu số lượng nhập vào lớn hơn số lượng tồn thì reset về 1
+            //lấy số lượng tồn
+            int soLuong = int.Parse(txt_soLuong.Text);
+            if (soLuong > 100)
+            {
+                //MessageBox.Show("Số lượng sản phẩm không được lớn hơn 100");
+                txt_soLuong.Value = 1;
+            }
+            // Kiểm tra nếu số lượng nhập vào lớn hơn số lượng tồn thì reset về 1
+            //lấy số lượng tồn
+            if(soLuong < 0)
+            {
+                //MessageBox.Show("Số lượng sản phẩm không được nhỏ hơn 0");
+                txt_soLuong.Value = 1;
+            }
+            if(soLuong>txt_soLuongTon.Value)
+            {
+                MessageBox.Show("Số lượng sản phẩm không được lớn hơn số lượng tồn");
+                txt_soLuong.Value = txt_soLuongTon.Value;
+            }    
+
+
+        }
+
+        private void Txt_soLuong_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Kiểm tra nếu không phải là số hoặc phím Backspace thì không cho nhập
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
         }
 
         private void Btn_inHoaDon_Click(object sender, EventArgs e)
@@ -763,6 +805,7 @@ namespace GUI
                     return;
                 }
                 decimal? giaSanPham = _sanPhamBLL.layGiaBanTheoMaSanPham(maSanPham);
+                int soLuongTon = _sanPhamBLL.LaySanPhamTheoMaSanPham(maSanPham).SoLuong ?? 0;
                 if (giaSanPham.HasValue)
                 {
                     txt_giaBan.Text = giaSanPham.Value.ToString("N0"); // "N0" sẽ định dạng giá theo kiểu số, không có phần thập phân
@@ -771,6 +814,7 @@ namespace GUI
                 {
                     txt_giaBan.Text = "Giá không có sẵn"; // Nếu không tìm thấy giá, hiển thị thông báo
                 }
+                txt_soLuongTon.Text = soLuongTon.ToString();
 
             }
             else

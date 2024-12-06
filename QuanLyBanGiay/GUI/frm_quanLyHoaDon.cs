@@ -42,22 +42,29 @@ namespace GUI
             dgv_dsCTHD.SelectionChanged += Dgv_dsCTHD_SelectionChanged;
             this.btnTim.Click += BtnTim_Click;
             this.btn_inHoaDon.Click += Btn_inHoaDon_Click;
+            PlaceHolder.SetPlaceholder(txt_timKiem, "Nhập thông tin tìm kiếm:");
+            dgv_dsCTHD.ReadOnly = true;
+            dgv_dsHoaDon.ReadOnly = true;
+
         }
 
         private void Dgv_dsCTHD_SelectionChanged(object sender, EventArgs e)
         {
-            //hiện lên textbox
-            if (dgv_dsCTHD.SelectedRows.Count > 0)
+            // Lấy hàng được chọn hiện tại
+            DataGridViewRow row = dgv_dsCTHD.CurrentRow;
+
+            if (row != null && row.Cells["MaHoaDon"].Value != DBNull.Value)
             {
-                DataGridViewRow row = dgv_dsCTHD.SelectedRows[0];
-                txt_maHDBH.Text = row.Cells["MaHoaDon"].Value != DBNull.Value ? row.Cells["MaHoaDon"].Value.ToString() : string.Empty;
+                // Gán giá trị cho các TextBox, tránh NullReferenceException
+                txt_maHD.Text = row.Cells["MaHoaDon"].Value != DBNull.Value ? row.Cells["MaHoaDon"].Value.ToString() : string.Empty;
                 txt_maSanPham.Text = row.Cells["MaSanPham"].Value != DBNull.Value ? row.Cells["MaSanPham"].Value.ToString() : string.Empty;
                 txt_soLuong.Text = row.Cells["SoLuong"].Value != DBNull.Value ? row.Cells["SoLuong"].Value.ToString() : string.Empty;
-                txt_donGia.Text = row.Cells["DonGia"].Value != DBNull.Value ? row.Cells["DonGia"].Value.ToString() : string.Empty;
-                txt_thanhTien.Text = row.Cells["ThanhTien"].Value != DBNull.Value ? row.Cells["ThanhTien"].Value.ToString() : string.Empty;
+                txt_donGia.Text = row.Cells["DonGia"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["DonGia"].Value).ToString("N0") : string.Empty;
+                txt_thanhTien.Text = row.Cells["ThanhTien"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["ThanhTien"].Value).ToString("N0") : string.Empty;
             }
             else
             {
+                // Xóa dữ liệu trong TextBox nếu không có dòng nào được chọn
                 txt_maHD.Clear();
                 txt_maSanPham.Clear();
                 txt_soLuong.Clear();
@@ -73,10 +80,11 @@ namespace GUI
 
         private void Dgv_dsHoaDon_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgv_dsHoaDon.SelectedRows.Count > 0)
-            {
-                DataGridViewRow row = dgv_dsHoaDon.SelectedRows[0];
+            // Lấy hàng được chọn hiện tại
+            DataGridViewRow row = dgv_dsHoaDon.CurrentRow;
 
+            if (row != null && row.Cells["MaHoaDon"].Value != DBNull.Value)
+            {
                 // Kiểm tra và gán giá trị cho các TextBox, tránh NullReferenceException
                 txt_maHDBH.Text = row.Cells["MaHoaDon"].Value != DBNull.Value ? row.Cells["MaHoaDon"].Value.ToString() : string.Empty;
                 txt_maKhachHang.Text = row.Cells["MaKhachHang"].Value != DBNull.Value ? row.Cells["MaKhachHang"].Value.ToString() : string.Empty;
@@ -84,20 +92,22 @@ namespace GUI
                 txt_tongTien.Text = row.Cells["TongTien"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["TongTien"].Value).ToString("N0") : string.Empty;
                 txt_ghiChu.Text = row.Cells["GhiChu"].Value != DBNull.Value ? row.Cells["GhiChu"].Value.ToString() : string.Empty;
                 txt_diemTichLuy.Text = row.Cells["DiemTichLuySuDung"].Value != DBNull.Value ? row.Cells["DiemTichLuySuDung"].Value.ToString() : string.Empty;
+
+                // Lấy mã hóa đơn và hiển thị chi tiết hóa đơn
                 string maHoaDon = row.Cells["MaHoaDon"].Value.ToString();
                 _lstChiTietHoaDon = _chiTietHoaDonBLL.LayChiTietHoaDonTheoMaHoaDon(maHoaDon);
                 dgv_dsCTHD.DataSource = _lstChiTietHoaDon;
-
             }
             else
             {
-                // Xử lý khi không có hàng nào được chọn, có thể xóa các TextBox hoặc để trống
-                txt_maHD.Clear();
+                // Xử lý khi không có hàng nào được chọn, xóa dữ liệu TextBox
+                txt_maHDBH.Clear();
                 txt_maKhachHang.Clear();
                 txt_maNhanVien.Clear();
                 txt_tongTien.Clear();
                 txt_ghiChu.Clear();
                 txt_diemTichLuy.Clear();
+                dgv_dsCTHD.DataSource = null; // Clear data source of chi tiết hóa đơn
             }
         }
 
@@ -248,7 +258,56 @@ namespace GUI
 
         private void CbbLuaChonHienThi_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            //lấy giá trị của combobox
+            int index = cbbLuaChonHienThi.SelectedIndex;
+            if(index>=0)
+            {
+                switch(index)
+                {
+                    case 0:
+                        txt_timKiem.Enabled = true;
+                        dtpTuNgay.Enabled = false;
+                        dtpDenNgay.Enabled = false;
+                        break;
+                    case 1:
+                        txt_timKiem.Enabled = false;
+                        dtpTuNgay.Enabled = true;
+                        dtpDenNgay.Enabled = true;
+                        break;
+                    case 2:
+                        txt_timKiem.Enabled = true;
+                        dtpTuNgay.Enabled = false;
+                        dtpDenNgay.Enabled = false;
+                        break;
+                    case 3:
+                        txt_timKiem.Enabled = true;
+                        dtpTuNgay.Enabled = false;
+                        dtpDenNgay.Enabled = false;
+                        break;
+                    case 4:
+                        txt_timKiem.Enabled = true;
+                        dtpTuNgay.Enabled = false;
+                        dtpDenNgay.Enabled = false;
+                        break;
+                    case 5:
+                        txt_timKiem.Enabled = true;
+                        dtpTuNgay.Enabled = false;
+                        dtpDenNgay.Enabled = false;
+                        break;
+                    case 6:
+                        txt_timKiem.Enabled = false;
+                        dtpTuNgay.Enabled = false;
+                        dtpDenNgay.Enabled = false;
+                        break;
+                    case 7:
+                        txt_timKiem.Enabled = false;
+                        dtpTuNgay.Enabled = false;
+                        dtpDenNgay.Enabled = false;
+                        break;
+                    default:
+                        break;
+                }    
+            }
         }
 
         //viết hàm ở dưới

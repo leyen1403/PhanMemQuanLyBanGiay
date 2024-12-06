@@ -35,6 +35,7 @@
             this.txt_diemDung = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_inHoaDon = new System.Windows.Forms.Button();
             this.cbo_gioiTinh = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
             this.txt_ghiChu = new System.Windows.Forms.TextBox();
@@ -92,13 +93,15 @@
             this.cbo_thuongHieu = new System.Windows.Forms.ComboBox();
             this.btn_load = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btn_inHoaDon = new System.Windows.Forms.Button();
+            this.txt_soLuongTon = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_SL)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_soLuong)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_soLuongTon)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvCart
@@ -107,7 +110,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCart.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCart.Location = new System.Drawing.Point(618, 130);
+            this.dgvCart.Location = new System.Drawing.Point(889, 130);
             this.dgvCart.Name = "dgvCart";
             this.dgvCart.Size = new System.Drawing.Size(610, 259);
             this.dgvCart.TabIndex = 25;
@@ -117,7 +120,7 @@
             this.cbo_loai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbo_loai.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbo_loai.FormattingEnabled = true;
-            this.cbo_loai.Location = new System.Drawing.Point(480, 71);
+            this.cbo_loai.Location = new System.Drawing.Point(751, 71);
             this.cbo_loai.Name = "cbo_loai";
             this.cbo_loai.Size = new System.Drawing.Size(121, 26);
             this.cbo_loai.TabIndex = 24;
@@ -127,7 +130,7 @@
             this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.BackColor = System.Drawing.Color.Navy;
-            this.label17.Location = new System.Drawing.Point(607, 130);
+            this.label17.Location = new System.Drawing.Point(878, 130);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(5, 1000);
             this.label17.TabIndex = 23;
@@ -200,7 +203,7 @@
             this.groupBox2.Controls.Add(this.txt_maKhachHang);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(617, 411);
+            this.groupBox2.Location = new System.Drawing.Point(888, 411);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
@@ -208,6 +211,22 @@
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin hoá đơn";
+            // 
+            // btn_inHoaDon
+            // 
+            this.btn_inHoaDon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_inHoaDon.AutoSize = true;
+            this.btn_inHoaDon.BackColor = System.Drawing.Color.Navy;
+            this.btn_inHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_inHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_inHoaDon.Location = new System.Drawing.Point(478, 351);
+            this.btn_inHoaDon.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_inHoaDon.Name = "btn_inHoaDon";
+            this.btn_inHoaDon.Size = new System.Drawing.Size(117, 37);
+            this.btn_inHoaDon.TabIndex = 32;
+            this.btn_inHoaDon.Text = "In Hoá Đơn";
+            this.btn_inHoaDon.UseVisualStyleBackColor = false;
+            this.btn_inHoaDon.Visible = false;
             // 
             // cbo_gioiTinh
             // 
@@ -508,7 +527,7 @@
             // label_ngayHT
             // 
             this.label_ngayHT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label_ngayHT.Location = new System.Drawing.Point(638, 113);
+            this.label_ngayHT.Location = new System.Drawing.Point(909, 113);
             this.label_ngayHT.Margin = new System.Windows.Forms.Padding(2);
             this.label_ngayHT.Name = "label_ngayHT";
             this.label_ngayHT.Size = new System.Drawing.Size(41, 13);
@@ -521,7 +540,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Navy;
-            this.label7.Location = new System.Drawing.Point(867, 101);
+            this.label7.Location = new System.Drawing.Point(1138, 101);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(185, 24);
@@ -534,7 +553,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(20, 64);
+            this.label4.Location = new System.Drawing.Point(46, 62);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(124, 18);
@@ -554,7 +573,7 @@
             // 
             this.cbo_mauSac.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.cbo_mauSac.FormattingEnabled = true;
-            this.cbo_mauSac.Location = new System.Drawing.Point(23, 87);
+            this.cbo_mauSac.Location = new System.Drawing.Point(49, 85);
             this.cbo_mauSac.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_mauSac.Name = "cbo_mauSac";
             this.cbo_mauSac.Size = new System.Drawing.Size(140, 26);
@@ -569,7 +588,7 @@
             this.dsSanPham.Location = new System.Drawing.Point(10, 129);
             this.dsSanPham.Margin = new System.Windows.Forms.Padding(2);
             this.dsSanPham.Name = "dsSanPham";
-            this.dsSanPham.Size = new System.Drawing.Size(591, 495);
+            this.dsSanPham.Size = new System.Drawing.Size(862, 471);
             this.dsSanPham.TabIndex = 16;
             // 
             // label2
@@ -578,7 +597,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(214, 102);
+            this.label2.Location = new System.Drawing.Point(349, 102);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(206, 24);
@@ -594,7 +613,7 @@
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1240, 48);
+            this.label1.Size = new System.Drawing.Size(1511, 48);
             this.label1.TabIndex = 14;
             this.label1.Text = "LẬP HOÁ ĐƠN BÁN HÀNG";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -603,7 +622,7 @@
             // 
             this.cbo_kichThuoc.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.cbo_kichThuoc.FormattingEnabled = true;
-            this.cbo_kichThuoc.Location = new System.Drawing.Point(169, 86);
+            this.cbo_kichThuoc.Location = new System.Drawing.Point(195, 84);
             this.cbo_kichThuoc.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_kichThuoc.Name = "cbo_kichThuoc";
             this.cbo_kichThuoc.Size = new System.Drawing.Size(152, 26);
@@ -612,14 +631,15 @@
             // btn_addCart
             // 
             this.btn_addCart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btn_addCart.BackColor = System.Drawing.Color.Navy;
             this.btn_addCart.BackgroundImage = global::GUI.Properties.Resources.icons8_add_shopping_cart_35;
             this.btn_addCart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_addCart.Location = new System.Drawing.Point(618, 71);
+            this.btn_addCart.Location = new System.Drawing.Point(784, 62);
             this.btn_addCart.Margin = new System.Windows.Forms.Padding(2);
             this.btn_addCart.Name = "btn_addCart";
-            this.btn_addCart.Size = new System.Drawing.Size(38, 40);
+            this.btn_addCart.Size = new System.Drawing.Size(51, 39);
             this.btn_addCart.TabIndex = 9;
-            this.btn_addCart.UseVisualStyleBackColor = true;
+            this.btn_addCart.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
@@ -627,7 +647,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(468, 61);
+            this.label6.Location = new System.Drawing.Point(547, 83);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(127, 18);
@@ -640,7 +660,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Navy;
-            this.label5.Location = new System.Drawing.Point(157, 66);
+            this.label5.Location = new System.Drawing.Point(183, 62);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 18);
@@ -662,7 +682,7 @@
             // 
             this.txt_giaBan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txt_giaBan.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_giaBan.Location = new System.Drawing.Point(342, 87);
+            this.txt_giaBan.Location = new System.Drawing.Point(390, 83);
             this.txt_giaBan.Margin = new System.Windows.Forms.Padding(2);
             this.txt_giaBan.Name = "txt_giaBan";
             this.txt_giaBan.ReadOnly = true;
@@ -672,7 +692,7 @@
             // txt_soLuong
             // 
             this.txt_soLuong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.txt_soLuong.Location = new System.Drawing.Point(524, 87);
+            this.txt_soLuong.Location = new System.Drawing.Point(679, 81);
             this.txt_soLuong.Name = "txt_soLuong";
             this.txt_soLuong.Size = new System.Drawing.Size(71, 24);
             this.txt_soLuong.TabIndex = 13;
@@ -683,7 +703,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Navy;
-            this.label16.Location = new System.Drawing.Point(450, 98);
+            this.label16.Location = new System.Drawing.Point(498, 94);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(33, 13);
@@ -696,7 +716,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Navy;
-            this.label15.Location = new System.Drawing.Point(310, 62);
+            this.label15.Location = new System.Drawing.Point(358, 62);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(122, 18);
@@ -707,6 +727,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.txt_soLuongTon);
+            this.groupBox1.Controls.Add(this.label26);
             this.groupBox1.Controls.Add(this.txt_thuongHieu);
             this.groupBox1.Controls.Add(this.txt_loaiSanPham);
             this.groupBox1.Controls.Add(this.label21);
@@ -723,11 +745,11 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cbo_mauSac);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(4, 696);
+            this.groupBox1.Location = new System.Drawing.Point(4, 661);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(623, 120);
+            this.groupBox1.Size = new System.Drawing.Size(894, 120);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin sản phẩm";
@@ -735,7 +757,7 @@
             // txt_thuongHieu
             // 
             this.txt_thuongHieu.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txt_thuongHieu.Location = new System.Drawing.Point(422, 29);
+            this.txt_thuongHieu.Location = new System.Drawing.Point(461, 28);
             this.txt_thuongHieu.Margin = new System.Windows.Forms.Padding(2);
             this.txt_thuongHieu.Name = "txt_thuongHieu";
             this.txt_thuongHieu.Size = new System.Drawing.Size(173, 24);
@@ -744,7 +766,7 @@
             // txt_loaiSanPham
             // 
             this.txt_loaiSanPham.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txt_loaiSanPham.Location = new System.Drawing.Point(142, 29);
+            this.txt_loaiSanPham.Location = new System.Drawing.Point(158, 29);
             this.txt_loaiSanPham.Margin = new System.Windows.Forms.Padding(2);
             this.txt_loaiSanPham.Name = "txt_loaiSanPham";
             this.txt_loaiSanPham.Size = new System.Drawing.Size(173, 24);
@@ -756,7 +778,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Navy;
-            this.label21.Location = new System.Drawing.Point(319, 32);
+            this.label21.Location = new System.Drawing.Point(358, 31);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(100, 18);
@@ -769,7 +791,7 @@
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Navy;
-            this.label20.Location = new System.Drawing.Point(20, 32);
+            this.label20.Location = new System.Drawing.Point(36, 32);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(118, 18);
@@ -778,6 +800,7 @@
             // 
             // btn_timSanPham
             // 
+            this.btn_timSanPham.BackColor = System.Drawing.Color.Navy;
             this.btn_timSanPham.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_timSanPham.Image = global::GUI.Properties.Resources.icons8_find_35;
             this.btn_timSanPham.Location = new System.Drawing.Point(229, 65);
@@ -785,7 +808,7 @@
             this.btn_timSanPham.Name = "btn_timSanPham";
             this.btn_timSanPham.Size = new System.Drawing.Size(42, 38);
             this.btn_timSanPham.TabIndex = 18;
-            this.btn_timSanPham.UseVisualStyleBackColor = true;
+            this.btn_timSanPham.UseVisualStyleBackColor = false;
             // 
             // btn_troLai
             // 
@@ -844,13 +867,14 @@
             this.cbo_thuongHieu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbo_thuongHieu.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbo_thuongHieu.FormattingEnabled = true;
-            this.cbo_thuongHieu.Location = new System.Drawing.Point(340, 71);
+            this.cbo_thuongHieu.Location = new System.Drawing.Point(611, 71);
             this.cbo_thuongHieu.Name = "cbo_thuongHieu";
             this.cbo_thuongHieu.Size = new System.Drawing.Size(121, 26);
             this.cbo_thuongHieu.TabIndex = 30;
             // 
             // btn_load
             // 
+            this.btn_load.BackColor = System.Drawing.Color.Navy;
             this.btn_load.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_load.Image = global::GUI.Properties.Resources.icons8_load_32;
             this.btn_load.Location = new System.Drawing.Point(275, 65);
@@ -858,7 +882,7 @@
             this.btn_load.Name = "btn_load";
             this.btn_load.Size = new System.Drawing.Size(42, 38);
             this.btn_load.TabIndex = 31;
-            this.btn_load.UseVisualStyleBackColor = true;
+            this.btn_load.UseVisualStyleBackColor = false;
             // 
             // groupBox3
             // 
@@ -868,33 +892,40 @@
             this.groupBox3.Controls.Add(this.btn_troLai);
             this.groupBox3.Controls.Add(this.btn_trangCuoi);
             this.groupBox3.Controls.Add(this.btn_keTiep);
-            this.groupBox3.Location = new System.Drawing.Point(156, 648);
+            this.groupBox3.Location = new System.Drawing.Point(296, 613);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(305, 43);
             this.groupBox3.TabIndex = 32;
             this.groupBox3.TabStop = false;
             // 
-            // btn_inHoaDon
+            // txt_soLuongTon
             // 
-            this.btn_inHoaDon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_inHoaDon.AutoSize = true;
-            this.btn_inHoaDon.BackColor = System.Drawing.Color.Navy;
-            this.btn_inHoaDon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_inHoaDon.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_inHoaDon.Location = new System.Drawing.Point(478, 351);
-            this.btn_inHoaDon.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_inHoaDon.Name = "btn_inHoaDon";
-            this.btn_inHoaDon.Size = new System.Drawing.Size(117, 37);
-            this.btn_inHoaDon.TabIndex = 32;
-            this.btn_inHoaDon.Text = "In Hoá Đơn";
-            this.btn_inHoaDon.UseVisualStyleBackColor = false;
-            this.btn_inHoaDon.Visible = false;
+            this.txt_soLuongTon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.txt_soLuongTon.Enabled = false;
+            this.txt_soLuongTon.Location = new System.Drawing.Point(767, 28);
+            this.txt_soLuongTon.Name = "txt_soLuongTon";
+            this.txt_soLuongTon.Size = new System.Drawing.Size(68, 24);
+            this.txt_soLuongTon.TabIndex = 26;
+            // 
+            // label26
+            // 
+            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.ForeColor = System.Drawing.Color.Navy;
+            this.label26.Location = new System.Drawing.Point(648, 31);
+            this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(114, 18);
+            this.label26.TabIndex = 25;
+            this.label26.Text = "Số lượng tồn :";
             // 
             // frm_lapHoaDon
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1240, 857);
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ClientSize = new System.Drawing.Size(1511, 857);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btn_load);
             this.Controls.Add(this.cbo_thuongHieu);
@@ -923,6 +954,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txt_soLuongTon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -995,5 +1027,7 @@
         private System.Windows.Forms.ComboBox cbo_gioiTinh;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Button btn_inHoaDon;
+        private System.Windows.Forms.NumericUpDown txt_soLuongTon;
+        private System.Windows.Forms.Label label26;
     }
 }

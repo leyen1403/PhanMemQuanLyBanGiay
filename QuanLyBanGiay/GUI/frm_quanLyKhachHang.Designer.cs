@@ -59,15 +59,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.hinhanh = new System.Windows.Forms.PictureBox();
-            this.dtp_ngayTao = new System.Windows.Forms.DateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dtp_ngayCapNhat = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
+            this.cbo_thanhVien = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.txt_diemTichLuy = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.cbo_thanhVien = new System.Windows.Forms.ComboBox();
+            this.dtp_ngayCapNhat = new System.Windows.Forms.DateTimePicker();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dtp_ngayTao = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.hinhanh = new System.Windows.Forms.PictureBox();
             this.cbo_timThanhVien = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
@@ -148,6 +148,7 @@
             this.btn_themKhachHang.Size = new System.Drawing.Size(70, 60);
             this.btn_themKhachHang.TabIndex = 12;
             this.btn_themKhachHang.UseVisualStyleBackColor = true;
+            this.btn_themKhachHang.Click += new System.EventHandler(this.Btn_themKhachHang_Click);
             // 
             // dtpNgaySinh
             // 
@@ -419,33 +420,45 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Chi tiết khách hàng";
             // 
-            // hinhanh
+            // cbo_thanhVien
             // 
-            this.hinhanh.Location = new System.Drawing.Point(46, 230);
-            this.hinhanh.Name = "hinhanh";
-            this.hinhanh.Size = new System.Drawing.Size(118, 132);
-            this.hinhanh.TabIndex = 28;
-            this.hinhanh.TabStop = false;
+            this.cbo_thanhVien.FormattingEnabled = true;
+            this.cbo_thanhVien.Items.AddRange(new object[] {
+            "Đã là thành viên",
+            "Chưa là thành viên"});
+            this.cbo_thanhVien.Location = new System.Drawing.Point(335, 281);
+            this.cbo_thanhVien.Name = "cbo_thanhVien";
+            this.cbo_thanhVien.Size = new System.Drawing.Size(254, 27);
+            this.cbo_thanhVien.TabIndex = 37;
             // 
-            // dtp_ngayTao
+            // label15
             // 
-            this.dtp_ngayTao.CustomFormat = "dd/MM/yyyy";
-            this.dtp_ngayTao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtp_ngayTao.Location = new System.Drawing.Point(178, 179);
-            this.dtp_ngayTao.Name = "dtp_ngayTao";
-            this.dtp_ngayTao.Size = new System.Drawing.Size(128, 27);
-            this.dtp_ngayTao.TabIndex = 29;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Navy;
+            this.label15.Location = new System.Drawing.Point(197, 285);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(131, 19);
+            this.label15.TabIndex = 36;
+            this.label15.Text = "Thẻ thành viên";
             // 
-            // label6
+            // txt_diemTichLuy
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Navy;
-            this.label6.Location = new System.Drawing.Point(42, 185);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(88, 19);
-            this.label6.TabIndex = 30;
-            this.label6.Text = "Ngày tạo:";
+            this.txt_diemTichLuy.Location = new System.Drawing.Point(334, 230);
+            this.txt_diemTichLuy.Name = "txt_diemTichLuy";
+            this.txt_diemTichLuy.Size = new System.Drawing.Size(255, 27);
+            this.txt_diemTichLuy.TabIndex = 33;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Navy;
+            this.label14.Location = new System.Drawing.Point(201, 233);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(121, 19);
+            this.label14.TabIndex = 34;
+            this.label14.Text = "Điểm tích luỹ:";
             // 
             // dtp_ngayCapNhat
             // 
@@ -467,45 +480,33 @@
             this.label8.TabIndex = 32;
             this.label8.Text = "Ngày cập nhật:";
             // 
-            // txt_diemTichLuy
+            // dtp_ngayTao
             // 
-            this.txt_diemTichLuy.Location = new System.Drawing.Point(334, 230);
-            this.txt_diemTichLuy.Name = "txt_diemTichLuy";
-            this.txt_diemTichLuy.Size = new System.Drawing.Size(255, 27);
-            this.txt_diemTichLuy.TabIndex = 33;
+            this.dtp_ngayTao.CustomFormat = "dd/MM/yyyy";
+            this.dtp_ngayTao.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtp_ngayTao.Location = new System.Drawing.Point(178, 179);
+            this.dtp_ngayTao.Name = "dtp_ngayTao";
+            this.dtp_ngayTao.Size = new System.Drawing.Size(128, 27);
+            this.dtp_ngayTao.TabIndex = 29;
             // 
-            // label14
+            // label6
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.Navy;
-            this.label14.Location = new System.Drawing.Point(201, 233);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(121, 19);
-            this.label14.TabIndex = 34;
-            this.label14.Text = "Điểm tích luỹ:";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Navy;
+            this.label6.Location = new System.Drawing.Point(42, 185);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(88, 19);
+            this.label6.TabIndex = 30;
+            this.label6.Text = "Ngày tạo:";
             // 
-            // label15
+            // hinhanh
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Navy;
-            this.label15.Location = new System.Drawing.Point(197, 285);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(131, 19);
-            this.label15.TabIndex = 36;
-            this.label15.Text = "Thẻ thành viên";
-            // 
-            // cbo_thanhVien
-            // 
-            this.cbo_thanhVien.FormattingEnabled = true;
-            this.cbo_thanhVien.Items.AddRange(new object[] {
-            "Đã là thành viên",
-            "Chưa là thành viên"});
-            this.cbo_thanhVien.Location = new System.Drawing.Point(335, 281);
-            this.cbo_thanhVien.Name = "cbo_thanhVien";
-            this.cbo_thanhVien.Size = new System.Drawing.Size(254, 27);
-            this.cbo_thanhVien.TabIndex = 37;
+            this.hinhanh.Location = new System.Drawing.Point(46, 230);
+            this.hinhanh.Name = "hinhanh";
+            this.hinhanh.Size = new System.Drawing.Size(118, 132);
+            this.hinhanh.TabIndex = 28;
+            this.hinhanh.TabStop = false;
             // 
             // cbo_timThanhVien
             // 

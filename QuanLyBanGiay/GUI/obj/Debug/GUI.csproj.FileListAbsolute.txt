@@ -209,3 +209,5 @@ D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\Acc
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\LiveCharts.pdb
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\bin\Debug\LiveCharts.xml
 D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.PhanTich.resources
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_QuanLyPhieuTraHang.resources
+D:\Hoc\IT\HOCKY_7\PTPM\DoAn\PhanMemQuanLyBanGiay\QuanLyBanGiay\GUI\obj\Debug\GUI.frm_ThemPhieuDoiTra.resources
