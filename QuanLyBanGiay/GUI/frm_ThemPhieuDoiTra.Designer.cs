@@ -311,6 +311,7 @@
             // dgvSanPhamTrongHoaDon
             // 
             this.dgvSanPhamTrongHoaDon.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvSanPhamTrongHoaDon.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvSanPhamTrongHoaDon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSanPhamTrongHoaDon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSanPhamTrongHoaDon.Location = new System.Drawing.Point(3, 23);
@@ -351,6 +352,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1099, 830);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.btnXacNhan);

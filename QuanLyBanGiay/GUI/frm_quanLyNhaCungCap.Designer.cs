@@ -102,12 +102,13 @@
             // 
             // btnTim
             // 
+            this.btnTim.BackColor = System.Drawing.Color.Navy;
             this.btnTim.Image = global::GUI.Properties.Resources.icons8_find_35;
             this.btnTim.Location = new System.Drawing.Point(544, 453);
             this.btnTim.Name = "btnTim";
             this.btnTim.Size = new System.Drawing.Size(70, 52);
             this.btnTim.TabIndex = 42;
-            this.btnTim.UseVisualStyleBackColor = true;
+            this.btnTim.UseVisualStyleBackColor = false;
             // 
             // txtTim
             // 
@@ -233,12 +234,13 @@
             // 
             // btn_themNCC
             // 
+            this.btn_themNCC.BackColor = System.Drawing.Color.Navy;
             this.btn_themNCC.Image = global::GUI.Properties.Resources.icons8_add_32;
             this.btn_themNCC.Location = new System.Drawing.Point(555, 285);
             this.btn_themNCC.Name = "btn_themNCC";
             this.btn_themNCC.Size = new System.Drawing.Size(70, 60);
             this.btn_themNCC.TabIndex = 12;
-            this.btn_themNCC.UseVisualStyleBackColor = true;
+            this.btn_themNCC.UseVisualStyleBackColor = false;
             this.btn_themNCC.Click += new System.EventHandler(this.Btn_themNCC_Click);
             // 
             // btnDoiHinhAnh
@@ -253,21 +255,23 @@
             // 
             // btn_CapNhat
             // 
+            this.btn_CapNhat.BackColor = System.Drawing.Color.Navy;
             this.btn_CapNhat.Image = global::GUI.Properties.Resources.icons8_save_as_32;
             this.btn_CapNhat.Location = new System.Drawing.Point(687, 285);
             this.btn_CapNhat.Name = "btn_CapNhat";
             this.btn_CapNhat.Size = new System.Drawing.Size(70, 60);
             this.btn_CapNhat.TabIndex = 13;
-            this.btn_CapNhat.UseVisualStyleBackColor = true;
+            this.btn_CapNhat.UseVisualStyleBackColor = false;
             // 
             // btnClear
             // 
+            this.btnClear.BackColor = System.Drawing.Color.Navy;
             this.btnClear.Image = global::GUI.Properties.Resources.icons8_clear_32;
             this.btnClear.Location = new System.Drawing.Point(819, 285);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(70, 60);
             this.btnClear.TabIndex = 14;
-            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.UseVisualStyleBackColor = false;
             // 
             // picHinhAnh
             // 
@@ -377,6 +381,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1240, 857);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtTim);

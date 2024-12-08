@@ -97,6 +97,7 @@
             // dgvKiemKe
             // 
             this.dgvKiemKe.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvKiemKe.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvKiemKe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvKiemKe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvKiemKe.Location = new System.Drawing.Point(3, 23);
@@ -121,6 +122,7 @@
             // dgvChiTietKiemKe
             // 
             this.dgvChiTietKiemKe.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvChiTietKiemKe.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvChiTietKiemKe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChiTietKiemKe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvChiTietKiemKe.Location = new System.Drawing.Point(3, 23);
@@ -432,6 +434,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1446, 857);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);

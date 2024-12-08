@@ -30,12 +30,21 @@
         {
             this.txt_maMauSac = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btn_load = new System.Windows.Forms.Button();
             this.btn_timKiem = new System.Windows.Forms.Button();
             this.txt_timKiem = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_clearKT = new System.Windows.Forms.Button();
+            this.btn_khoiPhucKT = new System.Windows.Forms.Button();
+            this.txt_trangThaiKT = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txt_ngayCapNhatKT = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.dgv_dsKichThuoc = new System.Windows.Forms.DataGridView();
+            this.txt_ngayTaoKT = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.btn_suaKichThuoc = new System.Windows.Forms.Button();
             this.btn_xoaKichThuoc = new System.Windows.Forms.Button();
             this.btn_themKichThuoc = new System.Windows.Forms.Button();
@@ -89,14 +98,6 @@
             this.txt_trangThaiMauSac = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.txt_moTaMauSac = new System.Windows.Forms.TextBox();
-            this.txt_ngayCapNhatKT = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txt_ngayTaoKT = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txt_trangThaiKT = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.btn_khoiPhucKT = new System.Windows.Forms.Button();
-            this.btn_clearKT = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btn_timThuongHieu = new System.Windows.Forms.Button();
             this.txt_timKiemThuongHieu = new System.Windows.Forms.TextBox();
@@ -122,7 +123,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.dgv_thuongHieu = new System.Windows.Forms.DataGridView();
             this.label33 = new System.Windows.Forms.Label();
-            this.btn_load = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_dsKichThuoc)).BeginInit();
@@ -163,6 +163,17 @@
             this.groupBox3.TabIndex = 48;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Nhập thông tin cần tìm";
+            // 
+            // btn_load
+            // 
+            this.btn_load.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_load.Image = global::GUI.Properties.Resources.icons8_load_32;
+            this.btn_load.Location = new System.Drawing.Point(478, 20);
+            this.btn_load.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_load.Name = "btn_load";
+            this.btn_load.Size = new System.Drawing.Size(42, 38);
+            this.btn_load.TabIndex = 17;
+            this.btn_load.UseVisualStyleBackColor = true;
             // 
             // btn_timKiem
             // 
@@ -224,6 +235,72 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin kích thước";
             // 
+            // btn_clearKT
+            // 
+            this.btn_clearKT.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_clearKT.BackgroundImage = global::GUI.Properties.Resources.icons8_clear_32;
+            this.btn_clearKT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_clearKT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_clearKT.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_clearKT.Location = new System.Drawing.Point(401, 159);
+            this.btn_clearKT.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_clearKT.Name = "btn_clearKT";
+            this.btn_clearKT.Size = new System.Drawing.Size(47, 37);
+            this.btn_clearKT.TabIndex = 58;
+            this.btn_clearKT.UseVisualStyleBackColor = false;
+            // 
+            // btn_khoiPhucKT
+            // 
+            this.btn_khoiPhucKT.BackColor = System.Drawing.Color.AliceBlue;
+            this.btn_khoiPhucKT.BackgroundImage = global::GUI.Properties.Resources.icons8_load_32;
+            this.btn_khoiPhucKT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_khoiPhucKT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_khoiPhucKT.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_khoiPhucKT.Location = new System.Drawing.Point(565, 167);
+            this.btn_khoiPhucKT.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_khoiPhucKT.Name = "btn_khoiPhucKT";
+            this.btn_khoiPhucKT.Size = new System.Drawing.Size(47, 37);
+            this.btn_khoiPhucKT.TabIndex = 58;
+            this.btn_khoiPhucKT.UseVisualStyleBackColor = false;
+            // 
+            // txt_trangThaiKT
+            // 
+            this.txt_trangThaiKT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_trangThaiKT.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt_trangThaiKT.Enabled = false;
+            this.txt_trangThaiKT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_trangThaiKT.Location = new System.Drawing.Point(148, 167);
+            this.txt_trangThaiKT.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_trangThaiKT.Name = "txt_trangThaiKT";
+            this.txt_trangThaiKT.Size = new System.Drawing.Size(234, 26);
+            this.txt_trangThaiKT.TabIndex = 53;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.ForeColor = System.Drawing.Color.Navy;
+            this.label25.Location = new System.Drawing.Point(22, 167);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(95, 20);
+            this.label25.TabIndex = 52;
+            this.label25.Text = "Trạng thái ";
+            // 
+            // txt_ngayCapNhatKT
+            // 
+            this.txt_ngayCapNhatKT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_ngayCapNhatKT.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt_ngayCapNhatKT.Enabled = false;
+            this.txt_ngayCapNhatKT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_ngayCapNhatKT.Location = new System.Drawing.Point(401, 130);
+            this.txt_ngayCapNhatKT.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_ngayCapNhatKT.Name = "txt_ngayCapNhatKT";
+            this.txt_ngayCapNhatKT.Size = new System.Drawing.Size(159, 26);
+            this.txt_ngayCapNhatKT.TabIndex = 61;
+            // 
             // label16
             // 
             this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -233,6 +310,20 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(620, 4);
             this.label16.TabIndex = 44;
+            // 
+            // label23
+            // 
+            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.Navy;
+            this.label23.Location = new System.Drawing.Point(386, 108);
+            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(124, 20);
+            this.label23.TabIndex = 60;
+            this.label23.Text = "Ngày cập nhật";
             // 
             // dgv_dsKichThuoc
             // 
@@ -247,6 +338,32 @@
             this.dgv_dsKichThuoc.RowHeadersWidth = 51;
             this.dgv_dsKichThuoc.Size = new System.Drawing.Size(537, 36);
             this.dgv_dsKichThuoc.TabIndex = 41;
+            // 
+            // txt_ngayTaoKT
+            // 
+            this.txt_ngayTaoKT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txt_ngayTaoKT.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txt_ngayTaoKT.Enabled = false;
+            this.txt_ngayTaoKT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_ngayTaoKT.Location = new System.Drawing.Point(401, 70);
+            this.txt_ngayTaoKT.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_ngayTaoKT.Name = "txt_ngayTaoKT";
+            this.txt_ngayTaoKT.Size = new System.Drawing.Size(159, 26);
+            this.txt_ngayTaoKT.TabIndex = 59;
+            // 
+            // label24
+            // 
+            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.ForeColor = System.Drawing.Color.Navy;
+            this.label24.Location = new System.Drawing.Point(386, 48);
+            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(80, 20);
+            this.label24.TabIndex = 58;
+            this.label24.Text = "Ngày tạo";
             // 
             // btn_suaKichThuoc
             // 
@@ -961,112 +1078,6 @@
             this.txt_moTaMauSac.Size = new System.Drawing.Size(247, 44);
             this.txt_moTaMauSac.TabIndex = 5;
             // 
-            // txt_ngayCapNhatKT
-            // 
-            this.txt_ngayCapNhatKT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_ngayCapNhatKT.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_ngayCapNhatKT.Enabled = false;
-            this.txt_ngayCapNhatKT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_ngayCapNhatKT.Location = new System.Drawing.Point(401, 130);
-            this.txt_ngayCapNhatKT.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_ngayCapNhatKT.Name = "txt_ngayCapNhatKT";
-            this.txt_ngayCapNhatKT.Size = new System.Drawing.Size(159, 26);
-            this.txt_ngayCapNhatKT.TabIndex = 61;
-            // 
-            // label23
-            // 
-            this.label23.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.ForeColor = System.Drawing.Color.Navy;
-            this.label23.Location = new System.Drawing.Point(386, 108);
-            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(124, 20);
-            this.label23.TabIndex = 60;
-            this.label23.Text = "Ngày cập nhật";
-            // 
-            // txt_ngayTaoKT
-            // 
-            this.txt_ngayTaoKT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_ngayTaoKT.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_ngayTaoKT.Enabled = false;
-            this.txt_ngayTaoKT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_ngayTaoKT.Location = new System.Drawing.Point(401, 70);
-            this.txt_ngayTaoKT.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_ngayTaoKT.Name = "txt_ngayTaoKT";
-            this.txt_ngayTaoKT.Size = new System.Drawing.Size(159, 26);
-            this.txt_ngayTaoKT.TabIndex = 59;
-            // 
-            // label24
-            // 
-            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.ForeColor = System.Drawing.Color.Navy;
-            this.label24.Location = new System.Drawing.Point(386, 48);
-            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(80, 20);
-            this.label24.TabIndex = 58;
-            this.label24.Text = "Ngày tạo";
-            // 
-            // txt_trangThaiKT
-            // 
-            this.txt_trangThaiKT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txt_trangThaiKT.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.txt_trangThaiKT.Enabled = false;
-            this.txt_trangThaiKT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_trangThaiKT.Location = new System.Drawing.Point(148, 167);
-            this.txt_trangThaiKT.Margin = new System.Windows.Forms.Padding(2);
-            this.txt_trangThaiKT.Name = "txt_trangThaiKT";
-            this.txt_trangThaiKT.Size = new System.Drawing.Size(234, 26);
-            this.txt_trangThaiKT.TabIndex = 53;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.ForeColor = System.Drawing.Color.Navy;
-            this.label25.Location = new System.Drawing.Point(22, 167);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(95, 20);
-            this.label25.TabIndex = 52;
-            this.label25.Text = "Trạng thái ";
-            // 
-            // btn_khoiPhucKT
-            // 
-            this.btn_khoiPhucKT.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_khoiPhucKT.BackgroundImage = global::GUI.Properties.Resources.icons8_load_32;
-            this.btn_khoiPhucKT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_khoiPhucKT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_khoiPhucKT.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_khoiPhucKT.Location = new System.Drawing.Point(565, 167);
-            this.btn_khoiPhucKT.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_khoiPhucKT.Name = "btn_khoiPhucKT";
-            this.btn_khoiPhucKT.Size = new System.Drawing.Size(47, 37);
-            this.btn_khoiPhucKT.TabIndex = 58;
-            this.btn_khoiPhucKT.UseVisualStyleBackColor = false;
-            // 
-            // btn_clearKT
-            // 
-            this.btn_clearKT.BackColor = System.Drawing.Color.AliceBlue;
-            this.btn_clearKT.BackgroundImage = global::GUI.Properties.Resources.icons8_clear_32;
-            this.btn_clearKT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_clearKT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_clearKT.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_clearKT.Location = new System.Drawing.Point(401, 159);
-            this.btn_clearKT.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_clearKT.Name = "btn_clearKT";
-            this.btn_clearKT.Size = new System.Drawing.Size(47, 37);
-            this.btn_clearKT.TabIndex = 58;
-            this.btn_clearKT.UseVisualStyleBackColor = false;
-            // 
             // groupBox5
             // 
             this.groupBox5.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -1412,21 +1423,11 @@
             this.label33.TabIndex = 51;
             this.label33.Text = "Thương hiệu";
             // 
-            // btn_load
-            // 
-            this.btn_load.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_load.Image = global::GUI.Properties.Resources.icons8_load_32;
-            this.btn_load.Location = new System.Drawing.Point(478, 20);
-            this.btn_load.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_load.Name = "btn_load";
-            this.btn_load.Size = new System.Drawing.Size(42, 38);
-            this.btn_load.TabIndex = 17;
-            this.btn_load.UseVisualStyleBackColor = true;
-            // 
             // frm_quanLyChungLoai
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1743, 857);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox6);
