@@ -82,32 +82,99 @@ namespace GUI
             //su kien khi nhập vào ô số lượng không lớn hơn số lượng tồn
             txt_soLuong.TextChanged += Txt_soLuong_TextChanged;
             txt_soLuong.KeyPress += Txt_soLuong_KeyPress;
+            LoadComboBoxKhachHang();
+            cbo_khachHang.SelectedIndexChanged += Cbo_khachHang_SelectedIndexChanged;
+            btn_themKhachHang.Click += Btn_themKhachHang_Click;
+            btn_themKhachHang.Enabled = false;
+
+            //xoá 1 sản phẩm trong giỏ hàng
+            dgvCart.CellContentClick += DgvCart_CellContentClick;
+        }
+
+        private void Btn_themKhachHang_Click(object sender, EventArgs e)
+        {
+            // mở form thêm khách hàng
+            frm_themKhachHang frm = new frm_themKhachHang();
+            frm.ShowDialog();
+            btn_themKhachHang.Enabled = false;
+            cbo_khachHang.SelectedItem = "Khách hàng thành viên";
+            //lấy thông tin khách hàng vừa thêm vào các textbox
+        }
+
+        private void Cbo_khachHang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Lấy thông tin khách hàng từ ComboBox
+            if (cbo_khachHang.SelectedItem != null)
+            {
+                //lấy giá trị của item được chọn
+                string loaiKhachHang = cbo_khachHang.SelectedItem.ToString();
+                if (loaiKhachHang == "Khách hàng thành viên")
+                {
+                    //hiện thông tin khách hàng thành viên
+                    txt_diemDung.Enabled = true;
+                    chkSuDungDiemTichLuy.Enabled = true;
+                    // xoá hết thông tin khách hàng cũ
+                    txt_maKhachHang.Text = string.Empty;
+                    txt_tenKhachHang.Text = string.Empty;
+                    txt_soDienThoai.Text = string.Empty;
+                    txt_diaChi.Text = string.Empty;
+                    txt_diemTichLuy.Text = string.Empty;
+                    txt_diemDung.Text = string.Empty;
+                    btn_themKhachHang.Enabled = false;
+
+                }
+                else if (loaiKhachHang == "Khách hàng vãng lai")
+                {
+                    //lấy khách hàng 001 gán vào các textbox
+                    txt_maKhachHang.Text = "KH001";
+                    txt_tenKhachHang.Text = "Khách hàng vãng lai";
+                    txt_soDienThoai.Text = "0123456789";
+                    txt_diaChi.Text = "Địa chỉ";
+                    txt_diemTichLuy.Text = "0";
+                    txt_diemDung.Text = "0";
+                    txt_diemDung.Enabled = false;
+                    chkSuDungDiemTichLuy.Enabled = false;
+                    btn_themKhachHang.Enabled = false;
+                }
+                else
+                {
+                    txt_maKhachHang.Text = string.Empty;
+                    txt_tenKhachHang.Text = string.Empty;
+                    txt_soDienThoai.Text = string.Empty;
+                    txt_diaChi.Text = string.Empty;
+                    txt_diemTichLuy.Text = string.Empty;
+                    txt_diemDung.Text = string.Empty;
+                    btn_themKhachHang.Enabled = true;
+                    txt_diemDung.Enabled = true;
+                    chkSuDungDiemTichLuy.Enabled = true;
+                    btn_themKhachHang.Enabled = true;
+                }
+            }
         }
 
         private void Txt_soLuong_TextChanged(object sender, EventArgs e)
         {
-            // Kiểm tra nếu số lượng nhập vào lớn hơn số lượng tồn thì reset về 1
-            //lấy số lượng tồn
-            int soLuong = int.Parse(txt_soLuong.Text);
+            int soLuong;
+            if (!int.TryParse(txt_soLuong.Text, out soLuong))
+            {
+                MessageBox.Show("Vui lòng nhập một số hợp lệ.");
+                txt_soLuong.Value = 1;
+                return;
+            }
+
             if (soLuong > 100)
             {
-                //MessageBox.Show("Số lượng sản phẩm không được lớn hơn 100");
                 txt_soLuong.Value = 1;
             }
-            // Kiểm tra nếu số lượng nhập vào lớn hơn số lượng tồn thì reset về 1
-            //lấy số lượng tồn
-            if(soLuong < 0)
+            else if (soLuong < 0)
             {
-                //MessageBox.Show("Số lượng sản phẩm không được nhỏ hơn 0");
                 txt_soLuong.Value = 1;
             }
-            if(soLuong>txt_soLuongTon.Value)
+            else if (soLuong > txt_soLuongTon.Value)
             {
                 MessageBox.Show("Số lượng sản phẩm không được lớn hơn số lượng tồn");
                 txt_soLuong.Value = txt_soLuongTon.Value;
-            }    
-
-
+            }
         }
 
         private void Txt_soLuong_KeyPress(object sender, KeyPressEventArgs e)
@@ -670,6 +737,14 @@ namespace GUI
             }
         }
         //hàm
+        //load combobox khachHang
+        private void LoadComboBoxKhachHang()
+        {
+            cbo_khachHang.Items.Add("Khách hàng thành viên");
+            cbo_khachHang.Items.Add("Khách đăng kí thành viên mới");
+            cbo_khachHang.Items.Add("Khách hàng vãng lai");
+            cbo_khachHang.SelectedIndex = 0;
+        }
         //Xuất hoá đơn ra word
         private void XuatHoaDon()
         {
@@ -990,6 +1065,8 @@ namespace GUI
 
             // Ngăn không cho tạo thêm cột mới
             dgvCart.AllowUserToAddRows = false;
+            // chỉnh chiều cao của hàng
+            dgvCart.RowTemplate.Height = 40;
         }
         //hàm load thương hiệu loại sản phẩm, danh sách màu sắc ,danh sách kích thước
         private void loadThuocTinhSanPham(string tenSP)

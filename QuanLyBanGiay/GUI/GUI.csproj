@@ -235,6 +235,12 @@
     <Compile Include="frm_QuanLyPhieuTraHang.Designer.cs">
       <DependentUpon>frm_QuanLyPhieuTraHang.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_themKhachHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_themKhachHang.Designer.cs">
+      <DependentUpon>frm_themKhachHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_ThemNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -327,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_QuanLyPhieuTraHang.resx">
       <DependentUpon>frm_QuanLyPhieuTraHang.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_themKhachHang.resx">
+      <DependentUpon>frm_themKhachHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_ThemNhanVien.resx">
       <DependentUpon>frm_ThemNhanVien.cs</DependentUpon>

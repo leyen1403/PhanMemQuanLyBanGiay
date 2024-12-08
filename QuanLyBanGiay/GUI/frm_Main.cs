@@ -152,7 +152,7 @@ namespace GUI
 
         private void btn_LapPhieuDoiTra_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         private void btn_HoaDon_Click_1(object sender, EventArgs e)

@@ -191,6 +191,7 @@
             // dgvVaiTro
             // 
             this.dgvVaiTro.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvVaiTro.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvVaiTro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVaiTro.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvVaiTro.Location = new System.Drawing.Point(3, 23);
@@ -315,6 +316,7 @@
             // dgvQuyen
             // 
             this.dgvQuyen.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvQuyen.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvQuyen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvQuyen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvQuyen.Location = new System.Drawing.Point(3, 23);
@@ -409,6 +411,7 @@
             // dgvNhanVien_VaiTro
             // 
             this.dgvNhanVien_VaiTro.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvNhanVien_VaiTro.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvNhanVien_VaiTro.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNhanVien_VaiTro.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvNhanVien_VaiTro.Location = new System.Drawing.Point(3, 23);
@@ -429,6 +432,7 @@
             // dgvNhanVien
             // 
             this.dgvNhanVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvNhanVien.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNhanVien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvNhanVien.Location = new System.Drawing.Point(3, 23);
@@ -524,6 +528,7 @@
             // dgvVaiTro_Quyen
             // 
             this.dgvVaiTro_Quyen.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvVaiTro_Quyen.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvVaiTro_Quyen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVaiTro_Quyen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvVaiTro_Quyen.Location = new System.Drawing.Point(3, 23);
@@ -544,6 +549,7 @@
             // dgvVaiTro1
             // 
             this.dgvVaiTro1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvVaiTro1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvVaiTro1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVaiTro1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvVaiTro1.Location = new System.Drawing.Point(3, 23);
@@ -589,6 +595,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1491, 1015);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox5);
