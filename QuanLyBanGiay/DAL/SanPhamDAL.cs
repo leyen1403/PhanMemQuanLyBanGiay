@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace DAL
         {
             db = new db_QuanLyBanGiayDataContext();
         }
+
         //tìm kiếm sản phẩm theo nhiều điều kiện có thể mã loại, mã màu sắc , mã kích thước, mã thương hiệu
         public List<SanPham> timKiemSanPham(string maLoai, string maMau, string maKichThuoc, string maThuongHieu)
         {
@@ -411,6 +413,81 @@ namespace DAL
                 Console.WriteLine("Lỗi khi lấy giá bán: " + ex.Message);
                 return null; // Trả về null nếu có lỗi
             }
+        }
+
+        // Nam viết thêm
+        public DataTable GetSanPhamBanChayDataTable()
+        {
+            // Tạo DataTable để lưu trữ kết quả
+            DataTable dtSanPhamBanChay = new DataTable();
+
+            // Truy vấn LINQ lấy sản phẩm bán chạy
+            var query = from hd in db.HoaDons
+                        join ct in db.ChiTietHoaDons on hd.MaHoaDon equals ct.MaHoaDon
+                        join sp in db.SanPhams on ct.MaSanPham equals sp.MaSanPham
+                        group new { ct.SoLuong, sp.MaSanPham, sp.TenSanPham } by new { sp.MaSanPham, sp.TenSanPham } into g
+                        select new
+                        {
+                            g.Key.MaSanPham,
+                            g.Key.TenSanPham,
+                            TongSoLuongBan = g.Sum(x => x.SoLuong ?? 0) // Kiểm tra null cho SoLuong
+                        };
+
+            // Định nghĩa cột cho DataTable
+            dtSanPhamBanChay.Columns.Add("MaSanPham", typeof(string));
+            dtSanPhamBanChay.Columns.Add("TenSanPham", typeof(string));
+            dtSanPhamBanChay.Columns.Add("TongSoLuongBan", typeof(int));
+
+            // Thêm dữ liệu từ query vào DataTable
+            foreach (var item in query.OrderByDescending(x => x.TongSoLuongBan))
+            {
+                DataRow row = dtSanPhamBanChay.NewRow();
+                row["MaSanPham"] = item.MaSanPham;
+                row["TenSanPham"] = item.TenSanPham;
+                row["TongSoLuongBan"] = item.TongSoLuongBan;
+                dtSanPhamBanChay.Rows.Add(row);
+            }
+
+            return dtSanPhamBanChay;
+        }
+
+
+        public DataTable GetSanPhamTonKho()
+        {
+            // Tạo DataTable để lưu trữ kết quả
+            DataTable dtSanPhamTonKho = new DataTable();
+
+            // Truy vấn LINQ lấy sản phẩm còn tồn kho và kiểm tra số lượng tồn so với số lượng tối thiểu
+            var query = from sp in db.SanPhams
+                        where sp.SoLuong > 0 // Chỉ lấy sản phẩm có số lượng tồn > 0
+                        select new
+                        {
+                            sp.MaSanPham,
+                            sp.TenSanPham,
+                            sp.SoLuong,
+                            sp.SoLuongToiThieu
+                        };
+
+            // Điền dữ liệu vào DataTable
+            dtSanPhamTonKho.Columns.Add("MaSanPham");
+            dtSanPhamTonKho.Columns.Add("TenSanPham");
+            dtSanPhamTonKho.Columns.Add("SoLuongTon", typeof(int));
+            dtSanPhamTonKho.Columns.Add("SoLuongToiThieu", typeof(int));
+            dtSanPhamTonKho.Columns.Add("CanNhapThem", typeof(bool)); // Cột kiểm tra cần nhập thêm
+
+            foreach (var item in query)
+            {
+                DataRow row = dtSanPhamTonKho.NewRow();
+                row["MaSanPham"] = item.MaSanPham;
+                row["TenSanPham"] = item.TenSanPham;
+                row["SoLuongTon"] = item.SoLuong;
+                row["SoLuongToiThieu"] = item.SoLuongToiThieu;
+                row["CanNhapThem"] = item.SoLuong <= item.SoLuongToiThieu; // Kiểm tra nếu cần nhập thêm
+
+                dtSanPhamTonKho.Rows.Add(row);
+            }
+
+            return dtSanPhamTonKho; // Trả về DataTable chứa danh sách sản phẩm còn tồn kho
         }
 
     }

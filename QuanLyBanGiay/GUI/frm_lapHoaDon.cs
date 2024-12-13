@@ -322,7 +322,8 @@ namespace GUI
                     GhiChu = ghiChu, // Ghi chú
                     PhuongThucThanhToan = hinhThucThanhToan, // Hình thức thanh toán
                     TongTien = tongTien, // Tổng tiền
-                    DiemTichLuySuDung = (int?)Convert.ToInt32(diemSuDung)  // Convert diemSuDung to int before casting to int?
+                    DiemTichLuySuDung = (int?)Convert.ToInt32(diemSuDung),  // Convert diemSuDung to int before casting to int?
+                    TrangThai = "Đã nhân hàng"
                 };
 
                 bool themDiemCong = _khachHangBLL.AddDiemCongTichLuy(kh.MaKhachHang, diemTichLuy);
@@ -366,7 +367,9 @@ namespace GUI
                         _chiTietHoaDonBLL.ThemChiTietHoaDon(chiTietHoaDon);
                     }
                 }
-
+                //lấy chi tiết hoá đơn
+                var lstCTHD = _chiTietHoaDonBLL.LayChiTietHoaDonTheoMaHoaDon(_MaHoaDon);
+                UpdateProductStock(lstCTHD);
                 MessageBox.Show("Hóa đơn đã được lưu thành công!");
                 dgvCart.Rows.Clear();
                 clearAll();
@@ -737,6 +740,46 @@ namespace GUI
             }
         }
         //hàm
+        private void UpdateProductStock(List<ChiTietHoaDon> chiTietHoaDonList)
+        {
+            try
+            {
+                // Lặp qua từng sản phẩm trong danh sách chi tiết hóa đơn
+                foreach (var chiTiet in chiTietHoaDonList)
+                {
+                    string maSanPham = chiTiet.MaSanPham;
+                    int soLuongBan = chiTiet.SoLuong ?? 0;
+
+                    // Lấy thông tin sản phẩm từ cơ sở dữ liệu
+                    var sanPham = _sanPhamBLL.LaySanPhamTheoMa(maSanPham);
+
+                    if (sanPham != null)
+                    {
+                        // Trừ số lượng bán từ số lượng tồn
+                        sanPham.SoLuong -= soLuongBan;
+
+                        // Kiểm tra nếu số lượng tồn âm (cảnh báo)
+                        if (sanPham.SoLuong < 0)
+                        {
+                            MessageBox.Show($"Sản phẩm {sanPham.TenSanPham} không đủ hàng trong kho.");
+                            sanPham.SoLuong = 0; // Đảm bảo không để số lượng tồn âm
+                        }
+
+                        // Cập nhật sản phẩm vào cơ sở dữ liệu
+                        _sanPhamBLL.suaSanPham(sanPham);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Sản phẩm với mã {maSanPham} không tồn tại.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi cập nhật tồn kho: {ex.Message}");
+                //MessageBox.Show($"Có lỗi xảy ra khi cập nhật tồn kho: {ex.Message}");
+            }
+        }
         //load combobox khachHang
         private void LoadComboBoxKhachHang()
         {

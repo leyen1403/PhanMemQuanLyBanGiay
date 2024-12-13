@@ -7,11 +7,13 @@ using System.Windows.Forms.DataVisualization.Charting; // Để làm việc vớ
 using Accord.MachineLearning;                         // Để thực hiện K-Means
 using Accord.Statistics.Filters;
 using DTO;
+using BLL;
 
 namespace GUI
 {
     public partial class PhanTich : Form
     {
+        KhachHangBLL _khachHangBLL = new KhachHangBLL();
         public PhanTich()
         {
             InitializeComponent();
@@ -24,27 +26,7 @@ namespace GUI
         {
             List<Customer> customerList = new List<Customer>();
 
-            // Tạo dữ liệu cố định cho từng khách hàng
-            customerList.Add(new Customer("Khách hàng 1", 25, 100, 500000, 5));
-            customerList.Add(new Customer("Khách hàng 2", 30, 150, 1000000, 10));
-            customerList.Add(new Customer("Khách hàng 3", 35, 200, 1200000, 12));
-            customerList.Add(new Customer("Khách hàng 4", 40, 250, 800000, 8));
-            customerList.Add(new Customer("Khách hàng 5", 45, 80, 300000, 3));
-            customerList.Add(new Customer("Khách hàng 6", 50, 120, 600000, 7));
-            customerList.Add(new Customer("Khách hàng 7", 55, 180, 1400000, 15));
-            customerList.Add(new Customer("Khách hàng 8", 60, 220, 900000, 9));
-            customerList.Add(new Customer("Khách hàng 9", 28, 160, 1100000, 11));
-            customerList.Add(new Customer("Khách hàng 10", 33, 200, 1500000, 16));
-            customerList.Add(new Customer("Khách hàng 11", 38, 140, 950000, 10));
-            customerList.Add(new Customer("Khách hàng 12", 42, 210, 1300000, 14));
-            customerList.Add(new Customer("Khách hàng 13", 27, 170, 1050000, 9));
-            customerList.Add(new Customer("Khách hàng 14", 50, 250, 800000, 7));
-            customerList.Add(new Customer("Khách hàng 15", 45, 110, 700000, 6));
-            customerList.Add(new Customer("Khách hàng 16", 53, 230, 1250000, 13));
-            customerList.Add(new Customer("Khách hàng 17", 29, 90, 400000, 4));
-            customerList.Add(new Customer("Khách hàng 18", 34, 160, 600000, 8));
-            customerList.Add(new Customer("Khách hàng 19", 31, 140, 800000, 7));
-            customerList.Add(new Customer("Khách hàng 20", 36, 180, 1000000, 10));
+           customerList=_khachHangBLL.GetCustomerSummaries();
 
             return customerList;
         }

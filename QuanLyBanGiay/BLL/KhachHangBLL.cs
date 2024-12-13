@@ -44,5 +44,9 @@ namespace BLL
         {
             return _khachHangDAL.LayTatCaKhachHang().Where(x => x.MaKhachHang == maKhachHang).FirstOrDefault();
         }
+        public List<Customer> GetCustomerSummaries()
+        {
+            return _khachHangDAL.GetCustomerSummaries();
+        }
     }
 }

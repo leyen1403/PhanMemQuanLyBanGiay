@@ -20,6 +20,7 @@ namespace GUI
         ChiTietHoaDonBLL _chiTietHoaDonBLL = new ChiTietHoaDonBLL();
         KhachHangBLL _khachHangBLL = new KhachHangBLL();
         NhanVienBLL _nhanVienBLL = new NhanVienBLL();
+        SanPhamBLL _sanPhamBLL = new SanPhamBLL();
         List<HoaDon> _lstHoaDon = null;
         List<ChiTietHoaDon> _lstChiTietHoaDon = null;
         List<SanPham> _lstSanPham = null;
@@ -271,9 +272,9 @@ namespace GUI
         {
             //lấy giá trị của combobox
             int index = cbbLuaChonHienThi.SelectedIndex;
-            if(index>=0)
+            if (index >= 0)
             {
-                switch(index)
+                switch (index)
                 {
                     case 0:
                         txt_timKiem.Enabled = true;
@@ -317,7 +318,7 @@ namespace GUI
                         break;
                     default:
                         break;
-                }    
+                }
             }
         }
 
@@ -534,6 +535,41 @@ namespace GUI
                     LoadHoaDon();
                     btn_luuHoaDon.BackColor = Color.Navy;
                 }
+                if (trangThaiDonHang == "Đã nhận hàng")
+                {
+                    //cập nhật điểm tích lũy
+                    HoaDon hd = _hoaDonBLL.TimHoaDonTheoMaHoaDon(maHoaDon).FirstOrDefault();
+                    if (hd == null)
+                    {
+                        MessageBox.Show("Không tìm thấy hóa đơn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    KhachHang kh = _khachHangBLL.LayKhachHangTheoDieuKien(hd.MaKhachHang, string.Empty, string.Empty);
+                    if (kh == null)
+                    {
+                        MessageBox.Show("Không tìm thấy thông tin khách hàng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    decimal diemTichLuy = kh.DiemTichLuy ?? 0;
+                    decimal diemTichLuySuDung = hd.DiemTichLuySuDung ?? 0;
+                    decimal diemTichLuyMoi = diemTichLuy - diemTichLuySuDung;
+                    if (diemTichLuyMoi < 0)
+                    {
+                        MessageBox.Show("Không đủ điểm tích lũy để sử dụng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    if (_khachHangBLL.AddDiemCongTichLuy(hd.MaKhachHang, diemTichLuyMoi))
+                    {
+                        MessageBox.Show("Cập nhật điểm tích lũy thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cập nhật điểm tích lũy thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    var lstCTHD = _chiTietHoaDonBLL.LayChiTietHoaDonTheoMaHoaDon(maHoaDon);
+                    UpdateProductStock(lstCTHD);
+                }
+
             }
             catch
             {
@@ -541,5 +577,47 @@ namespace GUI
 
             }
         }
+              //hàm
+        private void UpdateProductStock(List<ChiTietHoaDon> chiTietHoaDonList)
+        {
+            try
+            {
+                // Lặp qua từng sản phẩm trong danh sách chi tiết hóa đơn
+                foreach (var chiTiet in chiTietHoaDonList)
+                {
+                    string maSanPham = chiTiet.MaSanPham;
+                    int soLuongBan = chiTiet.SoLuong ?? 0;
+
+                    // Lấy thông tin sản phẩm từ cơ sở dữ liệu
+                    var sanPham = _sanPhamBLL.LaySanPhamTheoMa(maSanPham);
+
+                    if (sanPham != null)
+                    {
+                        // Trừ số lượng bán từ số lượng tồn
+                        sanPham.SoLuong -= soLuongBan;
+
+                        // Kiểm tra nếu số lượng tồn âm (cảnh báo)
+                        if (sanPham.SoLuong < 0)
+                        {
+                            MessageBox.Show($"Sản phẩm {sanPham.TenSanPham} không đủ hàng trong kho.");
+                            sanPham.SoLuong = 0; // Đảm bảo không để số lượng tồn âm
+                        }
+
+                        // Cập nhật sản phẩm vào cơ sở dữ liệu
+                        _sanPhamBLL.suaSanPham(sanPham);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Sản phẩm với mã {maSanPham} không tồn tại.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Lỗi khi cập nhật tồn kho: {ex.Message}");
+                //MessageBox.Show($"Có lỗi xảy ra khi cập nhật tồn kho: {ex.Message}");
+            }
+        }
+    }
     }
 }

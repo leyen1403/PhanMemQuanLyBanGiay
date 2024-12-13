@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -173,5 +174,117 @@ namespace DAL
 
             }
         }
+        public DataTable GetTongTienTheoNgayDataTable()
+        {
+            // Lấy dữ liệu nhóm theo ngày
+            var tongTienTheoNgay = db.HoaDons
+                .Where(hd => hd.NgayTao.HasValue) // Chỉ lấy các hóa đơn có NgayLap
+                .GroupBy(hd => hd.NgayTao.Value.Date) // Nhóm theo ngày
+                .Select(g => new
+                {
+                    Ngay = g.Key,
+                    TongTien = g.Sum(hd => hd.TongTien)
+                }).ToList();
+
+            // Tạo DataTable để trả về
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Ngày", typeof(DateTime));
+            dataTable.Columns.Add("Tổng tiền", typeof(decimal));
+
+            // Thêm dữ liệu vào DataTable
+            foreach (var item in tongTienTheoNgay)
+            {
+                dataTable.Rows.Add(item.Ngay, item.TongTien);
+            }
+
+            return dataTable;
+        }
+
+        public DataTable GetTongTienTheoNgayDataTable(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            // Lấy dữ liệu nhóm theo ngày
+            var tongTienTheoNgay = db.HoaDons
+                .Where(hd => hd.NgayTao.HasValue && // Lọc các hóa đơn có NgayLap
+                             hd.NgayTao.Value >= ngayBatDau &&
+                             hd.NgayTao.Value <= ngayKetThuc)
+                .GroupBy(hd => hd.NgayTao.Value.Date) // Nhóm theo ngày
+                .Select(g => new
+                {
+                    Ngay = g.Key,
+                    TongTien = g.Sum(hd => hd.TongTien)
+                }).ToList();
+
+            // Tạo DataTable để trả về
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Ngày", typeof(DateTime));
+            dataTable.Columns.Add("Tổng tiền", typeof(decimal));
+
+            foreach (var item in tongTienTheoNgay)
+            {
+                dataTable.Rows.Add(item.Ngay, item.TongTien);
+            }
+
+            return dataTable;
+        }
+
+
+        public List<PhieuBaoCao> LayPhieuBaoCaoTheoKhoangThoiGian(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            // Lọc các hóa đơn bán hàng trong khoảng thời gian từ ngày bắt đầu đến ngày kết thúc
+            var donHangs = db.HoaDons
+                .Where(dh => dh.NgayTao.HasValue
+                             && dh.NgayTao.Value >= ngayBatDau.Date
+                             && dh.NgayTao.Value < ngayKetThuc.Date.AddDays(1)) // so sánh ngày kết thúc với 23:59:59
+                .ToList();
+
+            Console.WriteLine($"Số hóa đơn bán hàng trong khoảng thời gian: {donHangs.Count}");  // Thêm log kiểm tra
+
+            List<PhieuBaoCao> danhSachPhieuBaoCao = new List<PhieuBaoCao>();
+            int i = 1;
+
+            foreach (var donHang in donHangs)
+            {
+                // Lọc chi tiết đơn hàng cho từng hóa đơn
+                var chiTietDonHangs = db.ChiTietHoaDons
+                    .Where(ct => ct.MaHoaDon == donHang.MaHoaDon)
+                    .ToList();
+
+                Console.WriteLine($"Số chi tiết đơn hàng trong hóa đơn {donHang.MaHoaDon}: {chiTietDonHangs.Count}");
+
+                foreach (var chiTiet in chiTietDonHangs)
+                {
+                    // Lấy thông tin sản phẩm
+                    var sanPham = db.SanPhams
+                        .FirstOrDefault(sp => sp.MaSanPham == chiTiet.MaSanPham);
+
+                    if (sanPham != null)
+                    {
+                        // Tính thành tiền
+                        decimal thanhTien = (chiTiet.SoLuong ?? 0) * (sanPham.GiaBan ?? 0);
+
+                        // Tạo báo cáo
+                        PhieuBaoCao pbc = new PhieuBaoCao
+                        {
+                            STT = i.ToString(),
+                            MASANPHAM = sanPham.MaSanPham,
+                            TENSANPHAM = sanPham.TenSanPham,
+                            SOLUONG = chiTiet.SoLuong ?? 0,
+                            DONGIA = sanPham.GiaBan ?? 0,
+                            THANHTIEN = thanhTien,
+                            NGAY = donHang.NgayTao ?? DateTime.MinValue
+                        };
+
+                        danhSachPhieuBaoCao.Add(pbc);
+                        i++;
+                    }
+                }
+            }
+
+            Console.WriteLine($"Số phiếu báo cáo: {danhSachPhieuBaoCao.Count}");
+
+            return danhSachPhieuBaoCao;
+        }
+
+
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL;
+using System.Data;
 
 namespace BLL
 {
@@ -102,6 +103,25 @@ namespace BLL
         public SanPham LaySanPhamTheoMaSanPham(string maSanPham)
         {
             return sanPhamDAL.laySanPhamTheoMa(maSanPham);
+        }
+        // Nam viết thêm thống kê
+        public DataTable GetSanPhamBanChayDataTable()
+        {
+            return sanPhamDAL.GetSanPhamBanChayDataTable();
+        }
+        public DataTable GetSanPhamTonKho()
+        {
+            return sanPhamDAL.GetSanPhamTonKho();
+        }
+
+        public List<SanPham> LayDanhSachSanPham()
+        {
+            return sanPhamDAL.layTatCaSanPham();
+        }
+
+        public SanPham LaySanPhamTheoMa(string maSP)
+        {
+            return sanPhamDAL.laySanPhamTheoMa(maSP);
         }
     }
 }

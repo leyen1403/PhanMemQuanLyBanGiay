@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using DTO;
@@ -137,5 +138,29 @@ namespace DAL
                 return false;
             }
         }
+        public List<Customer> GetCustomerSummaries()
+        {
+            var query = from kh in db.KhachHangs
+                        join hd in db.HoaDons on kh.MaKhachHang equals hd.MaKhachHang into hdGroup
+                        from hd in hdGroup.DefaultIfEmpty()
+                        join cthd in db.ChiTietHoaDons on hd.MaHoaDon equals cthd.MaHoaDon into cthdGroup
+                        from cthd in cthdGroup.DefaultIfEmpty()
+                        group new { kh, hd, cthd } by new
+                        {
+                            kh.TenKhachHang,
+                            kh.NgaySinh,
+                            kh.DiemTichLuy
+                        } into g
+                        select new Customer(
+                            g.Key.TenKhachHang,
+                            g.Key.NgaySinh.HasValue ? DateTime.Now.Year - g.Key.NgaySinh.Value.Year : 0,
+                            g.Key.DiemTichLuy.HasValue ? (int)g.Key.DiemTichLuy.Value : 0,
+                            (double)g.Sum(x => x.hd != null ? x.hd.TongTien : 0),
+                            g.Sum(x => x.cthd != null && x.cthd.SoLuong.HasValue ? x.cthd.SoLuong.Value : 0)
+                        );
+
+            return query.ToList();
+        }
+
     }
 }

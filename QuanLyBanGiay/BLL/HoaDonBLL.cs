@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using DAL;
+using System.Data;
 namespace BLL
 {
     public class HoaDonBLL
@@ -58,5 +59,22 @@ namespace BLL
         {
             return _hoaDonDAL.CapNhatDonHang(maHD, DonHang);
         }
+        //Nam viết thêm 
+        public DataTable GetTongTienTheoNgayDataTable(DateTime startDate, DateTime endDate)
+        {
+            return _hoaDonDAL.GetTongTienTheoNgayDataTable(startDate, endDate);
+        }
+
+        public DataTable GetTongTienTheoNgayDataTable()
+        {
+            return _hoaDonDAL.GetTongTienTheoNgayDataTable();
+        }
+
+        public List<PhieuBaoCao> LayPhieuBaoCaoTheoKhoangThoiGian(DateTime ngayBatDau, DateTime ngayKetThuc)
+        {
+            return _hoaDonDAL.LayPhieuBaoCaoTheoKhoangThoiGian(ngayBatDau, ngayKetThuc);
+        }
+
+
     }
 }

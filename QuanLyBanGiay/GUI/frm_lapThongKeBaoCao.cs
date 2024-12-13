@@ -1,306 +1,331 @@
-﻿using System;
+﻿using BLL;
+using DevExpress.ClipboardSource.SpreadsheetML;
+using DevExpress.SpreadsheetSource;
+using DTO;
+using Syncfusion.XlsIO;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
-using DTO;
-using BLL;
 using System.Windows.Forms.DataVisualization.Charting;
-using DevExpress.XtraCharts;
-using DevExpress.Charts.Native;
-using Microsoft.Office.Interop.Word;
-using System.Runtime.InteropServices.ComTypes;
 
 namespace GUI
 {
     public partial class frm_lapThongKeBaoCao : Form
     {
-        ThongKeBaoCaoBLL _thongKeBaoCaoBLL = new ThongKeBaoCaoBLL();
-
+        //DataGridView dgvThongKe = new DataGridView();
+        HoaDonBLL hoaDonBanHangBLL = new HoaDonBLL();
+        SanPhamBLL sanPhamBLL = new SanPhamBLL();
+        NhanVienBLL nhanVienBLL = new NhanVienBLL();
 
         public frm_lapThongKeBaoCao()
         {
             InitializeComponent();
-            comboBoxThongKe.DropDownStyle = ComboBoxStyle.DropDownList;
-            LoadThongKeOptions();
-            comboBoxThongKe.SelectedIndexChanged += ComboBoxThongKe_SelectedIndexChanged;
-            this.btn_xem.Click += Btn_xem_Click;
+            AddButtonPaintEvent();
+            AddButtonPaintEventRecursive(this);
+            this.Load += Frm_lapThongKeBaoCao_Load;
+            this.btnXemDoanhThu.Click += BtnXemDoanhThu_Click;
+            this.btnChuyen.Click += BtnChuyen_Click;
 
+            tabCrlDoanhThu.Selected += TabCrlDoanhThu_Selected;
+            this.btnXuatDoanhThu.Click += BtnXuatDoanhThu_Click;
+            dtgvThongKe.BackgroundColor = Color.White;
         }
 
-        private void Btn_xem_Click(object sender, EventArgs e)
+        private void BtnXuatDoanhThu_Click(object sender, EventArgs e)
         {
-            string selectedOption = comboBoxThongKe.SelectedItem.ToString();
 
-            switch (selectedOption)
+            string maNV = cbbNhanVien.SelectedValue.ToString();
+            DateTime starDate = dtpNgayBD.Value;
+            DateTime endDate = dtpNgayKT.Value;
+            Console.WriteLine($"Ngày bắt đầu: {starDate}");
+            Console.WriteLine($"Ngày kết thúc: {endDate}");
+
+            List<PhieuBaoCao> dsPBC = hoaDonBanHangBLL.LayPhieuBaoCaoTheoKhoangThoiGian(starDate, endDate);
+
+            if (dsPBC.Count == 0)
             {
-                case "Doanh Thu Theo Khoảng Thời Gian":
-                    bool isWeekChecked = chkWeek.Checked;
-                    bool isMonthChecked = chkMonth.Checked;
-                    bool isYearChecked = chkYear.Checked;
+                MessageBox.Show("Vui lòng chọn ngày bắt đầu và ngày kết thúc");
+                return;
+            }
+            //Create replacer
+            Dictionary<string, string> replacer = new Dictionary<string, string>();
+            string ngay = "Ngày" + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+            replacer.Add("%NgayBatDau", starDate.ToString());
+            replacer.Add("%NgayKetThuc", endDate.ToString());
+            replacer.Add("%NgayThangNam", ngay);
+            //NHACUNGCAP ncc = qlhh.NHACUNGCAPs.Where(t => t.MANCC == pn.MANCC).FirstOrDefault();
+            NhanVien nv = nhanVienBLL.LayNhanVienTheoMa(maNV);
 
-                    // Lấy dữ liệu từ datetimepicker
-                    DateTime startDate = dtp_ngayBD.Value;
-                    DateTime endDate = dtp_ngayKT.Value;
+            var tenNV = nv.MaNhanVien;
+            var soDienThoai = nv.SoDienThoai;
+            var diaChi = nv.DiaChi;
+            replacer.Add("%MaNV", maNV);
+            replacer.Add("%TenNhanVien", tenNV);
+            replacer.Add("%DiaChi", diaChi);
+            replacer.Add("%SDT", soDienThoai);
+            double tongTien = 0;
+            decimal tongTienDecimal = (decimal)tongTien;
 
-                    // Kiểm tra từng checkbox và gọi hàm thống kê tương ứng
-                    if (isWeekChecked)
-                    {
-                        // Thống kê doanh thu theo tuần
-                        LoadDoanhThuLenBieuDo(startDate, endDate, ThongKeLoai.TheoTuan);  // Gọi hàm thống kê theo tuần
-                        LoadSoLuongBanRaLenBieuDoTron(startDate, endDate, ThongKeLoai.TheoTuan);  // Gọi hàm thống kê số lượng bán ra (biểu đồ tròn
-                    }
-                    else if (isMonthChecked)
-                    {
-                        // Thống kê doanh thu theo tháng
-                        LoadDoanhThuLenBieuDo(startDate, endDate, ThongKeLoai.TheoThang);  // Gọi hàm thống kê theo tháng
-                        LoadSoLuongBanRaLenBieuDoTron(startDate, endDate, ThongKeLoai.TheoThang);  // Gọi hàm thống kê số lượng bán ra (biểu đồ tròn)
-                    }
-                    else if (isYearChecked)
-                    {
-                        // Thống kê doanh thu theo năm
-                        LoadDoanhThuLenBieuDo(startDate, endDate, ThongKeLoai.TheoNam);  // Gọi hàm thống kê theo năm
-                        LoadSoLuongBanRaLenBieuDoTron(startDate, endDate, ThongKeLoai.TheoNam);  // Gọi hàm thống kê số lượng bán ra (biểu đồ tròn)
-                    }
-                    break;
-                case "Doanh Thu Theo Loại Sản Phẩm":
-                    InitializeChartsLoai();
-                    break;
-                case "Doanh Thu Theo Nhân Viên theo thời gian":
-                    
-                    break;
-                default:
-                    break;
+            foreach (PhieuBaoCao item in dsPBC)
+            {
+                tongTienDecimal += item.THANHTIEN;  // Cộng với decimal
+            }
+
+            replacer.Add("%TongTien", String.Format("{0:0,0} VNĐ", tongTienDecimal));
+
+            MemoryStream stream = null;
+            byte[] arrByte = new byte[0];
+            arrByte = File.ReadAllBytes("PhieuBaoCao.xlsx").ToArray();
+            //Get stream
+            if (arrByte.Count() > 0)
+            {
+                stream = new MemoryStream(arrByte);
+            }
+            //Create Excel Engine
+            ExcelEngine engine = new ExcelEngine();
+            IWorkbook workBook = engine.Excel.Workbooks.Open(stream);
+            Syncfusion.XlsIO.IWorksheet workSheet = workBook.Worksheets[0];
+            ITemplateMarkersProcessor markProcessor = workSheet.CreateTemplateMarkersProcessor();
+            //Replace value
+            if (replacer != null && replacer.Count > 0)
+            {
+                foreach (KeyValuePair<string, string> repl in replacer)
+                {
+                    Replace(workSheet, repl.Key, repl.Value);
+                }
+            }
+
+            string viewName = "PhieuBaoCao";
+            markProcessor.AddVariable(viewName, dsPBC);
+            markProcessor.ApplyMarkers(UnknownVariableAction.ReplaceBlank);
+            ////Xóa bỏ dòng đánh dấu [TMP]
+            IRange range = workSheet.FindFirst("[TMP]", ExcelFindType.Text);
+            if (range != null)
+            {
+                workSheet.DeleteRow(range.Row);
+            }
+
+            //Luu
+            string fileName = Path.Combine(Path.GetTempPath(), "PhieuNhapHang_" + Guid.NewGuid().ToString() + ".xlsx");
+            try
+            {
+                workBook.SaveAs(fileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lưu tệp: " + ex.Message);
+                return;
+            }
+
+
+            workBook.Close();
+            engine.Dispose();
+
+            MessageBox.Show("Xuất xong");
+
+            // Mở file nếu người dùng đồng ý
+            if (!string.IsNullOrEmpty(fileName) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                System.Diagnostics.Process.Start(fileName);
             }
         }
 
-        private void ComboBoxThongKe_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string selectedOption = comboBoxThongKe.SelectedItem.ToString();
 
-            switch (selectedOption)
+        private void Replace(Syncfusion.XlsIO.IWorksheet workSheet, string p1, string p2)
+        {
+            workSheet.Replace(p1, p2);
+        }
+        private void TabCrlDoanhThu_Selected(object sender, TabControlEventArgs e)
+        {
+            if (e.TabPage == tabSoLuongTon)
             {
-                case "Doanh Thu Theo Tháng":
-                    dtp_ngayKT.Enabled = false;
-                    break;
-                case "Doanh Thu Theo Năm":
-                    dtp_ngayKT.Enabled = false;
-                    break;
-                case "Doanh Thu Theo Khoảng Thời Gian":
-                    dtp_ngayKT.Enabled = true;
-                    break;
-                case "Doanh Thu Theo Loại Sản Phẩm":
-                    dtp_ngayKT.Enabled = false;
-                    dtp_ngayBD.Enabled = false;
-                    break;
-                case "Doanh Thu Theo Nhân Viên theo thời gian":
-                    dtp_ngayKT.Enabled = true;
-                    dtp_ngayBD.Enabled = true;
-                    break;
-                default:
-                    break;
+                try
+                {
+
+                    DataTable dt = sanPhamBLL.GetSanPhamTonKho();
+                    dataGridView2.DataSource = dt;
+                    dataGridView1.Refresh();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            if (e.TabPage == tabSPBanChay)
+            {
+                try
+                {
+
+                    DataTable dt = sanPhamBLL.GetSanPhamBanChayDataTable();
+                    dataGridView1.DataSource = dt;
+                    dataGridView1.Refresh();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
-        //viết hàm xử lý 
-        private void LoadThongKeOptions()
+        private void BtnChuyen_Click(object sender, EventArgs e)
         {
-            comboBoxThongKe.Items.Add("Doanh Thu Theo Khoảng Thời Gian");
-            comboBoxThongKe.Items.Add("Doanh Thu Theo Loại Sản Phẩm");
-            comboBoxThongKe.Items.Add("Doanh Thu Theo Nhân Viên theo thời gian");
-            comboBoxThongKe.SelectedIndex = 0; // Chọn mặc định là "Doanh Thu Theo Tháng"
+            chart1.Visible = true;
+            LoadDataAndChart();
         }
 
-        // Phương thức lấy doanh thu theo tháng, tuần hoặc năm
-        public List<DoanhThuTheoThangHoacTuan> DoanhThuTheoThangHoacTuan(DateTime startDate, DateTime endDate, ThongKeLoai thongKeLoai)
+        private void BtnXemDoanhThu_Click(object sender, EventArgs e)
         {
-            var result = new List<DoanhThuTheoThangHoacTuan>();
+            chart1.Visible = false;
+            DateTime starDate = dtpNgayBD.Value;
+            DateTime endDate = dtpNgayKT.Value;
+            dtgvThongKe.DataSource = null;
+            try
+            {
 
-            result = _thongKeBaoCaoBLL.DoanhThuTheoThangHoacTuan(startDate, endDate, thongKeLoai);
+                DataTable dt = hoaDonBanHangBLL.GetTongTienTheoNgayDataTable(starDate, endDate);
+                dtgvThongKe.DataSource = dt;
 
-            return result;  // Trả về danh sách dữ liệu
+                dtgvThongKe.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+        private void LoadDataAndChart()
+        {
+            DataTable dataTable = (DataTable)dtgvThongKe.DataSource;
+
+            DrawChart(dataTable);
+        }
+        private void DrawChart(DataTable dataTable)
+        {
+
+            chart1.Series.Clear();
+
+            Series series = new Series
+            {
+                Name = "Tổng tiền",
+                Color = System.Drawing.Color.ForestGreen,
+                ChartType = SeriesChartType.Column
+            };
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                series.Points.AddXY(row["Ngày"], row["Tổng Tiền"]);
+            }
+
+            chart1.Series.Add(series);
+
+            chart1.ChartAreas[0].AxisX.Title = "Ngày";
+            chart1.ChartAreas[0].AxisY.Title = "Tổng tiền";
+
+            chart1.Titles.Clear();
+            chart1.Titles.Add("Biểu Đồ Dữ Liệu Thu Nhập");
         }
 
-        // Phương thức vẽ biểu đồ doanh thu theo thời gian (tuần, tháng, năm)
-        private void LoadDoanhThuLenBieuDo(DateTime startDate, DateTime endDate, ThongKeLoai thongKeLoai)
+
+        private void loadCbbNhanVien()
         {
-            // Lấy dữ liệu thống kê
-            List<DoanhThuTheoThangHoacTuan> doanhThuList = DoanhThuTheoThangHoacTuan(startDate, endDate, thongKeLoai);
-
-            // Xóa các series cũ trên biểu đồ
-            chart_doanhThu.Series.Clear();
-
-            // Tạo mới một series cho biểu đồ
-            DevExpress.XtraCharts.Series series = new DevExpress.XtraCharts.Series("Doanh Thu", DevExpress.XtraCharts.ViewType.Bar);
-            series.DataSource = doanhThuList;
-
-            // Cấu hình các trục X và Y
-            series.ArgumentDataMember = GetArgumentDataMember(thongKeLoai);
-            switch (thongKeLoai)
+            try
             {
-                case ThongKeLoai.TheoThang:
-                    series.ArgumentDataMember = "Thang";  // Theo tháng
-                    break;
-                case ThongKeLoai.TheoTuan:
-                    series.ArgumentDataMember = "Tuan";    // Theo tuần
-                    break;
-                case ThongKeLoai.TheoNam:
-                    series.ArgumentDataMember = "Nam";    // Theo năm
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(thongKeLoai), thongKeLoai, null);
+                List<NhanVien> dsNhanVien = nhanVienBLL.LayDanhSachNhanVien();
+                if (dsNhanVien != null && dsNhanVien.Count > 0)
+                {
+                    cbbNhanVien.DataSource = null; // Đặt lại trước khi gán nguồn dữ liệu
+                    cbbNhanVien.DataSource = dsNhanVien;
+                    cbbNhanVien.ValueMember = "MaNhanVien";
+                    cbbNhanVien.DisplayMember = "HoTen";
+                }
+                else
+                {
+                    MessageBox.Show("Không có nhân viên nào.");
+                }
             }
-            series.ValueDataMembers.AddRange(new string[] { "TongDoanhThu" });
-
-            // Thêm series vào biểu đồ
-            chart_doanhThu.Series.Add(series);
-
-            // Cấu hình tiêu đề trục X và Y
-            ((XYDiagram)chart_doanhThu.Diagram).AxisX.Title.Text = thongKeLoai.ToString();
-            ((XYDiagram)chart_doanhThu.Diagram).AxisY.Title.Text = "Doanh Thu (VND)";
-            chart_doanhThu.Refresh();
+            catch
+            {
+                MessageBox.Show("Lỗi khi tải danh sách dịch vụ.");
+            }
         }
 
-        // Phương thức vẽ biểu đồ tròn cho số lượng bán ra
-        private void LoadSoLuongBanRaLenBieuDoTron(DateTime startDate, DateTime endDate, ThongKeLoai thongKeLoai)
+
+
+        private void Frm_lapThongKeBaoCao_Load(object sender, EventArgs e)
         {
-            // Lấy dữ liệu thống kê
-            List<DoanhThuTheoThangHoacTuan> doanhThuList = DoanhThuTheoThangHoacTuan(startDate, endDate, thongKeLoai);
+            loadCbbNhanVien();
+            dtgvThongKe.ReadOnly = true;
+            DataTable dt = hoaDonBanHangBLL.GetTongTienTheoNgayDataTable();
+            dtgvThongKe.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            // Xóa các series cũ trên biểu đồ
-            chart_soLuong.Series.Clear();
-
-            // Tạo mới một series biểu đồ tròn
-            DevExpress.XtraCharts.Series series = new DevExpress.XtraCharts.Series("Số Lượng Bán Ra", DevExpress.XtraCharts.ViewType.Pie);
-            var allSales = doanhThuList.SelectMany(dt => dt.LoaiSanPhamThongKes).ToList();  // Lấy tất cả dữ liệu số lượng bán ra của các sản phẩm
-
-            // Tính tổng số lượng bán ra của tất cả các sản phẩm
-            int totalSales = allSales.Sum(s => s.SoLuongBanRa);
-
-            // Cập nhật nguồn dữ liệu cho biểu đồ tròn
-            series.DataSource = allSales;
-
-            // Cấu hình các thành phần trong biểu đồ tròn
-            series.ArgumentDataMember = "LoaiSanPham";  // Tên sản phẩm
-            series.ValueDataMembers.AddRange(new string[] { "SoLuongBanRa" });  // Số lượng bán ra của sản phẩm
-
-            // Thêm series vào biểu đồ
-            chart_soLuong.Series.Add(series);
-
-            // Tùy chỉnh nhãn hiển thị trong biểu đồ tròn
-            PieSeriesLabel pieLabel = series.Label as PieSeriesLabel;
-            if (pieLabel != null)
+            dtgvThongKe.DefaultCellStyle.Font = new Font("Arial", 12);
+            dtgvThongKe.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 12);
+            dtgvThongKe.MultiSelect = false;
+            dtgvThongKe.AllowUserToAddRows = false;
+            dtgvThongKe.DataSource = dt;
+            dtgvThongKe.Refresh();
+            dtgvThongKe.BackgroundColor = Color.White;
+        }
+        private void AddButtonPaintEvent()
+        {
+            foreach (Control control in this.Controls)
             {
-                pieLabel.Visible = true;
-                pieLabel.TextPattern = "{A}: {V} ({VP:0.00}%)";  // {A}: Tên sản phẩm, {V}: Số lượng bán ra, {VP:0.00}%: Tỷ lệ phần trăm bán ra
+                if (control is Button button)
+                {
+                    button.Paint += CustomButton_Paint; // Gán sự kiện Paint cho mỗi nút
+                }
             }
-
-            // Tùy chỉnh View của Pie Chart (biểu đồ tròn)
-            PieSeriesView pieView = series.View as PieSeriesView;
-            if (pieView != null)
-            {
-                pieView.ExplodeMode = DevExpress.XtraCharts.PieExplodeMode.All;
-                pieView.ExplodedDistancePercentage = 20;  // Hiệu ứng nổ cho từng phần tử
-            }
-
-            // Tính tỷ lệ phần trăm cho mỗi sản phẩm và cập nhật
-            foreach (var item in allSales)
-            {
-                double percentage = (double)item.SoLuongBanRa / totalSales * 100;
-                item.TyLePhanTram = percentage;  // Lưu tỷ lệ phần trăm vào đối tượng (nếu cần lưu lại giá trị này)
-            }
-
-            // Làm mới biểu đồ
-            chart_soLuong.Refresh();
+        }
+        private void CustomButton_Paint(object sender, PaintEventArgs e)
+        {
+            Button btn = sender as Button;
+            Pen pen = new Pen(Color.Navy, 1); // Màu sắc và độ dày viền
+            e.Graphics.DrawRectangle(pen, 0, 0, btn.Width - 1, btn.Height - 1);
         }
 
-        // Hàm khởi tạo các biểu đồ
-        private void InitializeChartsLoai()
+        private void AddButtonPaintEventRecursive(Control parent)
         {
-            InitializeChartDoanhThu();
-            InitializeChartSoLuong();
+            foreach (Control control in parent.Controls)
+            {
+                if (control is Button button)
+                {
+                    button.Paint += CustomButton_Paint;
+                    button.MouseEnter += Button_MouseEnter;  // Thêm sự kiện hover vào nút
+                    button.MouseLeave += Button_MouseLeave; // Thêm sự kiện rời chuột khỏi nút
+                }
+                else if (control.HasChildren)
+                {
+                    AddButtonPaintEventRecursive(control); // Đệ quy vào các container con
+                }
+            }
         }
 
-        private void InitializeChartSoLuong()
+        private void Button_MouseLeave(object sender, EventArgs e)
         {
-            // Lấy dữ liệu doanh thu theo loại sản phẩm từ BLL
-            var doanhThuTheoLoaiSanPham = _thongKeBaoCaoBLL.ThongKeDoanhThuTheoLoaiSanPham();
-
-            // Tính tổng doanh thu và tổng số lượng
-            decimal tongDoanhThu = 0;
-            int tongSoLuong = 0;
-
-            // Thiết lập biểu đồ tròn
-            chart_soLuong.Series.Clear();
-
-            // Tạo Series mới cho biểu đồ tròn
-            var series = new DevExpress.XtraCharts.Series("Số Lượng Sản Phẩm", DevExpress.XtraCharts.ViewType.Pie);
-
-            // Thêm dữ liệu vào biểu đồ và tính tổng doanh thu, số lượng
-            foreach (var item in doanhThuTheoLoaiSanPham)
-            {
-                series.Points.Add(new DevExpress.XtraCharts.SeriesPoint(item.LoaiSanPham, item.TongSoLuongBan)); // X: Loại sản phẩm, Y: Số lượng bán
-
-                // Cộng dồn tổng doanh thu và số lượng
-                tongDoanhThu += item.TongDoanhThu;
-                tongSoLuong += item.TongSoLuongBan;
-            }
-
-            // Đặt View cho Series (PieSeriesView)
-            DevExpress.XtraCharts.PieSeriesView pieView = new DevExpress.XtraCharts.PieSeriesView();
-            series.View = pieView;
-
-            // Thiết lập nhãn cho từng phần tử trong biểu đồ
-            series.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True; // Hiển thị nhãn
-            series.Label.TextPattern = "{A}: {V:#,##0} ({VP:p0})"; // {A}: tên loại sản phẩm, {V}: số lượng bán, {VP:p0}: tỷ lệ phần trăm
-
-            // Thêm series vào chart
-            chart_soLuong.Series.Add(series);
-
-            // Thiết lập tiêu đề cho biểu đồ
-            chart_soLuong.Titles.Clear(); // Xóa các tiêu đề cũ
-            chart_soLuong.Titles.Add(new DevExpress.XtraCharts.ChartTitle() { Text = "Số Lượng Sản Phẩm Đã Bán" });
-
-            // Hiển thị tổng doanh thu và tổng số lượng lên các TextBox
-            txt_doanhThu.Text = tongDoanhThu.ToString("#,##0") + " VNĐ";  // Hiển thị tổng doanh thu với định dạng tiền tệ
-            txt_SoLuong.Text = tongSoLuong.ToString("#,##0");  // Hiển thị tổng số lượng
+            Button btn = sender as Button;
+            btn.BackColor = SystemColors.Control; // Đặt lại màu nền mặc định khi rời chuột
+            btn.ForeColor = Color.Black; // Đặt lại màu chữ mặc định nếu cần
         }
 
-        private void InitializeChartDoanhThu()
+        private void Button_MouseEnter(object sender, EventArgs e)
         {
-            var doanhThuTheoLoaiSanPham = _thongKeBaoCaoBLL.ThongKeDoanhThuTheoLoaiSanPham();
-            chart_doanhThu.Series.Clear();
-            DevExpress.XtraCharts.Series series = new DevExpress.XtraCharts.Series("Doanh Thu", DevExpress.XtraCharts.ViewType.Bar);
-            series.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-            foreach (var item in doanhThuTheoLoaiSanPham)
-            {
-                series.Points.Add(new DevExpress.XtraCharts.SeriesPoint(item.LoaiSanPham, item.TongDoanhThu)); // X: Loại sản phẩm, Y: Doanh thu
+            Button btn = sender as Button;
+            btn.BackColor = Color.Navy; // Đổi màu nền khi chuột vào
+            btn.ForeColor = Color.White; // Đổi màu chữ nếu cần
+        }
+        private void tabDanhThu_Click(object sender, EventArgs e)
+        {
 
-            }
-            DevExpress.XtraCharts.SideBySideBarSeriesView barView = new DevExpress.XtraCharts.SideBySideBarSeriesView();
-            series.View = barView;
-            chart_doanhThu.Series.Add(series);
-            chart_doanhThu.Titles.Clear(); // Xóa các tiêu đề cũ
-            chart_doanhThu.Titles.Add(new DevExpress.XtraCharts.ChartTitle() { Text = "Doanh Thu Theo Loại Sản Phẩm" });
         }
 
-        private string GetArgumentDataMember(ThongKeLoai thongKeLoai)
+        private void chart1_Click(object sender, EventArgs e)
         {
-            switch (thongKeLoai)
-            {
-                case ThongKeLoai.TheoThang:
-                    return "Thang";  // Theo tháng
-                case ThongKeLoai.TheoTuan:
-                    return "Tuan";    // Theo tuần
-                case ThongKeLoai.TheoNam:
-                    return "Nam";     // Theo năm
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(thongKeLoai), thongKeLoai, null);
-            }
+
         }
     }
 }
