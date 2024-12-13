@@ -619,5 +619,4 @@ namespace GUI
             }
         }
     }
-    }
 }

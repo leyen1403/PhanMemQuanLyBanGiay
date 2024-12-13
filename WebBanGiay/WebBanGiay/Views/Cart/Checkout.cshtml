@@ -7,8 +7,8 @@
     <table class="table table-bordered">
         <thead>
             <tr class="table-info">
-                <th>#ID</th>
-                <th>Img</th>
+                <th>STT</th>
+                <th>Hình Ảnh</th>
                 <th>Tên sản phẩm</th>
                 <th>Số lượng</th>
                 <th>Thành tiền</th>
@@ -17,8 +17,9 @@
         <tbody>
             @foreach (var item in Model.Items)
             {
+                int i = 1;
                 <tr>
-                    <td>@item.Product.MaSanPham</td>
+                    <td>@i</td>
                     <td>
                         <center>
                             <img src="/Images/@item.Product.HinhAnh" style="width: 100px; height: 130px; object-fit: cover;" alt="product image">
@@ -26,11 +27,13 @@
                     </td>
                     <td>@item.Product.TenSanPham</td>
                     <td>@item.Quantity</td>
-                    <td>@(item.Quantity * (item.Product.GiaBan ?? 0)).ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))</td>
+                    <td>
+                        @String.Format("{0:0,0 VNĐ}", item.Quantity * (item.Product.GiaBan ?? 0))
+                    </td>
                 </tr>
             }
             <tr class="table-info">
-                <td colspan="3" class="text-center fw-bold">Tổng tiền</td>
+                <td colspan="4" class="text-center fw-bold">Tổng tiền</td>
                 <td>@ViewBag.TotalPrice</td>
             </tr>
         </tbody>
@@ -61,6 +64,6 @@
             </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Đặt hàng</button>
+        <button type="submit" class="btn btn-primary mt-2">Đặt hàng</button>
     </form>
 </div>

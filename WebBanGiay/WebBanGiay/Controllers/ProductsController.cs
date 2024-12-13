@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebBanGiay.Models;
 using WebBanGiay.Services;
 
 public class ProductsController : Controller
@@ -9,7 +10,6 @@ public class ProductsController : Controller
     {
         _sanPhamService = sanPhamService;
     }
-
     public IActionResult Detail(string id)
     {
         if (string.IsNullOrEmpty(id))
@@ -17,14 +17,42 @@ public class ProductsController : Controller
             return BadRequest("Product ID is missing.");
         }
 
+        // Lấy thông tin sản phẩm từ service
         var product = _sanPhamService.GetSanPhamById(id);
         if (product == null)
         {
             return NotFound($"Product with ID {id} was not found.");
         }
 
-        return View(product);
+        // Lấy danh sách kích thước theo tên sản phẩm
+        var kichThuocs = _sanPhamService.GetKichThuocTheoTenSanPhamAsync(product.TenSanPham).Result ?? new List<KichThuoc>();
+
+        // Tạo ViewModel
+        var viewModel = new SanPhamDetailViewModel
+        {
+            SanPham = product,
+            KichThuocs = kichThuocs
+        };
+
+        return View(viewModel);
     }
+
+    public async Task<IActionResult> GetKichThuoc(string tenSanPham)
+    {
+        // Gọi service để lấy danh sách kích thước theo tên sản phẩm
+        var products = await _sanPhamService.GetKichThuocTheoTenSanPhamAsync(tenSanPham);
+
+        // Kiểm tra kết quả trả về
+        if (products == null || !products.Any())
+        {
+            return NotFound($"No products found for the name '{tenSanPham}'.");
+        }
+
+        // Trả về view với danh sách kích thước
+        return View(products);
+    }
+
+
 
     public async Task<IActionResult> Index(string SortColumn = "Id", string IconClass = "fa-sort-asc", int page = 1)
     {

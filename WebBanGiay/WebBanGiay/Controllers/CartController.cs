@@ -130,7 +130,7 @@ namespace WebBanGiay.Controllers
             // Tạo hóa đơn mới
             var hoaDon = new HoaDon
             {
-                MaHoaDon = "HD" + DateTime.Now.ToString("yyyyMMddHHmmss"),
+                MaHoaDon = GenerateMaHD(),
                 MaKhachHang = maKhachHang,
                 TongTien = cart.TotalPrice(),
                 PhuongThucThanhToan = paymentMethod,
@@ -198,6 +198,19 @@ namespace WebBanGiay.Controllers
             // Trả về mã khách hàng theo định dạng "KH" + số thứ tự với 3 chữ số, ví dụ KH001, KH002, ...
             return "KH" + nextId.ToString("D3");
         }
+        private string GenerateMaHD()
+        {
+            // Đếm số lượng khách hàng hiện tại trong cơ sở dữ liệu
+            var customerCount = _context.HoaDons.Count();
+
+            // Mã khách hàng sẽ được tạo ra dựa trên số lượng khách hàng hiện tại + 1
+            int nextId = customerCount + 1;
+
+            // Trả về mã khách hàng theo định dạng "KH" + số thứ tự với 3 chữ số, ví dụ KH001, KH002, ...
+            return "HD" + nextId.ToString("D3");
+        }
+
+
 
         // Trang thông báo thanh toán thành công
         public IActionResult PaymentSuccess()

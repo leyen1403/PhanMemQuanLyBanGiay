@@ -67,5 +67,16 @@ namespace WebBanGiay.Services
                                  .Where(p => p.MaThuongHieu.Contains(brand) && p.TrangThaiHoatDong == true)
                                  .ToListAsync();
         }
+        public async Task<List<KichThuoc>> GetKichThuocTheoTenSanPhamAsync(string tenSanPham)
+        {
+            var query = from sp in _context.SanPhams
+                        join kt in _context.KichThuocs on sp.MaKichThuoc equals kt.MaKichThuoc
+                        where sp.TrangThaiHoatDong == true
+                              && kt.TrangThaiHoatDong == true
+                              && sp.TenSanPham.Contains(tenSanPham)
+                        select kt; // Chỉ lấy kích thước
+
+            return await query.Distinct().ToListAsync(); // Loại bỏ trùng lặp và trả về danh sách
+        }
     }
 }
