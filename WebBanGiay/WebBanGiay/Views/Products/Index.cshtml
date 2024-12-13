@@ -1,0 +1,109 @@
+﻿@model IEnumerable<WebBanGiay.Models.SanPham>
+
+<div class="container-fluid">
+    <div class="row" style="min-height:1000px;">
+        <!-- Hiển thị sản phẩm -->
+        <div class="col-md-12" style="margin-left: 50px;">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 mb-4">
+                        <a asp-controller="Products" asp-action="Detail" asp-route-id="@item.MaSanPham" class="text-decoration-none">
+                            <div class="product-card shadow-sm border-light" style="transition: transform 0.3s ease-in-out; height: 100%; display: flex; flex-direction: column;">
+                                <img src="~/images/@item.HinhAnh" class="card-img-top" alt="Product Image">
+                                <div class="card-body" style="flex-grow: 1;">
+                                    <h3 class="card-title fs-6 fw-normal m-0 text-dark">
+                                        @item.TenSanPham
+                                    </h3>
+                                    <p class="card-text text-dark fw-bold" style="font-size: 1.2rem;">
+                                        @String.Format("{0:0,0 VNĐ}", @item.GiaBan)
+                                    </p>
+                                </div>
+                                <div class="add-cart p-3 text-center">
+                                    <button class="btn btn-primary">Add to Cart</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Phân trang -->
+        <div class="col-md-9 offset-md-3" style="margin-top: 30px;">
+            @{
+                int PrevPage = ViewBag.Page - 1 > 0 ? ViewBag.Page - 1 : 1;
+                int NextPage = ViewBag.Page + 1 <= ViewBag.NoOfPages ? ViewBag.Page + 1 : ViewBag.NoOfPages;
+            }
+
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a asp-controller="Products" asp-action="Index" asp-route-SortColumn="@ViewBag.SortColumn" asp-route-IconClass="@ViewBag.IconClass" asp-route-page="@PrevPage" class="page-link bg-primary text-white">Prev</a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.NoOfPages; i++)
+                {
+                    if (i == ViewBag.Page)
+                    {
+                        <li class="page-item active">
+                            <a asp-controller="Products" asp-action="Index" asp-route-SortColumn="@ViewBag.SortColumn" asp-route-IconClass="@ViewBag.IconClass" asp-route-page="@i" class="page-link bg-primary text-white">@i</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="page-item">
+                            <a asp-controller="Products" asp-action="Index" asp-route-SortColumn="@ViewBag.SortColumn" asp-route-IconClass="@ViewBag.IconClass" asp-route-page="@i" class="page-link bg-light text-primary">@i</a>
+                        </li>
+                    }
+                }
+
+                <li class="page-item">
+                    <a asp-controller="Products" asp-action="Index" asp-route-SortColumn="@ViewBag.SortColumn" asp-route-IconClass="@ViewBag.IconClass" asp-route-page="@NextPage" class="page-link bg-primary text-white">Next</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Add some custom styles -->
+<style>
+    .product-card:hover {
+        transform: scale(1.05); /* Zoom effect on hover */
+    }
+
+    .btn-primary:hover {
+        background-color: #2980b9; /* Darker blue on hover */
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: #2980b9;
+        border-color: #2980b9;
+    }
+
+    .pagination .page-item .page-link {
+        border-radius: 50%;
+        padding: 0.5rem 1rem;
+        font-weight: bold;
+    }
+
+    .card-img-top {
+        object-fit: cover;
+        width: 100%;
+        height: 200px; /* Fixed height for the image */
+    }
+
+    .col-md-3 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .card-title, .card-text {
+        font-family: 'Arial', 'Helvetica', sans-serif;
+    }
+</style>

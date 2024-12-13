@@ -1,0 +1,66 @@
+﻿@model WebBanGiay.Models.ShoppingCart
+
+<div style="padding: 60px; width: 80%; margin: auto">
+    <h3 class="text-center">Thông tin thanh toán</h3>
+
+    <!-- Hiển thị thông tin giỏ hàng -->
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-info">
+                <th>#ID</th>
+                <th>Img</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Product.MaSanPham</td>
+                    <td>
+                        <center>
+                            <img src="/Images/@item.Product.HinhAnh" style="width: 100px; height: 130px; object-fit: cover;" alt="product image">
+                        </center>
+                    </td>
+                    <td>@item.Product.TenSanPham</td>
+                    <td>@item.Quantity</td>
+                    <td>@(item.Quantity * (item.Product.GiaBan ?? 0)).ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))</td>
+                </tr>
+            }
+            <tr class="table-info">
+                <td colspan="3" class="text-center fw-bold">Tổng tiền</td>
+                <td>@ViewBag.TotalPrice</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Form nhập thông tin thanh toán -->
+    <form method="post" action="@Url.Action("ProcessPayment", "Cart")">
+        <div class="form-group">
+            <label for="fullName">Họ và tên</label>
+            <input type="text" name="fullName" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="address">Địa chỉ</label>
+            <input type="text" name="address" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Số điện thoại</label>
+            <input type="text" name="phone" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+            <label for="paymentMethod">Phương thức thanh toán</label>
+            <select name="paymentMethod" class="form-control">
+                <option value="COD">Thanh toán khi nhận hàng (COD)</option>
+                <option value="Online">Thanh toán online</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Đặt hàng</button>
+    </form>
+</div>

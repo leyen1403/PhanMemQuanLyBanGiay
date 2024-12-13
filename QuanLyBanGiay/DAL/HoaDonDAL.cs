@@ -151,5 +151,27 @@ namespace DAL
                 return null; // Trả về null nếu xảy ra lỗi
             }
         }
+        //cập nhật trạng thái đơn hàng
+        public bool CapNhatDonHang(string maHD, string DonHang)
+        {
+            try
+            {
+                var donHang = db.HoaDons.FirstOrDefault(hd => hd.MaHoaDon == maHD);
+                if (donHang == null)
+                {
+                    Console.WriteLine("Không tìm thấy hóa đơn để cập nhật.");
+                    return false;
+                }
+                donHang.TrangThai = DonHang;
+                db.SubmitChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi cập nhật hóa đơn: " + ex.Message);
+                return false;
+
+            }
+        }
     }
 }

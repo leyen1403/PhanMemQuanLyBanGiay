@@ -1,0 +1,69 @@
+﻿@model WebBanGiay.Models.ShoppingCart
+
+<div style="padding: 60px; width: 80%; margin: auto">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-info">
+                <th>#ID</th>
+                <th></th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+                decimal totPrice = 0;
+            }
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>
+                        <center>
+                            <img src="/Images/@item.Product.HinhAnh" style="width: 100px; height: 130px; object-fit: cover;" alt="product image">
+                        </center>
+                    </td>
+                    <td>@item.Product.TenSanPham</td>
+                    <td>
+                        @using (Html.BeginForm("UpdateQuantity", "Cart", FormMethod.Post))
+                        {
+                            <div class="input-group">
+                                <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control" style="width: 100px;" />
+                                <input type="hidden" name="productId" value="@item.Product.MaSanPham" />
+                                <button type="submit" class="btn btn-info">Cập nhật</button>
+                            </div>
+                        }
+                    </td>
+                    <td>
+                        @{
+                            decimal price = item.Quantity * (item.Product.GiaBan ?? 0);
+                            totPrice += price;
+                            i++;
+                        }
+                        @price.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post))
+                        {
+                            @Html.Hidden("productId", item.Product.MaSanPham)
+                            <button type="submit" class="btn btn-danger">Xóa</button>
+                        }
+                    </td>
+                </tr>
+            }
+            <tr class="table-info">
+                <td colspan="4" class="text-center fw-bold">Tổng tiền</td>
+                <td>@totPrice.ToString("C0", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between">
+        <a href="/Employee/Index" class="btn btn-success">Tiếp tục mua hàng</a>
+        <a href="/Cart/Checkout" class="btn btn-primary">Thanh toán</a>
+    </div>
+</div>

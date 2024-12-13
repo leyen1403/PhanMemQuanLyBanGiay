@@ -54,5 +54,9 @@ namespace BLL
         {
             return _hoaDonDAL.LayTatCaHoaDon().Where(t => t.MaHoaDon == maHoaDon).FirstOrDefault();
         }
+        public bool CapNhatDonHang(string maHD, string DonHang)
+        {
+            return _hoaDonDAL.CapNhatDonHang(maHD, DonHang);
+        }
     }
 }

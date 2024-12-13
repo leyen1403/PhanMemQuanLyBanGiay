@@ -37,6 +37,7 @@ namespace GUI
             LoadHoaDon();
             LoadChiTietHoaDon();
             loadComBoBoxChucNang();
+            loadComBoBoxTrangThaiDonHang();
             cbbLuaChonHienThi.SelectedIndexChanged += CbbLuaChonHienThi_SelectedIndexChanged;
             dgv_dsHoaDon.SelectionChanged += Dgv_dsHoaDon_SelectionChanged;
             dgv_dsCTHD.SelectionChanged += Dgv_dsCTHD_SelectionChanged;
@@ -46,6 +47,16 @@ namespace GUI
             dgv_dsCTHD.ReadOnly = true;
             dgv_dsHoaDon.ReadOnly = true;
 
+        }
+        private void loadComBoBoxTrangThaiDonHang()
+        {
+            cbo_trangThaiDon.Items.Clear();
+            cbo_trangThaiDon.Items.Add("Đã nhận hàng");
+            cbo_trangThaiDon.Items.Add("Đang giao hàng");
+            cbo_trangThaiDon.Items.Add("Chờ xác nhận");
+            cbo_trangThaiDon.Items.Add("Chờ lấy hàng");
+            cbo_trangThaiDon.Items.Add("Đã hủy");
+            cbo_trangThaiDon.SelectedIndex = 0;
         }
 
         private void Dgv_dsCTHD_SelectionChanged(object sender, EventArgs e)
@@ -92,7 +103,7 @@ namespace GUI
                 txt_tongTien.Text = row.Cells["TongTien"].Value != DBNull.Value ? Convert.ToDecimal(row.Cells["TongTien"].Value).ToString("N0") : string.Empty;
                 txt_ghiChu.Text = row.Cells["GhiChu"].Value != DBNull.Value ? row.Cells["GhiChu"].Value.ToString() : string.Empty;
                 txt_diemTichLuy.Text = row.Cells["DiemTichLuySuDung"].Value != DBNull.Value ? row.Cells["DiemTichLuySuDung"].Value.ToString() : string.Empty;
-
+                cbo_trangThaiDon.Text = row.Cells["TrangThai"].Value != DBNull.Value ? row.Cells["TrangThai"].Value.ToString() : string.Empty;
                 // Lấy mã hóa đơn và hiển thị chi tiết hóa đơn
                 string maHoaDon = row.Cells["MaHoaDon"].Value.ToString();
                 _lstChiTietHoaDon = _chiTietHoaDonBLL.LayChiTietHoaDonTheoMaHoaDon(maHoaDon);
@@ -456,7 +467,7 @@ namespace GUI
                 dgv_dsHoaDon.Columns["GhiChu"].HeaderText = "Ghi Chú";
                 dgv_dsHoaDon.Columns["DiemTichLuySuDung"].HeaderText = "Sử dụng điểm";
                 dgv_dsHoaDon.Columns["PhuongThucThanhToan"].HeaderText = "Phương Thức Thanh Toán";
-
+                dgv_dsHoaDon.Columns["TrangThai"].HeaderText = "Trạng Thái Đơn Hàng";
                 //căn chỉnh độ rộng cột
                 // Thiết lập chế độ tự động dàn đều cột và đồng thời điều chỉnh chiều cao của hàng
                 dgv_dsHoaDon.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -498,6 +509,36 @@ namespace GUI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btn_luuHoaDon_Click(object sender, EventArgs e)
+        {
+            //cập nhật trạng thái đơn hàng
+            try
+            {
+                //lấy mã hoá đơn từ textbox và combobox
+                string maHoaDon = txt_maHDBH.Text;
+                string trangThaiDonHang = cbo_trangThaiDon.Text;
+                //kiểm tra mã hoá đơn và trạng thái đơn hàng
+                if (string.IsNullOrEmpty(maHoaDon) || string.IsNullOrEmpty(trangThaiDonHang))
+                {
+                    MessageBox.Show("Mã hoá đơn và trạng thái đơn hàng không được để trống");
+                    return;
+                }
+                //cập nhật trạng thái đơn hàng
+
+                if (_hoaDonBLL.CapNhatDonHang(maHoaDon, trangThaiDonHang))
+                {
+                    MessageBox.Show("Đã cập nhật trạng thái đơn hàng");
+                    LoadHoaDon();
+                    btn_luuHoaDon.BackColor = Color.Navy;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Cập nhật trạng thái đơn hàng thất bại");
+
             }
         }
     }
