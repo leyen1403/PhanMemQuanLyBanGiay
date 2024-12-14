@@ -199,5 +199,10 @@ namespace GUI
         {
             loadForm(new frm_quanLyChungLoai());
         }
+
+        private void btn_phanTich_Click(object sender, EventArgs e)
+        {
+            loadForm(new PhanTich());
+        }
     }
 }

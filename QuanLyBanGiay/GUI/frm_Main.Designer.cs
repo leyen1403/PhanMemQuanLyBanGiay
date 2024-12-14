@@ -61,6 +61,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn_phanTich = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.fluentDesignFormControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fluentFormDefaultManager1)).BeginInit();
             this.pnLeft.SuspendLayout();
@@ -184,7 +185,6 @@
             this.btn_LapPhieuKiemKe,
             this.btn_LapDonDatHang,
             this.btn_LapPhieuDoiTra});
-            this.accordionControlElement1.Expanded = true;
             this.accordionControlElement1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement1.ImageOptions.Image")));
             this.accordionControlElement1.Name = "accordionControlElement1";
             this.accordionControlElement1.Text = "MENU";
@@ -375,10 +375,12 @@
             // 
             // accordionControlElement3
             // 
+            this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.btn_phanTich});
             this.accordionControlElement3.Expanded = true;
             this.accordionControlElement3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement3.ImageOptions.Image")));
             this.accordionControlElement3.Name = "accordionControlElement3";
-            this.accordionControlElement3.Text = "Setting";
+            this.accordionControlElement3.Text = "AI";
             // 
             // label1
             // 
@@ -409,6 +411,14 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
+            // 
+            // btn_phanTich
+            // 
+            this.btn_phanTich.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement5.ImageOptions.Image")));
+            this.btn_phanTich.Name = "btn_phanTich";
+            this.btn_phanTich.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.btn_phanTich.Text = "Phân tích khách hàng";
+            this.btn_phanTich.Click += new System.EventHandler(this.btn_phanTich_Click);
             // 
             // frm_main
             // 
@@ -467,5 +477,6 @@
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
         private DevExpress.XtraBars.BarButtonItem btn_Thoat;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement btn_phanTich;
     }
 }

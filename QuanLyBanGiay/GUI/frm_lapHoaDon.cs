@@ -368,7 +368,7 @@ namespace GUI
                     }
                 }
                 //lấy chi tiết hoá đơn
-                var lstCTHD = _chiTietHoaDonBLL.LayChiTietHoaDonTheoMaHoaDon(_MaHoaDon);
+                var lstCTHD = _chiTietHoaDonBLL.LayChiTietHoaDonTheoMaHoaDon(hoaDon.MaHoaDon);
                 UpdateProductStock(lstCTHD);
                 MessageBox.Show("Hóa đơn đã được lưu thành công!");
                 dgvCart.Rows.Clear();

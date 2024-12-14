@@ -35,6 +35,9 @@
             this.txt_diemDung = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btn_themKhachHang = new System.Windows.Forms.Button();
+            this.cbo_khachHang = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.btn_inHoaDon = new System.Windows.Forms.Button();
             this.cbo_gioiTinh = new System.Windows.Forms.ComboBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -95,9 +98,6 @@
             this.cbo_thuongHieu = new System.Windows.Forms.ComboBox();
             this.btn_load = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.cbo_khachHang = new System.Windows.Forms.ComboBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.btn_themKhachHang = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txt_SL)).BeginInit();
@@ -217,6 +217,38 @@
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin hoá đơn";
+            // 
+            // btn_themKhachHang
+            // 
+            this.btn_themKhachHang.BackgroundImage = global::GUI.Properties.Resources.icons8_add_35;
+            this.btn_themKhachHang.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_themKhachHang.Location = new System.Drawing.Point(552, 15);
+            this.btn_themKhachHang.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_themKhachHang.Name = "btn_themKhachHang";
+            this.btn_themKhachHang.Size = new System.Drawing.Size(42, 38);
+            this.btn_themKhachHang.TabIndex = 35;
+            this.btn_themKhachHang.UseVisualStyleBackColor = true;
+            // 
+            // cbo_khachHang
+            // 
+            this.cbo_khachHang.FormattingEnabled = true;
+            this.cbo_khachHang.Location = new System.Drawing.Point(174, 22);
+            this.cbo_khachHang.Name = "cbo_khachHang";
+            this.cbo_khachHang.Size = new System.Drawing.Size(270, 26);
+            this.cbo_khachHang.TabIndex = 34;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.ForeColor = System.Drawing.Color.Navy;
+            this.label27.Location = new System.Drawing.Point(11, 28);
+            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(141, 20);
+            this.label27.TabIndex = 33;
+            this.label27.Text = "Loại khách hàng";
             // 
             // btn_inHoaDon
             // 
@@ -765,6 +797,11 @@
             this.txt_soLuongTon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.txt_soLuongTon.Enabled = false;
             this.txt_soLuongTon.Location = new System.Drawing.Point(767, 28);
+            this.txt_soLuongTon.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.txt_soLuongTon.Name = "txt_soLuongTon";
             this.txt_soLuongTon.Size = new System.Drawing.Size(68, 24);
             this.txt_soLuongTon.TabIndex = 26;
@@ -925,38 +962,6 @@
             this.groupBox3.Size = new System.Drawing.Size(305, 43);
             this.groupBox3.TabIndex = 32;
             this.groupBox3.TabStop = false;
-            // 
-            // cbo_khachHang
-            // 
-            this.cbo_khachHang.FormattingEnabled = true;
-            this.cbo_khachHang.Location = new System.Drawing.Point(174, 22);
-            this.cbo_khachHang.Name = "cbo_khachHang";
-            this.cbo_khachHang.Size = new System.Drawing.Size(270, 26);
-            this.cbo_khachHang.TabIndex = 34;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.ForeColor = System.Drawing.Color.Navy;
-            this.label27.Location = new System.Drawing.Point(11, 28);
-            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(141, 20);
-            this.label27.TabIndex = 33;
-            this.label27.Text = "Loại khách hàng";
-            // 
-            // btn_themKhachHang
-            // 
-            this.btn_themKhachHang.BackgroundImage = global::GUI.Properties.Resources.icons8_add_35;
-            this.btn_themKhachHang.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_themKhachHang.Location = new System.Drawing.Point(552, 15);
-            this.btn_themKhachHang.Margin = new System.Windows.Forms.Padding(2);
-            this.btn_themKhachHang.Name = "btn_themKhachHang";
-            this.btn_themKhachHang.Size = new System.Drawing.Size(42, 38);
-            this.btn_themKhachHang.TabIndex = 35;
-            this.btn_themKhachHang.UseVisualStyleBackColor = true;
             // 
             // frm_lapHoaDon
             // 

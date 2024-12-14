@@ -1,11 +1,11 @@
-﻿using BLL;
-using DevExpress.ClipboardSource.SpreadsheetML;
-using DevExpress.SpreadsheetSource;
+﻿using Accord.Math;
+using BLL;
 using DTO;
 using Syncfusion.XlsIO;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -38,108 +38,93 @@ namespace GUI
 
         private void BtnXuatDoanhThu_Click(object sender, EventArgs e)
         {
-
             string maNV = cbbNhanVien.SelectedValue.ToString();
             DateTime starDate = dtpNgayBD.Value;
             DateTime endDate = dtpNgayKT.Value;
-            Console.WriteLine($"Ngày bắt đầu: {starDate}");
-            Console.WriteLine($"Ngày kết thúc: {endDate}");
 
             List<PhieuBaoCao> dsPBC = hoaDonBanHangBLL.LayPhieuBaoCaoTheoKhoangThoiGian(starDate, endDate);
 
             if (dsPBC.Count == 0)
             {
-                MessageBox.Show("Vui lòng chọn ngày bắt đầu và ngày kết thúc");
+                MessageBox.Show("Vui lòng chọn ngày bắt đầu và ngày kết thúc", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            //Create replacer
-            Dictionary<string, string> replacer = new Dictionary<string, string>();
-            string ngay = "Ngày" + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
-            replacer.Add("%NgayBatDau", starDate.ToString());
-            replacer.Add("%NgayKetThuc", endDate.ToString());
-            replacer.Add("%NgayThangNam", ngay);
-            //NHACUNGCAP ncc = qlhh.NHACUNGCAPs.Where(t => t.MANCC == pn.MANCC).FirstOrDefault();
+
+            string templatePath = Path.Combine(Application.StartupPath, "PhieuBaoCao.xlsx");
+            if (!File.Exists(templatePath))
+            {
+                MessageBox.Show("File template không tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Dictionary<string, string> replacer = new Dictionary<string, string>
+            {
+                {"%NgayBatDau", starDate.ToString("dd/MM/yyyy")},
+                {"%NgayKetThuc", endDate.ToString("dd/MM/yyyy")},
+                {"%NgayThangNam", "Ngày " + DateTime.Now.ToString("dd/MM/yyyy")}
+            };
+
             NhanVien nv = nhanVienBLL.LayNhanVienTheoMa(maNV);
-
-            var tenNV = nv.MaNhanVien;
-            var soDienThoai = nv.SoDienThoai;
-            var diaChi = nv.DiaChi;
             replacer.Add("%MaNV", maNV);
-            replacer.Add("%TenNhanVien", tenNV);
-            replacer.Add("%DiaChi", diaChi);
-            replacer.Add("%SDT", soDienThoai);
-            double tongTien = 0;
-            decimal tongTienDecimal = (decimal)tongTien;
+            replacer.Add("%TenNhanVien", nv.MaNhanVien);
+            replacer.Add("%DiaChi", nv.DiaChi);
+            replacer.Add("%SDT", nv.SoDienThoai);
 
-            foreach (PhieuBaoCao item in dsPBC)
-            {
-                tongTienDecimal += item.THANHTIEN;  // Cộng với decimal
-            }
+            decimal tongTien = dsPBC.Sum(item => item.THANHTIEN);
+            replacer.Add("%TongTien", String.Format("{0:0,0} VNĐ", tongTien));
 
-            replacer.Add("%TongTien", String.Format("{0:0,0} VNĐ", tongTienDecimal));
-
-            MemoryStream stream = null;
-            byte[] arrByte = new byte[0];
-            arrByte = File.ReadAllBytes("PhieuBaoCao.xlsx").ToArray();
-            //Get stream
-            if (arrByte.Count() > 0)
+            byte[] templateBytes = File.ReadAllBytes(templatePath);
+            using (MemoryStream stream = new MemoryStream(templateBytes))
             {
-                stream = new MemoryStream(arrByte);
-            }
-            //Create Excel Engine
-            ExcelEngine engine = new ExcelEngine();
-            IWorkbook workBook = engine.Excel.Workbooks.Open(stream);
-            Syncfusion.XlsIO.IWorksheet workSheet = workBook.Worksheets[0];
-            ITemplateMarkersProcessor markProcessor = workSheet.CreateTemplateMarkersProcessor();
-            //Replace value
-            if (replacer != null && replacer.Count > 0)
-            {
-                foreach (KeyValuePair<string, string> repl in replacer)
+                using (ExcelEngine engine = new ExcelEngine())
                 {
-                    Replace(workSheet, repl.Key, repl.Value);
+                    IWorkbook workBook = engine.Excel.Workbooks.Open(stream);
+                    IWorksheet workSheet = workBook.Worksheets[0];
+
+                    foreach (var repl in replacer)
+                    {
+                        Replace(workSheet, repl.Key, repl.Value);
+                    }
+
+                    ITemplateMarkersProcessor markProcessor = workSheet.CreateTemplateMarkersProcessor();
+                    markProcessor.AddVariable("PhieuBaoCao", dsPBC);
+                    markProcessor.ApplyMarkers(UnknownVariableAction.ReplaceBlank);
+
+                    using (SaveFileDialog saveFileDialog = new SaveFileDialog
+                    {
+                        Filter = "Excel Files (*.xlsx)|*.xlsx",
+                        Title = "Chọn nơi lưu tệp",
+                        FileName = $"PhieuBaoCao_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx"
+                    })
+                    {
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            try
+                            {
+                                workBook.SaveAs(saveFileDialog.FileName);
+                                MessageBox.Show("Xuất file thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                System.Diagnostics.Process.Start(new ProcessStartInfo
+                                {
+                                    FileName = saveFileDialog.FileName,
+                                    UseShellExecute = true
+                                });
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"Lỗi khi lưu file: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
                 }
-            }
-
-            string viewName = "PhieuBaoCao";
-            markProcessor.AddVariable(viewName, dsPBC);
-            markProcessor.ApplyMarkers(UnknownVariableAction.ReplaceBlank);
-            ////Xóa bỏ dòng đánh dấu [TMP]
-            IRange range = workSheet.FindFirst("[TMP]", ExcelFindType.Text);
-            if (range != null)
-            {
-                workSheet.DeleteRow(range.Row);
-            }
-
-            //Luu
-            string fileName = Path.Combine(Path.GetTempPath(), "PhieuNhapHang_" + Guid.NewGuid().ToString() + ".xlsx");
-            try
-            {
-                workBook.SaveAs(fileName);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi lưu tệp: " + ex.Message);
-                return;
-            }
-
-
-            workBook.Close();
-            engine.Dispose();
-
-            MessageBox.Show("Xuất xong");
-
-            // Mở file nếu người dùng đồng ý
-            if (!string.IsNullOrEmpty(fileName) && MessageBox.Show("Bạn có muốn mở file không?", "Thông tin", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-            {
-                System.Diagnostics.Process.Start(fileName);
             }
         }
 
-
-        private void Replace(Syncfusion.XlsIO.IWorksheet workSheet, string p1, string p2)
+        private void Replace(IWorksheet workSheet, string p1, string p2)
         {
             workSheet.Replace(p1, p2);
         }
+
+
         private void TabCrlDoanhThu_Selected(object sender, TabControlEventArgs e)
         {
             if (e.TabPage == tabSoLuongTon)

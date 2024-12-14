@@ -8,12 +8,17 @@ using Accord.MachineLearning;                         // Để thực hiện K-M
 using Accord.Statistics.Filters;
 using DTO;
 using BLL;
+using static DevExpress.Data.Helpers.SyncHelper.ZombieContextsDetector;
 
 namespace GUI
 {
     public partial class PhanTich : Form
     {
         KhachHangBLL _khachHangBLL = new KhachHangBLL();
+        private KMeans _kmeansModel;
+        private List<int> _selectedAttributes; // Lưu trữ các thuộc tính đã chọn
+        private double[,] _trainingData; // Dữ liệu đã chuẩn hóa
+
         public PhanTich()
         {
             InitializeComponent();
@@ -82,6 +87,7 @@ namespace GUI
         // Thực hiện K-Means với phương pháp khoảng cách tuỳ chọn
         private int[] PerformKMeans(double[,] data, int k, string distanceMethod)
         {
+            TrainKMeans(data, k, distanceMethod);
             double[][] jaggedData = ConvertToJaggedArray(data);
             KMeans kmeans;
 
@@ -232,11 +238,130 @@ namespace GUI
                 // Hiển thị kết quả
                 DisplayClustersChart(clusters, data);
                 DisplayRawData(data, clusters, selectedAttributes);
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi trong quá trình phân tích: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void PhanTich_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void TrainKMeans(double[,] normalizedData, int k, string distanceMethod)
+        {
+            double[][] jaggedData = ConvertToJaggedArray(normalizedData);
+
+            switch (distanceMethod)
+            {
+                case "Manhattan":
+                    _kmeansModel = new KMeans(k, Accord.Math.Distance.Manhattan);
+                    break;
+                case "Cosine":
+                    _kmeansModel = new KMeans(k, Accord.Math.Distance.Cosine);
+                    break;
+                case "Euclidean":
+                default:
+                    _kmeansModel = new KMeans(k, Accord.Math.Distance.Euclidean);
+                    break;
+            }
+
+            // Huấn luyện mô hình
+            _kmeansModel.Learn(jaggedData);
+
+            // Lưu trữ dữ liệu đã huấn luyện
+            _trainingData = normalizedData;
+        }
+
+        private int PredictCluster(Customer newCustomer)
+        {
+            if (_kmeansModel == null || _trainingData == null || _selectedAttributes == null)
+            {
+                MessageBox.Show("Vui lòng thực hiện phân tích trước khi dự đoán.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+
+            // Lấy dữ liệu của khách hàng mới dựa trên các thuộc tính đã chọn
+            double[] newData = new double[_selectedAttributes.Count];
+            if (_selectedAttributes.Contains(0)) newData[_selectedAttributes.IndexOf(0)] = newCustomer.Age;
+            if (_selectedAttributes.Contains(1)) newData[_selectedAttributes.IndexOf(1)] = newCustomer.LoyaltyPoints;
+            if (_selectedAttributes.Contains(2)) newData[_selectedAttributes.IndexOf(2)] = newCustomer.Spending;
+            if (_selectedAttributes.Contains(3)) newData[_selectedAttributes.IndexOf(3)] = newCustomer.ProductsPurchased;
+
+            // Chuẩn hóa dữ liệu mới
+            double[,] newNormalizedData = NormalizeData(new double[,] { { newData[0], newData[1], newData[2], newData[3] } });
+
+            // Dự đoán cụm
+            int[] predictedCluster = _kmeansModel.Clusters.Decide(ConvertToJaggedArray(newNormalizedData));
+            return predictedCluster[0];
+        }
+
+
+        private void btn_xem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_kmeansModel == null)
+                {
+                    MessageBox.Show("Vui lòng thực hiện phân tích K-Means trước khi dự đoán.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Lấy thông tin từ các ô nhập liệu
+                double age = chkAge.Checked ? double.Parse(txt_tuoi.Text) : 0;
+                double loyaltyPoints = chkLoyaltyPoints.Checked ? double.Parse(txt_diem.Text) : 0;
+                double spending = chkSpending.Checked ? double.Parse(txt_SoTien.Text) : 0;
+                double productsPurchased = chkProductsPurchased.Checked ? double.Parse(txt_SL.Text) : 0;
+
+                // Xây dựng mảng dữ liệu đầu vào
+                List<int> selectedAttributes = new List<int>();
+                if (chkAge.Checked) selectedAttributes.Add(0);
+                if (chkLoyaltyPoints.Checked) selectedAttributes.Add(1);
+                if (chkSpending.Checked) selectedAttributes.Add(2);
+                if (chkProductsPurchased.Checked) selectedAttributes.Add(3);
+
+                // Kiểm tra nếu không có thuộc tính nào được chọn
+                if (selectedAttributes.Count == 0)
+                {
+                    MessageBox.Show("Vui lòng chọn ít nhất một thuộc tính để dự đoán.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                double[] inputData = new double[selectedAttributes.Count];
+                if (selectedAttributes.Contains(0)) inputData[selectedAttributes.IndexOf(0)] = age;
+                if (selectedAttributes.Contains(1)) inputData[selectedAttributes.IndexOf(1)] = loyaltyPoints;
+                if (selectedAttributes.Contains(2)) inputData[selectedAttributes.IndexOf(2)] = spending;
+                if (selectedAttributes.Contains(3)) inputData[selectedAttributes.IndexOf(3)] = productsPurchased;
+
+                // Chuẩn hóa dữ liệu
+                double[,] singleInputData = new double[1, selectedAttributes.Count];
+                for (int i = 0; i < selectedAttributes.Count; i++)
+                {
+                    singleInputData[0, i] = inputData[i];
+                }
+                double[,] normalizedData = NormalizeData(singleInputData);
+
+                // Thực hiện dự đoán
+                double[][] jaggedData = ConvertToJaggedArray(normalizedData);
+                int predictedCluster = _kmeansModel.Clusters.Decide(jaggedData)[0];
+
+                MessageBox.Show($"Khách hàng thuộc cụm: {predictedCluster + 1}", "Kết quả dự đoán", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi trong quá trình dự đoán: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_clear_Click(object sender, EventArgs e)
+        {
+            //xoá dữ liệu trong các ô nhập liệu
+            txt_tuoi.Text = "";
+            txt_diem.Text = "";
+            txt_SoTien.Text = "";
+            txt_SL.Text = "";
         }
     }
 }
