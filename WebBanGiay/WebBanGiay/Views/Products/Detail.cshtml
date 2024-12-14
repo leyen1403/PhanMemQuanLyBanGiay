@@ -34,6 +34,11 @@
                 @String.Format("{0:0,0 VNĐ}", @Model.SanPham.GiaBan)
             </h3>
 
+            <!-- Số lượng tồn kho -->
+            <p class="text-muted">
+                <strong>Số lượng tồn kho:</strong> @Model.SanPham.SoLuong
+            </p>
+
             <!-- Danh sách kích thước -->
             @if (Model.KichThuocs != null && Model.KichThuocs.Any())
             {
@@ -55,13 +60,26 @@
                 </div>
             }
 
-            <!-- Nút thêm vào giỏ hàng -->
-            <div>
-                <a href="/Cart/AddToCart?productId=@Model.SanPham.MaSanPham&quantity=1"
-                   class="btn btn-success btn-lg shadow-sm d-inline-flex align-items-center">
+            <!-- Nút thêm vào giỏ hàng (hiển thị thông báo nếu hết hàng) -->
+            @if (Model.SanPham.SoLuong <= 0)
+            {
+                <div class="alert alert-danger mb-4">
+                    Sản phẩm hiện tại hết hàng!
+                </div>
+                <!-- Disable the "Add to Cart" button -->
+                <a href="#" class="btn btn-secondary btn-lg shadow-sm d-inline-flex align-items-center" disabled>
                     <span class="me-2">🛒</span> Thêm vào giỏ hàng
                 </a>
-            </div>
+            }
+            else
+            {
+                <div>
+                    <a href="/Cart/AddToCart?productId=@Model.SanPham.MaSanPham&quantity=1"
+                       class="btn btn-success btn-lg shadow-sm d-inline-flex align-items-center">
+                        <span class="me-2">🛒</span> Thêm vào giỏ hàng
+                    </a>
+                </div>
+            }
         </div>
     </div>
 </div>

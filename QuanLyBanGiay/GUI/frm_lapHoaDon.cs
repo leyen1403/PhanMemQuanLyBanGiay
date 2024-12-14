@@ -485,6 +485,11 @@ namespace GUI
 
         private void Btn_addCart_Click(object sender, EventArgs e)
         {
+            if(txt_soLuongTon.Value == 0)
+            {
+                MessageBox.Show("Sản phẩm đã hết hàng.");
+                return;
+            }
             if (cbo_mauSac.SelectedItem != null && cbo_kichThuoc.SelectedItem != null)
             {
                 string tenSanPham = productSelected?.TenSanPham; // Sử dụng null conditional để tránh lỗi NullReferenceException
