@@ -2,6 +2,7 @@ wwwroot\css\site.css
 wwwroot\css\style.css
 wwwroot\css\vendor.css
 wwwroot\favicon.ico
+wwwroot\Images\_card-image6.jpg
 wwwroot\Images\author-item.jpg
 wwwroot\Images\banner-image3.jpg
 wwwroot\Images\card-image1.jpg

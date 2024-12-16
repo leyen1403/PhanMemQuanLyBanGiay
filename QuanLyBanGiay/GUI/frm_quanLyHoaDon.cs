@@ -535,7 +535,7 @@ namespace GUI
                     LoadHoaDon();
                     btn_luuHoaDon.BackColor = Color.Navy;
                 }
-                if (trangThaiDonHang == "Đã nhận hàng")
+                if (trangThaiDonHang == "Chờ lấy hàng")
                 {
                     //cập nhật điểm tích lũy
                     HoaDon hd = _hoaDonBLL.TimHoaDonTheoMaHoaDon(maHoaDon).FirstOrDefault();
@@ -555,12 +555,12 @@ namespace GUI
                     decimal diemTichLuyMoi = diemTichLuy - diemTichLuySuDung;
                     if (diemTichLuyMoi < 0)
                     {
-                        MessageBox.Show("Không đủ điểm tích lũy để sử dụng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //MessageBox.Show("Không đủ điểm tích lũy để sử dụng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                     if (_khachHangBLL.AddDiemCongTichLuy(hd.MaKhachHang, diemTichLuyMoi))
                     {
-                        MessageBox.Show("Cập nhật điểm tích lũy thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("Cập nhật điểm tích lũy thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {

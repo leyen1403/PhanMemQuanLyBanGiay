@@ -220,6 +220,7 @@ namespace DAL
                 sanPham.HinhAnh = sp.HinhAnh;
                 sanPham.NgayCapNhat = DateTime.Now;
                 sanPham.TrangThaiHoatDong = sp.TrangThaiHoatDong;
+                sanPham.SoLuong = sp.SoLuong;
                 db.SubmitChanges();
                 return true;
             }
