@@ -299,6 +299,12 @@
     <Compile Include="frm_ThemQuyen.Designer.cs">
       <DependentUpon>frm_ThemQuyen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_themSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_themSanPham.Designer.cs">
+      <DependentUpon>frm_themSanPham.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_ThemVaiTro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -385,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_ThemQuyen.resx">
       <DependentUpon>frm_ThemQuyen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_themSanPham.resx">
+      <DependentUpon>frm_themSanPham.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_ThemVaiTro.resx">
       <DependentUpon>frm_ThemVaiTro.cs</DependentUpon>

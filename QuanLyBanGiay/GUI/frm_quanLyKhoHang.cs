@@ -355,151 +355,152 @@ namespace GUI
 
         private void Btn_themSanPham_Click(object sender, EventArgs e)
         {
-            if(flagThemSP)
-            {
-                //kiểm tra dữ liệu nhập vào
-                try
-                {
-                    string maSanPham = TaoMaSanPhamTuDong();
-                    string tenSanPham = txt_tenSanPham.Text;
-                    string donViTinh = txt_donViTinh.Text;
-                    string giaNhapText = txt_giaNhap.Text;
-                    string giaBanText = txt_giaBan.Text;
-                    giaNhapText = giaNhapText.Replace(",", "").Replace("₫", "").Trim();
-                    giaBanText = giaBanText.Replace(",", "").Replace("₫", "").Trim();
-                    //kiểm gia giá trị nhập vào
-                    if (string.IsNullOrEmpty(maSanPham))
-                    {
-                        MessageBox.Show("Mã sản phẩm không được để trống!");
-                        return;
-                    }
-                    if (string.IsNullOrEmpty(tenSanPham))
-                    {
-                        MessageBox.Show("Tên sản phẩm không được để trống!");
-                        return;
-                    }
-                    if (string.IsNullOrEmpty(donViTinh))
-                    {
-                        MessageBox.Show("Đơn vị tính không được để trống!");
-                        return;
-                    }
-                    if (!decimal.TryParse(giaNhapText, out decimal giaNhap))
-                    {
-                        MessageBox.Show("Giá nhập không hợp lệ!");
-                        return;
-                    }
-                    if (!decimal.TryParse(giaBanText, out decimal giaBan))
-                    {
-                        MessageBox.Show("Giá bán không hợp lệ!");
-                        return;
-                    }
-                    int soLuongToiThieu = 10;
-                    if (!string.IsNullOrEmpty(txt_soLuongToiThieu.Text))
-                    {
-                        if (!int.TryParse(txt_soLuongToiThieu.Text, out soLuongToiThieu))
-                        {
-                            MessageBox.Show("Số lượng tối thiểu không hợp lệ!");
-                            return;
-                        }
-                    }
-                    string moTa = txt_moTa.Text;
-                    if (string.IsNullOrEmpty(moTa))
-                    {
-                        MessageBox.Show("Chưa nhập mô tả sản phẩm!");
-                        return;
-                    }
-                    string hinhAnh = txt_duongDan.Text;
-                    if (string.IsNullOrEmpty(hinhAnh))
-                    {
-                        MessageBox.Show("Chưa chọn hình ảnh sản phẩm!");
-                        return;
-                    }
-                    if (cbo_loaiSanPhamAdd.SelectedValue == null || cbo_thuongHieuAdd.SelectedValue == null || cbo_kichThuocAdd.SelectedValue == null || cbo_mauSacAdd.SelectedValue == null)
-                    {
-                        MessageBox.Show("Vui lòng chọn Mã Loại, Màu Sắc và Kích Thước.");
-                        return;
-                    }
+            //if(flagThemSP)
+            //{
+            //    //kiểm tra dữ liệu nhập vào
+            //    try
+            //    {
+            //        string maSanPham = TaoMaSanPhamTuDong();
+            //        string tenSanPham = txt_tenSanPham.Text;
+            //        string donViTinh = txt_donViTinh.Text;
+            //        string giaNhapText = txt_giaNhap.Text;
+            //        string giaBanText = txt_giaBan.Text;
+            //        giaNhapText = giaNhapText.Replace(",", "").Replace("₫", "").Trim();
+            //        giaBanText = giaBanText.Replace(",", "").Replace("₫", "").Trim();
+            //        //kiểm gia giá trị nhập vào
+            //        if (string.IsNullOrEmpty(maSanPham))
+            //        {
+            //            MessageBox.Show("Mã sản phẩm không được để trống!");
+            //            return;
+            //        }
+            //        if (string.IsNullOrEmpty(tenSanPham))
+            //        {
+            //            MessageBox.Show("Tên sản phẩm không được để trống!");
+            //            return;
+            //        }
+            //        if (string.IsNullOrEmpty(donViTinh))
+            //        {
+            //            MessageBox.Show("Đơn vị tính không được để trống!");
+            //            return;
+            //        }
+            //        if (!decimal.TryParse(giaNhapText, out decimal giaNhap))
+            //        {
+            //            MessageBox.Show("Giá nhập không hợp lệ!");
+            //            return;
+            //        }
+            //        if (!decimal.TryParse(giaBanText, out decimal giaBan))
+            //        {
+            //            MessageBox.Show("Giá bán không hợp lệ!");
+            //            return;
+            //        }
+            //        int soLuongToiThieu = 10;
+            //        if (!string.IsNullOrEmpty(txt_soLuongToiThieu.Text))
+            //        {
+            //            if (!int.TryParse(txt_soLuongToiThieu.Text, out soLuongToiThieu))
+            //            {
+            //                MessageBox.Show("Số lượng tối thiểu không hợp lệ!");
+            //                return;
+            //            }
+            //        }
+            //        string moTa = txt_moTa.Text;
+            //        if (string.IsNullOrEmpty(moTa))
+            //        {
+            //            MessageBox.Show("Chưa nhập mô tả sản phẩm!");
+            //            return;
+            //        }
+            //        string hinhAnh = txt_duongDan.Text;
+            //        if (string.IsNullOrEmpty(hinhAnh))
+            //        {
+            //            MessageBox.Show("Chưa chọn hình ảnh sản phẩm!");
+            //            return;
+            //        }
+            //        if (cbo_loaiSanPhamAdd.SelectedValue == null || cbo_thuongHieuAdd.SelectedValue == null || cbo_kichThuocAdd.SelectedValue == null || cbo_mauSacAdd.SelectedValue == null)
+            //        {
+            //            MessageBox.Show("Vui lòng chọn Mã Loại, Màu Sắc và Kích Thước.");
+            //            return;
+            //        }
 
-                    string maLoai = cbo_loaiSanPhamAdd.SelectedValue.ToString();
-                    string mauSac = cbo_mauSacAdd.SelectedValue.ToString();
-                    string kichThuoc = cbo_kichThuocAdd.SelectedValue.ToString();
-                    string maThuongHieu = cbo_thuongHieuAdd.SelectedValue.ToString();
+            //        string maLoai = cbo_loaiSanPhamAdd.SelectedValue.ToString();
+            //        string mauSac = cbo_mauSacAdd.SelectedValue.ToString();
+            //        string kichThuoc = cbo_kichThuocAdd.SelectedValue.ToString();
+            //        string maThuongHieu = cbo_thuongHieuAdd.SelectedValue.ToString();
 
-                    // Kiểm tra và lấy giá trị của màu sắc từ ComboBox
-                    string tenMauSac = cbo_mauSacAdd.SelectedItem != null
-                        ? ((DTO.MauSac)cbo_mauSacAdd.SelectedItem).TenMauSac
-                        : string.Empty;
+            //        // Kiểm tra và lấy giá trị của màu sắc từ ComboBox
+            //        string tenMauSac = cbo_mauSacAdd.SelectedItem != null
+            //            ? ((DTO.MauSac)cbo_mauSacAdd.SelectedItem).TenMauSac
+            //            : string.Empty;
 
-                    // Kiểm tra và lấy giá trị của kích thước từ ComboBox
-                    string tenKichThuoc = cbo_kichThuocAdd.SelectedItem != null
-                        ? ((DTO.KichThuoc)cbo_kichThuocAdd.SelectedItem).TenKichThuoc
-                        : string.Empty;
+            //        // Kiểm tra và lấy giá trị của kích thước từ ComboBox
+            //        string tenKichThuoc = cbo_kichThuocAdd.SelectedItem != null
+            //            ? ((DTO.KichThuoc)cbo_kichThuocAdd.SelectedItem).TenKichThuoc
+            //            : string.Empty;
 
-                    //kiểm tra và lấy giá trị của thương hiệu từ combobox
-                    string tenThuongHieu = cbo_thuongHieuAdd.SelectedItem != null
-                        ? ((DTO.ThuongHieu)cbo_thuongHieuAdd.SelectedItem).TenThuongHieu
-                        : string.Empty;
-                    //kiểm tra và lấy giá trị của trang thái từ combobox
-                    bool trangThai = cbo_trangThai.SelectedItem.ToString() == "Đang hoạt động" ? true : false;
+            //        //kiểm tra và lấy giá trị của thương hiệu từ combobox
+            //        string tenThuongHieu = cbo_thuongHieuAdd.SelectedItem != null
+            //            ? ((DTO.ThuongHieu)cbo_thuongHieuAdd.SelectedItem).TenThuongHieu
+            //            : string.Empty;
+            //        //kiểm tra và lấy giá trị của trang thái từ combobox
+            //        bool trangThai = cbo_trangThai.SelectedItem.ToString() == "Đang hoạt động" ? true : false;
 
-                    string maDaCo = _sanPhamBLL.timKiemMaSanPham(tenSanPham, kichThuoc, mauSac, maThuongHieu, maLoai);
-                    if (maDaCo != "")
-                    {
-                        MessageBox.Show("Đã có sản phẩm này rồi !");
-                        return;
-                    }
+            //        string maDaCo = _sanPhamBLL.timKiemMaSanPham(tenSanPham, kichThuoc, mauSac, maThuongHieu, maLoai);
+            //        if (maDaCo != "")
+            //        {
+            //            MessageBox.Show("Đã có sản phẩm này rồi !");
+            //            return;
+            //        }
 
-                    SanPham newProduct = new SanPham
-                    {
-                        MaSanPham = maSanPham,
-                        TenSanPham = tenSanPham,
-                        MaLoaiSanPham = maLoai,
-                        MaThuongHieu = maThuongHieu,
-                        MaMauSac = mauSac,
-                        MaKichThuoc = kichThuoc,
-                        DonViTinh = donViTinh,
-                        SoLuong = 0,
-                        SoLuongToiThieu = soLuongToiThieu,
-                        GiaNhap = giaNhap,
-                        GiaBan = giaBan,
-                        MoTa = moTa,
-                        HinhAnh = hinhAnh,
-                        TrangThaiHoatDong = trangThai,
-                        NgayTao = DateTime.Now,
-                        NgayCapNhat = DateTime.Now,
-                    };
+            //        SanPham newProduct = new SanPham
+            //        {
+            //            MaSanPham = maSanPham,
+            //            TenSanPham = tenSanPham,
+            //            MaLoaiSanPham = maLoai,
+            //            MaThuongHieu = maThuongHieu,
+            //            MaMauSac = mauSac,
+            //            MaKichThuoc = kichThuoc,
+            //            DonViTinh = donViTinh,
+            //            SoLuong = 0,
+            //            SoLuongToiThieu = soLuongToiThieu,
+            //            GiaNhap = giaNhap,
+            //            GiaBan = giaBan,
+            //            MoTa = moTa,
+            //            HinhAnh = hinhAnh,
+            //            TrangThaiHoatDong = trangThai,
+            //            NgayTao = DateTime.Now,
+            //            NgayCapNhat = DateTime.Now,
+            //        };
 
-                    bool isSuccess = _sanPhamBLL.themSanPham(newProduct);
-                    if (isSuccess)
-                    {
-                        MessageBox.Show("Sản phẩm đã được thêm thành công!");
-                        LoadData();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Có lỗi khi thêm sản phẩm. Vui lòng thử lại.");
-                    }
-                    btn_themSanPham.BackgroundImage = Properties.Resources.icons8_add_32;
-                    btn_xoaSanPham.Enabled = true;
-                    btn_suaSanPham.Enabled = true;
-                    flagThemSP = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi: " + ex.Message);
-                }
-            }
-            else
-            {
+            //        bool isSuccess = _sanPhamBLL.themSanPham(newProduct);
+            //        if (isSuccess)
+            //        {
+            //            MessageBox.Show("Sản phẩm đã được thêm thành công!");
+            //            LoadData();
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show("Có lỗi khi thêm sản phẩm. Vui lòng thử lại.");
+            //        }
+            //        btn_themSanPham.BackgroundImage = Properties.Resources.icons8_add_32;
+            //        btn_xoaSanPham.Enabled = true;
+            //        btn_suaSanPham.Enabled = true;
+            //        flagThemSP = false;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show("Lỗi: " + ex.Message);
+            //    }
+            //}
+            //else
+            //{
                 
-                //không cho chọn các button khác
-                btn_xoaSanPham.Enabled = false;
-                btn_suaSanPham.Enabled = false;
-                btn_themSanPham.BackgroundImage = Properties.Resources.icons8_save_as_32;
-                flagThemSP = true;
-                ClearTextBox();
-            }
-
+            //    //không cho chọn các button khác
+            //    btn_xoaSanPham.Enabled = false;
+            //    btn_suaSanPham.Enabled = false;
+            //    btn_themSanPham.BackgroundImage = Properties.Resources.icons8_save_as_32;
+            //    flagThemSP = true;
+            //    ClearTextBox();
+            //}
+            frm_themSanPham frm = new frm_themSanPham();
+            frm.ShowDialog();
 
         }
 

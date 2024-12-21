@@ -77,11 +77,11 @@
             this.txt_maSanPham = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbo_trangThai = new System.Windows.Forms.ComboBox();
             this.txt_duongDan = new System.Windows.Forms.Label();
             this.cbo_thuongHieuAdd = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txt_donViTinh = new System.Windows.Forms.TextBox();
-            this.cbo_trangThai = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_dsSanPham)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.img_sanPham)).BeginInit();
@@ -711,6 +711,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Thông tin nhân viên";
             // 
+            // cbo_trangThai
+            // 
+            this.cbo_trangThai.FormattingEnabled = true;
+            this.cbo_trangThai.Location = new System.Drawing.Point(194, 618);
+            this.cbo_trangThai.Name = "cbo_trangThai";
+            this.cbo_trangThai.Size = new System.Drawing.Size(232, 28);
+            this.cbo_trangThai.TabIndex = 55;
+            // 
             // txt_duongDan
             // 
             this.txt_duongDan.AutoSize = true;
@@ -748,14 +756,6 @@
             this.txt_donViTinh.Name = "txt_donViTinh";
             this.txt_donViTinh.Size = new System.Drawing.Size(232, 26);
             this.txt_donViTinh.TabIndex = 3;
-            // 
-            // cbo_trangThai
-            // 
-            this.cbo_trangThai.FormattingEnabled = true;
-            this.cbo_trangThai.Location = new System.Drawing.Point(194, 618);
-            this.cbo_trangThai.Name = "cbo_trangThai";
-            this.cbo_trangThai.Size = new System.Drawing.Size(232, 28);
-            this.cbo_trangThai.TabIndex = 55;
             // 
             // frm_quanLyKhoHang
             // 
